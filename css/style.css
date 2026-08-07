@@ -1950,4 +1950,30 @@ form label {
     pointer-events: none;
 }
 
+#skip-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease, background 0.2s ease;
+}
+
+#skip-btn.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#skip-btn:hover {
+    background: rgba(241, 78, 149, 0.9); /* Matches your theme pink on hover */
+    border-color: transparent;
+}
 /*# sourceMappingURL=style.css.map */
