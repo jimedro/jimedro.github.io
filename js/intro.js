@@ -9,6 +9,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!videoElement || !introVeil) return; 
 
+    // Ensure the coming soon loader screen is completely hidden on initial page load
+    if (loaderScreen) {
+        loaderScreen.classList.add("fade-out");
+        loaderScreen.style.visibility = "hidden";
+        loaderScreen.style.opacity = "0";
+    }
+
     const isMobile = window.innerWidth <= 768;
 
     if (isMobile) {
@@ -53,30 +60,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to transition into the infinite loading screen
     function showLoaderScreen() {
-        // Hide video and skip button
         const videoContainer = document.getElementById("video-container");
         if (videoContainer) videoContainer.style.display = "none";
         if (skipBtn) skipBtn.classList.remove("show");
 
-        // Set the appropriate language message
         if (messageContainer) {
             messageContainer.textContent = messages[selectedLang] || messages["EN"];
         }
 
-        // Trigger the loader display and fade it in
         if (loaderScreen) {
             loaderScreen.classList.remove("fade-out");
             loaderScreen.style.visibility = "visible";
             loaderScreen.style.opacity = "1";
         }
 
-        // Fade in the text slightly after the white screen appears
         setTimeout(() => {
             if (messageContainer) messageContainer.classList.add("show");
         }, 500);
     }
 
-    // Skip Button Functionality -> Takes you straight to the loader screen
+    // Skip Button Functionality
     if (skipBtn) {
         skipBtn.addEventListener("click", function() {
             videoElement.pause();
@@ -84,10 +87,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // When video ends naturally -> Wait 1 second, then fade into the loader screen
+    // When video ends naturally
     videoElement.addEventListener("ended", function() {
         setTimeout(function() {
             showLoaderScreen();
-        }, 1000); // 1 second delay
+        }, 1000);
     });
 });
