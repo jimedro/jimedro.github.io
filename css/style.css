@@ -1925,6 +1925,14 @@ form label {
     gap: 50px;
 }
 
+/* --- Vertical Flags on Mobile Phones Only --- */
+@media screen and (max-width: 768px) {
+    .flags-container {
+        flex-direction: column; /* Changes alignment from horizontal to vertical */
+        gap: 50px; /* Adjusts the vertical space between the flags */
+    }
+}
+
 .flag-btn {
     background: transparent;
     border: none;
@@ -2008,7 +2016,7 @@ form label {
 /* --- Custom Font Declaration --- */
 @font-face {
     font-family: 'Nemure'; /* This is our internal font's name */
-    src: url('../fonts/my-custom-font.ttf') format('truetype');
+    src: url('../fonts/Nemure.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
