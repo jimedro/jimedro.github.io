@@ -104,3 +104,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 1000);
     });
 });
+
+	var scrollTitle = function() {
+		var titleText = " Que nos casamos! • On se marie ! • We are getting married! • "; 
+		setInterval(function() {
+			titleText = titleText.substring(1) + titleText.substring(0, 1);
+			document.title = titleText;
+		}, 120);
+	}
