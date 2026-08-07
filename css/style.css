@@ -2030,14 +2030,6 @@ form label {
 }
 /*# sourceMappingURL=style.css.map */
 
-/* --- Custom Font Declaration --- */
-@font-face {
-    font-family: 'Nemure'; /* This is our internal font's name */
-    src: url('../fonts/Nemure.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 /* Apply the custom font globally and give it a default subtle thickness boost */
 body, 
 #skip-btn, 
