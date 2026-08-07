@@ -124,13 +124,11 @@
 		});
 	};
 
-   JavaScript
-
-var loaderPage = function() {
-   setTimeout(function() {
-       $(".fh5co-loader").addClass("fade-out");
-    }, 700);
-};
+   var loaderPage = function() {
+      setTimeout(function() {
+          $(".fh5co-loader").addClass("fade-out");
+       }, 700);
+   };
 
 	var counter = function() {
 		$('.js-counter').countTo({
@@ -163,7 +161,7 @@ var loaderPage = function() {
 		}, 120);
 	};
 
-$(document).ready(function(){
+	$(document).ready(function(){
 		mobileMenuOutsideClick();
 		parallax();
 		offcanvasMenu();
@@ -172,12 +170,7 @@ $(document).ready(function(){
 		dropdown();
 		testimonialCarousel();
 		goToTop();
-		
-		// Only run the template loader if we are NOT on the intro landing page
-		if (!document.getElementById('intro-veil')) {
-			loaderPage();
-		}
-		
+		loaderPage();
 		counter();
 		counterWayPoint();
 		scrollTitle();
