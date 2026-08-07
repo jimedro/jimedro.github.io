@@ -124,14 +124,13 @@
 		});
 	};
 
-   var loaderPage = function() {
-      // Only run this automatically if the intro video layer is already gone
-      if ($('#video-container').length === 0) {
-          setTimeout(function() {
-              $(".fh5co-loader").addClass("fade-out");
-          }, 700);
-      }
-   };
+   JavaScript
+
+var loaderPage = function() {
+   setTimeout(function() {
+       $(".fh5co-loader").addClass("fade-out");
+    }, 700);
+};
 
 	var counter = function() {
 		$('.js-counter').countTo({
