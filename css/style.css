@@ -1851,11 +1851,12 @@ form label {
   bottom: 0;
   width: 100%;
   height: 100%;
-  
   min-height: -webkit-fill-available;
-  
   z-index: 99999;
-  
+  /* Start hidden by default so it never flashes on page load */
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
   /* Set transition speed for the fade (0.3s = 300ms) */
   transition: opacity 0.3s ease, visibility 0.3s ease;
   opacity: 1;
