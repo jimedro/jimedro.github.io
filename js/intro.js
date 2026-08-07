@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const flagSelection = document.getElementById("flag-selection");
     const videoElement = document.getElementById("wedding-video");
     const skipBtn = document.getElementById("skip-btn");
-    const loaderScreen = document.querySelector(".fh5co-loader");
+    const loaderScreen = document.getElementById("intro-loader");
     const messageContainer = document.getElementById("coming-soon-message");
 
     if (!videoElement || !introVeil) return; 
@@ -56,12 +56,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const videoContainer = document.getElementById("video-container");
         if (skipBtn) skipBtn.classList.remove("show");
 
-        // Fade out the video container smoothly using CSS transition
         if (videoContainer) {
             videoContainer.classList.add("fade-out");
         }
 
-        // Wait for the 1-second fade transition to finish, then pause video and show loader
         setTimeout(() => {
             videoElement.pause();
             if (videoContainer) videoContainer.style.display = "none";
@@ -71,16 +69,14 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             if (loaderScreen) {
-                loaderScreen.classList.remove("fade-out");
-                loaderScreen.style.visibility = "visible";
-                loaderScreen.style.opacity = "1";
+                loaderScreen.classList.add("active");
             }
 
             setTimeout(() => {
                 if (messageContainer) messageContainer.classList.add("show");
             }, 300);
 
-        }, 1000); // Matches the 1s CSS transition time
+        }, 1000);
     }
 
     // Skip Button Functionality
