@@ -1874,12 +1874,13 @@ form label {
     height: 100vh;
     z-index: 1;
     background: #000;
+    overflow: hidden; /* Prevents any part of the video from spilling outside the screen bounds */
 }
 
 #wedding-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain; /* Forces the entire video to fit inside the screen without cropping or going beyond */
 }
 
 #intro-veil {
