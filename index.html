@@ -3,41 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Link to your existing CSS file -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- LAYER 3: Background Video (Hidden initially) -->
+    <!-- LAYER 3: Background Video -->
     <div id="video-container">
         <video id="wedding-video" playsinline preload="auto">
-            <!-- Source will be injected dynamically via JavaScript -->
             Your browser does not support the video tag.
         </video>
     </div>
 
-    <!-- LAYER 2: Semi-transparent / Blurry Frosted Glass Veil -->
+    <!-- LAYER 2: Background Image Veil (Swapped dynamically based on device) -->
     <div id="intro-veil"></div>
 
-    <!-- LAYER 1: The Language Flags -->
+    <!-- LAYER 1: The Language Flags (Cleaned up, no text/labels) -->
     <div id="flag-selection">
         <div class="flags-container">
             <button class="flag-btn" data-lang="FR">
                 <img src="images/flagFR.png" alt="French">
-                <span>FR</span>
             </button>
             <button class="flag-btn" data-lang="ES">
                 <img src="images/flagES.png" alt="Spanish">
-                <span>ES</span>
             </button>
             <button class="flag-btn" data-lang="EN">
                 <img src="images/flagUK.png" alt="English">
-                <span>EN</span>
             </button>
         </div>
     </div>
 
-    <!-- Link to your existing JS file -->
     <script src="js/main.js"></script>
 </body>
 </html>
