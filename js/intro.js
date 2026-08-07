@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const flagSelection = document.getElementById("flag-selection");
     const videoElement = document.getElementById("wedding-video");
     const skipBtn = document.getElementById("skip-btn");
+    const loaderScreen = document.querySelector(".fh5co-loader");
+    const messageContainer = document.getElementById("coming-soon-message");
 
     if (!videoElement || !introVeil) return; 
 
@@ -15,9 +17,18 @@ document.addEventListener("DOMContentLoaded", function () {
         introVeil.style.backgroundImage = "url('images/blurry_landscape.jpg')";
     }
 
+    // Dictionary for the custom messages
+    const messages = {
+        "ES": "Aún nos queda un poquito, volved pronto!",
+        "EN": "We are not ready yet, come back soon!",
+        "FR": "Il nous en reste encore un petit peu, revenez vite !"
+    };
+
+    let selectedLang = "EN"; // Default fallback
+
     flagButtons.forEach(button => {
         button.addEventListener("click", function () {
-            const selectedLang = this.getAttribute("data-lang"); 
+            selectedLang = this.getAttribute("data-lang") || "EN"; 
 
             let videoFileName = "";
             if (isMobile) {
@@ -32,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
             introVeil.classList.add("fade-out");
             flagSelection.classList.add("fade-out");
             
-            // Reveal the skip button once a flag is clicked and the video starts
             if (skipBtn) skipBtn.classList.add("show");
 
             videoElement.play().catch(error => {
@@ -41,17 +51,43 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Skip Button Functionality
+    // Function to transition into the infinite loading screen
+    function showLoaderScreen() {
+        // Hide video and skip button
+        const videoContainer = document.getElementById("video-container");
+        if (videoContainer) videoContainer.style.display = "none";
+        if (skipBtn) skipBtn.classList.remove("show");
+
+        // Set the appropriate language message
+        if (messageContainer) {
+            messageContainer.textContent = messages[selectedLang] || messages["EN"];
+        }
+
+        // Trigger the loader display and fade it in
+        if (loaderScreen) {
+            loaderScreen.classList.remove("fade-out");
+            loaderScreen.style.visibility = "visible";
+            loaderScreen.style.opacity = "1";
+        }
+
+        // Fade in the text slightly after the white screen appears
+        setTimeout(() => {
+            if (messageContainer) messageContainer.classList.add("show");
+        }, 500);
+    }
+
+    // Skip Button Functionality -> Takes you straight to the loader screen
     if (skipBtn) {
         skipBtn.addEventListener("click", function() {
             videoElement.pause();
-            videoElement.currentTime = videoElement.duration;
-            skipBtn.classList.remove("show");
+            showLoaderScreen();
         });
     }
 
-    // Hide skip button automatically when the video finishes naturally
+    // When video ends naturally -> Wait 1 second, then fade into the loader screen
     videoElement.addEventListener("ended", function() {
-        if (skipBtn) skipBtn.classList.remove("show");
+        setTimeout(function() {
+            showLoaderScreen();
+        }, 1000); // 1 second delay
     });
 });
