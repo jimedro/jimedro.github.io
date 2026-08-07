@@ -163,7 +163,7 @@ var loaderPage = function() {
 		}, 120);
 	};
 
-	$(document).ready(function(){
+$(document).ready(function(){
 		mobileMenuOutsideClick();
 		parallax();
 		offcanvasMenu();
@@ -172,7 +172,12 @@ var loaderPage = function() {
 		dropdown();
 		testimonialCarousel();
 		goToTop();
-		loaderPage();
+		
+		// Only run the template loader if we are NOT on the intro landing page
+		if (!document.getElementById('intro-veil')) {
+			loaderPage();
+		}
+		
 		counter();
 		counterWayPoint();
 		scrollTitle();
