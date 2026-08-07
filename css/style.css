@@ -1874,7 +1874,8 @@ form label {
     height: 100vh;
     z-index: 1;
     background: #000;
-    overflow: hidden; /* Prevents any part of the video from spilling outside the screen bounds */
+    overflow: hidden;
+    transition: opacity 1s ease-in-out; /* Adds a smooth 1-second fade effect */
 }
 
 #wedding-video {
