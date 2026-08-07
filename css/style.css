@@ -1910,7 +1910,18 @@ form label {
 
 .flags-container {
     display: flex;
-    gap: 40px;
+    flex-direction: row; /* Default horizontal layout for laptops/desktops */
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+/* --- Vertical Flags on Mobile Phones Only --- */
+@media screen and (max-width: 768px) {
+    .flags-container {
+        flex-direction: column; /* Forces vertical stacking on mobile */
+        gap: 50px; /* Space between the stacked flags */
+    }
 }
 
 .flag-btn {
@@ -1931,14 +1942,6 @@ form label {
 
 .flag-btn:hover {
     transform: scale(1.1);
-}
-
-/* --- Vertical Flags on Mobile Phones Only --- */
-@media screen and (max-width: 768px) {
-    .flags-container {
-        flex-direction: column; /* Changes alignment from horizontal to vertical */
-        gap: 25px; /* Adjusts the vertical space between the flags */
-    }
 }
 
 .fade-out {
