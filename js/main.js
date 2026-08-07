@@ -244,4 +244,43 @@ var scrollTitle = function() {
 // Call the function
 scrollTitle();
 
+// --- Wedding Opening Flag-to-Video Logic ---
+	var weddingOpening = function() {
+		const flagButtons = document.querySelectorAll(".flag-btn");
+		const introVeil = document.getElementById("intro-veil");
+		const flagSelection = document.getElementById("flag-selection");
+		const videoElement = document.getElementById("wedding-video");
+
+		if (!videoElement) return; // Exit if we aren't on the index page with these elements
+
+		flagButtons.forEach(button => {
+			button.addEventListener("click", function () {
+				const selectedLang = this.getAttribute("data-lang"); // FR, ES, or EN
+				const isMobile = window.innerWidth <= 768;
+
+				let videoFileName = "";
+				if (isMobile) {
+					videoFileName = `WeddingWebOpening_Portrait30_${selectedLang}.mp4`;
+				} else {
+					videoFileName = `WeddingWebOpening_Landscape30_${selectedLang}.mp4`;
+				}
+
+				videoElement.src = `images/${videoFileName}`;
+				videoElement.load();
+
+				if (introVeil) introVeil.classList.add("fade-out");
+				if (flagSelection) flagSelection.classList.add("fade-out");
+
+				videoElement.play().catch(error => {
+					console.log("Autoplay was prevented by the browser:", error);
+				});
+			});
+		});
+	};
+
+	// Initialize it inside your main execution block
+	$(function(){
+		weddingOpening();
+	});
+	
 }());
