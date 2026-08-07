@@ -244,8 +244,8 @@ var scrollTitle = function() {
 // Call the function
 scrollTitle();
 
-// --- Wedding Opening Flag-to-Video Logic ---
-	var weddingOpening = function() {
+// --- Wedding Opening Flag-to-Video Logic (Vanilla JS) ---
+	document.addEventListener("DOMContentLoaded", function () {
 		const flagButtons = document.querySelectorAll(".flag-btn");
 		const introVeil = document.getElementById("intro-veil");
 		const flagSelection = document.getElementById("flag-selection");
@@ -286,10 +286,6 @@ scrollTitle();
 				});
 			});
 		});
-	};
-
-	$(function(){
-		weddingOpening();
 	});
 	
 }());
