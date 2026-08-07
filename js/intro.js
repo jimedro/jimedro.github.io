@@ -91,8 +91,8 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function() {
             showLoaderScreen();
         }, 1000);
+    }); // <-- Properly closed here!
 
-    }
     // Scrolling Tab Title Function
     var scrollTitle = function() {
         var titleText = " Que nos casamos! • On se marie ! • We are getting married! • "; 
