@@ -58,31 +58,41 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Function to transition into the infinite loading screen
+    // Function to transition smoothly into the infinite loading screen
     function showLoaderScreen() {
         const videoContainer = document.getElementById("video-container");
-        if (videoContainer) videoContainer.style.display = "none";
         if (skipBtn) skipBtn.classList.remove("show");
 
-        if (messageContainer) {
-            messageContainer.textContent = messages[selectedLang] || messages["EN"];
+        // Fade out the video container smoothly using CSS transition
+        if (videoContainer) {
+            videoContainer.classList.add("fade-out");
         }
 
-        if (loaderScreen) {
-            loaderScreen.classList.remove("fade-out");
-            loaderScreen.style.visibility = "visible";
-            loaderScreen.style.opacity = "1";
-        }
-
+        // Wait for the 1-second fade transition to finish, then pause video and show loader
         setTimeout(() => {
-            if (messageContainer) messageContainer.classList.add("show");
-        }, 500);
+            videoElement.pause();
+            if (videoContainer) videoContainer.style.display = "none";
+
+            if (messageContainer) {
+                messageContainer.textContent = messages[selectedLang] || messages["EN"];
+            }
+
+            if (loaderScreen) {
+                loaderScreen.classList.remove("fade-out");
+                loaderScreen.style.visibility = "visible";
+                loaderScreen.style.opacity = "1";
+            }
+
+            setTimeout(() => {
+                if (messageContainer) messageContainer.classList.add("show");
+            }, 300);
+
+        }, 1000); // Matches the 1s CSS transition time
     }
 
     // Skip Button Functionality
     if (skipBtn) {
         skipBtn.addEventListener("click", function() {
-            videoElement.pause();
             showLoaderScreen();
         });
     }
