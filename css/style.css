@@ -1933,6 +1933,14 @@ form label {
     transform: scale(1.1);
 }
 
+/* --- Vertical Flags on Mobile Phones Only --- */
+@media screen and (max-width: 768px) {
+    .flags-container {
+        flex-direction: column; /* Changes alignment from horizontal to vertical */
+        gap: 25px; /* Adjusts the vertical space between the flags */
+    }
+}
+
 .fade-out {
     opacity: 0;
     pointer-events: none;
