@@ -1889,9 +1889,9 @@ form label {
     width: 100vw;
     height: 100vh;
     z-index: 2;
-    background-color: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     transition: opacity 1s ease-in-out;
 }
 
@@ -1903,55 +1903,34 @@ form label {
     height: 100vh;
     z-index: 3;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    color: #333;
     transition: opacity 1s ease-in-out;
-}
-
-#flag-selection h1 {
-    margin-bottom: 10px;
-    font-size: 2rem;
-}
-
-#flag-selection p {
-    margin-bottom: 30px;
-    font-size: 1.1rem;
-    opacity: 0.8;
 }
 
 .flags-container {
     display: flex;
-    gap: 30px;
+    gap: 40px;
 }
 
 .flag-btn {
     background: transparent;
     border: none;
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 0;
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .flag-btn img {
-    width: 70px;
+    width: 80px;
     height: auto;
     border-radius: 6px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-.flag-btn span {
-    margin-top: 8px;
-    font-weight: bold;
-    color: #333;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: block;
 }
 
 .flag-btn:hover {
-    transform: scale(1.08);
+    transform: scale(1.1);
 }
 
 .fade-out {
