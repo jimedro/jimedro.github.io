@@ -2003,3 +2003,17 @@ form label {
     opacity: 1;
 }
 /*# sourceMappingURL=style.css.map */
+
+/* --- Custom Font Declaration --- */
+@font-face {
+    font-family: 'Nemure'; /* This is our internal font's name */
+    src: url('../fonts/my-custom-font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Apply the custom font to the Skip Button and Coming Soon Message */
+#skip-btn, 
+#coming-soon-message {
+    font-family: 'Nemure', Arial, sans-serif;
+}
