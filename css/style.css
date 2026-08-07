@@ -2035,3 +2035,33 @@ body,
     -webkit-text-stroke: 0.4px currentColor;
     paint-order: stroke fill;
 }
+
+/* --- Intro Page Coming Soon Screen --- */
+#intro-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999;
+    
+    /* Hidden completely by default */
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+
+    background-color: rgba(255, 255, 255, 0.8);
+    background-image: url('../images/LOADING.gif');
+    background-repeat: no-repeat;
+    background-position: center 35%; 
+    background-size: 180px auto;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#intro-loader.active {
+    display: flex;
+    opacity: 1;
+}
