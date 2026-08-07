@@ -1,12 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const loaderScreen = document.querySelector(".fh5co-loader");
-
-    // Instantly hide the loader on page load before anything else
-    if (loaderScreen) {
-        loaderScreen.classList.add("fade-out");
-        loaderScreen.style.visibility = "hidden";
-        loaderScreen.style.opacity = "0";
-    }
     const flagButtons = document.querySelectorAll(".flag-btn");
     const introVeil = document.getElementById("intro-veil");
     const flagSelection = document.getElementById("flag-selection");
