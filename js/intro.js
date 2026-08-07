@@ -104,4 +104,3 @@ document.addEventListener("DOMContentLoaded", function () {
     // Run the scrolling title function on load
     scrollTitle();
 });
-});
