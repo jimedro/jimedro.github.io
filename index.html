@@ -7,23 +7,6 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- LAYER 4: Template Loader / Coming Soon Screen -->
-    <div class="fh5co-loader">
-        <div id="coming-soon-message"></div>
-    </div>
-    
-    <!-- LAYER 3: Background Video -->
-    <div id="video-container">
-        <video id="wedding-video" playsinline preload="auto">
-            Your browser does not support the video tag.
-        </video>
-        <!-- Skip Button (Hidden by default, shown when video plays) -->
-        <button id="skip-btn">Skip Intro ➔</button>
-    </div>
-
-    <!-- LAYER 2: Background Image Veil (Swapped dynamically based on device) -->
-    <div id="intro-veil"></div>
-
     <!-- LAYER 1: The Language Flags (Cleaned up, no text/labels) -->
     <div id="flag-selection">
         <div class="flags-container">
@@ -38,6 +21,23 @@
             </button>
         </div>
     </div>
+
+    <!-- LAYER 2: Background Image Veil (Swapped dynamically based on device) -->
+    <div id="intro-veil"></div>
+        
+    <!-- LAYER 3: Background Video -->
+    <div id="video-container">
+        <video id="wedding-video" playsinline preload="auto">
+            Your browser does not support the video tag.
+        </video>
+        <!-- Skip Button (Hidden by default, shown when video plays) -->
+        <button id="skip-btn">Skip Intro ➔</button>
+    </div>
+    
+    <!-- LAYER 4: Template Loader / Coming Soon Screen -->
+    <div class="fh5co-loader">
+        <div id="coming-soon-message"></div>
+    </div> 
 
    <script src="js/main.js"></script>
     <script src="js/intro.js"></script>
