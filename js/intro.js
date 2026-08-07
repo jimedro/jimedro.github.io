@@ -9,6 +9,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!videoElement || !introVeil) return; 
 
+    // Ensure the coming soon loader screen is completely hidden on initial page load
+    if (loaderScreen) {
+        loaderScreen.classList.add("fade-out");
+        loaderScreen.style.visibility = "hidden";
+        loaderScreen.style.opacity = "0";
+    }
+
     const isMobile = window.innerWidth <= 768;
 
     if (isMobile) {
