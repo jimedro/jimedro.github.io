@@ -251,12 +251,21 @@ scrollTitle();
 		const flagSelection = document.getElementById("flag-selection");
 		const videoElement = document.getElementById("wedding-video");
 
-		if (!videoElement) return; // Exit if we aren't on the index page with these elements
+		if (!videoElement || !introVeil) return; 
+
+		// Determine device type on load
+		const isMobile = window.innerWidth <= 768;
+
+		// Set the correct background image for Layer 2 immediately
+		if (isMobile) {
+			introVeil.style.backgroundImage = "url('images/blurry_portrait.jpg')";
+		} else {
+			introVeil.style.backgroundImage = "url('images/blurry_landscape.jpg')";
+		}
 
 		flagButtons.forEach(button => {
 			button.addEventListener("click", function () {
 				const selectedLang = this.getAttribute("data-lang"); // FR, ES, or EN
-				const isMobile = window.innerWidth <= 768;
 
 				let videoFileName = "";
 				if (isMobile) {
@@ -268,8 +277,9 @@ scrollTitle();
 				videoElement.src = `images/${videoFileName}`;
 				videoElement.load();
 
-				if (introVeil) introVeil.classList.add("fade-out");
-				if (flagSelection) flagSelection.classList.add("fade-out");
+				// Fade out layer 2 (veil image) and layer 1 (flags)
+				introVeil.classList.add("fade-out");
+				flagSelection.classList.add("fade-out");
 
 				videoElement.play().catch(error => {
 					console.log("Autoplay was prevented by the browser:", error);
@@ -278,7 +288,6 @@ scrollTitle();
 		});
 	};
 
-	// Initialize it inside your main execution block
 	$(function(){
 		weddingOpening();
 	});
