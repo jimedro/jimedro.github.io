@@ -1880,7 +1880,14 @@ form label {
 #wedding-video {
     width: 100vw;
     height: 100vh;
-    object-fit: contain; /* Forces the entire video to fit inside the screen without cropping or going beyond */
+    object-fit: contain; /* Perfect for laptop landscape */
+}
+
+/* --- Mobile Video Sizing Fix --- */
+@media screen and (max-width: 768px) {
+    #wedding-video {
+        object-fit: cover; /* Forces the portrait video to completely fill the phone screen without black bands */
+    }
 }
 
 #intro-veil {
@@ -1915,14 +1922,6 @@ form label {
     justify-content: center;
     align-items: center;
     gap: 50px;
-}
-
-/* --- Vertical Flags on Mobile Phones Only --- */
-@media screen and (max-width: 768px) {
-    .flags-container {
-        flex-direction: column; /* Forces vertical stacking on mobile */
-        gap: 50px; /* Space between the stacked flags */
-    }
 }
 
 .flag-btn {
@@ -1975,5 +1974,32 @@ form label {
 #skip-btn:hover {
     background: rgba(241, 78, 149, 0.9); /* Matches your theme pink on hover */
     border-color: transparent;
+}
+
+/* --- Coming Soon Loader Screen Extensions --- */
+.fh5co-loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Keeps the loading gif centered, positions text right below it */
+    background-position: center 35% !important; 
+}
+
+#coming-soon-message {
+    position: absolute;
+    top: 58%; /* Positions it nicely right underneath the 180px loading gif */
+    width: 80%;
+    text-align: center;
+    font-family: "Work Sans", Arial, sans-serif;
+    font-size: 18px;
+    color: #5d5d5d;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+#coming-soon-message.show {
+    opacity: 1;
 }
 /*# sourceMappingURL=style.css.map */
