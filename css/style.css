@@ -1,3 +1,20 @@
+/* --- Custom Font Declaration --- */
+@font-face {
+    font-family: 'Nemure'; /* This is our internal font's name */
+    src: url('../fonts/Nemure.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Apply the custom font globally and give it a default subtle thickness boost */
+body, 
+#skip-btn, 
+#coming-soon-message {
+    font-family: 'Nemure', Arial, sans-serif;
+    -webkit-text-stroke: 0.4px currentColor;
+    paint-order: stroke fill;
+}
+
 @font-face {
   font-family: 'icomoon';
   src: url("../fonts/icomoon/icomoon.eot?srf3rx");
@@ -2021,8 +2038,11 @@ form label {
     font-style: normal;
 }
 
-/* Apply the custom font to the Skip Button and Coming Soon Message */
+/* Apply the custom font globally and give it a default subtle thickness boost */
+body, 
 #skip-btn, 
 #coming-soon-message {
     font-family: 'Nemure', Arial, sans-serif;
+    -webkit-text-stroke: 0.4px currentColor;
+    paint-order: stroke fill;
 }
