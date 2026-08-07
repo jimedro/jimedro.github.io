@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const messages = {
         "ES": "Aún nos queda un poquito, volved pronto!",
         "EN": "We are not ready yet, come back soon!",
-        "FR": "Que os jodan cabrones !"
+        "FR": "En travaux, revenez bientôt !"
     };
 
     let selectedLang = "EN"; // Default fallback
