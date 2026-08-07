@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const introVeil = document.getElementById("intro-veil");
     const flagSelection = document.getElementById("flag-selection");
     const videoElement = document.getElementById("wedding-video");
+    const skipBtn = document.getElementById("skip-btn");
 
     if (!videoElement || !introVeil) return; 
 
@@ -30,10 +31,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
             introVeil.classList.add("fade-out");
             flagSelection.classList.add("fade-out");
+            
+            // Reveal the skip button once a flag is clicked and the video starts
+            if (skipBtn) skipBtn.classList.add("show");
 
             videoElement.play().catch(error => {
                 console.log("Autoplay was prevented by the browser:", error);
             });
         });
+    });
+
+    // Skip Button Functionality
+    if (skipBtn) {
+        skipBtn.addEventListener("click", function() {
+            videoElement.pause();
+            videoElement.currentTime = videoElement.duration;
+            skipBtn.classList.remove("show");
+        });
+    }
+
+    // Hide skip button automatically when the video finishes naturally
+    videoElement.addEventListener("ended", function() {
+        if (skipBtn) skipBtn.classList.remove("show");
     });
 });
