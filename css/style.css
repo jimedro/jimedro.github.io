@@ -7,9 +7,7 @@
 }
 
 /* Apply the custom font globally and give it a default subtle thickness boost */
-body, 
-#skip-btn, 
-#coming-soon-message {
+body {
     font-family: 'Nemure', Arial, sans-serif;
     -webkit-text-stroke: 0.5px currentColor;
     paint-order: stroke fill;
