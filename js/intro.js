@@ -86,12 +86,16 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // When video ends naturally
-    videoElement.addEventListener("ended", function() {
-        setTimeout(function() {
-            showLoaderScreen();
-        }, 100);
-    }); // <-- Properly closed here!
+        //Video starts to fade a bit before finishing to avoid transition delay
+videoElement.addEventListener("timeupdate", function() {
+       // If the video is 0.3 seconds away from finishing, trigger the loader early
+    if (videoElement.duration && (videoElement.duration - videoElement.currentTime <= 0.3)) {
+        // Remove listener so it only triggers once
+        videoElement.removeEventListener("ended", arguments.callee);
+        showLoaderScreen();
+    }
+});
+
 
     // Scrolling Tab Title Function
     var scrollTitle = function() {
