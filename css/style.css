@@ -11,9 +11,11 @@ body,
 #skip-btn, 
 #coming-soon-message {
     font-family: 'Nemure', Arial, sans-serif;
-    -webkit-text-stroke: 0.4px currentColor;
+    -webkit-text-stroke: 0.6px currentColor;
     paint-order: stroke fill;
 }
+
+
 
 @font-face {
   font-family: 'icomoon';
@@ -2027,14 +2029,6 @@ form label {
 }
 /*# sourceMappingURL=style.css.map */
 
-/* Apply the custom font globally and give it a default subtle thickness boost */
-body, 
-#skip-btn, 
-#coming-soon-message {
-    font-family: 'Nemure', Arial, sans-serif;
-    -webkit-text-stroke: 0.4px currentColor;
-    paint-order: stroke fill;
-}
 
 /* --- Intro Page Coming Soon Screen --- */
 #intro-loader {
