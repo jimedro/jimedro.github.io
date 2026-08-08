@@ -40,8 +40,9 @@ document.addEventListener("DOMContentLoaded", function () {
             videoElement.src = `images/${videoFileName}`;
             videoElement.load();
 
-            introVeil.classList.add("fade-out");
-            flagSelection.classList.add("fade-out");
+            // PREVENT BLACK FLASH: Hide flags instantly, let the video cover the veil naturally
+            flagSelection.style.display = "none";
+            introVeil.style.opacity = "0"; // Smooth transition if CSS allows, or hides it immediately so black doesn't show
 
             if (skipBtn) skipBtn.classList.add("show");
 
@@ -60,6 +61,11 @@ document.addEventListener("DOMContentLoaded", function () {
             videoContainer.classList.add("fade-out");
         }
 
+        // Activate the loader screen container immediately so it sits underneath, ready to fade in
+        if (loaderScreen) {
+            loaderScreen.classList.add("active"); 
+        }
+
         setTimeout(() => {
             videoElement.pause();
             if (videoContainer) videoContainer.style.display = "none";
@@ -68,13 +74,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 messageContainer.textContent = messages[selectedLang] || messages["EN"];
             }
 
-            if (loaderScreen) {
-                loaderScreen.classList.add("active");
-            }
-
+            // Stagger the text fade-in slightly so it smoothly appears
             setTimeout(() => {
                 if (messageContainer) messageContainer.classList.add("show");
-            }, 300);
+            }, 100);
 
         }, 500);
     }
@@ -86,12 +89,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // When video ends naturally (using ended event without internal delay, plus early buffer)
+    // When video ends naturally
     let hasEndedTriggered = false;
     videoElement.addEventListener("timeupdate", function handleTimeUpdate() {
         if (hasEndedTriggered) return;
         
-        // Trigger 0.8 seconds before the end to bypass the frozen frame lag completely
         if (videoElement.duration && (videoElement.duration - videoElement.currentTime <= 0.8)) {
             hasEndedTriggered = true;
             videoElement.removeEventListener("timeupdate", handleTimeUpdate);
@@ -99,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Reset the trigger flag if the video is ever reloaded/replayed
     videoElement.addEventListener("play", function() {
         hasEndedTriggered = false;
     });
@@ -113,7 +114,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 120);
     };
 
-    // Run the scrolling title function on load
     scrollTitle();
 });
-
