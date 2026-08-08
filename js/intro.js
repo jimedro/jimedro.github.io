@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (messageContainer) messageContainer.classList.add("show");
             }, 300);
 
-        }, 500);
+        }, 5000);
     }
 
     // Skip Button Functionality
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
     videoElement.addEventListener("ended", function() {
         setTimeout(function() {
             showLoaderScreen();
-        }, 250);
+        }, 1000);
     }); // <-- Properly closed here!
 
     // Scrolling Tab Title Function
