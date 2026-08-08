@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
     videoElement.addEventListener("ended", function() {
         setTimeout(function() {
             showLoaderScreen();
-        }, 1000);
+        }, 500);
     }); // <-- Properly closed here!
 
     // Scrolling Tab Title Function
