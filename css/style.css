@@ -11,10 +11,9 @@ body,
 #skip-btn, 
 #coming-soon-message {
     font-family: 'Nemure', Arial, sans-serif;
-    -webkit-text-stroke: 0.6px currentColor;
+    -webkit-text-stroke: 0.5px currentColor;
     paint-order: stroke fill;
 }
-
 
 
 @font-face {
