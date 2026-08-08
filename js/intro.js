@@ -37,20 +37,27 @@ document.addEventListener("DOMContentLoaded", function () {
                 videoFileName = `WeddingWebOpening_Landscape30_${selectedLang}.mp4`;
             }
 
+            // Hide the flag selection immediately so they disappear
+            flagSelection.style.opacity = "0";
+            flagSelection.style.pointerEvents = "none";
+
+            // Load the new video source
             videoElement.src = `images/${videoFileName}`;
             videoElement.load();
-
-            // PREVENT BLACK FLASH: Hide flags instantly, let the video cover the veil naturally
-            flagSelection.style.display = "none";
-            introVeil.style.opacity = "0"; // Smooth transition if CSS allows, or hides it immediately so black doesn't show
-
-            if (skipBtn) skipBtn.classList.add("show");
-
-            videoElement.play().catch(error => {
-                console.log("Autoplay was prevented by the browser:", error);
-            });
         });
     });
+
+    // Wait until the new video is actually ready to play its first frame before dropping the background veil
+    videoElement.addEventListener("canplay", function handleCanPlay() {
+        // Hide the background veil smoothly *only* when the video is ready to show
+        introVeil.classList.add("fade-out");
+
+        if (skipBtn) skipBtn.classList.add("show");
+
+        videoElement.play().catch(error => {
+            console.log("Autoplay was prevented by the browser:", error);
+        });
+    }, { once: true }); // { once: true } ensures this only runs once per video load
 
     // Function to transition smoothly into the infinite loading screen
     function showLoaderScreen() {
@@ -61,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
             videoContainer.classList.add("fade-out");
         }
 
-        // Activate the loader screen container immediately so it sits underneath, ready to fade in
         if (loaderScreen) {
             loaderScreen.classList.add("active"); 
         }
@@ -74,7 +80,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 messageContainer.textContent = messages[selectedLang] || messages["EN"];
             }
 
-            // Stagger the text fade-in slightly so it smoothly appears
             setTimeout(() => {
                 if (messageContainer) messageContainer.classList.add("show");
             }, 100);
@@ -83,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Skip Button Functionality
-    if (skipBtn) {
+    if (syncSkipButton = skipBtn) {
         skipBtn.addEventListener("click", function() {
             showLoaderScreen();
         });
