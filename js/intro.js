@@ -37,19 +37,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 videoFileName = `WeddingWebOpening_Landscape30_${selectedLang}.mp4`;
             }
 
-            // Hide the flag selection immediately so they disappear
             flagSelection.style.opacity = "0";
             flagSelection.style.pointerEvents = "none";
 
-            // Load the new video source
             videoElement.src = `images/${videoFileName}`;
             videoElement.load();
         });
     });
 
-    // Wait until the new video is actually ready to play its first frame before dropping the background veil
     videoElement.addEventListener("canplay", function handleCanPlay() {
-        // Hide the background veil smoothly *only* when the video is ready to show
         introVeil.classList.add("fade-out");
 
         if (skipBtn) skipBtn.classList.add("show");
@@ -57,38 +53,43 @@ document.addEventListener("DOMContentLoaded", function () {
         videoElement.play().catch(error => {
             console.log("Autoplay was prevented by the browser:", error);
         });
-    }, { once: true }); // { once: true } ensures this only runs once per video load
+    }, { once: true });
 
-    // Function to transition smoothly into the infinite loading screen
+    // Function to transition strictly in sequence: video fades out -> hidden -> loader fades in
     function showLoaderScreen() {
         const videoContainer = document.getElementById("video-container");
         if (skipBtn) skipBtn.classList.remove("show");
 
+        // Step 1: Start fading out the video container
         if (videoContainer) {
             videoContainer.classList.add("fade-out");
         }
 
-        if (loaderScreen) {
-            loaderScreen.classList.add("active"); 
-        }
-
+        // Step 2: Wait for the video fade-out animation to finish (500ms)
         setTimeout(() => {
             videoElement.pause();
             if (videoContainer) videoContainer.style.display = "none";
 
+            // Set the correct language text
             if (messageContainer) {
                 messageContainer.textContent = messages[selectedLang] || messages["EN"];
             }
 
+            // Step 3: Immediately activate the loader screen container and trigger its fade-in
+            if (loaderScreen) {
+                loaderScreen.classList.add("active"); 
+            }
+
+            // Tiny internal delay to ensure the browser registers the "active" class before adding "show"
             setTimeout(() => {
                 if (messageContainer) messageContainer.classList.add("show");
-            }, 100);
+            }, 50);
 
-        }, 500);
+        }, 500); // This matches your video container's fade duration
     }
 
     // Skip Button Functionality
-    if (syncSkipButton = skipBtn) {
+    if (skipBtn) {
         skipBtn.addEventListener("click", function() {
             showLoaderScreen();
         });
@@ -99,6 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
     videoElement.addEventListener("timeupdate", function handleTimeUpdate() {
         if (hasEndedTriggered) return;
         
+        // Trigger 0.8 seconds before the end to bypass the frozen frame lag completely
         if (videoElement.duration && (videoElement.duration - videoElement.currentTime <= 0.8)) {
             hasEndedTriggered = true;
             videoElement.removeEventListener("timeupdate", handleTimeUpdate);
