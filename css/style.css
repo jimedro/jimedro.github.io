@@ -1985,7 +1985,7 @@ form label {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.5s ease, background 0.2s ease;
-    font-family: 'Nemure', Arial, sans-serif;
+    font-family: 'Nemure', Arial, sans-serif !important;
 }
 
 #skip-btn.show {
