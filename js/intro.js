@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             introVeil.classList.add("fade-out");
             flagSelection.classList.add("fade-out");
-            
+
             if (skipBtn) skipBtn.classList.add("show");
 
             videoElement.play().catch(error => {
@@ -86,16 +86,23 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-        //Video starts to fade a bit before finishing to avoid transition delay
-videoElement.addEventListener("timeupdate", function() {
-       // If the video is 0.3 seconds away from finishing, trigger the loader early
-    if (videoElement.duration && (videoElement.duration - videoElement.currentTime <= 0.3)) {
-        // Remove listener so it only triggers once
-        videoElement.removeEventListener("ended", arguments.callee);
-        showLoaderScreen();
-    }
-});
+    // When video ends naturally (using ended event without internal delay, plus early buffer)
+    let hasEndedTriggered = false;
+    videoElement.addEventListener("timeupdate", function handleTimeUpdate() {
+        if (hasEndedTriggered) return;
+        
+        // Trigger 0.8 seconds before the end to bypass the frozen frame lag completely
+        if (videoElement.duration && (videoElement.duration - videoElement.currentTime <= 0.8)) {
+            hasEndedTriggered = true;
+            videoElement.removeEventListener("timeupdate", handleTimeUpdate);
+            showLoaderScreen();
+        }
+    });
 
+    // Reset the trigger flag if the video is ever reloaded/replayed
+    videoElement.addEventListener("play", function() {
+        hasEndedTriggered = false;
+    });
 
     // Scrolling Tab Title Function
     var scrollTitle = function() {
@@ -109,3 +116,4 @@ videoElement.addEventListener("timeupdate", function() {
     // Run the scrolling title function on load
     scrollTitle();
 });
+
