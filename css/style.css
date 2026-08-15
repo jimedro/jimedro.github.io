@@ -2041,13 +2041,37 @@ form label {
     opacity: 0;
     transition: opacity 1s ease-in-out;
 
-    /* Replaced background-color with the new background image */
-    background-image: url('../images/engagementday.jpg'), url('../images/LOADING.gif');
-    background-repeat: no-repeat, no-repeat;
-    background-position: center, center 35%; 
-    background-size: cover, 180px auto;
+    /* Stacked backgrounds: 
+       1. White translucent overlay (solid color via linear-gradient)
+       2. Engagement photo (default to landscape/laptop)
+       3. Loading GIF
+    */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), 
+        url('../images/engagementdaylandscape.jpg'), 
+        url('../images/LOADING.gif');
+    
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: center, center, center 35%; 
+    background-size: cover, cover, 180px auto;
 
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#intro-loader.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* Media Query for Phones (Portrait screens) */
+@media (max-width: 768px) {
+    #intro-loader {
+        /* Keep the overlay and GIF the same, but swap the background image to portrait */
+        background-image: 
+            linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), 
+            url('../images/engagementdayportrait.jpg'), 
+            url('../images/LOADING.gif');
+    }
 }
