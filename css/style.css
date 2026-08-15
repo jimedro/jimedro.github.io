@@ -1997,33 +1997,6 @@ form label {
     background: rgba(241, 78, 149, 0.9); /* Matches your theme pink on hover */
     border-color: transparent;
 }
-
-/* --- Coming Soon Loader Screen Extensions --- */
-.fh5co-loader {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* Keeps the loading gif centered, positions text right below it */
-    background-position: center 35% !important; 
-}
-
-#coming-soon-message {
-    position: absolute;
-    top: 58%; /* Positions it nicely right underneath the 180px loading gif */
-    width: 80%;
-    text-align: center;
-    font-family: 'Nemure', Arial, sans-serif;
-    font-size: 18px;
-    color: #5d5d5d;
-    font-weight: 500;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-#coming-soon-message.show {
-    opacity: 1;
-}
 /*# sourceMappingURL=style.css.map */
 
 /* --- Intro Page Coming Soon Screen --- */
