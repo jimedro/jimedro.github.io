@@ -2041,19 +2041,19 @@ form label {
     opacity: 0;
     transition: opacity 1s ease-in-out;
 
-    /* Stacked backgrounds: 
-       1. White translucent overlay (solid color via linear-gradient)
-       2. Engagement photo (default to landscape/laptop)
-       3. Loading GIF
+    /* Stacked backgrounds (Top to Bottom): 
+       1. Loading GIF (crystal clear on top)
+       2. White translucent overlay (50% opacity)
+       3. Engagement photo (background)
     */
     background-image: 
+        url('../images/LOADING.gif'),
         linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), 
-        url('../images/engagementdaylandscape.jpg'), 
-        url('../images/LOADING.gif');
+        url('../images/engagementdaylandscape.jpg');
     
     background-repeat: no-repeat, no-repeat, no-repeat;
-    background-position: center, center, center 35%; 
-    background-size: cover, cover, 180px auto;
+    background-position: center 35%, center, center; 
+    background-size: 180px auto, cover, cover;
 
     flex-direction: column;
     justify-content: center;
@@ -2068,10 +2068,10 @@ form label {
 /* Media Query for Phones (Portrait screens) */
 @media (max-width: 768px) {
     #intro-loader {
-        /* Keep the overlay and GIF the same, but swap the background image to portrait */
+        /* Keep GIF and white overlay on top, swap only the background photo */
         background-image: 
+            url('../images/LOADING.gif'),
             linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), 
-            url('../images/engagementdayportrait.jpg'), 
-            url('../images/LOADING.gif');
+            url('../images/engagementdayportrait.jpg');
     }
 }
