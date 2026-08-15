@@ -2076,14 +2076,15 @@ form label {
 
 /* --- Coming Soon Message Fix --- */
 #coming-soon-message {
-    position: relative; /* Changes from absolute to relative to respect flexbox container */
-    z-index: 2;         /* Forces the text to render above the background layers */
-    margin-top: 140px;  /* Pushes the text nicely underneath the 180px loading GIF */
+    position: relative; 
+    z-index: 2;         
+    margin-top: 140px;  
     width: 80%;
     text-align: center;
     font-family: 'Nemure', Arial, sans-serif;
     font-size: 18px;
-    color: #333333;     /* Darker color for crisp readability over the 50% white layer */
+    color: #000000 !important;     /* Forces solid black text */
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8); /* Optional: adds a light glow so it pops against dark spots on the photo */
     font-weight: 600;
     opacity: 0;
     transition: opacity 1s ease-in-out;
