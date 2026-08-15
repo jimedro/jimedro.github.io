@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     flagButtons.forEach(button => {
         button.addEventListener("click", function () {
+            // Explicitly capture and update the selected language here
             selectedLang = this.getAttribute("data-lang") || "EN"; 
 
             let videoFileName = "";
@@ -60,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const videoContainer = document.getElementById("video-container");
         if (skipBtn) skipBtn.classList.remove("show");
 
-        // Set the correct language text right away
+        // Pulls the correct message based on the clicked flag language (defaults to EN if none clicked)
         if (messageContainer) {
             messageContainer.textContent = messages[selectedLang] || messages["EN"];
         }
