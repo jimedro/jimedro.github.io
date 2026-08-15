@@ -55,37 +55,34 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }, { once: true });
 
-    // Function to transition strictly in sequence: video fades out -> hidden -> loader fades in
+    // Function to transition smoothly: video fades out while the loader fades in simultaneously
     function showLoaderScreen() {
         const videoContainer = document.getElementById("video-container");
         if (skipBtn) skipBtn.classList.remove("show");
 
-        // Step 1: Start fading out the video container
+        // Set the correct language text right away
+        if (messageContainer) {
+            messageContainer.textContent = messages[selectedLang] || messages["EN"];
+        }
+
+        // Step 1: Fade out the video container and trigger the loader screen fade-in at the same time
         if (videoContainer) {
             videoContainer.classList.add("fade-out");
         }
+        if (loaderScreen) {
+            loaderScreen.classList.add("active"); 
+        }
 
-        // Step 2: Wait for the video fade-out animation to finish (500ms)
+        // Step 2: Tiny delay to ensure the browser registers the loader display before fading in the text message
+        setTimeout(() => {
+            if (messageContainer) messageContainer.classList.add("show");
+        }, 50);
+
+        // Step 3: Wait for the full fade transition to finish (1000ms), then pause and hide the video completely
         setTimeout(() => {
             videoElement.pause();
             if (videoContainer) videoContainer.style.display = "none";
-
-            // Set the correct language text
-            if (messageContainer) {
-                messageContainer.textContent = messages[selectedLang] || messages["EN"];
-            }
-
-            // Step 3: Immediately activate the loader screen container and trigger its fade-in
-            if (loaderScreen) {
-                loaderScreen.classList.add("active"); 
-            }
-
-            // Tiny internal delay to ensure the browser registers the "active" class before adding "show"
-            setTimeout(() => {
-                if (messageContainer) messageContainer.classList.add("show");
-            }, 50);
-
-        }, 500); // This matches your video container's fade duration
+        }, 1000); 
     }
 
     // Skip Button Functionality
