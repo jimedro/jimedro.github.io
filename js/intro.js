@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Dictionary for the custom messages
     const messages = {
-        "ES": "Aún nos queda un poquito, volved pronto!",
-        "EN": "We are not ready yet, come back soon!",
-        "FR": "En travaux, revenez bientôt !"
+        "ES": "Queremos enseñarte algo más!",
+        "EN": "Wait a second, there is something else!",
+        "FR": "Attends, on veut te montrer autre chose !"
     };
 
     let selectedLang = "EN"; // Default fallback
