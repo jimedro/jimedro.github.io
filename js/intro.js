@@ -82,9 +82,10 @@ document.addEventListener("DOMContentLoaded", function () {
             if (videoContainer) videoContainer.style.display = "none";
         }, 1000); 
 
-        // Wait 5 seconds after showing the message, then fade out the message and fade into videovenues.mp4
+        // Wait 5 seconds after showing the message, then fade out the loader and fade into videovenues.mp4
         setTimeout(() => {
             if (messageContainer) messageContainer.classList.remove("show");
+            if (loaderScreen) loaderScreen.classList.remove("active");
 
             if (venuesContainer) {
                 venuesContainer.classList.add("active");
