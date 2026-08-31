@@ -1968,7 +1968,7 @@ form label {
     pointer-events: none;
 }
 
-/* --- Shared Skip Button Styles --- */
+/* --- Shared Skip Button Styles (Updated to Blue #4ED9F1) --- */
 #skip-btn, #skip-venues-btn {
     position: fixed;
     bottom: 30px;
@@ -1993,11 +1993,12 @@ form label {
 }
 
 #skip-btn:hover, #skip-venues-btn:hover {
-    background: rgba(241, 78, 149, 0.9);
+    background: rgba(78, 217, 241, 0.9); /* Updated to #4ED9F1 blue */
     border-color: transparent;
+    color: #000;
 }
 
-/* --- Intro Page Something else --- */
+/* --- Intro Page Loader / Adventure Screen --- */
 #intro-loader {
     position: fixed;
     top: 0;
