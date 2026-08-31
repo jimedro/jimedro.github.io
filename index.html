@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jimedro is getting married!</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- LAYER 1: The Language Flags (Cleaned up, no text/labels) -->
+    <!-- LAYER 1: The Language Flags -->
     <div id="flag-selection">
         <div class="flags-container">
             <button class="flag-btn" data-lang="FR">
@@ -23,7 +22,7 @@
         </div>
     </div>
 
-    <!-- LAYER 2: Background Image Veil (Swapped dynamically based on device) -->
+    <!-- LAYER 2: Background Image Veil -->
     <div id="intro-veil"></div>
         
     <!-- LAYER 3: Background Video -->
@@ -31,13 +30,19 @@
         <video id="wedding-video" playsinline preload="auto">
             Your browser does not support the video tag.
         </video>
-        <!-- Skip Button (Hidden by default, shown when video plays) -->
         <button id="skip-btn">Skip intro ➔</button>
     </div>
     
-    <!-- LAYER 4: Template Loader / Something else Screen -->
+    <!-- LAYER 4: Template Loader & Second Video Container -->
     <div id="intro-loader">
-        <div id="something-else-message"></div>
+        <div id="coming-soon-message"></div>
+        <!-- Second Video Layer -->
+        <div id="venues-video-container">
+            <video id="venues-video" playsinline preload="auto" controls>
+                <source src="images/videovenues.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
     </div>
 
     <script src="js/intro.js"></script>
