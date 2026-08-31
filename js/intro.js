@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const videoElement = document.getElementById("wedding-video");
     const skipBtn = document.getElementById("skip-btn");
     const loaderScreen = document.getElementById("intro-loader");
-    const messageContainer = document.getElementById("coming-soon-message");
+    const messageContainer = document.getElementById("something-else-message");
 
     if (!videoElement || !introVeil) return; 
 
