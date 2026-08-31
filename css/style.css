@@ -2069,12 +2069,12 @@ form label {
 
 /* --- Second Video Container Styles --- */
 #venues-video-container {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 5;
+    z-index: 999999; /* Sits above the intro loader */
     background: #000;
     opacity: 0;
     visibility: hidden;
@@ -2092,5 +2092,6 @@ form label {
 #venues-video {
     width: 100vw;
     height: 100vh;
-    object-fit: cover;
+    object-fit: contain; /* Fits the 9:16 vertical video perfectly to the height of the screen */
+    background: #000;
 }
