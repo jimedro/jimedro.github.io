@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const skipBtn = document.getElementById("skip-btn");
     const loaderScreen = document.getElementById("intro-loader");
     const messageContainer = document.getElementById("something-else-message");
+    const venuesContainer = document.getElementById("venues-video-container");
+    const venuesVideo = document.getElementById("venues-video");
 
     if (!videoElement || !introVeil) return; 
 
@@ -28,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     flagButtons.forEach(button => {
         button.addEventListener("click", function () {
-            // Explicitly capture and update the selected language here
             selectedLang = this.getAttribute("data-lang") || "EN"; 
 
             let videoFileName = "";
@@ -61,12 +62,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const videoContainer = document.getElementById("video-container");
         if (skipBtn) skipBtn.classList.remove("show");
 
-        // Pulls the correct message based on the clicked flag language (defaults to EN if none clicked)
         if (messageContainer) {
             messageContainer.textContent = messages[selectedLang] || messages["EN"];
         }
 
-        // Step 1: Fade out the video container and trigger the loader screen fade-in at the same time
         if (videoContainer) {
             videoContainer.classList.add("fade-out");
         }
@@ -74,16 +73,28 @@ document.addEventListener("DOMContentLoaded", function () {
             loaderScreen.classList.add("active"); 
         }
 
-        // Step 2: Tiny delay to ensure the browser registers the loader display before fading in the text message
         setTimeout(() => {
             if (messageContainer) messageContainer.classList.add("show");
         }, 50);
 
-        // Step 3: Wait for the full fade transition to finish (1000ms), then pause and hide the video completely
         setTimeout(() => {
             videoElement.pause();
             if (videoContainer) videoContainer.style.display = "none";
         }, 1000); 
+
+        // Wait 5 seconds after showing the message, then fade out the message and fade into videovenues.mp4
+        setTimeout(() => {
+            if (messageContainer) messageContainer.classList.remove("show");
+
+            if (venuesContainer) {
+                venuesContainer.classList.add("active");
+            }
+            if (venuesVideo) {
+                venuesVideo.play().catch(error => {
+                    console.log("Venues video autoplay was prevented:", error);
+                });
+            }
+        }, 5500); // 500ms for initial message fade + 5000ms wait = 5500ms total
     }
 
     // Skip Button Functionality
@@ -98,7 +109,6 @@ document.addEventListener("DOMContentLoaded", function () {
     videoElement.addEventListener("timeupdate", function handleTimeUpdate() {
         if (hasEndedTriggered) return;
         
-        // Trigger 0.8 seconds before the end to bypass the frozen frame lag completely
         if (videoElement.duration && (videoElement.duration - videoElement.currentTime <= 0.8)) {
             hasEndedTriggered = true;
             videoElement.removeEventListener("timeupdate", handleTimeUpdate);
