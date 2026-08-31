@@ -2126,9 +2126,14 @@ form label {
 }
 
 #venues-video {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Ensures entire 9:16 video frame is visible */
-    object-position: center center; /* Centers if any letterboxing occurs */
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain; 
     background: #000;
+}
+
+@media screen and (max-width: 768px) {
+    #venues-video {
+        object-fit: cover; 
+    }
 }
