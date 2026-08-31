@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Dictionary for the custom messages
     const messages = {
-        "ES": "Queremos enseñarte algo más!",
+        "ES": "Espera! Queremos enseñarte algo más",
         "EN": "Wait a second, there is something else!",
         "FR": "Attends, on veut te montrer autre chose !"
     };
