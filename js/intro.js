@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const skipBtn = document.getElementById("skip-btn");
     const loaderScreen = document.getElementById("intro-loader");
     const messageContainer = document.getElementById("something-else-message");
+    const countdownContainer = document.getElementById("countdown-timer");
     const venuesContainer = document.getElementById("venues-video-container");
     const venuesVideo = document.getElementById("venues-video");
 
@@ -57,7 +58,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }, { once: true });
 
-    // Function to transition smoothly: video fades out while the loader fades in simultaneously
+    let countdownInterval = null;
+
     function showLoaderScreen() {
         const videoContainer = document.getElementById("video-container");
         if (skipBtn) skipBtn.classList.remove("show");
@@ -75,6 +77,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(() => {
             if (messageContainer) messageContainer.classList.add("show");
+            if (countdownContainer) {
+                countdownContainer.textContent = "5";
+                countdownContainer.classList.add("show");
+            }
+
+            // Simple live countdown timer logic counting down from 5 to 1
+            let timeLeft = 4;
+            countdownInterval = setInterval(() => {
+                if (countdownContainer) {
+                    countdownContainer.textContent = timeLeft;
+                }
+                timeLeft--;
+                if (timeLeft < 0) {
+                    clearInterval(countdownInterval);
+                }
+            }, 1000);
+
         }, 50);
 
         setTimeout(() => {
@@ -82,9 +101,11 @@ document.addEventListener("DOMContentLoaded", function () {
             if (videoContainer) videoContainer.style.display = "none";
         }, 1000); 
 
-        // Wait 5 seconds after showing the message, then fade out the loader and fade into videovenues.mp4
+        // Wait 5 seconds after showing the message, fade out loader, and play venues video
         setTimeout(() => {
+            clearInterval(countdownInterval);
             if (messageContainer) messageContainer.classList.remove("show");
+            if (countdownContainer) countdownContainer.classList.remove("show");
             if (loaderScreen) loaderScreen.classList.remove("active");
 
             if (venuesContainer) {
@@ -95,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.log("Venues video autoplay was prevented:", error);
                 });
             }
-        }, 5500); // 500ms for initial message fade + 5000ms wait = 5500ms total
+        }, 5500); 
     }
 
     // Skip Button Functionality
