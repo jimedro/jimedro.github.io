@@ -2056,7 +2056,7 @@ form label {
     width: 80%;
     text-align: center;
     font-family: 'Nemure', Arial, sans-serif;
-    font-size: 20px;
+    font-size: 40px;
     color: #000000 !important;     /* Solid black text */
     font-weight: 700;
     opacity: 0;
@@ -2065,4 +2065,32 @@ form label {
 
 #something-else-message.show {
     opacity: 1;
+}
+
+/* --- Second Video Container Styles --- */
+#venues-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5;
+    background: #000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#venues-video-container.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#venues-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
 }
