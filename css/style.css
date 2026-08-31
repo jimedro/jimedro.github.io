@@ -1999,7 +1999,7 @@ form label {
 }
 /*# sourceMappingURL=style.css.map */
 
-/* --- Intro Page Coming Soon Screen --- */
+/* --- Intro Page Something else --- */
 #intro-loader {
     position: fixed;
     top: 0;
@@ -2048,8 +2048,8 @@ form label {
     }
 }
 
-/* --- Coming Soon Message Styling --- */
-#coming-soon-message {
+/* --- Something else Message Styling --- */
+#something-else-message {
     position: relative; 
     z-index: 2;         
     margin-top: 130px;  /* Places the text right underneath the 180px loading GIF */
@@ -2063,6 +2063,6 @@ form label {
     transition: opacity 1s ease-in-out;
 }
 
-#coming-soon-message.show {
+#something-else-message.show {
     opacity: 1;
 }
