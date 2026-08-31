@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const countdownContainer = document.getElementById("countdown-timer");
     const venuesContainer = document.getElementById("venues-video-container");
     const venuesVideo = document.getElementById("venues-video");
+    const venuesSkipBtn = document.getElementById("skip-venues-btn");
 
     if (!videoElement || !introVeil) return; 
 
@@ -115,14 +116,34 @@ document.addEventListener("DOMContentLoaded", function () {
                 venuesVideo.play().catch(error => {
                     console.log("Venues video autoplay was prevented:", error);
                 });
+                if (venuesSkipBtn) {
+                    venuesSkipBtn.classList.add("show");
+                }
             }
         }, 5500); 
+    }
+
+    function hideVenuesScreen() {
+        if (venuesSkipBtn) venuesSkipBtn.classList.remove("show");
+        if (venuesContainer) {
+            venuesContainer.classList.remove("active");
+        }
+        if (venuesVideo) {
+            venuesVideo.pause();
+        }
     }
 
     // Skip Button Functionality
     if (skipBtn) {
         skipBtn.addEventListener("click", function() {
             showLoaderScreen();
+        });
+    }
+
+    // Venues Skip Button Functionality
+    if (venuesSkipBtn) {
+        venuesSkipBtn.addEventListener("click", function() {
+            hideVenuesScreen();
         });
     }
 
@@ -141,6 +162,13 @@ document.addEventListener("DOMContentLoaded", function () {
     videoElement.addEventListener("play", function() {
         hasEndedTriggered = false;
     });
+
+    // When venues video ends naturally
+    if (venuesVideo) {
+        venuesVideo.addEventListener("ended", function() {
+            hideVenuesScreen();
+        });
+    }
 
     // Scrolling Tab Title Function
     var scrollTitle = function() {
