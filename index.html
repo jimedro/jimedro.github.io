@@ -23,21 +23,35 @@
             font-family: 'Nemure', Arial, sans-serif;
             -webkit-text-stroke: 0.5px currentColor;
             paint-order: stroke fill;
+            width: 100vw;
             height: 100vh;
             height: 100dvh;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Moves content higher up */
-            padding-top: 12vh;       /* Adjust this percentage to move it higher or lower */
+            align-items: center;
             background-color: #000;
-            background-repeat: no-repeat;
-            background-position: center;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        /* Fixed background container to lock background & overlay to exact screen dimensions with zero scrolling */
+        #bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
             background-size: cover;
-            position: relative;
+            background-position: center center;
+            background-repeat: no-repeat;
+            z-index: 1;
         }
 
         /* 40% semi-transparent white overlay */
-        body::before {
+        #bg-container::before {
             content: "";
             position: absolute;
             top: 0;
@@ -45,7 +59,6 @@
             width: 100%;
             height: 100%;
             background-color: rgba(255, 255, 255, 0.4);
-            z-index: 1;
         }
 
         /* Maintenance container box */
@@ -57,11 +70,11 @@
             align-items: center;
             text-align: center;
             padding: 20px;
-            max-width: 650px;
+            max-width: 750px;
             width: 90%;
         }
 
-        /* Loading GIF styling (1.5x bigger: 150px -> 225px) */
+        /* Loading GIF styling */
         .loading-gif {
             width: 200px;
             height: auto;
@@ -80,15 +93,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            font-size: 22px;
+            gap: 15px;
+            font-size: 26px;
             font-weight: 700;
             color: #000000;
             line-height: 1.4;
         }
 
         .flag-icon {
-            width: 75px;
+            width: 85px;
             height: auto;
             border-radius: 3px;
             object-fit: contain;
@@ -97,23 +110,30 @@
 
         /* Responsive adjustments for phones / portrait screens */
         @media (max-width: 768px) {
-            body {
-                padding-top: 10vh;
+            .maintenance-container {
+                width: 95%;
+                padding: 10px;
+            }
+            .maintenance-messages {
+                gap: 20px;
             }
             .message-line {
-                font-size: 17px;
-                gap: 10px;
+                font-size: 21px;
+                gap: 12px;
             }
             .flag-icon {
-                width: 60px;
+                width: 75px;
             }
             .loading-gif {
-                width: 180px; /* 1.5x bigger for mobile: 120px -> 180px */
+                width: 210px;
+                margin-bottom: 20px;
             }
         }
     </style>
 </head>
 <body>
+
+    <div id="bg-container"></div>
 
     <div class="maintenance-container">
         <!-- Loading GIF -->
@@ -142,10 +162,11 @@
     <script>
         // Dynamically choose landscape vs portrait background based on device screen width
         const isMobile = window.innerWidth <= 768;
+        const bgContainer = document.getElementById("bg-container");
         if (isMobile) {
-            document.body.style.backgroundImage = "url('images/engagementdayportrait.jpg')";
+            bgContainer.style.backgroundImage = "url('images/engagementdayportrait.jpg')";
         } else {
-            document.body.style.backgroundImage = "url('images/engagementdaylandscape.jpg')";
+            bgContainer.style.backgroundImage = "url('images/engagementdaylandscape.jpg')";
         }
     </script>
 </body>
