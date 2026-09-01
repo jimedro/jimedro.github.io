@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const loaderScreen = document.getElementById("intro-loader");
     const messageContainer = document.getElementById("something-else-message");
     const countdownContainer = document.getElementById("countdown-timer");
+    const choiceButtonsContainer = document.getElementById("choice-buttons-container");
+    const yesBtn = document.getElementById("yes-btn");
+    const noBtn = document.getElementById("no-btn");
+    const funnyMessageContainer = document.getElementById("funny-message");
     const venuesContainer = document.getElementById("venues-video-container");
     const venuesVideo = document.getElementById("venues-video");
     const venuesSkipBtn = document.getElementById("skip-venues-btn");
@@ -21,25 +25,32 @@ document.addEventListener("DOMContentLoaded", function () {
         introVeil.style.backgroundImage = "url('images/blurry_landscape.jpg')";
     }
 
-    // First interruption messages
+    // First interruption messages[cite: 3]
     const messages = {
         "ES": "Queremos enseñarte algo más, ¿quieres verlo?",
         "EN": "There is more, do you want to see it?",
         "FR": "Il reste un peu plus, on y va ?"
     };
 
-    // Final "coming soon" adventure messages
+    // Funny messages for the NO button
+    const funnyMessages = {
+        "ES": "Claro que sí guapi",
+        "EN": "Yeah sure",
+        "FR": "La blague !"
+    };
+
+    // Final "coming soon" adventure messages[cite: 3]
     const finalMessages = {
         "ES": "Estamos preparando la aventura, vuelve pronto!",
         "EN": "We are preparing this adventure, come back soon!",
         "FR": "On se prépare pour l'aventure, reviens bientôt !"
     };
 
-    let selectedLang = "EN"; // Default fallback
+    let selectedLang = "EN"; // Default fallback[cite: 3]
 
     flagButtons.forEach(button => {
         button.addEventListener("click", function () {
-            selectedLang = this.getAttribute("data-lang") || "EN"; 
+            selectedLang = this.getAttribute("data-lang") || "EN";[cite: 3]
 
             let videoFileName = "";
             if (isMobile) {
@@ -66,7 +77,22 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }, { once: true });
 
-    let countdownInterval = null;
+    function playVenuesVideo() {
+        if (loaderScreen) loaderScreen.classList.remove("active");
+        if (funnyMessageContainer) funnyMessageContainer.textContent = "";
+        if (venuesContainer) {
+            venuesContainer.classList.add("active");
+        }
+        if (venuesVideo) {
+            venuesVideo.load();
+            venuesVideo.play().catch(error => {
+                console.log("Venues video autoplay was prevented:", error);
+            });
+            if (venuesSkipBtn) {
+                venuesSkipBtn.classList.add("show");
+            }
+        }
+    }
 
     function showLoaderScreen() {
         const videoContainer = document.getElementById("video-container");
@@ -85,51 +111,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(() => {
             if (messageContainer) messageContainer.classList.add("show");
-            if (countdownContainer) {
-                countdownContainer.textContent = "5";
-                countdownContainer.classList.add("show");
+            // Show YES and NO buttons instead of countdown
+            if (choiceButtonsContainer) {
+                choiceButtonsContainer.style.display = "flex";
             }
-
-            let timeLeft = 4;
-            countdownInterval = setInterval(() => {
-                if (countdownContainer) {
-                    countdownContainer.textContent = timeLeft;
-                }
-                timeLeft--;
-                if (timeLeft < 0) {
-                    clearInterval(countdownInterval);
-                }
-            }, 1000);
-
         }, 50);
 
         setTimeout(() => {
             videoElement.pause();
             if (videoContainer) videoContainer.style.display = "none";
         }, 1000); 
-
-        // After 5 seconds, fade out first video loader and play venues video
-        setTimeout(() => {
-            clearInterval(countdownInterval);
-            if (messageContainer) messageContainer.classList.remove("show");
-            if (countdownContainer) countdownContainer.classList.remove("show");
-            if (loaderScreen) loaderScreen.classList.remove("active");
-
-            if (venuesContainer) {
-                venuesContainer.classList.add("active");
-            }
-            if (venuesVideo) {
-                venuesVideo.play().catch(error => {
-                    console.log("Venues video autoplay was prevented:", error);
-                });
-                if (venuesSkipBtn) {
-                    venuesSkipBtn.classList.add("show");
-                }
-            }
-        }, 5500); 
     }
 
-    // Function to transition to the final adventure screen
+    // YES Button Click Handler
+    if (yesBtn) {
+        yesBtn.addEventListener("click", function() {
+            if (choiceButtonsContainer) choiceButtonsContainer.style.display = "none";
+            if (messageContainer) messageContainer.classList.remove("show");
+            playVenuesVideo();
+        });
+    }
+
+    // NO Button Click Handler
+    if (noBtn) {
+        noBtn.addEventListener("click", function() {
+            if (choiceButtonsContainer) choiceButtonsContainer.style.display = "none";
+            if (funnyMessageContainer) {
+                funnyMessageContainer.textContent = funnyMessages[selectedLang] || funnyMessages["EN"];
+            }
+            // Trigger venues video after a short humorous pause to let them read it
+            setTimeout(() => {
+                if (messageContainer) messageContainer.classList.remove("show");
+                playVenuesVideo();
+            }, 1500);
+        });
+    }
+
+    // Function to transition to the final adventure screen[cite: 3]
     function showFinalAdventureScreen() {
         if (venuesSkipBtn) venuesSkipBtn.classList.remove("show");
         if (venuesContainer) {
@@ -139,16 +157,22 @@ document.addEventListener("DOMContentLoaded", function () {
             venuesVideo.pause();
         }
 
-        // Setup final message text based on chosen language
+        // Setup final message text based on chosen language[cite: 3]
         if (messageContainer) {
             messageContainer.textContent = finalMessages[selectedLang] || finalMessages["EN"];
         }
         if (countdownContainer) {
-            countdownContainer.textContent = ""; // Hide countdown for the final page
+            countdownContainer.textContent = ""; 
             countdownContainer.classList.remove("show");
         }
+        if (choiceButtonsContainer) {
+            choiceButtonsContainer.style.display = "none";
+        }
+        if (funnyMessageContainer) {
+            funnyMessageContainer.textContent = "";
+        }
 
-        // Show loader screen with background image + spinner + final message
+        // Show loader screen with background image + spinner + final message[cite: 3]
         if (loaderScreen) {
             loaderScreen.classList.add("active");
         }
@@ -157,21 +181,21 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 50);
     }
 
-    // Skip Button Functionality (First Video)
+    // Skip Button Functionality (First Video)[cite: 3]
     if (skipBtn) {
         skipBtn.addEventListener("click", function() {
             showLoaderScreen();
         });
     }
 
-    // Venues Skip Button Functionality (Second Video)
+    // Venues Skip Button Functionality (Second Video)[cite: 3]
     if (venuesSkipBtn) {
         venuesSkipBtn.addEventListener("click", function() {
             showFinalAdventureScreen();
         });
     }
 
-    // When first video ends naturally
+    // When first video ends naturally[cite: 3]
     let hasEndedTriggered = false;
     videoElement.addEventListener("timeupdate", function handleTimeUpdate() {
         if (hasEndedTriggered) return;
@@ -187,14 +211,14 @@ document.addEventListener("DOMContentLoaded", function () {
         hasEndedTriggered = false;
     });
 
-    // When venues video ends naturally
+    // When venues video ends naturally[cite: 3]
     if (venuesVideo) {
         venuesVideo.addEventListener("ended", function() {
             showFinalAdventureScreen();
         });
     }
 
-    // Scrolling Tab Title Function
+    // Scrolling Tab Title Function[cite: 3]
     var scrollTitle = function() {
         var titleText = " Que nos casamos! • On se marie ! • We are getting married! • "; 
         setInterval(function() {
