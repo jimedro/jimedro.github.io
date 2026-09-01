@@ -7,10 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const loaderScreen = document.getElementById("intro-loader");
     const messageContainer = document.getElementById("something-else-message");
     const countdownContainer = document.getElementById("countdown-timer");
-    const choiceButtonsContainer = document.getElementById("choice-buttons-container");
-    const yesBtn = document.getElementById("yes-btn");
-    const noBtn = document.getElementById("no-btn");
-    const funnyMessageContainer = document.getElementById("funny-message");
     const venuesContainer = document.getElementById("venues-video-container");
     const venuesVideo = document.getElementById("venues-video");
     const venuesSkipBtn = document.getElementById("skip-venues-btn");
@@ -25,33 +21,25 @@ document.addEventListener("DOMContentLoaded", function () {
         introVeil.style.backgroundImage = "url('images/blurry_landscape.jpg')";
     }
 
-    // First interruption messages[cite: 3]
+    // First interruption messages
     const messages = {
-        "ES": "Queremos enseñarte algo más, ¿quieres verlo?",
-        "EN": "There is more, do you want to see it?",
-        "FR": "Il reste un peu plus, on y va ?"
+        "ES": "Espera! Queremos enseñarte algo más",
+        "EN": "Wait a second, there is something else!",
+        "FR": "Attends, on veut te montrer autre chose !"
     };
 
-    // Funny messages for the NO button
-    const funnyMessages = {
-        "ES": "Claro que sí guapi",
-        "EN": "Yeah sure",
-        "FR": "La blague !"
-    };
-
-    // Final "coming soon" adventure messages[cite: 3]
+    // Final "coming soon" adventure messages
     const finalMessages = {
         "ES": "Estamos preparando la aventura, vuelve pronto!",
         "EN": "We are preparing this adventure, come back soon!",
         "FR": "On se prépare pour l'aventure, reviens bientôt !"
     };
 
-    let selectedLang = "EN"; // Default fallback[cite: 3]
+    let selectedLang = "EN"; // Default fallback
 
-    // Flag selection handler: loads and plays the first video directly on click
     flagButtons.forEach(button => {
         button.addEventListener("click", function () {
-            selectedLang = this.getAttribute("data-lang") || "EN";[cite: 3]
+            selectedLang = this.getAttribute("data-lang") || "EN"; 
 
             let videoFileName = "";
             if (isMobile) {
@@ -63,35 +51,22 @@ document.addEventListener("DOMContentLoaded", function () {
             flagSelection.style.opacity = "0";
             flagSelection.style.pointerEvents = "none";
 
-            // Set source, load, and play inside the direct user click gesture
             videoElement.src = `images/${videoFileName}`;
             videoElement.load();
-            
-            introVeil.classList.add("fade-out");
-            if (skipBtn) skipBtn.classList.add("show");
-
-            videoElement.play().catch(error => {
-                console.log("First video autoplay was prevented by the browser:", error);
-            });
         });
     });
 
-    function playVenuesVideo() {
-        if (loaderScreen) loaderScreen.classList.remove("active");
-        if (funnyMessageContainer) funnyMessageContainer.textContent = "";
-        if (venuesContainer) {
-            venuesContainer.classList.add("active");
-        }
-        if (venuesVideo) {
-            venuesVideo.load();
-            venuesVideo.play().catch(error => {
-                console.log("Venues video autoplay was prevented:", error);
-            });
-            if (venuesSkipBtn) {
-                venuesSkipBtn.classList.add("show");
-            }
-        }
-    }
+    videoElement.addEventListener("canplay", function handleCanPlay() {
+        introVeil.classList.add("fade-out");
+
+        if (skipBtn) skipBtn.classList.add("show");
+
+        videoElement.play().catch(error => {
+            console.log("Autoplay was prevented by the browser:", error);
+        });
+    }, { once: true });
+
+    let countdownInterval = null;
 
     function showLoaderScreen() {
         const videoContainer = document.getElementById("video-container");
@@ -110,43 +85,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(() => {
             if (messageContainer) messageContainer.classList.add("show");
-            // Show YES and NO buttons
-            if (choiceButtonsContainer) {
-                choiceButtonsContainer.style.display = "flex";
+            if (countdownContainer) {
+                countdownContainer.textContent = "5";
+                countdownContainer.classList.add("show");
             }
+
+            let timeLeft = 4;
+            countdownInterval = setInterval(() => {
+                if (countdownContainer) {
+                    countdownContainer.textContent = timeLeft;
+                }
+                timeLeft--;
+                if (timeLeft < 0) {
+                    clearInterval(countdownInterval);
+                }
+            }, 1000);
+
         }, 50);
 
         setTimeout(() => {
             videoElement.pause();
             if (videoContainer) videoContainer.style.display = "none";
         }, 1000); 
-    }
 
-    // YES Button Click Handler
-    if (yesBtn) {
-        yesBtn.addEventListener("click", function() {
-            if (choiceButtonsContainer) choiceButtonsContainer.style.display = "none";
+        // After 5 seconds, fade out first video loader and play venues video
+        setTimeout(() => {
+            clearInterval(countdownInterval);
             if (messageContainer) messageContainer.classList.remove("show");
-            playVenuesVideo();
-        });
-    }
+            if (countdownContainer) countdownContainer.classList.remove("show");
+            if (loaderScreen) loaderScreen.classList.remove("active");
 
-    // NO Button Click Handler
-    if (noBtn) {
-        noBtn.addEventListener("click", function() {
-            if (choiceButtonsContainer) choiceButtonsContainer.style.display = "none";
-            if (funnyMessageContainer) {
-                funnyMessageContainer.textContent = funnyMessages[selectedLang] || funnyMessages["EN"];
+            if (venuesContainer) {
+                venuesContainer.classList.add("active");
             }
-            // Trigger venues video after a short humorous pause to let them read it
-            setTimeout(() => {
-                if (messageContainer) messageContainer.classList.remove("show");
-                playVenuesVideo();
-            }, 1500);
-        });
+            if (venuesVideo) {
+                venuesVideo.play().catch(error => {
+                    console.log("Venues video autoplay was prevented:", error);
+                });
+                if (venuesSkipBtn) {
+                    venuesSkipBtn.classList.add("show");
+                }
+            }
+        }, 5500); 
     }
 
-    // Function to transition to the final adventure screen[cite: 3]
+    // Function to transition to the final adventure screen
     function showFinalAdventureScreen() {
         if (venuesSkipBtn) venuesSkipBtn.classList.remove("show");
         if (venuesContainer) {
@@ -156,22 +139,16 @@ document.addEventListener("DOMContentLoaded", function () {
             venuesVideo.pause();
         }
 
-        // Setup final message text based on chosen language[cite: 3]
+        // Setup final message text based on chosen language
         if (messageContainer) {
             messageContainer.textContent = finalMessages[selectedLang] || finalMessages["EN"];
         }
         if (countdownContainer) {
-            countdownContainer.textContent = ""; 
+            countdownContainer.textContent = ""; // Hide countdown for the final page
             countdownContainer.classList.remove("show");
         }
-        if (choiceButtonsContainer) {
-            choiceButtonsContainer.style.display = "none";
-        }
-        if (funnyMessageContainer) {
-            funnyMessageContainer.textContent = "";
-        }
 
-        // Show loader screen with background image + spinner + final message[cite: 3]
+        // Show loader screen with background image + spinner + final message
         if (loaderScreen) {
             loaderScreen.classList.add("active");
         }
@@ -180,21 +157,21 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 50);
     }
 
-    // Skip Button Functionality (First Video)[cite: 3]
+    // Skip Button Functionality (First Video)
     if (skipBtn) {
         skipBtn.addEventListener("click", function() {
             showLoaderScreen();
         });
     }
 
-    // Venues Skip Button Functionality (Second Video)[cite: 3]
+    // Venues Skip Button Functionality (Second Video)
     if (venuesSkipBtn) {
         venuesSkipBtn.addEventListener("click", function() {
             showFinalAdventureScreen();
         });
     }
 
-    // When first video ends naturally[cite: 3]
+    // When first video ends naturally
     let hasEndedTriggered = false;
     videoElement.addEventListener("timeupdate", function handleTimeUpdate() {
         if (hasEndedTriggered) return;
@@ -210,14 +187,14 @@ document.addEventListener("DOMContentLoaded", function () {
         hasEndedTriggered = false;
     });
 
-    // When venues video ends naturally[cite: 3]
+    // When venues video ends naturally
     if (venuesVideo) {
         venuesVideo.addEventListener("ended", function() {
             showFinalAdventureScreen();
         });
     }
 
-    // Scrolling Tab Title Function[cite: 3]
+    // Scrolling Tab Title Function
     var scrollTitle = function() {
         var titleText = " Que nos casamos! • On se marie ! • We are getting married! • "; 
         setInterval(function() {
