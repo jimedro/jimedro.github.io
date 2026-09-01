@@ -23,9 +23,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // First interruption messages
     const messages = {
-        "ES": "Espera! Queremos enseñarte algo más",
-        "EN": "Wait a second, there is something else!",
-        "FR": "Attends, on veut te montrer autre chose !"
+        "ES": "Queremos enseñarte algo más, ¿quieres verlo?",
+        "EN": "There is more, do you want to see it?",
+        "FR": "Il reste un peu plus, on y va ?"
     };
 
     // Final "coming soon" adventure messages
