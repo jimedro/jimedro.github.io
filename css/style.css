@@ -2139,18 +2139,23 @@ form label {
 
 #joke-message {
     position: absolute;
-    top: 58%; /* Adjust this percentage to place it nicely below your main text or loader */
+    top: 58%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
     text-align: center;
     font-family: 'Nemure', Arial, sans-serif;
-    font-size: 32px;
+    font-size: 28px;
     color: #000000 !important;
     font-weight: 700;
+    background: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 12px;
+    padding: 12px 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-    pointer-events: none; /* Ensures mouse clicks pass right through it */
+    pointer-events: none;
 }
 
 #joke-message.show {
