@@ -6,7 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const skipBtn = document.getElementById("skip-btn");
     const loaderScreen = document.getElementById("intro-loader");
     const messageContainer = document.getElementById("something-else-message");
-    const countdownContainer = document.getElementById("countdown-timer");
+    const choiceContainer = document.getElementById("choice-container");
+    const yesBtn = document.getElementById("yes-btn");
+    const noBtn = document.getElementById("no-btn");
+    const jokeMessage = document.getElementById("joke-message");
     const venuesContainer = document.getElementById("venues-video-container");
     const venuesVideo = document.getElementById("venues-video");
     const venuesSkipBtn = document.getElementById("skip-venues-btn");
@@ -21,11 +24,18 @@ document.addEventListener("DOMContentLoaded", function () {
         introVeil.style.backgroundImage = "url('images/blurry_landscape.jpg')";
     }
 
-    // First interruption messages
-    const messages = {
-        "ES": "Espera! Queremos enseñarte algo más",
-        "EN": "Wait a second, there is something else!",
-        "FR": "Attends, on veut te montrer autre chose !"
+    // First interruption messages (after first video)
+    const secondTransitionMessages = {
+        "ES": "Queremos enseñarte algo más, ¿quieres verlo?",
+        "EN": "There is more, do you want to see it?",
+        "FR": "Il reste un peu plus, on y va ?"
+    };
+
+    // Joke messages when clicking "NO"
+    const jokeMessages = {
+        "ES": "Claro que sí guapi",
+        "EN": "Yeah sure",
+        "FR": "La blague !"
     };
 
     // Final "coming soon" adventure messages
@@ -66,14 +76,32 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }, { once: true });
 
-    let countdownInterval = null;
+    // Function to trigger the second video playback
+    function playVenuesVideo() {
+        if (messageContainer) messageContainer.classList.remove("show");
+        if (choiceContainer) choiceContainer.classList.remove("show");
+        if (jokeMessage) jokeMessage.classList.remove("show");
+        if (loaderScreen) loaderScreen.classList.remove("active");
+
+        if (venuesContainer) {
+            venuesContainer.classList.add("active");
+        }
+        if (venuesVideo) {
+            venuesVideo.play().catch(error => {
+                console.log("Venues video autoplay was prevented:", error);
+            });
+            if (venuesSkipBtn) {
+                venuesSkipBtn.classList.add("show");
+            }
+        }
+    }
 
     function showLoaderScreen() {
         const videoContainer = document.getElementById("video-container");
         if (skipBtn) skipBtn.classList.remove("show");
 
         if (messageContainer) {
-            messageContainer.textContent = messages[selectedLang] || messages["EN"];
+            messageContainer.textContent = secondTransitionMessages[selectedLang] || secondTransitionMessages["EN"];
         }
 
         if (videoContainer) {
@@ -85,48 +113,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(() => {
             if (messageContainer) messageContainer.classList.add("show");
-            if (countdownContainer) {
-                countdownContainer.textContent = "5";
-                countdownContainer.classList.add("show");
-            }
-
-            let timeLeft = 4;
-            countdownInterval = setInterval(() => {
-                if (countdownContainer) {
-                    countdownContainer.textContent = timeLeft;
-                }
-                timeLeft--;
-                if (timeLeft < 0) {
-                    clearInterval(countdownInterval);
-                }
-            }, 1000);
-
+            if (choiceContainer) choiceContainer.classList.add("show");
         }, 50);
 
         setTimeout(() => {
             videoElement.pause();
             if (videoContainer) videoContainer.style.display = "none";
         }, 1000); 
+    }
 
-        // After 5 seconds, fade out first video loader and play venues video
-        setTimeout(() => {
-            clearInterval(countdownInterval);
-            if (messageContainer) messageContainer.classList.remove("show");
-            if (countdownContainer) countdownContainer.classList.remove("show");
-            if (loaderScreen) loaderScreen.classList.remove("active");
+    // YES Button Handler
+    if (yesBtn) {
+        yesBtn.addEventListener("click", function() {
+            playVenuesVideo();
+        });
+    }
 
-            if (venuesContainer) {
-                venuesContainer.classList.add("active");
+    // NO Button Handler
+    if (noBtn) {
+        noBtn.addEventListener("click", function() {
+            // Hide choice buttons immediately
+            if (choiceContainer) choiceContainer.classList.remove("show");
+
+            // Show joke message depending on language
+            if (jokeMessage) {
+                jokeMessage.textContent = jokeMessages[selectedLang] || jokeMessages["EN"];
+                jokeMessage.classList.add("show");
             }
-            if (venuesVideo) {
-                venuesVideo.play().catch(error => {
-                    console.log("Venues video autoplay was prevented:", error);
-                });
-                if (venuesSkipBtn) {
-                    venuesSkipBtn.classList.add("show");
-                }
-            }
-        }, 5500); 
+
+            // After a short wait (e.g., 1.5 seconds), continue to the video anyway
+            setTimeout(() => {
+                playVenuesVideo();
+            }, 1500);
+        });
     }
 
     // Function to transition to the final adventure screen
@@ -143,10 +162,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (messageContainer) {
             messageContainer.textContent = finalMessages[selectedLang] || finalMessages["EN"];
         }
-        if (countdownContainer) {
-            countdownContainer.textContent = ""; // Hide countdown for the final page
-            countdownContainer.classList.remove("show");
-        }
+        if (choiceContainer) choiceContainer.classList.remove("show");
+        if (jokeMessage) jokeMessage.classList.remove("show");
 
         // Show loader screen with background image + spinner + final message
         if (loaderScreen) {
