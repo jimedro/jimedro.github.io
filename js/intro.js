@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const secondTransitionMessages = {
         "ES": "Queremos enseñarte algo más, ¿quieres verlo?",
         "EN": "There is more, do you want to see it?",
-        "FR": "Il reste un peu plus, on y va ?"
+        "FR": "Il y en a encore plus ?"
     };
 
     // Joke messages when clicking "NO"
