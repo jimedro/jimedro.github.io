@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let selectedLang = "EN"; // Default fallback[cite: 3]
 
+    // Flag selection handler: loads and plays the first video directly on click
     flagButtons.forEach(button => {
         button.addEventListener("click", function () {
             selectedLang = this.getAttribute("data-lang") || "EN";[cite: 3]
@@ -62,20 +63,18 @@ document.addEventListener("DOMContentLoaded", function () {
             flagSelection.style.opacity = "0";
             flagSelection.style.pointerEvents = "none";
 
+            // Set source, load, and play inside the direct user click gesture
             videoElement.src = `images/${videoFileName}`;
             videoElement.load();
+            
+            introVeil.classList.add("fade-out");
+            if (skipBtn) skipBtn.classList.add("show");
+
+            videoElement.play().catch(error => {
+                console.log("First video autoplay was prevented by the browser:", error);
+            });
         });
     });
-
-    videoElement.addEventListener("canplay", function handleCanPlay() {
-        introVeil.classList.add("fade-out");
-
-        if (skipBtn) skipBtn.classList.add("show");
-
-        videoElement.play().catch(error => {
-            console.log("Autoplay was prevented by the browser:", error);
-        });
-    }, { once: true });
 
     function playVenuesVideo() {
         if (loaderScreen) loaderScreen.classList.remove("active");
@@ -111,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(() => {
             if (messageContainer) messageContainer.classList.add("show");
-            // Show YES and NO buttons instead of countdown
+            // Show YES and NO buttons
             if (choiceButtonsContainer) {
                 choiceButtonsContainer.style.display = "flex";
             }
