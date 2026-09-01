@@ -2100,3 +2100,56 @@ form label {
     object-position: center center;
     background: #000;
 }
+
+/* --- Second Transition Page Choice Buttons & Joke Message --- */
+#choice-container {
+    position: relative;
+    z-index: 2;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+#choice-container.show {
+    opacity: 1;
+}
+
+.choice-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.choice-btn img {
+    width: 90px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+}
+
+.choice-btn:hover {
+    transform: scale(1.1);
+}
+
+#joke-message {
+    position: relative;
+    z-index: 2;
+    margin-top: 25px;
+    text-align: center;
+    font-family: 'Nemure', Arial, sans-serif;
+    font-size: 32px;
+    color: #000000 !important;
+    font-weight: 700;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#joke-message.show {
+    opacity: 1;
+}
