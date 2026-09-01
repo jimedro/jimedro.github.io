@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Final "coming soon" adventure messages
     const finalMessages = {
-        "ES": "Estamos preparando la aventura, vuelve pronto!",
+        "ES": "Preparando la aventura... vuelve pronto!",
         "EN": "We are preparing this adventure, come back soon!",
         "FR": "On se prépare pour l'aventure, reviens bientôt !"
     };
