@@ -61,12 +61,12 @@ body {
 }
 
 a {
-  color: #2B7986;
+  color: #4ED9F1;
   transition: 0.5s;
 }
 
 a:hover, a:active, a:focus {
-  color: #2B7986;
+  color: #4ED9F1;
   outline: none;
   text-decoration: none;
 }
@@ -84,11 +84,11 @@ h1, h2, h3, h4, h5, h6, figure {
 
 ::-webkit-selection {
   color: #fff;
-  background: #2B7986;
+  background: #4ED9F1;
 }
 ::selection {
   color: #fff;
-  background: #2B7986;
+  background: #4ED9F1;
 }
 
 /* =======================================================
@@ -267,16 +267,8 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 /* =======================================================
-   5. REPEATING TILE BACKGROUND WITH SEMI-TRANSPARENT TINT
+   5. REPEATING TILE BACKGROUND WITH SEMI-TRANSPARENT TINT  feature removed
    ======================================================= */
-
-.tiled-bg-section {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), 
-                    url('../images/background-tile.png') !important;
-  background-repeat: repeat !important;
-  background-position: top left !important;
-  background-size: 25% auto !important;
-}
 
 /* =======================================================
    6. EVENT CARDS SECTION
@@ -437,7 +429,7 @@ h1, h2, h3, h4, h5, h6, figure {
   font-size: 20px;
   background: #fff;
   padding: 20px;
-  color: #2B7986;
+  color: #4ED9F1;
   border-radius: 50%;
 }
 
@@ -460,7 +452,7 @@ h1, h2, h3, h4, h5, h6, figure {
 
 .couple-half h3 {
   font-family: "Sacramento", Arial, serif !important;
-  color: #2B7986;
+  color: #4ED9F1;
   font-size: 30px;
 }
 
@@ -502,7 +494,7 @@ h1, h2, h3, h4, h5, h6, figure {
   margin-bottom: 10px;
   line-height: 1.5;
   font-weight: bold;
-  color: #2B7986;
+  color: #4ED9F1;
   font-family: "Sacramento", Arial, serif !important;
 }
 
