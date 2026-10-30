@@ -92,14 +92,14 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 /* =======================================================
-   3. NAVIGATION BAR
+   3. NAVIGATION BAR (FIXED LOGO & MENU VISIBILITY)
    ======================================================= */
 
 .fh5co-nav {
   position: absolute;
   top: 0;
   margin: 0;
-  padding: 40px 0;
+  padding: 30px 0;
   width: 100%;
   z-index: 1001;
 }
@@ -111,13 +111,15 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 .fh5co-nav #fh5co-logo {
-  font-size: 32px;
+  font-size: 34px !important;
   margin: 0;
   padding: 0;
   line-height: 40px;
   font-family: "Sacramento", Arial, serif !important;
   color: #ffffff !important;
   white-space: nowrap;
+  display: block;
+  float: left;
 }
 
 .fh5co-nav a {
@@ -125,42 +127,51 @@ h1, h2, h3, h4, h5, h6, figure {
   color: #fff;
 }
 
+/* Ensure desktop menu stays displayed cleanly */
+.fh5co-nav .menu-1 {
+  float: right;
+  display: block !important;
+}
+
 @media screen and (max-width: 768px) {
-  .fh5co-nav .menu-1, .fh5co-nav .menu-2 {
-    display: none;
+  .fh5co-nav .menu-1 {
+    display: none !important;
   }
 }
 
 .fh5co-nav ul {
   padding: 0;
-  margin: 2px 0 0 0;
+  margin: 4px 0 0 0;
 }
 
 .fh5co-nav ul li {
   padding: 0;
-  margin: 0;
+  margin: 0 0 0 10px;
   list-style: none;
-  display: inline;
+  display: inline-block;
 }
 
 .fh5co-nav ul li a {
   font-size: 14px;
-  padding: 30px 10px;
+  padding: 10px 12px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.8) !important;
   transition: 0.5s;
 }
 
-.fh5co-nav ul li a:hover, .fh5co-nav ul li a:focus, .fh5co-nav ul li a:active {
+.fh5co-nav ul li a:hover, 
+.fh5co-nav ul li a:focus, 
+.fh5co-nav ul li a:active {
   color: #ffffff !important;
 }
 
 .fh5co-nav ul li.active > a {
   color: #ffffff !important;
+  font-weight: bold;
 }
 
 /* =======================================================
-   4. HERO BANNERS & FULL-WIDTH BACKGROUNDS
+   4. HERO BANNERS & SAVE THE DATE BUTTON
    ======================================================= */
 
 #fh5co-event,
@@ -245,17 +256,20 @@ h1, h2, h3, h4, h5, h6, figure {
   color: white;
 }
 
-/* Save the Date Button Styles (Restored Rounded Pill Shape & Black Text) */
+/* Save the Date Button Styles (Rounded Pill Shape & Black Text) */
 #fh5co-header .display-tc .btn,
 .fh5co-cover .display-tc .btn {
-  padding: 12px 28px !important;
+  padding: 14px 32px !important;
   background: #ffffff !important;
   color: #000000 !important;
   border: none !important;
   border-radius: 30px !important;
+  -webkit-border-radius: 30px !important;
+  -moz-border-radius: 30px !important;
   font-size: 14px;
   text-transform: uppercase;
   font-weight: bold;
+  display: inline-block;
 }
 
 #fh5co-header .display-tc .btn:hover,
