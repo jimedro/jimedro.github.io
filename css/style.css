@@ -111,7 +111,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 .fh5co-nav #fh5co-logo {
-  font-size: 40px;
+  font-size: 32px;
   margin: 0;
   padding: 0;
   line-height: 40px;
@@ -245,12 +245,14 @@ h1, h2, h3, h4, h5, h6, figure {
   color: white;
 }
 
+/* Save the Date Button Styles (Restored Rounded Pill Shape & Black Text) */
 #fh5co-header .display-tc .btn,
 .fh5co-cover .display-tc .btn {
-  padding: 15px 20px;
+  padding: 12px 28px !important;
   background: #ffffff !important;
   color: #000000 !important;
   border: none !important;
+  border-radius: 30px !important;
   font-size: 14px;
   text-transform: uppercase;
   font-weight: bold;
@@ -261,6 +263,7 @@ h1, h2, h3, h4, h5, h6, figure {
   background: #ffffff !important;
   box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75) !important;
   color: #000000 !important;
+  border-radius: 30px !important;
 }
 
 /* =======================================================
