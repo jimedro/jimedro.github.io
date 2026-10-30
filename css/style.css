@@ -139,14 +139,14 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 
-//* Styles the top-left logo link with cursive font and sizing */
+/* Styles the top-left logo link with cursive font and sizing */
 .fh5co-nav #fh5co-logo {
   font-size: 40px;
   margin: 0;
   padding: 0;
   line-height: 40px;
   font-family: "Sacramento", Arial, serif;
-  color: #fff;
+  color: #ffffff !important;
 }
 
 /* Sets padding and white color for navigation links */
