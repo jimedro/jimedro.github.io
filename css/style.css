@@ -61,12 +61,12 @@ body {
 }
 
 a {
-  color: #4ED9F1;
+  color: #2B7986;
   transition: 0.5s;
 }
 
 a:hover, a:active, a:focus {
-  color: #4ED9F1;
+  color: #2B7986;
   outline: none;
   text-decoration: none;
 }
@@ -84,11 +84,11 @@ h1, h2, h3, h4, h5, h6, figure {
 
 ::-webkit-selection {
   color: #fff;
-  background: #4ED9F1;
+  background: #2B7986;
 }
 ::selection {
   color: #fff;
-  background: #4ED9F1;
+  background: #2B7986;
 }
 
 /* =======================================================
@@ -437,7 +437,7 @@ h1, h2, h3, h4, h5, h6, figure {
   font-size: 20px;
   background: #fff;
   padding: 20px;
-  color: #4ED9F1;
+  color: #2B7986;
   border-radius: 50%;
 }
 
@@ -460,7 +460,7 @@ h1, h2, h3, h4, h5, h6, figure {
 
 .couple-half h3 {
   font-family: "Sacramento", Arial, serif !important;
-  color: #4ED9F1;
+  color: #2B7986;
   font-size: 30px;
 }
 
@@ -502,7 +502,7 @@ h1, h2, h3, h4, h5, h6, figure {
   margin-bottom: 10px;
   line-height: 1.5;
   font-weight: bold;
-  color: #4ED9F1;
+  color: #2B7986;
   font-family: "Sacramento", Arial, serif !important;
 }
 
