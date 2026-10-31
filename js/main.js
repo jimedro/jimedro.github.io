@@ -161,6 +161,18 @@
 		}, 120);
 	};
 
+	// Automatic Translation Initializer
+	var initLanguageSwitcher = function() {
+		var currentLang = (localStorage.getItem("selectedLang") || "EN").toLowerCase();
+
+		$('[data-lang-' + currentLang + ']').each(function() {
+			var translatedText = $(this).attr('data-lang-' + currentLang);
+			if (translatedText) {
+				$(this).html(translatedText);
+			}
+		});
+	};
+
 	$(document).ready(function(){
 		mobileMenuOutsideClick();
 		parallax();
@@ -174,6 +186,7 @@
 		counter();
 		counterWayPoint();
 		scrollTitle();
+		initLanguageSwitcher();
 	});
 
 })(jQuery);
