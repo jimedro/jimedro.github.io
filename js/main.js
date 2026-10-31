@@ -173,15 +173,22 @@
 			});
 		}
 
-		var savedLang = localStorage.getItem("selectedLang");
+		// Detect if we are on main.html
+		var isMainPage = window.location.pathname.endsWith("main.html") || window.location.pathname.endsWith("/");
 
-		if (savedLang) {
-			// If language was already selected on index.html, translate and hide overlay
-			applyTranslations(savedLang);
-			$('#flag-selection').hide();
-		} else {
-			// If no language stored, show the semi-transparent flag overlay
+		if (isMainPage) {
+			// Always clear saved language when visiting main.html so flags always prompt
+			localStorage.removeItem("selectedLang");
 			$('#flag-selection').show();
+		} else {
+			// On subpages (story.html, venue.html, etc.), use the chosen language if set
+			var savedLang = localStorage.getItem("selectedLang");
+			if (savedLang) {
+				applyTranslations(savedLang);
+				$('#flag-selection').hide();
+			} else {
+				$('#flag-selection').show();
+			}
 		}
 
 		// Flag click handler
