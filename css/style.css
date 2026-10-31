@@ -892,3 +892,31 @@ p {
 .js .animate-box {
   opacity: 0;
 }
+
+/* =======================================================
+*  INDEX.HTML (INTRO PAGE) RESETS & ISOLATION
+* ======================================================= */
+#flag-selection,
+#intro-veil,
+#video-container,
+#intro-loader,
+#venues-video-container {
+  -webkit-text-stroke: 0px transparent !important;
+}
+
+#intro-loader *,
+#flag-selection * {
+  -webkit-text-stroke: 0px transparent !important;
+}
+
+/* Ensure intro buttons preserve clean styling */
+.flag-btn, .choice-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+#skip-btn, #skip-venues-btn {
+  font-family: 'Nemure', Arial, sans-serif !important;
+  -webkit-text-stroke: 0px transparent !important;
+}
