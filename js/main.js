@@ -161,14 +161,36 @@
 		}, 120);
 	};
 
-	// Automatic Translation Initializer
+	// Language Switcher & Flag Overlay Logic
 	var initLanguageSwitcher = function() {
-		var currentLang = (localStorage.getItem("selectedLang") || "EN").toLowerCase();
+		function applyTranslations(lang) {
+			var langKey = lang.toLowerCase();
+			$('[data-lang-' + langKey + ']').each(function() {
+				var text = $(this).attr('data-lang-' + langKey);
+				if (text) {
+					$(this).html(text);
+				}
+			});
+		}
 
-		$('[data-lang-' + currentLang + ']').each(function() {
-			var translatedText = $(this).attr('data-lang-' + currentLang);
-			if (translatedText) {
-				$(this).html(translatedText);
+		var savedLang = localStorage.getItem("selectedLang");
+
+		if (savedLang) {
+			// If language was already selected on index.html, translate and hide overlay
+			applyTranslations(savedLang);
+			$('#flag-selection').hide();
+		} else {
+			// If no language stored, show the semi-transparent flag overlay
+			$('#flag-selection').show();
+		}
+
+		// Flag click handler
+		$(document).on('click', '.flag-btn', function(e) {
+			var chosenLang = $(this).attr('data-lang');
+			if (chosenLang) {
+				localStorage.setItem("selectedLang", chosenLang);
+				applyTranslations(chosenLang);
+				$('#flag-selection').fadeOut(500);
 			}
 		});
 	};
