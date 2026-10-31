@@ -100,7 +100,9 @@ p {
   background: #2B7986;
 }
 
-/* Navigation & Navigation Links */
+/* =======================================================
+*  NAVIGATION & HEADER MENU
+* ======================================================= */
 .fh5co-nav {
   position: absolute;
   top: 0;
@@ -136,12 +138,13 @@ p {
 .fh5co-nav ul {
   padding: 0;
   margin: 2px 0 0 0;
+  list-style: none !important;
 }
 .fh5co-nav ul li {
   padding: 0;
   margin: 0;
-  list-style: none;
-  display: inline;
+  list-style: none !important;
+  display: inline-block !important;
 }
 
 /* Navigation Tabs Keep Work Sans & Increased Size (+50% to 21px) */
@@ -157,6 +160,7 @@ p {
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
+  display: inline-block;
 }
 .fh5co-nav ul li a:hover, .fh5co-nav ul li a:focus, .fh5co-nav ul li a:active {
   color: white !important;
