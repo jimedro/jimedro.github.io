@@ -173,24 +173,36 @@
 			});
 		}
 
+		function disableScroll() {
+			$('html, body').css({
+				'overflow': 'hidden',
+				'height': '100%'
+			});
+		}
+
+		function enableScroll() {
+			$('html, body').css({
+				'overflow': '',
+				'height': ''
+			});
+		}
+
 		// Detect if we are on main.html
 		var isMainPage = window.location.pathname.endsWith("main.html") || window.location.pathname.endsWith("/");
 
 		if (isMainPage) {
-			// Always clear saved language when visiting main.html so flags always prompt
 			localStorage.removeItem("selectedLang");
-			$('#flag-selection').show();
-			$('body').css('overflow', 'hidden'); // Prevent scrolling until language is selected
+			$('#flag-selection').css('display', 'flex').show();
+			disableScroll();
 		} else {
-			// On subpages (story.html, venue.html, etc.), use the chosen language if set
 			var savedLang = localStorage.getItem("selectedLang");
 			if (savedLang) {
 				applyTranslations(savedLang);
 				$('#flag-selection').hide();
-				$('body').css('overflow', 'auto');
+				enableScroll();
 			} else {
-				$('#flag-selection').show();
-				$('body').css('overflow', 'hidden');
+				$('#flag-selection').css('display', 'flex').show();
+				disableScroll();
 			}
 		}
 
@@ -201,7 +213,7 @@
 				localStorage.setItem("selectedLang", chosenLang);
 				applyTranslations(chosenLang);
 				$('#flag-selection').fadeOut(500, function() {
-					$('body').css('overflow', 'auto'); // Re-enable scrolling after selection
+					enableScroll();
 				});
 			}
 		});
