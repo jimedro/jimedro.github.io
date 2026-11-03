@@ -174,7 +174,7 @@
 		}
 
 		function disableScroll() {
-			$('html, body').css({
+			$('html, body, #page').css({
 				'overflow': 'hidden',
 				'height': '100%'
 			});
@@ -184,6 +184,10 @@
 			$('html, body').css({
 				'overflow': '',
 				'height': ''
+			});
+			$('#page').css({
+				'overflow-y': 'scroll',
+				'height': '100vh'
 			});
 		}
 
