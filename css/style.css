@@ -1169,8 +1169,13 @@ p {
     opacity: 1;
 }
 
-/* Semi-transparent white background for flag selection on main pages */
-#page ~ #flag-selection,
+/* Light 0.25 overlay for index.html */
 body > #flag-selection {
     background: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Darker 0.75 overlay for main.html */
+#page ~ #flag-selection,
+#page #flag-selection {
+    background: rgba(255, 255, 255, 0.75) !important;
 }
