@@ -1232,9 +1232,9 @@ body > #flag-selection {
     background: rgba(255, 255, 255, 0.25) !important;
 }
 
-/* 0.75 White Overlay + Blur + Click Blocking ONLY on main.html */
+/* 0.65 White Overlay + Blur + Click Blocking ONLY on main.html */
 #main-page #flag-selection {
-    background: rgba(255, 255, 255, 0.75) !important;
+    background: rgba(255, 255, 255, 0.65) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
 }
