@@ -53,7 +53,7 @@
 		});
 	};
 
-	var contentWayPoint = function() {
+var contentWayPoint = function() {
 		var i = 0;
 		$('.animate-box').waypoint( function( direction ) {
 			if( direction === 'down' && !$(this.element).hasClass('animated-fast') ) {
@@ -79,6 +79,13 @@
 				}, 100);
 			}
 		} , { offset: '85%' } );
+
+		// Add section fade-in trigger
+		$('#fh5co-couple, #fh5co-event, #fh5co-testimonial').waypoint(function(direction) {
+			if (direction === 'down') {
+				$(this.element).addClass('in-view');
+			}
+		}, { offset: '80%' });
 	};
 
 	var dropdown = function() {
