@@ -1325,3 +1325,33 @@ body > #flag-selection {
     text-transform: lowercase !important;
   }
 }
+
+/* Mobile Viewport Spacing & Vertical Distribution */
+@media screen and (max-width: 768px) {
+  /* Title Spacing ("Jimi & Pedro") */
+  #fh5co-header .display-tc h1,
+  .fh5co-cover .display-tc h1 {
+    margin-bottom: 35px !important; /* Spacing between "Jimi & Pedro" and Date */
+  }
+
+  /* Date Heading (❤️ 06.11.2027 ❤️) */
+  #fh5co-header .display-tc h2,
+  .fh5co-cover .display-tc h2 {
+    margin-bottom: 45px !important; /* Spacing between Date and Countdown */
+  }
+
+  /* Pill Countdown Container */
+  .simply-countdown {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 10px !important; /* Keeps spacing between individual countdown pills clean */
+    margin-bottom: 50px !important; /* Doubled spacing between Countdown and Buttons */
+  }
+
+  /* Header Buttons Container (Save the Date & RSVP) */
+  #fh5co-header .header-btn-container,
+  .fh5co-cover .header-btn-container {
+    margin-top: 0 !important;
+  }
+}
