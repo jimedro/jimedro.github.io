@@ -1332,4 +1332,30 @@ body > #flag-selection {
   .fh5co-cover .header-btn-container {
     margin-top: 0 !important;
   }
+    /* Enlarge Burger Menu Toggle Button & Lines on Mobile */
+  .fh5co-nav-toggle {
+    width: 35px !important;
+    height: 35px !important;
+    top: 15px !important;
+    right: 15px !important;
+  }
+
+  .fh5co-nav-toggle i {
+    width: 32px !important;
+    height: 3px !important;
+  }
+
+  .fh5co-nav-toggle i::before,
+  .fh5co-nav-toggle i::after {
+    width: 32px !important;
+    height: 3px !important;
+  }
+
+  .fh5co-nav-toggle i::before {
+    top: -10px !important;
+  }
+
+  .fh5co-nav-toggle i::after {
+    bottom: -10px !important;
+  }
 }
