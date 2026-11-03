@@ -237,7 +237,7 @@
 			var isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
 
 			if (isIOS) {
-				// iOS / iPhone: Download .ics file which triggers native Apple Calendar import
+				// iOS / iPhone: Download .ics file for native Apple Calendar import
 				var icsData = [
 					"BEGIN:VCALENDAR",
 					"VERSION:2.0",
@@ -269,14 +269,14 @@
 				link.click();
 				document.body.removeChild(link);
 			} else {
-				// Android & Desktop: Open Google Calendar web directly to add event in one click
+				// Android & Desktop: Direct URL redirection (prevents file downloads)
 				var googleUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
 					"&text=" + encodeURIComponent("❤️ JIMI & PEDRO ❤️") +
 					"&dates=20271105T120000Z/20271107T120000Z" +
 					"&details=" + encodeURIComponent("Join us for Jimi & Pedro's Wedding Weekend!") +
 					"&location=" + encodeURIComponent("Chateau de Valmy, Pyrenees Orientales, France");
 
-				window.open(googleUrl, '_blank');
+				window.location.href = googleUrl;
 			}
 		});
 	};
