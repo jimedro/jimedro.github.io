@@ -107,9 +107,13 @@ p {
   position: absolute;
   top: 0;
   margin: 0;
-  padding: 40px 0 40px 0;
+  padding: 40px 0;
   width: 100%;
   z-index: 1001;
+}
+/* Move ONLY the right-hand menu links up */
+.fh5co-nav .menu-1 {
+  margin-top: -20px !important;
 }
 @media screen and (max-width: 768px) {
   .fh5co-nav {
