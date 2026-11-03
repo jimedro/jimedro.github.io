@@ -122,10 +122,12 @@ p {
   font-size: 40px;
   margin: 0;
   padding: 0;
-  line-height: 40px;
+  line-height: 38px;
   color: #fff !important;
   text-align: left !important;
+  white-space: nowrap !important;
 }
+
 .fh5co-nav #fh5co-logo a {
   color: #fff !important;
 }
