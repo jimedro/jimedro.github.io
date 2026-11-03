@@ -1350,7 +1350,7 @@ body > #flag-selection {
   /* Date Heading (❤️ 06.11.2027 ❤️) */
   #fh5co-header .display-tc h2,
   .fh5co-cover .display-tc h2 {
-    margin-bottom: 100px !important; /* Spacing between Date and Countdown */
+    margin-bottom: 150px !important; /* Spacing between Date and Countdown */
   }
 
   /* Pill Countdown Container */
