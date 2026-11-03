@@ -28,7 +28,7 @@
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css?v=1.35">
+	<link rel="stylesheet" href="css/style.css?v=1.36">
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -267,6 +267,9 @@
 	<script src="js/main.js"></script>
 
 	<script>
+	// Force clearing saved language every time main.html is opened
+	localStorage.removeItem('selectedLang');
+		
     var d = new Date(new Date().getTime() + 200 * 120 * 120 * 2000);
 
     simplyCountdown('.simply-countdown-one', {
