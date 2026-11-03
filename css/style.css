@@ -1174,8 +1174,12 @@ body > #flag-selection {
     background: rgba(255, 255, 255, 0.25) !important;
 }
 
-/* Darker 0.75 overlay for main.html */
-#page ~ #flag-selection,
-#page #flag-selection {
-    background: rgba(255, 255, 255, 0.10) !important;
+/* Default light overlay for index.html */
+#flag-selection {
+    background: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Stronger 0.75 overlay ONLY on main.html */
+#main-page #flag-selection {
+    background: rgba(255, 255, 255, 0.75) !important;
 }
