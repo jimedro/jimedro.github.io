@@ -113,7 +113,7 @@ p {
 }
 /* Move ONLY the right-hand menu links up */
 .fh5co-nav .menu-1 {
-  margin-top: -40px !important;
+  margin-top: -30px !important;
 }
 @media screen and (max-width: 768px) {
   .fh5co-nav {
