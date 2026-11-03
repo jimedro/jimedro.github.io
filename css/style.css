@@ -1368,3 +1368,25 @@ body > #flag-selection {
     margin-top: 0 !important;
   }
 }
+@media screen and (max-width: 768px) {
+  .fh5co-cover {
+    position: relative;
+    overflow: hidden;
+    background-image: none !important; /* Remove original background */
+  }
+
+  /* Hardware-accelerated fixed pseudo-background */
+  .mobile-parallax-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../images/your-background-image.jpg'); /* Match your cover image path */
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+    will-change: transform;
+  }
+}
