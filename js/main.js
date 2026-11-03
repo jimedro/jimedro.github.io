@@ -206,19 +206,26 @@
 			}
 		}
 
-		// Flag click handler
+	// Flag click handler
 		$(document).on('click', '.flag-btn', function(e) {
 			var chosenLang = $(this).attr('data-lang');
 			if (chosenLang) {
 				localStorage.setItem("selectedLang", chosenLang);
 				applyTranslations(chosenLang);
-				$('#flag-selection').fadeOut(500, function() {
-					$(this).css('display', 'none');
-					enableScroll();
+				
+				// Smooth CSS fade-out transition
+				$('#flag-selection').css({
+					'opacity': '0',
+					'visibility': 'hidden',
+					'pointer-events': 'none'
 				});
+
+				setTimeout(function() {
+					$('#flag-selection').hide();
+					enableScroll();
+				}, 600);
 			}
 		});
-	};
 	
 	$(document).ready(function(){
 		mobileMenuOutsideClick();
