@@ -1212,15 +1212,29 @@ p {
     opacity: 1;
 }
 
+/* Fullscreen Language Selection Overlay Base */
+#flag-selection {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 999999 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    pointer-events: auto !important;
+    touch-action: none !important;
+}
+
 /* Light 0.25 overlay for index.html */
 body > #flag-selection {
     background: rgba(255, 255, 255, 0.25) !important;
 }
 
-//* Lock scroll/interaction & add 10px blur to flag screen on main.html */
+/* 0.75 White Overlay + Blur + Click Blocking ONLY on main.html */
 #main-page #flag-selection {
     background: rgba(255, 255, 255, 0.75) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
-    touch-action: none;
 }
