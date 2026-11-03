@@ -1282,8 +1282,13 @@ body > #flag-selection {
 
 /* All Mobile Rules (Screen Width <= 768px) */
 @media screen and (max-width: 768px) {
-  /* Center background photo on mobile */
-  .fh5co-cover,
+  /* Fix background in place relative to viewport for mobile curtain scroll */
+  .fh5co-cover {
+    background-attachment: fixed !important;
+    background-position: center center !important;
+    background-size: cover !important;
+  }
+
   .fh5co-bg {
     background-position: center center !important;
   }
