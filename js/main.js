@@ -192,16 +192,16 @@
 
 		if (isMainPage) {
 			localStorage.removeItem("selectedLang");
-			$('#flag-selection').css({'display': 'flex', 'pointer-events': 'auto'}).show();
+			$('#flag-selection').css('display', 'flex').show();
 			disableScroll();
 		} else {
 			var savedLang = localStorage.getItem("selectedLang");
 			if (savedLang) {
 				applyTranslations(savedLang);
-				$('#flag-selection').css({'display': 'none', 'pointer-events': 'none'}).hide();
+				$('#flag-selection').hide();
 				enableScroll();
 			} else {
-				$('#flag-selection').css({'display': 'flex', 'pointer-events': 'auto'}).show();
+				$('#flag-selection').css('display', 'flex').show();
 				disableScroll();
 			}
 		}
@@ -212,8 +212,8 @@
 			if (chosenLang) {
 				localStorage.setItem("selectedLang", chosenLang);
 				applyTranslations(chosenLang);
-				$('#flag-selection').css('pointer-events', 'none').fadeOut(500, function() {
-					$(this).attr('style', 'display: none !important; pointer-events: none !important;');
+				$('#flag-selection').fadeOut(500, function() {
+					$(this).hide();
 					enableScroll();
 				});
 			}
