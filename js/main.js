@@ -161,7 +161,7 @@
 		}, 120);
 	};
 
-	// Language Switcher & Flag Overlay Logic
+// Language Switcher & Flag Overlay Logic
 	var initLanguageSwitcher = function() {
 		function applyTranslations(lang) {
 			var langKey = lang.toLowerCase();
@@ -180,14 +180,17 @@
 			// Always clear saved language when visiting main.html so flags always prompt
 			localStorage.removeItem("selectedLang");
 			$('#flag-selection').show();
+			$('body').css('overflow', 'hidden'); // Prevent scrolling until language is selected
 		} else {
 			// On subpages (story.html, venue.html, etc.), use the chosen language if set
 			var savedLang = localStorage.getItem("selectedLang");
 			if (savedLang) {
 				applyTranslations(savedLang);
 				$('#flag-selection').hide();
+				$('body').css('overflow', 'auto');
 			} else {
 				$('#flag-selection').show();
+				$('body').css('overflow', 'hidden');
 			}
 		}
 
@@ -197,11 +200,13 @@
 			if (chosenLang) {
 				localStorage.setItem("selectedLang", chosenLang);
 				applyTranslations(chosenLang);
-				$('#flag-selection').fadeOut(500);
+				$('#flag-selection').fadeOut(500, function() {
+					$('body').css('overflow', 'auto'); // Re-enable scrolling after selection
+				});
 			}
 		});
 	};
-
+	
 	$(document).ready(function(){
 		mobileMenuOutsideClick();
 		parallax();
