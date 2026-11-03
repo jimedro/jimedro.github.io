@@ -681,7 +681,7 @@ p {
   display: inline-block;
   width: 100px;
   height: 100px;
-  background: rgba(30, 83, 18, 0.2);
+  background: rgba(30, 83, 18, 0.4) !important;
   margin: 0 4px;
   border-radius: 50%;
   position: relative;
@@ -1294,7 +1294,7 @@ body > #flag-selection {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    background: rgba(30, 83, 18, 0.2) !important;;
+    background: rgba(30, 83, 18, 0.4) !important;
     border-radius: 30px !important;
     padding: 8px 20px !important;
     width: 200px !important;
