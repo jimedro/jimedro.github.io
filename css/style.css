@@ -112,6 +112,10 @@ p {
   z-index: 1001;
 }
 
+.fh5co-nav .menu-1 {
+  margin-top: -30px !important;
+}
+
 @media screen and (max-width: 768px) {
   .fh5co-nav {
     padding: 20px 0;
