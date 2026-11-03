@@ -192,19 +192,33 @@
 
 		if (isMainPage) {
 			localStorage.removeItem("selectedLang");
-			$('#flag-selection').css('display', 'flex').show();
+			$('#flag-selection').css({'display': 'flex', 'pointer-events': 'auto'}).show();
 			disableScroll();
 		} else {
 			var savedLang = localStorage.getItem("selectedLang");
 			if (savedLang) {
 				applyTranslations(savedLang);
-				$('#flag-selection').hide();
+				$('#flag-selection').css({'display': 'none', 'pointer-events': 'none'}).hide();
 				enableScroll();
 			} else {
-				$('#flag-selection').css('display', 'flex').show();
+				$('#flag-selection').css({'display': 'flex', 'pointer-events': 'auto'}).show();
 				disableScroll();
 			}
 		}
+
+		// Flag click handler
+		$(document).on('click', '.flag-btn', function(e) {
+			var chosenLang = $(this).attr('data-lang');
+			if (chosenLang) {
+				localStorage.setItem("selectedLang", chosenLang);
+				applyTranslations(chosenLang);
+				$('#flag-selection').css('pointer-events', 'none').fadeOut(500, function() {
+					$(this).attr('style', 'display: none !important; pointer-events: none !important;');
+					enableScroll();
+				});
+			}
+		});
+	};
 
 		// Flag click handler
 		$(document).on('click', '.flag-btn', function(e) {
