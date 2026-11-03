@@ -624,7 +624,7 @@ p {
 /* Date Heading (❤️ 06.11.2027 ❤️) */
 #fh5co-header .display-tc h2,
 .fh5co-cover .display-tc h2 {
-  font-size: 22px !important;
+  font-size: 26px !important;
   line-height: 1.5;
   margin-bottom: 25px;
 }
@@ -634,7 +634,7 @@ p {
 .fh5co-cover .btn {
   font-size: 22px !important;
   line-height: 1 !important;
-  padding: 6px 14px !important;
+  padding: 9px 25px !important;
   display: inline-block;
 }
 
