@@ -1267,6 +1267,7 @@ body > #flag-selection {
     background-position: center center !important;
   }
 
+/* Lifts the main title block up from the top of the header */
   .fh5co-cover .display-tc {
     padding-top: 40px !important;
   }
@@ -1277,10 +1278,11 @@ body > #flag-selection {
     line-height: 1.1 !important;
     margin-bottom: 25px !important;
   }
-
+    
+/* Spacing below the date heading to separate it from the countdown */
   #fh5co-header .display-tc h2,
   .fh5co-cover .display-tc h2 {
-    margin-bottom: 35px !important;
+    margin-bottom: 100px !important;
   }
 
   .simply-countdown {
