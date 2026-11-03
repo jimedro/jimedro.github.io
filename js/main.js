@@ -228,42 +228,56 @@
 		});
 	};
 
-	// Save the Date Calendar (.ics) Generator
+// Save the Date Calendar Handler (Android vs iOS Optimized)
 	var initSaveTheDate = function() {
 		$(document).on('click', '.btn-save-date', function(e) {
 			e.preventDefault();
 
-			// Friday Nov 5, 2027 to Sunday Nov 7, 2027
-			var icsData = [
-				"BEGIN:VCALENDAR",
-				"VERSION:2.0",
-				"PRODID:-//Jimi and Pedro Wedding//EN",
-				"CALSCALE:GREGORIAN",
-				"METHOD:PUBLISH",
-				"BEGIN:VEVENT",
-				"SUMMARY:❤️ JIMI & PEDRO ❤️",
-				"DESCRIPTION:Join us for Jimi & Pedro\\'s Wedding Weekend!",
-				"LOCATION:Chateau de Valmy\\, Pyrenees Orientales\\, France",
-				"DTSTART:20271105T120000Z",
-				"DTEND:20271107T120000Z",
-				"STATUS:CONFIRMED",
-				"SEQUENCE:0",
-				"BEGIN:VALARM",
-				"TRIGGER:-P1D",
-				"ACTION:DISPLAY",
-				"DESCRIPTION:Reminder: Jimi & Pedro Wedding Weekend starts tomorrow!",
-				"END:VALARM",
-				"END:VEVENT",
-				"END:VCALENDAR"
-			].join("\r\n");
+			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+			var isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
 
-			var blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8;' });
-			var link = document.createElement('a');
-			link.href = window.URL.createObjectURL(blob);
-			link.setAttribute('download', 'Jimi_and_Pedro_Wedding.ics');
-			document.body.appendChild(link);
-			link.click();
-			document.body.removeChild(link);
+			if (isIOS) {
+				// iOS / iPhone: Download .ics file which triggers native Apple Calendar import
+				var icsData = [
+					"BEGIN:VCALENDAR",
+					"VERSION:2.0",
+					"PRODID:-//Jimi and Pedro Wedding//EN",
+					"CALSCALE:GREGORIAN",
+					"METHOD:PUBLISH",
+					"BEGIN:VEVENT",
+					"SUMMARY:❤️ JIMI & PEDRO ❤️",
+					"DESCRIPTION:Join us for Jimi & Pedro\\'s Wedding Weekend!",
+					"LOCATION:Chateau de Valmy\\, Pyrenees Orientales\\, France",
+					"DTSTART:20271105T120000Z",
+					"DTEND:20271107T120000Z",
+					"STATUS:CONFIRMED",
+					"SEQUENCE:0",
+					"BEGIN:VALARM",
+					"TRIGGER:-P1D",
+					"ACTION:DISPLAY",
+					"DESCRIPTION:Reminder: Jimi & Pedro Wedding Weekend starts tomorrow!",
+					"END:VALARM",
+					"END:VEVENT",
+					"END:VCALENDAR"
+				].join("\r\n");
+
+				var blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8;' });
+				var link = document.createElement('a');
+				link.href = window.URL.createObjectURL(blob);
+				link.setAttribute('download', 'Jimi_and_Pedro_Wedding.ics');
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+			} else {
+				// Android & Desktop: Open Google Calendar web directly to add event in one click
+				var googleUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+					"&text=" + encodeURIComponent("❤️ JIMI & PEDRO ❤️") +
+					"&dates=20271105T120000Z/20271107T120000Z" +
+					"&details=" + encodeURIComponent("Join us for Jimi & Pedro's Wedding Weekend!") +
+					"&location=" + encodeURIComponent("Chateau de Valmy, Pyrenees Orientales, France");
+
+				window.open(googleUrl, '_blank');
+			}
 		});
 	};
 	
