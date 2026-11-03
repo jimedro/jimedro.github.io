@@ -1183,7 +1183,50 @@ body > #flag-selection {
 #flag-selection {
     background: rgba(255, 255, 255, 0.25) !important;
 }
+/* Style for the 3-Dots Menu Trigger Button */
+.nav-dots-btn {
+    display: inline-block !important;
+    font-size: 28px !important;
+    color: #fff !important;
+    letter-spacing: 2px !important;
+    text-decoration: none !important;
+    line-height: 1 !important;
+    padding: 10px !important;
+    cursor: pointer;
+}
 
+.nav-dots-btn:hover,
+.nav-dots-btn:focus {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Semi-Transparent White Side Menu Overlay (0.8 Transparency) */
+#fh5co-offcanvas {
+    background: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(5px); /* Optional subtle blur effect */
+}
+
+/* Style Side Menu Links (Sacramento Font at 21px) */
+#fh5co-offcanvas ul li a {
+    font-family: "Sacramento", Arial, cursive !important;
+    font-size: 21px !important;
+    font-weight: 400 !important;
+    color: #000 !important;
+    text-transform: capitalize !important;
+    text-align: center;
+    padding: 15px 0 !important;
+}
+
+#fh5co-offcanvas ul li a:hover {
+    color: #1e5312 !important;
+}
+
+/* Close Button Style inside Side Menu */
+#fh5co-offcanvas .js-fh5co-nav-toggle i,
+#fh5co-offcanvas .js-fh5co-nav-toggle i::before,
+#fh5co-offcanvas .js-fh5co-nav-toggle i::after {
+    background: #000 !important;
+}
 /* Stronger 0.75 overlay ONLY on main.html */
 #main-page #flag-selection {
     background: rgba(255, 255, 255, 0.75) !important;
