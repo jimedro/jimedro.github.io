@@ -312,16 +312,6 @@ p {
   z-index: 10;
 }
 
-/* Mobile Viewport Sizing & Spacing Optimizations */
-@media screen and (max-width: 768px) {
-  /* Increase header height to 100vh (full screen) */
-  .fh5co-cover,
-  .fh5co-cover .display-t,
-  .fh5co-cover .display-tc {
-    height: 100vh !important;
-    min-height: 700px !important;
-  }
-
   /* Add top padding to create vertical spacing below the logo */
   .fh5co-cover .display-tc {
     padding-top: 100px !important;
@@ -1282,8 +1272,10 @@ body > #flag-selection {
 
 /* All Mobile Rules (Screen Width <= 768px) */
 @media screen and (max-width: 768px) {
-  /* Fix background in place relative to viewport for mobile curtain scroll */
+  /* Lock background image dimensions to prevent dynamic address bar resize jumps */
   .fh5co-cover {
+    height: 100dvh !important;
+    min-height: -webkit-fill-available;
     background-attachment: fixed !important;
     background-position: center center !important;
     background-size: cover !important;
@@ -1295,6 +1287,7 @@ body > #flag-selection {
 
   /* Adjust top padding to position title nicely */
   .fh5co-cover .display-tc {
+    height: 100dvh !important;
     padding-top: 75px !important;
   }
 
