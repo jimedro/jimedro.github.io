@@ -629,13 +629,24 @@ p {
   margin-bottom: 25px;
 }
 
-/* "Save the Date" Button - 22px Font with Tight Frame */
+/* Header Button Container Alignment */
+#fh5co-header .header-btn-container,
+.fh5co-cover .header-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* Shared Header Button Styling (Save the Date & RSVP) */
 #fh5co-header .btn,
 .fh5co-cover .btn {
   font-size: 22px !important;
   line-height: 1 !important;
-  padding: 9px 25px !important;
+  padding: 6px 14px !important;
   display: inline-block;
+  margin: 0 !important;
 }
 
 @media screen and (max-width: 480px) {
