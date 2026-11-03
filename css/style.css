@@ -624,17 +624,20 @@ p {
 /* Date Heading (❤️ 06.11.2027 ❤️) */
 #fh5co-header .display-tc h2,
 .fh5co-cover .display-tc h2 {
-  font-size: 32px !important;
+  font-size: 22px !important;
   line-height: 1.5;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
-/* "Save the Date" Button Text Size */
+/* "Save the Date" Button - 22px Font with Tight Frame */
 #fh5co-header .btn,
 .fh5co-cover .btn {
   font-size: 22px !important;
-  padding: 12px 32px !important;
+  line-height: 1 !important;
+  padding: 6px 14px !important;
+  display: inline-block;
 }
+
 @media screen and (max-width: 480px) {
   #fh5co-header .display-tc h2,
   .fh5co-cover .display-tc h2 {
