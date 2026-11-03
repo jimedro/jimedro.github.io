@@ -312,17 +312,6 @@ p {
   z-index: 10;
 }
 
-  /* Add top padding to create vertical spacing below the logo */
-  .fh5co-cover .display-tc {
-    padding-top: 100px !important;
-  }
-
-  /* Ensure button container maintains a clean gap on mobile */
-  #fh5co-header .header-btn-container,
-  .fh5co-cover .header-btn-container {
-    margin-top: 20px !important;
-  }
-}
 .fh5co-cover .display-t,
 .fh5co-cover .display-tc {
   height: 900px;
@@ -332,7 +321,7 @@ p {
 @media screen and (max-width: 768px) {
   .fh5co-cover .display-t,
   .fh5co-cover .display-tc {
-    height: 600px;
+    height: 100vh;
   }
 }
 
@@ -600,7 +589,8 @@ p {
 #fh5co-header .display-tc,
 .fh5co-cover .display-tc {
   display: table-cell !important;
-  vertical-align: middle;
+  vertical-align: middle !important;
+  text-align: center !important;
 }
 #fh5co-header .display-tc h1, 
 #fh5co-header .display-tc h2,
@@ -1272,40 +1262,27 @@ body > #flag-selection {
 
 /* All Mobile Rules (Screen Width <= 768px) */
 @media screen and (max-width: 768px) {
-  /* Lock background image dimensions to prevent dynamic address bar resize jumps */
-  .fh5co-cover {
-    height: 100dvh !important;
-    min-height: -webkit-fill-available;
-    background-attachment: fixed !important;
-    background-position: center center !important;
-    background-size: cover !important;
-  }
-
+  .fh5co-cover,
   .fh5co-bg {
     background-position: center center !important;
   }
 
-  /* Adjust top padding to position title nicely */
   .fh5co-cover .display-tc {
-    height: 100dvh !important;
-    padding-top: 75px !important;
+    padding-top: 40px !important;
   }
 
-  /* Title Spacing & Font Size ("Jimi & Pedro") */
   #fh5co-header .display-tc h1,
   .fh5co-cover .display-tc h1 {
-    font-size: 70px !important;
+    font-size: 65px !important;
     line-height: 1.1 !important;
+    margin-bottom: 25px !important;
+  }
+
+  #fh5co-header .display-tc h2,
+  .fh5co-cover .display-tc h2 {
     margin-bottom: 35px !important;
   }
 
-  /* Date Heading Spacing (❤️ 06.11.2027 ❤️) */
-  #fh5co-header .display-tc h2,
-  .fh5co-cover .display-tc h2 {
-    margin-bottom: 45px !important;
-  }
-
-  /* Pill Countdown Layout & Colors */
   .simply-countdown {
     display: flex !important;
     flex-direction: column !important;
@@ -1349,7 +1326,6 @@ body > #flag-selection {
     text-transform: lowercase !important;
   }
 
-  /* Header Buttons Container */
   #fh5co-header .header-btn-container,
   .fh5co-cover .header-btn-container {
     margin-top: 0 !important;
