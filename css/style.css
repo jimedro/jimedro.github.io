@@ -1382,7 +1382,7 @@ body > #flag-selection {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url('../images/your-background-image.jpg'); /* Match your cover image path */
+    background-image: url('../images/Cover_index.jpg'); 
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
