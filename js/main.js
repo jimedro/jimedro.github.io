@@ -272,9 +272,8 @@
 				// Android & Desktop: Direct URL redirection (prevents file downloads)
 				var googleUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
 					"&text=" + encodeURIComponent("❤️ JIMI & PEDRO ❤️") +
-					"&dates=20271105T120000Z/20271107T120000Z" +
-					"&details=" + encodeURIComponent("Join us for Jimi & Pedro's Wedding Weekend!") +
-					"&location=" + encodeURIComponent("Chateau de Valmy, Pyrenees Orientales, France");
+					"&dates=20271105/20271107" +
+					"&location=" + encodeURIComponent("Can Marial, Barcelona, Spain");
 
 				window.location.href = googleUrl;
 			}
