@@ -1217,7 +1217,10 @@ body > #flag-selection {
     background: rgba(255, 255, 255, 0.25) !important;
 }
 
-/* Stronger 0.75 overlay ONLY on main.html */
+//* Lock scroll/interaction & add 10px blur to flag screen on main.html */
 #main-page #flag-selection {
     background: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    touch-action: none;
 }
