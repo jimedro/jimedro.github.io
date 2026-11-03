@@ -1179,19 +1179,25 @@ body > #flag-selection {
     background: rgba(255, 255, 255, 0.25) !important;
 }
 
-/* Default light overlay for index.html */
-#flag-selection {
-    background: rgba(255, 255, 255, 0.25) !important;
+/* Stronger 0.75 overlay ONLY on main.html */
+#main-page #flag-selection {
+    background: rgba(255, 255, 255, 0.75) !important;
 }
-/* Style for the 3-Dots Menu Trigger Button */
+
+/* Hide standard top menu list everywhere so only 3-dots appear */
+.fh5co-nav .menu-1 ul.desktop-menu-list {
+    display: none !important;
+}
+
+/* 3-Dots Button Styling */
 .nav-dots-btn {
     display: inline-block !important;
-    font-size: 28px !important;
+    font-size: 100px !important;
     color: #fff !important;
-    letter-spacing: 2px !important;
+    letter-spacing: 15px !important;
     text-decoration: none !important;
     line-height: 1 !important;
-    padding: 10px !important;
+    padding: 5px 10px !important;
     cursor: pointer;
 }
 
@@ -1202,11 +1208,16 @@ body > #flag-selection {
 
 /* Semi-Transparent White Side Menu Overlay (0.8 Transparency) */
 #fh5co-offcanvas {
-    background: rgba(255, 255, 255, 0.8) !important;
-    backdrop-filter: blur(5px); /* Optional subtle blur effect */
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(5px);
 }
 
-/* Style Side Menu Links (Sacramento Font at 21px) */
+/* Side Menu Links Styling (Sacramento Font at 21px) */
+#fh5co-offcanvas ul li {
+    display: block !important;
+    margin-bottom: 15px;
+}
+
 #fh5co-offcanvas ul li a {
     font-family: "Sacramento", Arial, cursive !important;
     font-size: 21px !important;
@@ -1214,20 +1225,17 @@ body > #flag-selection {
     color: #000 !important;
     text-transform: capitalize !important;
     text-align: center;
-    padding: 15px 0 !important;
+    padding: 10px 0 !important;
+    display: block !important;
 }
 
 #fh5co-offcanvas ul li a:hover {
     color: #1e5312 !important;
 }
 
-/* Close Button Style inside Side Menu */
+/* Close Button Styling inside Side Menu */
 #fh5co-offcanvas .js-fh5co-nav-toggle i,
 #fh5co-offcanvas .js-fh5co-nav-toggle i::before,
 #fh5co-offcanvas .js-fh5co-nav-toggle i::after {
     background: #000 !important;
-}
-/* Stronger 0.75 overlay ONLY on main.html */
-#main-page #flag-selection {
-    background: rgba(255, 255, 255, 0.75) !important;
 }
