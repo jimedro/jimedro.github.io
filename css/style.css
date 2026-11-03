@@ -681,7 +681,7 @@ p {
   display: inline-block;
   width: 100px;
   height: 100px;
-  background: rgba(241, 78, 149, 0.8);
+  background: #1e5312;
   margin: 0 4px;
   border-radius: 50%;
   position: relative;
@@ -1278,4 +1278,22 @@ body > #flag-selection {
     background: rgba(255, 255, 255, 0.65) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* Mobile Vertical Countdown Stacking */
+@media screen and (max-width: 768px) {
+  .simply-countdown {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-bottom: 2em !important;
+  }
+
+  .simply-countdown > .simply-section {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 !important;
+  }
 }
