@@ -150,11 +150,11 @@ p {
 /* Navigation Tabs Keep Work Sans & Increased Size (+50% to 21px) */
 .fh5co-nav ul li a,
 #fh5co-offcanvas ul li a {
-  font-family: "Work Sans", Arial, sans-serif !important;
+  font-family: "Sacramento", Arial, cursive !important;
   font-size: 21px !important;
-  font-weight: 600;
+  font-weight: 400 !important;
   padding: 30px 10px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: rgba(255, 255, 255, 0.7) !important;
   -webkit-text-stroke: 0px !important;
   -webkit-transition: 0.5s;
