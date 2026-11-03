@@ -107,13 +107,13 @@ p {
   position: absolute;
   top: 0;
   margin: 0;
-  padding: 40px 0;
+  padding: 20px 0;
   width: 100%;
   z-index: 1001;
 }
 @media screen and (max-width: 768px) {
   .fh5co-nav {
-    padding: 20px 0;
+    padding: 10px 0;
   }
 }
 .fh5co-nav #fh5co-logo {
