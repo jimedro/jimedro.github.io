@@ -1280,20 +1280,48 @@ body > #flag-selection {
     -webkit-backdrop-filter: blur(10px) !important;
 }
 
-/* Mobile Vertical Countdown Stacking */
+/* Mobile Only: Single-Line Rounded Pill Countdown */
 @media screen and (max-width: 768px) {
   .simply-countdown {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    gap: 12px !important;
+    gap: 10px !important;
     margin-bottom: 2em !important;
   }
 
   .simply-countdown > .simply-section {
-    display: flex !important;
-    justify-content: center !important;
+    display: inline-flex !important;
     align-items: center !important;
+    justify-content: center !important;
+    background: #1e5312 !important;
+    border-radius: 30px !important;
+    padding: 8px 20px !important;
+    width: 200px !important;
+    height: auto !important;
     margin: 0 !important;
+  }
+
+  .simply-countdown > .simply-section > div {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  .simply-countdown > .simply-section .simply-amount,
+  .simply-countdown > .simply-section .simply-word {
+    display: inline-block !important;
+    color: #fff !important;
+    font-size: 22px !important;
+    line-height: 1 !important;
+    font-family: 'Nemure', Arial, sans-serif !important;
+  }
+
+  .simply-countdown > .simply-section .simply-word {
+    text-transform: lowercase !important;
   }
 }
