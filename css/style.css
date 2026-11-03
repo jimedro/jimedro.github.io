@@ -126,6 +126,7 @@ p {
   padding: 0;
   line-height: 40px;
   color: #fff !important;
+  text-align: left !important;
 }
 .fh5co-nav #fh5co-logo a {
   color: #fff !important;
