@@ -1281,28 +1281,28 @@ body > #flag-selection {
 /* =======================================================
 *  SINGLE CONSOLIDATED MOBILE MEDIA QUERY (Screen Width <= 768px)
 * ======================================================= */
+/* All Mobile Rules (Screen Width <= 768px) */
 @media screen and (max-width: 768px) {
   .fh5co-cover,
   .fh5co-bg {
     background-position: center center !important;
   }
 
-  /* Lifts the main title block up from the top of the header */
+  /* Title and Header Layout */
   .fh5co-cover .display-tc {
-    padding-top: 40px !important;
+    padding-top: 30px !important;
   }
 
   #fh5co-header .display-tc h1,
   .fh5co-cover .display-tc h1 {
-    font-size: 65px !important;
+    font-size: 60px !important;
     line-height: 1.1 !important;
-    margin-bottom: 25px !important;
+    margin-bottom: 20px !important;
   }
 
-  /* Spacing below the date heading */
   #fh5co-header .display-tc h2,
   .fh5co-cover .display-tc h2 {
-    margin-bottom: 100px !important;
+    margin-bottom: 30px !important;
   }
 
   /* Countdown Pill Styling */
@@ -1310,8 +1310,8 @@ body > #flag-selection {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    gap: 10px !important;
-    margin-bottom: 50px !important;
+    gap: 8px !important;
+    margin-bottom: 30px !important;
   }
 
   .simply-countdown > .simply-section {
@@ -1320,8 +1320,8 @@ body > #flag-selection {
     justify-content: center !important;
     background: rgba(30, 83, 18, 0.4) !important;
     border-radius: 30px !important;
-    padding: 8px 20px !important;
-    width: 200px !important;
+    padding: 6px 16px !important;
+    width: 190px !important;
     height: auto !important;
     margin: 0 !important;
   }
@@ -1332,15 +1332,13 @@ body > #flag-selection {
     align-items: center !important;
     justify-content: center !important;
     gap: 8px !important;
-    width: auto !important;
-    height: auto !important;
   }
 
   .simply-countdown > .simply-section .simply-amount,
   .simply-countdown > .simply-section .simply-word {
     display: inline-block !important;
     color: #fff !important;
-    font-size: 22px !important;
+    font-size: 20px !important;
     line-height: 1 !important;
     font-family: 'Nemure', Arial, sans-serif !important;
   }
@@ -1354,7 +1352,7 @@ body > #flag-selection {
     margin-top: 0 !important;
   }
 
-  /* Fixed Burger Menu Toggle Button across all sections */
+  /* Fixed Sticky Burger Menu */
   .fh5co-nav-toggle {
     position: fixed !important;
     top: 20px !important;
@@ -1372,13 +1370,8 @@ body > #flag-selection {
     height: 3px !important;
   }
 
-  .fh5co-nav-toggle i::before {
-    top: -10px !important;
-  }
-
-  .fh5co-nav-toggle i::after {
-    bottom: -10px !important;
-  }
+  .fh5co-nav-toggle i::before { top: -10px !important; }
+  .fh5co-nav-toggle i::after { bottom: -10px !important; }
 
   #fh5co-header .fh5co-nav-toggle i,
   #fh5co-header .fh5co-nav-toggle i::before,
@@ -1386,7 +1379,7 @@ body > #flag-selection {
     background: #fff !important;
   }
 
-  /* FORCE VISIBILITY FOR ANIMATION BOXES & TITLES */
+  /* ALWAYS FORCE VISIBILITY FOR SNAP SECTIONS & HEADINGS */
   #fh5co-couple .animate-box,
   #fh5co-event .animate-box,
   #fh5co-testimonial .animate-box,
@@ -1396,45 +1389,70 @@ body > #flag-selection {
     visibility: visible !important;
   }
 
-  /* SECTION HEIGHT CONTROLS */
+  /* STRICT SECTION HEIGHT & PADDING CONTROLS FOR SNAP SCROLL */
   #fh5co-header {
     height: 100dvh !important;
-  }
-
-  /* Fix "What's the plan?" so float/height don't spill into next section */
-  #fh5co-event {
-    height: 100dvh !important;
-    max-height: 100dvh !important;
-    float: none !important;
-    padding: 1em 0 !important;
-    overflow: hidden !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-  }
-
-  #fh5co-event .display-t,
-  #fh5co-event .display-tc {
-    height: auto !important;
-  }
-
-  #fh5co-event .fh5co-heading {
-    margin-bottom: 1em !important;
-  }
-
-  #fh5co-event .event-wrap {
-    padding: 15px !important;
-    margin-bottom: 10px !important;
   }
 
   #fh5co-couple,
   #fh5co-testimonial {
     height: 100dvh !important;
     max-height: 100dvh !important;
-    padding: 2em 0 !important;
+    padding: 1.5em 0 !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* CRITICAL FIX FOR "WHAT'S THE PLAN?" SECTION (#fh5co-event) */
+  #fh5co-event {
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    float: none !important;
+    padding: 10px 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Reset Bootstrap table display inside event section */
+  #fh5co-event .display-t,
+  #fh5co-event .display-tc {
+    display: block !important;
+    height: auto !important;
+  }
+
+  #fh5co-event .fh5co-heading {
+    margin-bottom: 10px !important;
+  }
+
+  #fh5co-event .fh5co-heading h2 {
+    font-size: 40px !important;
+    margin-bottom: 5px !important;
+  }
+
+  #fh5co-event .event-wrap {
+    padding: 12px 15px !important;
+    margin-bottom: 8px !important;
+  }
+
+  #fh5co-event .event-wrap h3 {
+    font-size: 16px !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 8px !important;
+  }
+
+  #fh5co-event .event-wrap .event-col {
+    margin-bottom: 8px !important;
+  }
+
+  #fh5co-event .event-wrap p {
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+    margin-bottom: 0 !important;
   }
 }
