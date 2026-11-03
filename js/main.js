@@ -187,24 +187,50 @@
 			});
 		}
 
-		// Detect if we are on main.html
-		var isMainPage = window.location.pathname.endsWith("main.html") || window.location.pathname.endsWith("/");
+		// Detect if we are on main page (handles main.html, root /, QR codes, or URLs with query strings)
+		var path = window.location.pathname;
+		var isMainPage = path.endsWith("main.html") || path.endsWith("/") || path === "" || path.indexOf("main.html") !== -1;
 
-		if (isMainPage) {
-			localStorage.removeItem("selectedLang");
-			$('#flag-selection').css({'display': 'flex', 'opacity': '1', 'visibility': 'visible', 'pointer-events': 'auto'}).show();
-			disableScroll();
-		} else {
-			var savedLang = localStorage.getItem("selectedLang");
-			if (savedLang) {
-				applyTranslations(savedLang);
-				$('#flag-selection').hide();
-				enableScroll();
-			} else {
-				$('#flag-selection').css({'display': 'flex', 'opacity': '1', 'visibility': 'visible', 'pointer-events': 'auto'}).show();
+		function checkFlagPrompt() {
+			if (isMainPage) {
+				localStorage.removeItem("selectedLang");
+				$('#flag-selection').css({
+					'display': 'flex',
+					'opacity': '1',
+					'visibility': 'visible',
+					'pointer-events': 'auto'
+				}).show();
 				disableScroll();
+			} else {
+				var savedLang = localStorage.getItem("selectedLang");
+				if (savedLang) {
+					applyTranslations(savedLang);
+					$('#flag-selection').css({
+						'display': 'none',
+						'opacity': '0',
+						'visibility': 'hidden',
+						'pointer-events': 'none'
+					}).hide();
+					enableScroll();
+				} else {
+					$('#flag-selection').css({
+						'display': 'flex',
+						'opacity': '1',
+						'visibility': 'visible',
+						'pointer-events': 'auto'
+					}).show();
+					disableScroll();
+				}
 			}
 		}
+
+		// Run check immediately on load
+		checkFlagPrompt();
+
+		// Handle mobile back/forward cache and direct link restorations
+		$(window).on('pageshow', function() {
+			checkFlagPrompt();
+		});
 
 		// Flag click handler
 		$(document).on('click', '.flag-btn', function(e) {
