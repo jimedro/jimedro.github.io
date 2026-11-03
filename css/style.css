@@ -1359,3 +1359,12 @@ body > #flag-selection {
     bottom: -10px !important;
   }
 }
+
+/* Smooth visual transitions between sections */
+#fh5co-header,
+#fh5co-couple,
+#fh5co-event,
+#fh5co-testimonial {
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+  will-change: opacity, transform;
+}
