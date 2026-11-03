@@ -1331,7 +1331,9 @@ body > #flag-selection {
   /* Title Spacing ("Jimi & Pedro") */
   #fh5co-header .display-tc h1,
   .fh5co-cover .display-tc h1 {
-    margin-bottom: 35px !important; /* Spacing between "Jimi & Pedro" and Date */
+    font-size: 50px !important; /* Increased font size for mobile */
+    line-height: 1.1 !important;
+    margin-bottom: 35px !important;
   }
 
   /* Date Heading (❤️ 06.11.2027 ❤️) */
