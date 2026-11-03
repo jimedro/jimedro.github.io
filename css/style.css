@@ -1294,7 +1294,7 @@ body > #flag-selection {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    background: rgba(30, 83, 18, 0.75) !important;
+    background: rgba(30, 83, 18, 0.75) !important;;
     border-radius: 30px !important;
     padding: 8px 20px !important;
     width: 200px !important;
