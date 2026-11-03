@@ -1275,14 +1275,16 @@ body > #flag-selection {
 #fh5co-testimonial {
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  box-sizing: border-box;
 }
 
-/* Mobile Alignment & Content Visibility Fix */
+/* Mobile Alignment, Height Fit & Visibility Fix */
 @media screen and (max-width: 768px) {
-  /* Force animate-box elements to remain visible inside snap sections */
+  /* Force animate-box elements to remain fully visible */
   #fh5co-couple .animate-box,
   #fh5co-event .animate-box,
-  #fh5co-testimonial .animate-box {
+  #fh5co-testimonial .animate-box,
+  #fh5co-testimonial .fh5co-heading {
     opacity: 1 !important;
   }
 
@@ -1290,11 +1292,30 @@ body > #flag-selection {
     height: 100dvh !important;
   }
 
+  /* Force exact viewport height on image background section so it doesn't bleed into the next */
+  #fh5co-event {
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    padding: 1.5em 0 !important;
+    overflow: hidden !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #fh5co-event .display-t,
+  #fh5co-event .display-tc {
+    height: auto !important;
+  }
+
+  #fh5co-event .fh5co-heading {
+    margin-bottom: 1.5em !important;
+  }
+
   #fh5co-couple,
-  #fh5co-event,
   #fh5co-testimonial {
     min-height: 100dvh;
-    padding: 3em 0 !important;
+    padding: 2.5em 0 !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
