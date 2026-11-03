@@ -213,20 +213,7 @@
 				localStorage.setItem("selectedLang", chosenLang);
 				applyTranslations(chosenLang);
 				$('#flag-selection').fadeOut(500, function() {
-					$(this).hide();
-					enableScroll();
-				});
-			}
-		});
-	};
-
-		// Flag click handler
-		$(document).on('click', '.flag-btn', function(e) {
-			var chosenLang = $(this).attr('data-lang');
-			if (chosenLang) {
-				localStorage.setItem("selectedLang", chosenLang);
-				applyTranslations(chosenLang);
-				$('#flag-selection').fadeOut(500, function() {
+					$(this).css('display', 'none');
 					enableScroll();
 				});
 			}
