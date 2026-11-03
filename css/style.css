@@ -153,13 +153,13 @@ p {
   display: inline-block !important;
 }
 
-/* Desktop Navigation Header Links (Sacramento Font at 21px) */
+/* Desktop Navigation Header Links (Forced Lowercase) */
 .fh5co-nav ul li a {
   font-family: "Sacramento", Arial, cursive !important;
   font-size: 21px !important;
   font-weight: 400 !important;
   padding: 30px 10px;
-  text-transform: capitalize;
+  text-transform: lowercase !important;
   color: rgba(255, 255, 255, 0.7) !important;
   -webkit-text-stroke: 0px !important;
   -webkit-transition: 0.5s;
@@ -208,7 +208,7 @@ p {
   font-size: 21px !important;
   font-weight: 400 !important;
   color: #000 !important;
-  text-transform: capitalize !important;
+  text-transform: lowercase !important;
   text-align: center;
   padding: 10px 0 !important;
   display: block !important;
