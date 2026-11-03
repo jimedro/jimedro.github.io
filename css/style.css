@@ -311,9 +311,26 @@ p {
   position: relative;
   z-index: 10;
 }
+
+/* Mobile Viewport Sizing & Spacing Optimizations */
 @media screen and (max-width: 768px) {
-  .fh5co-cover {
-    height: 600px;
+  /* Increase header height to 100vh (full screen) */
+  .fh5co-cover,
+  .fh5co-cover .display-t,
+  .fh5co-cover .display-tc {
+    height: 100vh !important;
+    min-height: 700px !important;
+  }
+
+  /* Add top padding to create vertical spacing below the logo */
+  .fh5co-cover .display-tc {
+    padding-top: 100px !important;
+  }
+
+  /* Ensure button container maintains a clean gap on mobile */
+  #fh5co-header .header-btn-container,
+  .fh5co-cover .header-btn-container {
+    margin-top: 20px !important;
   }
 }
 .fh5co-cover .display-t,
