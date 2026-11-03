@@ -78,7 +78,10 @@
 					});
 				}, 100);
 			}
-		} , { offset: '85%' } );
+		} , { 
+			context: '#page',
+			offset: '85%' 
+		} );
 	};
 
 	var dropdown = function() {
