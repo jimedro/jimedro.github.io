@@ -1536,3 +1536,14 @@ body > #flag-selection {
     padding-bottom: 5em !important; /* Adds extra white space below contribution button on mobile */
   }
 }
+
+/* Scaled Gift Callout Sentence & Button */
+@media screen and (max-width: 768px) {
+  .gift-callout-row p {
+    font-size: 22px !important;
+  }
+  .gift-callout-row .btn-gifts {
+    font-size: 21px !important;
+    padding: 10px 24px !important;
+  }
+}
