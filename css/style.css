@@ -1653,11 +1653,42 @@ body > #flag-selection {
 
 .timeline-img-preview {
     display: block;
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    margin-left: -80px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    z-index: 101;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    text-decoration: none;
+}
+
+.timeline-img-preview .timeline-badge {
+    position: static !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .timeline-img-preview:hover .timeline-badge {
-    transform: scale(1.15);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transform: scale(1.08);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 992px) {
+    .timeline-img-preview {
+        left: 15px !important;
+        margin-left: 0 !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .timeline-img-preview {
+        width: 60px !important;
+        height: 60px !important;
+        margin-left: -20px !important;
+    }
 }
