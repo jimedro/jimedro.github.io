@@ -381,6 +381,57 @@ var initGiftModal = function() {
         });
     });
 };
+
+// Wish Submission & Thought Cloud Handler
+var initWishModal = function() {
+    $(document).on('click', '.btn-wish-trigger', function(e) {
+        e.preventDefault();
+        $('#wish-modal').addClass('active');
+    });
+
+    $(document).on('click', '#wish-modal-close, #wish-modal', function(e) {
+        if (e.target === this) {
+            $('#wish-modal').removeClass('active');
+        }
+    });
+
+    $(document).on('input', '#wish-message-input', function() {
+        var currentLength = $(this).val().length;
+        $('#char-count').text(currentLength);
+    });
+
+    $('#wish-form').on('submit', function(e) {
+        e.preventDefault();
+        var form = $(this);
+        var submitBtn = $('#wish-submit-btn');
+        var statusDiv = $('#wish-form-status');
+
+        submitBtn.prop('disabled', true).text('Sending...');
+
+        $.ajax({
+            url: form.attr('action'),
+            method: 'POST',
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function() {
+                statusDiv.css('color', '#28a745').text('Thank you! Your wish has been sent! ❤️').show();
+                form[0].reset();
+                $('#char-count').text('0');
+                setTimeout(function() {
+                    $('#wish-modal').removeClass('active');
+                    statusDiv.hide();
+                    submitBtn.prop('disabled', false).html('<span>Send Wish 🚀</span>');
+                }, 2500);
+            },
+            error: function() {
+                statusDiv.css('color', '#dc3545').text('Oops! Something went wrong. Please try again.').show();
+                submitBtn.prop('disabled', false).html('<span>Send Wish 🚀</span>');
+            }
+        });
+    });
+};
 	
 	$(document).ready(function(){
 		mobileMenuOutsideClick();
@@ -398,6 +449,7 @@ var initGiftModal = function() {
 		initLanguageSwitcher();
 		initSaveTheDate();
 		initGiftModal();
+		initWishModal();
 	});
 
 })(jQuery);
