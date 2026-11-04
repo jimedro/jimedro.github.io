@@ -1716,20 +1716,65 @@ body > #flag-selection {
     }
 }
 
-/* Fix parallel timeline card alignment & badge overlap on desktop */
+/* =======================================================
+*  PARALLEL DUAL-LINE TIMELINE STYLES
+* ======================================================= */
+
 @media screen and (min-width: 993px) {
-    /* 1. Pull the inverted right card up onto the exact same row */
-    .timeline > li.timeline-parallel-right {
-        margin-top: -240px;
+    /* 1. Pull Jimi's card up to align vertically with Pedro's card */
+    .timeline > li.parallel-jimi {
+        margin-top: -240px !important;
+        position: relative;
+        z-index: 10;
     }
 
-    /* 2. Offset Left Card (Pedro) Image Badge to the left side of the center line */
-    .timeline > li:not(.timeline-inverted):has(+ .timeline-parallel-right) .timeline-img-preview {
-        left: 45% !important;
+    .timeline > li.parallel-pedro {
+        position: relative;
+        z-index: 5;
     }
 
-    /* 3. Offset Right Card (Jimi) Image Badge to the right side of the center line */
-    .timeline > li.timeline-parallel-right .timeline-img-preview {
-        left: 55% !important;
+    /* 2. Position Pedro's Image Badge over Left Path */
+    .timeline > li.parallel-pedro .timeline-img-preview {
+        left: 20% !important;
+        top: 16px !important;
+    }
+
+    /* 3. Position Jimi's Image Badge over Right Path */
+    .timeline > li.parallel-jimi .timeline-img-preview {
+        left: 80% !important;
+        top: 16px !important;
+    }
+
+    /* 4. Hide single central vertical line ONLY for top parallel section */
+    .timeline > li.parallel-pedro:before,
+    .timeline > li.parallel-jimi:before {
+        display: none !important;
+    }
+
+    /* 5. Draw Dual Vertical Parallel Lines at top of timeline */
+    .timeline:before {
+        top: 240px !important; /* Starts main single center line AFTER parallel section */
+    }
+
+    .timeline > li.parallel-pedro:after {
+        content: " ";
+        position: absolute;
+        top: 0;
+        bottom: -40px;
+        left: 20%;
+        width: 1px;
+        background: #d4d4d4;
+        z-index: 1;
+    }
+
+    .timeline > li.parallel-jimi:after {
+        content: " ";
+        position: absolute;
+        top: 0;
+        bottom: -40px;
+        left: 80%;
+        width: 1px;
+        background: #d4d4d4;
+        z-index: 1;
     }
 }
