@@ -28,7 +28,7 @@
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css?v=1.56">
+	<link rel="stylesheet" href="css/style.css?v=1.57">
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -285,8 +285,7 @@
 			</div>
 		</div>
 	</div>
-
-		<!-- WISH SUBMISSION MODAL OVERLAY -->
+<!-- WISH SUBMISSION MODAL OVERLAY -->
 	<div id="wish-modal" class="gift-modal-overlay">
 		<div class="gift-modal-card">
 			<button class="gift-modal-close" id="wish-modal-close">&times;</button>
@@ -301,7 +300,12 @@
 			   Leave a quote or message for our carousel! ✨
 			</p>
 
-			<form id="wish-form" action="https://formsubmit.co/ajax/jimedro.hermet@gmail.com" method="POST" enctype="multipart/form-data"> 
+			<!-- Hidden iframe target for seamless background submission -->
+			<iframe name="hidden-form-frame" id="hidden-form-frame" style="display:none;"></iframe>
+
+			<form id="wish-form" action="https://formsubmit.co/jimedro.hermet@gmail.com" method="POST" enctype="multipart/form-data" target="hidden-form-frame"> 
+				<input type="hidden" name="_captcha" value="false">
+				
 				<div class="form-group" style="text-align: left; margin-bottom: 15px;">
 					<label style="font-size: 14px; color: #333;" data-lang-en="Your Name *" data-lang-es="Tu Nombre *" data-lang-fr="Votre Nom *">Your Name *</label>
 					<input type="text" name="name" class="form-control" placeholder="e.g. Doja Cat" required style="border-radius: 8px;">
@@ -317,7 +321,7 @@
 
 				<div class="form-group" style="text-align: left; margin-bottom: 20px;">
 					<label style="font-size: 14px; color: #333;" data-lang-en="Photo (optional)" data-lang-es="Foto (opcional)" data-lang-fr="Photo (optionnel)">Photo (optional)</label>
-					<input type="file" name="upload" accept="image/*" class="form-control" style="border-radius: 8px; padding: 6px;">
+					<input type="file" name="attachment" accept="image/*" class="form-control" style="border-radius: 8px; padding: 6px;">
 				</div>
 
 				<button type="submit" id="wish-submit-btn" class="btn btn-default btn-block" style="background-color: #1e5312; color: #fff; border-radius: 25px; font-weight: bold; padding: 10px;">
