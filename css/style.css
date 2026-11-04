@@ -1414,7 +1414,7 @@ body > #flag-selection {
 .gift-modal-card {
   background: #ffffff;
   width: 92%;
-  max-width: 580px; /* Widened from 480px */
+  max-width: 580px;
   padding: 35px 25px;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.25);
@@ -1505,45 +1505,59 @@ body > #flag-selection {
 
 /* Tightened Testimonials & Gift Callout Vertical Spacing */
 #fh5co-testimonial {
-  padding-top: 2em !important; /* Reduces space above the section title */
+  padding-top: 2em !important;
 }
 
 #fh5co-testimonial .fh5co-heading {
-  margin-bottom: 2em !important; /* Brings carousel closer to title */
+  margin-bottom: 2em !important;
 }
 
 #fh5co-testimonial .wrap-testimony .testimony-slide blockquote {
-  margin: 8px auto 10px auto !important; /* Reduces space around quote text */
+  margin: 8px auto 10px auto !important;
 }
 
 #fh5co-testimonial .owl-theme .owl-controls {
-  margin-top: 10px !important; /* Brings dots closer to testimonial text */
+  margin-top: 10px !important;
 }
 
-/* Reduces space between carousel dots and gift callout */
-#fh5co-testimonial .row.animate-box[style*="margin-top"] {
-  margin-top: 10px !important; 
-}
-
-/* Gift Callout Placement & Mobile Bottom Padding */
+/* Gift Callout Row Spacing & Green Button Styling */
 .gift-callout-row {
-  margin-top: 10px;
+  margin-top: 30px !important; /* Increased top spacing by 1.5x from carousel dots */
   padding-bottom: 20px;
+}
+
+.gift-callout-row .btn-gifts {
+  background-color: #1e5312 !important;
+  color: #ffffff !important;
+  border: 1px solid #1e5312 !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  padding: 10px 30px !important;
+  border-radius: 30px !important;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.gift-callout-row .btn-gifts:hover,
+.gift-callout-row .btn-gifts:focus,
+.gift-callout-row .btn-gifts:active {
+  background-color: #14380c !important;
+  color: #ffffff !important;
+  border-color: #14380c !important;
+  transform: scale(1.03);
 }
 
 @media screen and (max-width: 768px) {
   #fh5co-testimonial {
-    padding-bottom: 5em !important; /* Adds extra white space below contribution button on mobile */
+    padding-bottom: 5em !important; /* Generous white space below contribution button on mobile */
   }
-}
-
-/* Scaled Gift Callout Sentence & Button */
-@media screen and (max-width: 768px) {
+  .gift-callout-row {
+    margin-top: 25px !important;
+  }
   .gift-callout-row p {
-    font-size: 22px !important;
+    font-size: 18px !important;
   }
   .gift-callout-row .btn-gifts {
-    font-size: 21px !important;
-    padding: 10px 24px !important;
+    font-size: 18px !important;
+    padding: 8px 22px !important;
   }
 }
