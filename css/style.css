@@ -1728,36 +1728,53 @@ body > #flag-selection {
         margin-left: 0 !important;
     }
 
-    /* 2. Position Pedro and Jimi side-by-side with equal width & gap */
+    /* 2. Reset standard list item margins to prepare for side-by-side flex alignment */
+    .timeline > li.parallel-pedro,
+    .timeline > li.parallel-jimi {
+        float: none !important;
+        clear: none !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        position: relative;
+    }
+
+    /* Lock top edges of both boxes to the exact same Y axis position */
     .timeline > li.parallel-pedro {
+        display: flex !important;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100% !important;
         position: relative;
         z-index: 5;
-        margin-bottom: 120px !important;
     }
 
     .timeline > li.parallel-jimi {
-        margin-top: -330px !important; /* Pulls Jimi inline with Pedro */
-        margin-bottom: 120px !important;
+        display: flex !important;
+        justify-content: flex-end;
+        align-items: flex-start;
+        width: 100% !important;
+        margin-top: -100% !important; /* Pulls Jimi's row inline with Pedro's row without hardcoded pixel offset */
+        margin-bottom: 120px !important; /* Bottom padding above Instagram box */
         position: relative;
         z-index: 5;
+        pointer-events: none; /* Allows click-throughs to background elements */
     }
 
-    /* Set exact equal width (37%) for both cards */
+    .timeline > li.parallel-jimi > .timeline-panel {
+        pointer-events: auto; /* Re-enables interaction and clicks for Jimi's card */
+    }
+
+    /* 3. Set exact equal width (37%) for both cards */
     .timeline > li.parallel-pedro > .timeline-panel,
     .timeline > li.parallel-jimi > .timeline-panel {
         width: 37% !important;
         position: relative;
+        float: none !important;
+        margin: 0 !important;
+        top: 0 !important;
     }
 
-    .timeline > li.parallel-pedro > .timeline-panel {
-        float: left !important;
-    }
-
-    .timeline > li.parallel-jimi > .timeline-panel {
-        float: right !important;
-    }
-
-    /* 3. Text alignment & Speech bubble arrows */
+    /* 4. Text alignment & Speech bubble arrows */
     .timeline > li.parallel-pedro .timeline-panel {
         text-align: right !important;
     }
@@ -1794,7 +1811,7 @@ body > #flag-selection {
         border-left: 0 !important;
     }
 
-    /* 4. Position Badges RELATIVE TO PAGE CENTER (50%) for perfect equidistance */
+    /* 5. Position Badges RELATIVE TO PAGE CENTER (50%) for perfect equidistance */
     .parallel-badge-corner {
         position: absolute !important;
         width: 120px !important;
@@ -1803,13 +1820,13 @@ body > #flag-selection {
         top: -15px !important;
     }
 
-    /* Pedro (Left Box): Badge centered 70px to the LEFT of the timeline line (50%) */
+    /* Pedro (Left Box): Badge centered 70px to the LEFT of the center line */
     .timeline > li.parallel-pedro .parallel-badge-corner {
         left: calc(100% + ((13% * (100 / 37)) - 70px)) !important;
         right: auto !important;
     }
 
-    /* Jimi (Right Box): Badge centered 70px to the RIGHT of the timeline line (50%) */
+    /* Jimi (Right Box): Badge centered 70px to the RIGHT of the center line */
     .timeline > li.parallel-jimi .parallel-badge-corner {
         left: auto !important;
         right: calc(100% + ((13% * (100 / 37)) - 70px)) !important;
