@@ -1524,3 +1524,15 @@ body > #flag-selection {
 #fh5co-testimonial .row.animate-box[style*="margin-top"] {
   margin-top: 4px !important; 
 }
+
+/* Gift Callout Placement & Mobile Bottom Padding */
+.gift-callout-row {
+  margin-top: 10px;
+  padding-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  #fh5co-testimonial {
+    padding-bottom: 5em !important; /* Adds extra white space below contribution button on mobile */
+  }
+}
