@@ -1717,80 +1717,103 @@ body > #flag-selection {
 }
 
 /* =======================================================
-*  PARALLEL DUAL-LINE TIMELINE STYLES (EXACT POSITIONING)
+*  PARALLEL DUAL-LINE TIMELINE STYLES (STRUCTURED FLEX)
 * ======================================================= */
 
 @media screen and (min-width: 993px) {
-    /* 1. Pull Jimi's container up to sit on the same row as Pedro */
+    /* 1. Reserve vertical space for cards + images above the merge banner */
+    .timeline > li.parallel-pedro {
+        position: relative;
+        z-index: 5;
+        margin-bottom: 230px !important;
+    }
+
+    /* 2. Pull Jimi's card up to align at the top with Pedro */
     .timeline > li.parallel-jimi {
-        margin-top: -240px !important;
+        margin-top: -490px !important;
+        margin-bottom: 230px !important;
         position: relative;
         z-index: 10;
     }
 
-    .timeline > li.parallel-pedro {
-        position: relative;
-        z-index: 5;
-    }
-
-    /* 2. Position Text Cards side-by-side with border boxes preserved */
+    /* 3. Card dimensions and speech bubble arrows */
     .timeline > li.parallel-pedro > .timeline-panel,
     .timeline > li.parallel-jimi > .timeline-panel {
         width: 41% !important;
+        top: 0 !important;
     }
 
-    /* 3. Adjust Speech Bubble Arrows to point inward toward center lines */
     .timeline > li.parallel-pedro > .timeline-panel:before {
+        top: 30px !important;
         right: -15px !important;
         left: auto !important;
         border-left: 15px solid #ccc !important;
         border-right: 0 !important;
     }
     .timeline > li.parallel-pedro > .timeline-panel:after {
+        top: 31px !important;
         right: -14px !important;
         left: auto !important;
         border-left: 14px solid #fff !important;
         border-right: 0 !important;
     }
 
-    /* 4. Draw Double Vertical Center Lines for parallel section */
+    .timeline > li.parallel-jimi > .timeline-panel:before {
+        top: 30px !important;
+    }
+    .timeline > li.parallel-jimi > .timeline-panel:after {
+        top: 31px !important;
+    }
+
+    /* 4. Right-justify text in Left Card (Pedro) */
+    .timeline > li.parallel-pedro .timeline-panel {
+        text-align: right !important;
+    }
+
+    .timeline > li.parallel-pedro .timeline-panel .timeline-heading,
+    .timeline > li.parallel-pedro .timeline-panel .timeline-body,
+    .timeline > li.parallel-pedro .timeline-panel .timeline-title,
+    .timeline > li.parallel-pedro .timeline-panel .date,
+    .timeline > li.parallel-pedro .timeline-panel p {
+        text-align: right !important;
+    }
+
+    /* 5. Place Image Badges directly BELOW each box */
+    .timeline > li.parallel-pedro .timeline-img-preview {
+        left: 20.5% !important;
+        top: 250px !important;
+        margin-left: -80px !important;
+        z-index: 100 !important;
+    }
+
+    .timeline > li.parallel-jimi .timeline-img-preview {
+        left: 79.5% !important;
+        top: 250px !important;
+        margin-left: -80px !important;
+        z-index: 100 !important;
+    }
+
+    /* 6. Draw Vertical Lines starting BELOW each picture down to the Instagram box */
     .timeline:before {
-        top: 260px !important; /* Starts main single center line AFTER Instagram box */
+        top: 450px !important; /* Starts main center line AFTER merge box */
     }
 
     .timeline > li.parallel-pedro:after,
     .timeline > li.parallel-jimi:after {
         content: " " !important;
         position: absolute !important;
-        top: -20px !important;
-        bottom: -45px !important;
+        top: 410px !important;
+        bottom: -230px !important;
         width: 1px !important;
         background-color: #d4d4d4 !important;
         z-index: 1 !important;
     }
 
-    /* Left track line (Pedro) */
     .timeline > li.parallel-pedro:after {
-        left: 47% !important;
+        left: 20.5% !important;
     }
 
-    /* Right track line (Jimi) */
     .timeline > li.parallel-jimi:after {
-        left: 53% !important;
-    }
-
-    /* 5. Center Badges directly over their track lines at bottom of cards */
-    .timeline > li.parallel-pedro .timeline-img-preview {
-        left: 47% !important;
-        margin-left: -80px !important;
-        top: 130px !important;
-        z-index: 100 !important;
-    }
-
-    .timeline > li.parallel-jimi .timeline-img-preview {
-        left: 53% !important;
-        margin-left: -80px !important;
-        top: 130px !important;
-        z-index: 100 !important;
+        left: 79.5% !important;
     }
 }
