@@ -440,23 +440,39 @@ var initWishModal = function() {
     });
 };
 	
-	$(document).ready(function(){
-		mobileMenuOutsideClick();
-		parallax();
-		offcanvasMenu();
-		burgerMenu();
-		contentWayPoint();
-		dropdown();
-		testimonialCarousel();
-		goToTop();
-		loaderPage();
-		counter();
-		counterWayPoint();
-		scrollTitle();
-		initLanguageSwitcher();
-		initSaveTheDate();
-		initGiftModal();
-		initWishModal();
-	});
+var initTimelineGallery = function() {
+    $('.timeline-img-preview').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        mainClass: 'mfp-img-mobile mfp-with-zoom',
+        image: {
+            verticalFit: true
+        },
+        zoom: {
+            enabled: true,
+            duration: 300
+        }
+    });
+};
+
+$(document).ready(function(){
+    mobileMenuOutsideClick();
+    parallax();
+    offcanvasMenu();
+    burgerMenu();
+    contentWayPoint();
+    dropdown();
+    testimonialCarousel();
+    goToTop();
+    loaderPage();
+    counter();
+    counterWayPoint();
+    scrollTitle();
+    initLanguageSwitcher();
+    initSaveTheDate();
+    initGiftModal();
+    initWishModal();
+    initTimelineGallery(); 
+});
 
 })(jQuery);
