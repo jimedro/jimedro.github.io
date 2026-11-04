@@ -1580,10 +1580,20 @@ body > #flag-selection {
   animation: floatCloud 3s infinite ease-in-out;
 }
 
+.thought-cloud-bubble span {
+  font-weight: bold !important;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
 .thought-cloud-bubble:hover {
   background-color: #1e5312;
-  color: #ffffff;
+  color: #ffffff !important;
   transform: scale(1.05);
+}
+
+.thought-cloud-bubble:hover span {
+  color: #ffffff !important;
 }
 
 .thought-cloud-bubble::before,
@@ -1593,6 +1603,12 @@ body > #flag-selection {
   background: #ffffff;
   border: 2px solid #1e5312;
   border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.thought-cloud-bubble:hover::before,
+.thought-cloud-bubble:hover::after {
+  background-color: #1e5312;
 }
 
 .thought-cloud-bubble::before {
