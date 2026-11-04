@@ -400,36 +400,31 @@ var initWishModal = function() {
         $('#char-count').text(currentLength);
     });
 
-    $('#wish-form').on('submit', function(e) {
-        e.preventDefault();
-        var form = $(this);
+    var formSubmitted = false;
+
+    $('#wish-form').on('submit', function() {
+        formSubmitted = true;
         var submitBtn = $('#wish-submit-btn');
-        var statusDiv = $('#wish-form-status');
-
         submitBtn.prop('disabled', true).text('Sending...');
+    });
 
-        $.ajax({
-            url: form.attr('action'),
-            method: 'POST',
-            data: new FormData(this),
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            success: function() {
-                statusDiv.css('color', '#28a745').text('Thank you! Your wish has been sent! ❤️').show();
-                form[0].reset();
-                $('#char-count').text('0');
-                setTimeout(function() {
-                    $('#wish-modal').removeClass('active');
-                    statusDiv.hide();
-                    submitBtn.prop('disabled', false).html('<span>Send Wish 🚀</span>');
-                }, 2500);
-            },
-            error: function() {
-                statusDiv.css('color', '#dc3545').text('Oops! Something went wrong. Please try again.').show();
+    $('#hidden-form-frame').on('load', function() {
+        if (formSubmitted) {
+            var form = $('#wish-form');
+            var submitBtn = $('#wish-submit-btn');
+            var statusDiv = $('#wish-form-status');
+
+            statusDiv.css('color', '#28a745').text('Thank you! Your wish has been sent! ❤️').show();
+            form[0].reset();
+            $('#char-count').text('0');
+
+            setTimeout(function() {
+                $('#wish-modal').removeClass('active');
+                statusDiv.hide();
                 submitBtn.prop('disabled', false).html('<span>Send Wish 🚀</span>');
-            }
-        });
+                formSubmitted = false;
+            }, 2500);
+        }
     });
 };
 	
