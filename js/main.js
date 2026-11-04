@@ -464,7 +464,7 @@ var initEngagementGallery = function() {
         { type: 'video', src: 'images/engagement_video.mp4' }
     ];
 
-    for (var i = 1; i <= 30; i++) {
+    for (var i = 1; i <= 31; i++) {
         galleryItems.push({ type: 'image', src: 'images/engagement_pic' + i + '.jpg' });
     }
 
