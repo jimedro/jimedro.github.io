@@ -1522,7 +1522,7 @@ body > #flag-selection {
 
 /* Reduces space between carousel dots and gift callout */
 #fh5co-testimonial .row.animate-box[style*="margin-top"] {
-  margin-top: 4px !important; 
+  margin-top: 10px !important; 
 }
 
 /* Gift Callout Placement & Mobile Bottom Padding */
