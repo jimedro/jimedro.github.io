@@ -1715,3 +1715,9 @@ body > #flag-selection {
         top: 16px !important;
     }
 }
+/* Force parallel timeline items to sit at the same height on desktop */
+@media screen and (min-width: 993px) {
+    .timeline > li.timeline-parallel-right {
+        margin-top: -240px; /* Pulls the second parallel card up inline with the first */
+    }
+}
