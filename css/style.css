@@ -741,9 +741,20 @@ p {
   color: #1e5312;
   border-radius: 50%;
 }
+
 @media screen and (max-width: 768px) {
   .heart {
-    display: none;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    margin: 20px auto !important;
+    text-align: center !important;
+    clear: both !important;
+  }
+  .heart i {
+    padding: 12px !important;
+    font-size: 16px !important;
   }
 }
 
