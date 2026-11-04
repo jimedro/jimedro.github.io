@@ -825,7 +825,7 @@ p {
 }
 
 .fh5co-heading {
-  margin-bottom: 5em;
+  margin-bottom: 2em !important;
 }
 .fh5co-heading h2 {
   font-size: 75px;
