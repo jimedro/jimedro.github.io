@@ -402,14 +402,29 @@ var initWishModal = function() {
 
     var formSubmitted = false;
 
-    // Standard submission target to hidden iframe (no e.preventDefault / no $.ajax)
-    $('#wish-form').on('submit', function() {
+    // Validate file size and let native browser submit to iframe
+    $('#wish-form').on('submit', function(e) {
+        var fileInput = $(this).find('input[name="attachment"]')[0];
+        var statusDiv = $('#wish-form-status');
+
+        // Verify file is under 5MB limit before sending
+        if (fileInput && fileInput.files.length > 0) {
+            var fileSize = fileInput.files[0].size;
+            var maxSize = 5 * 1024 * 1024; // 5MB
+
+            if (fileSize > maxSize) {
+                e.preventDefault(); // Stop execution ONLY if file is too big
+                alert("The attached photo is too large (" + (fileSize / (1024 * 1024)).toFixed(1) + "MB). Please select an image under 5MB!");
+                return false;
+            }
+        }
+
         formSubmitted = true;
         var submitBtn = $('#wish-submit-btn');
         submitBtn.prop('disabled', true).text('Sending...');
     });
 
-    // Detect iframe load when Web3Forms responds
+    // Detect when the hidden iframe receives the response back from Web3Forms
     $('#hidden-form-frame').on('load', function() {
         if (formSubmitted) {
             var form = $('#wish-form');
