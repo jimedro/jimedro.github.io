@@ -1561,3 +1561,62 @@ body > #flag-selection {
     padding: 8px 22px !important;
   }
 }
+
+/* Comic Thought Cloud Trigger */
+.thought-cloud-bubble {
+  display: inline-block;
+  background: #ffffff;
+  border: 2px solid #1e5312;
+  color: #1e5312;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  margin-top: 5px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  animation: floatCloud 3s infinite ease-in-out;
+}
+
+.thought-cloud-bubble:hover {
+  background-color: #1e5312;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.thought-cloud-bubble::before,
+.thought-cloud-bubble::after {
+  content: "";
+  position: absolute;
+  background: #ffffff;
+  border: 2px solid #1e5312;
+  border-radius: 50%;
+}
+
+.thought-cloud-bubble::before {
+  width: 10px;
+  height: 10px;
+  top: -8px;
+  left: 20px;
+}
+
+.thought-cloud-bubble::after {
+  width: 6px;
+  height: 6px;
+  top: -14px;
+  left: 14px;
+}
+
+@keyframes floatCloud {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@media screen and (max-width: 768px) {
+  .thought-cloud-bubble {
+    font-size: 13px;
+    padding: 6px 14px;
+  }
+}
