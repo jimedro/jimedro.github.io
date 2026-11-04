@@ -1920,3 +1920,31 @@ a.engagement-badge-link .timeline-badge {
     .gallery-nav-btn.prev-btn { left: 8px; }
     .gallery-nav-btn.next-btn { right: 8px; }
 }
+
+/* June 2026 Click GIF Indicator */
+.click-gif-indicator {
+    position: absolute;
+    top: 56px; /* Centered vertically relative to the 160px badge */
+    left: calc(50% - 170px); /* Placed to the left of the badge */
+    height: 80px; /* Half the height of the preview badge */
+    width: auto;
+    z-index: 102;
+    pointer-events: none; /* Allows clicks to pass directly through to the badge */
+}
+
+/* Mobile & Tablet Responsive Adjustments */
+@media screen and (max-width: 992px) {
+    .click-gif-indicator {
+        left: -35px !important;
+        top: 36px !important;
+        height: 50px !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .click-gif-indicator {
+        left: -40px !important;
+        top: 21px !important;
+        height: 30px !important; /* Half the height of the 60px mobile preview badge */
+    }
+}
