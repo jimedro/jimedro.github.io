@@ -1717,127 +1717,80 @@ body > #flag-selection {
 }
 
 /* =======================================================
-*  PARALLEL DUAL-LINE TIMELINE STYLES (MATCHES MOCKUP)
+*  PARALLEL DUAL-LINE TIMELINE STYLES (EXACT POSITIONING)
 * ======================================================= */
 
-.parallel-timeline-wrapper {
-    position: relative;
-    width: 100%;
-    margin-bottom: 30px;
-}
-
-/* Render the double central lines */
-.parallel-lines-container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px; /* Gap between the two lines */
-    pointer-events: none;
-    z-index: 1;
-}
-
-.parallel-line {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background-color: #d4d4d4;
-}
-
-.line-left { left: 0; }
-.line-right { right: 0; }
-
-/* Desktop Side-by-Side Flex Layout */
 @media screen and (min-width: 993px) {
-    /* Hide the default single central line for this top section */
-    .timeline:before {
-        top: 480px !important; /* Starts single line AFTER parallel section */
-    }
-
-    .parallel-cards-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        width: 100%;
+    /* 1. Pull Jimi's container up to sit on the same row as Pedro */
+    .timeline > li.parallel-jimi {
+        margin-top: -240px !important;
         position: relative;
-        z-index: 2;
+        z-index: 10;
     }
 
-    .parallel-card-col {
-        width: 44%;
-        display: flex;
-        flex-direction: column;
+    .timeline > li.parallel-pedro {
         position: relative;
+        z-index: 5;
     }
 
-    .parallel-card-col.col-left {
-        align-items: flex-end; /* Aligns left card toward the line */
+    /* 2. Position Text Cards side-by-side with border boxes preserved */
+    .timeline > li.parallel-pedro > .timeline-panel,
+    .timeline > li.parallel-jimi > .timeline-panel {
+        width: 41% !important;
     }
 
-    .parallel-card-col.col-right {
-        align-items: flex-start; /* Aligns right card toward the line */
-    }
-
-    .parallel-card-col .timeline-panel {
-        width: 100% !important;
-        float: none !important;
-        margin-bottom: 25px;
-    }
-
-    /* Speech bubble arrow directional fixes */
-    .parallel-card-col.col-left .timeline-panel:before {
-        right: -15px;
-        left: auto;
-        border-left: 15px solid #ccc;
-        border-right: 0;
-    }
-    .parallel-card-col.col-left .timeline-panel:after {
-        right: -14px;
-        left: auto;
-        border-left: 14px solid #fff;
-        border-right: 0;
-    }
-
-    .parallel-card-col.col-right .timeline-panel:before {
-        left: -15px;
-        right: auto;
-        border-right: 15px solid #ccc;
-        border-left: 0;
-    }
-    .parallel-card-col.col-right .timeline-panel:after {
-        left: -14px;
-        right: auto;
-        border-right: 14px solid #fff;
-        border-left: 0;
-    }
-
-    /* Position Image Badges below the cards centered over their respective lines */
-    .parallel-badge-anchor {
-        position: relative !important;
-        top: 0 !important;
+    /* 3. Adjust Speech Bubble Arrows to point inward toward center lines */
+    .timeline > li.parallel-pedro > .timeline-panel:before {
+        right: -15px !important;
         left: auto !important;
-        right: auto !important;
-        margin: 0 !important;
-        width: 150px !important;
-        height: 150px !important;
-        z-index: 10 !important;
+        border-left: 15px solid #ccc !important;
+        border-right: 0 !important;
+    }
+    .timeline > li.parallel-pedro > .timeline-panel:after {
+        right: -14px !important;
+        left: auto !important;
+        border-left: 14px solid #fff !important;
+        border-right: 0 !important;
     }
 
-    .parallel-card-col.col-left .parallel-badge-anchor {
-        margin-right: -75px !important; /* Centers left badge over left line */
+    /* 4. Draw Double Vertical Center Lines for parallel section */
+    .timeline:before {
+        top: 260px !important; /* Starts main single center line AFTER Instagram box */
     }
 
-    .parallel-card-col.col-right .parallel-badge-anchor {
-        margin-left: -75px !important; /* Centers right badge over right line */
+    .timeline > li.parallel-pedro:after,
+    .timeline > li.parallel-jimi:after {
+        content: " " !important;
+        position: absolute !important;
+        top: -20px !important;
+        bottom: -45px !important;
+        width: 1px !important;
+        background-color: #d4d4d4 !important;
+        z-index: 1 !important;
     }
-}
 
-/* Mobile Fallback (Stacked display) */
-@media screen and (max-width: 992px) {
-    .parallel-lines-container { display: none; }
-    .parallel-cards-row { display: block; }
-    .parallel-card-col { width: 100%; margin-bottom: 30px; }
-    .parallel-badge-anchor { margin: 15px auto 0 auto !important; position: relative !important; left: 0 !important; }
+    /* Left track line (Pedro) */
+    .timeline > li.parallel-pedro:after {
+        left: 47% !important;
+    }
+
+    /* Right track line (Jimi) */
+    .timeline > li.parallel-jimi:after {
+        left: 53% !important;
+    }
+
+    /* 5. Center Badges directly over their track lines at bottom of cards */
+    .timeline > li.parallel-pedro .timeline-img-preview {
+        left: 47% !important;
+        margin-left: -80px !important;
+        top: 130px !important;
+        z-index: 100 !important;
+    }
+
+    .timeline > li.parallel-jimi .timeline-img-preview {
+        left: 53% !important;
+        margin-left: -80px !important;
+        top: 130px !important;
+        z-index: 100 !important;
+    }
 }
