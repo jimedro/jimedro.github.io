@@ -402,12 +402,14 @@ var initWishModal = function() {
 
     var formSubmitted = false;
 
+    // Triggered on form submit: Let native browser submission post to the hidden iframe
     $('#wish-form').on('submit', function() {
         formSubmitted = true;
         var submitBtn = $('#wish-submit-btn');
         submitBtn.prop('disabled', true).text('Sending...');
     });
 
+    // Detect when the hidden iframe receives the response back from Web3Forms
     $('#hidden-form-frame').on('load', function() {
         if (formSubmitted) {
             var form = $('#wish-form');
