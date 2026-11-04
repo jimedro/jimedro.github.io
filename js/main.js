@@ -117,6 +117,9 @@ var testimonialCarousel = function(){
 			dots: true,
 			smartSpeed: 800,
 			autoHeight: true,
+			autoplay: true,              // Enable automatic sliding
+			autoplayTimeout: 3000,       // 3 seconds delay per slide
+			autoplayHoverPause: true     // Pause slideshow when user touches/hovers over a comment
 		});
 	};
 	
