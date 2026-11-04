@@ -1728,45 +1728,42 @@ body > #flag-selection {
         margin-left: 0 !important;
     }
 
-    /* 2. Standard Float & Dimensions for Parallel Items */
+    /* 2. Container alignment without full-screen width overlaps */
     .timeline > li.parallel-pedro,
     .timeline > li.parallel-jimi {
         position: relative;
         clear: none !important;
+        width: auto !important;
     }
 
     .timeline > li.parallel-pedro {
         float: left !important;
-        width: 100% !important;
         margin-bottom: 0 !important;
-        z-index: 10 !important;
+        z-index: 5 !important;
     }
 
     .timeline > li.parallel-jimi {
         float: right !important;
-        width: 100% !important;
-        margin-top: -232px !important; /* Pulls Jimi up to line up top edges with Pedro */
+        margin-top: -232px !important; /* Pulls Jimi inline with Pedro */
         margin-bottom: 90px !important;
         z-index: 5 !important;
-        pointer-events: none !important; /* Fixes Pedro's unclickable issue */
     }
 
-    .timeline > li.parallel-jimi > .timeline-panel,
-    .timeline > li.parallel-jimi > .parallel-badge-corner {
+    /* Restrict card widths to 40% so neither box blocks the other side */
+    .timeline > li.parallel-pedro > .timeline-panel {
+        width: 40vw !important;
+        max-width: 470px !important;
+        float: left !important;
+        text-align: right !important;
         pointer-events: auto !important;
     }
 
-    /* Restore standard card dimensions (40% width) */
-    .timeline > li.parallel-pedro > .timeline-panel {
-        width: 40% !important;
-        float: left !important;
-        text-align: right !important;
-    }
-
     .timeline > li.parallel-jimi > .timeline-panel {
-        width: 40% !important;
+        width: 40vw !important;
+        max-width: 470px !important;
         float: right !important;
         text-align: left !important;
+        pointer-events: auto !important;
     }
 
     /* 3. Speech Bubble Arrows */
@@ -1808,6 +1805,7 @@ body > #flag-selection {
         height: 120px !important;
         z-index: 100 !important;
         top: 15px !important;
+        pointer-events: auto !important;
     }
 
     .timeline > li.parallel-pedro .parallel-badge-corner {
