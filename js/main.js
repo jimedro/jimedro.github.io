@@ -382,7 +382,7 @@ var initGiftModal = function() {
     });
 };
 
-// Wish Submission & Thought Cloud Handler (Web3Forms AJAX Fetch Fix)
+// Wish Submission & Thought Cloud Handler (Web3Forms Text-Only)
 var initWishModal = function() {
     $(document).on('click', '.btn-wish-trigger', function(e) {
         e.preventDefault();
@@ -401,30 +401,16 @@ var initWishModal = function() {
     });
 
     $('#wish-form').on('submit', function(e) {
-        e.preventDefault(); // Intercept standard submit
+        e.preventDefault();
 
         var form = this;
         var submitBtn = $('#wish-submit-btn');
         var statusDiv = $('#wish-form-status');
-        var fileInput = $(form).find('input[name="attachment"]')[0];
 
-        // 1. Verify file size (5MB limit)
-        if (fileInput && fileInput.files.length > 0) {
-            var fileSize = fileInput.files[0].size;
-            var maxSize = 5 * 1024 * 1024; // 5MB
-            if (fileSize > maxSize) {
-                alert("The attached photo is too large (" + (fileSize / (1024 * 1024)).toFixed(1) + "MB). Please select an image under 5MB!");
-                return false;
-            }
-        }
-
-        // 2. Lock submit button
         submitBtn.prop('disabled', true).text('Sending...');
 
-        // 3. Build FormData payload
         var formData = new FormData(form);
 
-        // 4. Send via Fetch (DO NOT set Content-Type header manually!)
         fetch("https://api.web3forms.com/submit", {
             method: "POST",
             body: formData
