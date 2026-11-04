@@ -1948,3 +1948,39 @@ a.engagement-badge-link .timeline-badge {
         height: 30px !important; /* Half the height of the 60px mobile preview badge */
     }
 }
+
+/* =======================================================
+*  MOBILE RESPONSIVE ENHANCEMENTS FOR STORY PAGE
+* ======================================================= */
+
+@media screen and (max-width: 480px) {
+    /* 1. Increase preview circle size by 1.5x on phones (60px -> 90px) */
+    .timeline-img-preview,
+    a.engagement-badge-link,
+    .timeline > li > .timeline-badge {
+        width: 90px !important;
+        height: 90px !important;
+        margin-left: -35px !important;
+        top: 10px !important;
+    }
+
+    /* 2. Position click.gif directly on top of June 2026 badge & rotated 90deg clockwise */
+    .click-gif-indicator {
+        left: 50% !important;
+        top: -45px !important; /* Positions above the badge */
+        transform: translateX(-50%) rotate(90deg) !important; /* Center & point downward */
+        height: 45px !important; /* Scaled proportionately for 90px badge */
+        width: auto !important;
+    }
+}
+
+/* Enable crisp tapping & high z-index for Magnific Popup preview triggers */
+.timeline-img-preview {
+    z-index: 105 !important;
+    touch-action: manipulation;
+}
+
+/* Ensure Magnific Popup lightbox overlay renders above mobile header navigation */
+.mfp-bg, .mfp-wrap {
+    z-index: 20000 !important;
+}
