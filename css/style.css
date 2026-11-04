@@ -1721,35 +1721,43 @@ body > #flag-selection {
 * ======================================================= */
 
 @media screen and (min-width: 993px) {
-    /* 1. Ensure the main single timeline line starts at the top of the section */
+    /* 1. Ensure the main center line starts at the very top of the section */
     .timeline:before {
         top: 0 !important;
         left: 50% !important;
         margin-left: 0 !important;
     }
 
-    /* 2. Position Pedro and Jimi side-by-side with padding above Instagram banner */
+    /* 2. Position Pedro and Jimi side-by-side with equal width & gap */
     .timeline > li.parallel-pedro {
         position: relative;
         z-index: 5;
-        margin-bottom: 120px !important; /* Spacing before Instagram box */
+        margin-bottom: 120px !important;
     }
 
     .timeline > li.parallel-jimi {
-        margin-top: -330px !important; /* Pulls Jimi's card up inline with Pedro */
-        margin-bottom: 120px !important; /* Spacing before Instagram box */
+        margin-top: -330px !important; /* Pulls Jimi inline with Pedro */
+        margin-bottom: 120px !important;
         position: relative;
         z-index: 5;
     }
 
-    /* 3. Card dimensions (42% leaves 16% middle gap for badges over center line) */
+    /* Set exact equal width (37%) for both cards */
     .timeline > li.parallel-pedro > .timeline-panel,
     .timeline > li.parallel-jimi > .timeline-panel {
-        width: 42% !important;
+        width: 37% !important;
         position: relative;
     }
 
-    /* 4. Text alignment & Speech bubble arrows */
+    .timeline > li.parallel-pedro > .timeline-panel {
+        float: left !important;
+    }
+
+    .timeline > li.parallel-jimi > .timeline-panel {
+        float: right !important;
+    }
+
+    /* 3. Text alignment & Speech bubble arrows */
     .timeline > li.parallel-pedro .timeline-panel {
         text-align: right !important;
     }
@@ -1786,7 +1794,7 @@ body > #flag-selection {
         border-left: 0 !important;
     }
 
-    /* 5. Badge Sizing & Positioning over the central vertical line */
+    /* 4. Position Badges RELATIVE TO PAGE CENTER (50%) for perfect equidistance */
     .parallel-badge-corner {
         position: absolute !important;
         width: 120px !important;
@@ -1795,15 +1803,15 @@ body > #flag-selection {
         top: -15px !important;
     }
 
-    /* Pedro (Left Box): Badge sits on right side pointing toward center line */
+    /* Pedro (Left Box): Badge centered 70px to the LEFT of the timeline line (50%) */
     .timeline > li.parallel-pedro .parallel-badge-corner {
-        right: -70px !important;
-        left: auto !important;
+        left: calc(100% + ((13% * (100 / 37)) - 70px)) !important;
+        right: auto !important;
     }
 
-    /* Jimi (Right Box): Badge sits on left side pointing toward center line */
+    /* Jimi (Right Box): Badge centered 70px to the RIGHT of the timeline line (50%) */
     .timeline > li.parallel-jimi .parallel-badge-corner {
-        left: -70px !important;
-        right: auto !important;
+        left: auto !important;
+        right: calc(100% + ((13% * (100 / 37)) - 70px)) !important;
     }
 }
