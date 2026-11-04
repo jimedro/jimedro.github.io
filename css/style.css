@@ -1717,38 +1717,44 @@ body > #flag-selection {
 }
 
 /* =======================================================
-*  PARALLEL DUAL-LINE TIMELINE STYLES (CENTERED BADGES & LINES)
+*  SINGLE CENTERED TIMELINE WITH PARALLEL CARDS
 * ======================================================= */
 
 @media screen and (min-width: 993px) {
-    /* 1. Reserve vertical space for cards and spacing before merge banner */
+    /* 1. Ensure the main single timeline line starts at the top of the section */
+    .timeline:before {
+        top: 0 !important;
+        left: 50% !important;
+        margin-left: 0 !important;
+    }
+
+    /* 2. Position Pedro and Jimi side-by-side with padding above Instagram banner */
     .timeline > li.parallel-pedro {
         position: relative;
         z-index: 5;
-        margin-bottom: 90px !important;
+        margin-bottom: 120px !important; /* Spacing before Instagram box */
     }
 
-    /* 2. Pull Jimi's card up to sit side-by-side with Pedro */
     .timeline > li.parallel-jimi {
-        margin-top: -280px !important;
-        margin-bottom: 90px !important;
+        margin-top: -330px !important; /* Pulls Jimi's card up inline with Pedro */
+        margin-bottom: 120px !important; /* Spacing before Instagram box */
         position: relative;
         z-index: 5;
     }
 
-    /* 3. Card width (38% leaves a clean 24% central gap between boxes) */
+    /* 3. Card dimensions (42% leaves 16% middle gap for badges over center line) */
     .timeline > li.parallel-pedro > .timeline-panel,
     .timeline > li.parallel-jimi > .timeline-panel {
-        width: 38% !important;
+        width: 42% !important;
         position: relative;
     }
 
-    /* 4. Text alignment & inward speech bubble arrows */
+    /* 4. Text alignment & Speech bubble arrows */
     .timeline > li.parallel-pedro .timeline-panel {
         text-align: right !important;
     }
 
-    /* Pedro's arrow (pointing right toward left line) */
+    /* Pedro's arrow pointing right toward center line */
     .timeline > li.parallel-pedro > .timeline-panel:before {
         top: 30px !important;
         right: -15px !important;
@@ -1764,7 +1770,7 @@ body > #flag-selection {
         border-right: 0 !important;
     }
 
-    /* Jimi's arrow (pointing left toward right line) */
+    /* Jimi's arrow pointing left toward center line */
     .timeline > li.parallel-jimi > .timeline-panel:before {
         top: 30px !important;
         left: -15px !important;
@@ -1780,50 +1786,24 @@ body > #flag-selection {
         border-left: 0 !important;
     }
 
-    /* 5. Center Badges directly over their respective center-screen lines */
+    /* 5. Badge Sizing & Positioning over the central vertical line */
     .parallel-badge-corner {
         position: absolute !important;
-        width: 130px !important;
-        height: 130px !important;
+        width: 120px !important;
+        height: 120px !important;
         z-index: 100 !important;
         top: -15px !important;
     }
 
-    /* Pedro (Left Box): Badge centered over Left Line (44%) */
+    /* Pedro (Left Box): Badge sits on right side pointing toward center line */
     .timeline > li.parallel-pedro .parallel-badge-corner {
-        right: -85px !important;
+        right: -70px !important;
         left: auto !important;
     }
 
-    /* Jimi (Right Box): Badge centered over Right Line (56%) */
+    /* Jimi (Right Box): Badge sits on left side pointing toward center line */
     .timeline > li.parallel-jimi .parallel-badge-corner {
-        left: -85px !important;
+        left: -70px !important;
         right: auto !important;
-    }
-
-    /* 6. Draw Dual Vertical Parallel Lines extending down to the Instagram box */
-    .timeline:before {
-        top: 350px !important; /* Starts single central line AFTER Instagram banner */
-    }
-
-    .timeline > li.parallel-pedro:after,
-    .timeline > li.parallel-jimi:after {
-        content: " " !important;
-        position: absolute !important;
-        top: 0px !important;
-        bottom: -70px !important;
-        width: 1px !important;
-        background-color: #d4d4d4 !important;
-        z-index: 1 !important;
-    }
-
-    /* Left Parallel Line (44% of page width) */
-    .timeline > li.parallel-pedro:after {
-        left: 44% !important;
-    }
-
-    /* Right Parallel Line (56% of page width) */
-    .timeline > li.parallel-jimi:after {
-        left: 56% !important;
     }
 }
