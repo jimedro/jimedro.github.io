@@ -1732,22 +1732,33 @@ body > #flag-selection {
     .timeline > li.parallel-timeline-row {
         display: grid !important;
         grid-template-columns: 1fr 1fr;
-        column-gap: 160px; /* Space reserved in middle for the 2 badges over line */
-        align-items: start; /* Locks top edges together perfectly */
+        column-gap: 200px; /* Gap reserved in middle for the two circular badges */
+        align-items: stretch; /* Stretches both column heights so top & bottom align */
         margin-bottom: 90px !important;
         position: relative;
     }
 
     .parallel-timeline-row .parallel-col {
         position: relative;
-        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Keep cards tight toward the central timeline line (matching default 80% total spread) */
+    .parallel-timeline-row .col-left {
+        align-items: flex-end;
+    }
+
+    .parallel-timeline-row .col-right {
+        align-items: flex-start;
     }
 
     .parallel-timeline-row .timeline-panel {
-        width: 100% !important;
+        width: 80% !important; /* Constrains card width so they sit close to the timeline */
         float: none !important;
         position: relative;
         margin: 0 !important;
+        box-sizing: border-box;
     }
 
     /* 3. Text Alignment & Speech Arrows */
@@ -1787,24 +1798,25 @@ body > #flag-selection {
         border-left: 0 !important;
     }
 
-    /* 4. Badges positioned symmetrically relative to center gap */
-    .parallel-badge-corner {
+    /* 4. Reset default timeline preview positioning for parallel items */
+    .parallel-timeline-row .timeline-img-preview {
         position: absolute !important;
         width: 120px !important;
         height: 120px !important;
         z-index: 100 !important;
-        top: -15px !important;
-    }
-
-    /* Pedro's badge sitting 70px left of center */
-    .parallel-timeline-row .col-left .parallel-badge-corner {
-        right: -70px !important;
+        top: 15px !important;
         left: auto !important;
+        right: auto !important;
+        margin-left: 0 !important;
     }
 
-    /* Jimi's badge sitting 70px right of center */
-    .parallel-timeline-row .col-right .parallel-badge-corner {
-        left: -70px !important;
-        right: auto !important;
+    /* Pedro's badge (placed near right edge of left column, centered over gap) */
+    .parallel-timeline-row .badge-pedro {
+        right: -160px !important;
+    }
+
+    /* Jimi's badge (placed near left edge of right column, centered over gap) */
+    .parallel-timeline-row .badge-jimi {
+        left: -160px !important;
     }
 }
