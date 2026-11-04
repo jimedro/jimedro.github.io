@@ -347,16 +347,15 @@ p {
 }
 
 #fh5co-event {
-  height: auto !important;             /* Replaces fixed 850px height */
+  height: auto !important;
   min-height: 0 !important;
-  padding: 4em 0 3em 0 !important;     /* Reduced bottom padding to trim excess space */
+  padding: 4em 0 3em 0 !important;
   float: left;
-  background-attachment: fixed;        /* Fallback smooth scroll */
 }
 
 #fh5co-event .display-t,
 #fh5co-event .display-tc {
-  height: auto !important;             /* Replaces fixed 700px height */
+  height: auto !important;
   display: block !important;
 }
 
@@ -378,12 +377,7 @@ p {
     padding: 3em 0 !important;
   }
 }
-    
-  #fh5co-event .display-t,
-  #fh5co-event .display-tc {
-    height: inherit;
-  }
-}
+
 #fh5co-event .event-wrap {
   border: 2px solid rgba(255, 255, 255, 0.5);
   background: rgba(255, 255, 255, 0.1);
