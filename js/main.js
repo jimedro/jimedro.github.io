@@ -505,8 +505,9 @@ var initEngagementGallery = function() {
     }
 
     // Open Modal when clicking June 2026 badge
-    $('#engagement-trigger').on('click', function(e) {
+    $(document).on('click', '#engagement-trigger', function(e) {
         e.preventDefault();
+        e.stopPropagation();
         e.stopImmediatePropagation();
         
         currentIndex = 0;
@@ -517,7 +518,7 @@ var initEngagementGallery = function() {
     });
 
     // Close Modal
-    $('#close-engagement-modal, #engagement-modal-overlay').on('click', function(e) {
+    $(document).on('click', '#close-engagement-modal, #engagement-modal-overlay', function(e) {
         if (e.target === this || $(e.target).hasClass('gift-modal-close')) {
             $modal.removeClass('active');
             $stage.empty(); // Stops video audio on close
@@ -526,8 +527,17 @@ var initEngagementGallery = function() {
     });
 
     // Arrow Navigation
-    $('#gallery-next').on('click', function(e) { e.stopPropagation(); showNext(); });
-    $('#gallery-prev').on('click', function(e) { e.stopPropagation(); showPrev(); });
+    $(document).on('click', '#gallery-next', function(e) { 
+        e.preventDefault();
+        e.stopPropagation(); 
+        showNext(); 
+    });
+    
+    $(document).on('click', '#gallery-prev', function(e) { 
+        e.preventDefault();
+        e.stopPropagation(); 
+        showPrev(); 
+    });
 
     // Keyboard Arrow Keys Navigation
     $(document).on('keydown', function(e) {
