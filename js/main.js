@@ -352,19 +352,24 @@ var testimonialCarousel = function(){
 		});
 	};
 
-	// Gift Modal & IBAN Copy Handler
+// Gift Modal & IBAN Copy Handler
 var initGiftModal = function() {
-    $(document).on('click', '.btn-gifts', function(e) {
+    // Open modal on click (works on both mobile and desktop)
+    $(document).on('click touchstart', '.btn-gifts', function(e) {
         e.preventDefault();
+        e.stopPropagation();
         $('#gift-modal').addClass('active');
+        return false;
     });
 
-    $(document).on('click', '.gift-modal-close, .gift-modal-overlay', function(e) {
+    // Close modal
+    $(document).on('click touchstart', '.gift-modal-close, .gift-modal-overlay', function(e) {
         if (e.target === this) {
             $('#gift-modal').removeClass('active');
         }
     });
 
+    // Copy IBAN handler
     $(document).on('click', '#copy-iban-btn', function(e) {
         e.preventDefault();
         var ibanText = $('#iban-text').text().trim();
@@ -381,7 +386,7 @@ var initGiftModal = function() {
         });
     });
 };
-
+	
 // Wish Submission & Thought Cloud Handler (Web3Forms Text-Only)
 var initWishModal = function() {
     $(document).on('click', '.btn-wish-trigger', function(e) {
