@@ -99,9 +99,15 @@ var contentWayPoint = function() {
 			$this.find('.dropdown').css('display', 'none').removeClass('animated-fast fadeInUpMenu');
 		});
 	};
-
-	var testimonialCarousel = function(){
+	
+var testimonialCarousel = function(){
 		var owl = $('.owl-carousel-fullwidth');
+		
+		// Randomize items before Owl Carousel initializes
+		var items = owl.children('.item').toArray();
+		items.sort(function() { return 0.5 - Math.random(); });
+		owl.empty().append(items);
+
 		owl.owlCarousel({
 			items: 1,
 			loop: true,
@@ -113,7 +119,7 @@ var contentWayPoint = function() {
 			autoHeight: true,
 		});
 	};
-
+	
 	var goToTop = function() {
 		$('.js-gotop').on('click', function(event){
 			event.preventDefault();
