@@ -1661,3 +1661,15 @@ body > #flag-selection {
     text-align: center !important;
   }
 }
+
+/* Timeline image clickability hint */
+.timeline-img-preview {
+    display: block;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.timeline-img-preview:hover .timeline-badge {
+    transform: scale(1.15);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
