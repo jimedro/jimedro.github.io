@@ -1505,7 +1505,7 @@ body > #flag-selection {
 
 /* Tightened Testimonials & Gift Callout Vertical Spacing */
 #fh5co-testimonial {
-  padding-top: 4em !important; /* Reduces space above the section title */
+  padding-top: 2em !important; /* Reduces space above the section title */
 }
 
 #fh5co-testimonial .fh5co-heading {
@@ -1513,7 +1513,7 @@ body > #flag-selection {
 }
 
 #fh5co-testimonial .wrap-testimony .testimony-slide blockquote {
-  margin: 10px auto 15px auto !important; /* Reduces space around quote text */
+  margin: 8px auto 10px auto !important; /* Reduces space around quote text */
 }
 
 #fh5co-testimonial .owl-theme .owl-controls {
@@ -1522,5 +1522,5 @@ body > #flag-selection {
 
 /* Reduces space between carousel dots and gift callout */
 #fh5co-testimonial .row.animate-box[style*="margin-top"] {
-  margin-top: 5px !important; 
+  margin-top: 4px !important; 
 }
