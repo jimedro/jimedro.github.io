@@ -442,7 +442,7 @@ var initWishModal = function() {
 	
 var initTimelineGallery = function() {
     if ($('.timeline-img-preview').length > 0 && $.fn.magnificPopup) {
-        $('.timeline-img-preview').magnificPopup({
+        $('.timeline-img-preview').not('#engagement-trigger').magnificPopup({
             type: 'image',
             closeOnContentClick: true,
             closeBtnInside: false,
@@ -459,6 +459,105 @@ var initTimelineGallery = function() {
     }
 };
 
+var initEngagementGallery = function() {
+    var galleryItems = [
+        { type: 'video', src: 'images/engagement_video.mp4' }
+    ];
+
+    for (var i = 1; i <= 30; i++) {
+        galleryItems.push({ type: 'image', src: 'images/engagement_pic' + i + '.jpg' });
+    }
+
+    var currentIndex = 0;
+    var $modal = $('#engagement-modal-overlay');
+    var $stage = $('#gallery-stage');
+    var $counter = $('#gallery-counter');
+
+    function renderItem(index) {
+        var item = galleryItems[index];
+        $stage.empty();
+
+        if (item.type === 'video') {
+            var $video = $(
+                '<video controls autoplay playsinline style="max-width:100%; max-height:100%;">' +
+                    '<source src="' + item.src + '" type="video/mp4">' +
+                    '<source src="' + item.src + '" type="video/webm">' +
+                    'Your browser does not support video playback.' +
+                '</video>'
+            );
+            $stage.append($video);
+        } else {
+            var $img = $('<img src="' + item.src + '" alt="Engagement photo ' + index + '">');
+            $stage.append($img);
+        }
+
+        $counter.text((index + 1) + ' / ' + galleryItems.length);
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % galleryItems.length;
+        renderItem(currentIndex);
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+        renderItem(currentIndex);
+    }
+
+    // Open Modal when clicking June 2026 badge
+    $('#engagement-trigger').on('click', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        
+        currentIndex = 0;
+        renderItem(currentIndex);
+        $modal.addClass('active');
+        $('body').css('overflow', 'hidden');
+        return false;
+    });
+
+    // Close Modal
+    $('#close-engagement-modal, #engagement-modal-overlay').on('click', function(e) {
+        if (e.target === this || $(e.target).hasClass('gift-modal-close')) {
+            $modal.removeClass('active');
+            $stage.empty(); // Stops video audio on close
+            $('body').css('overflow', 'auto');
+        }
+    });
+
+    // Arrow Navigation
+    $('#gallery-next').on('click', function(e) { e.stopPropagation(); showNext(); });
+    $('#gallery-prev').on('click', function(e) { e.stopPropagation(); showPrev(); });
+
+    // Keyboard Arrow Keys Navigation
+    $(document).on('keydown', function(e) {
+        if ($modal.hasClass('active')) {
+            if (e.keyCode === 37) showPrev(); // Left arrow
+            if (e.keyCode === 39) showNext(); // Right arrow
+            if (e.keyCode === 27) $('#close-engagement-modal').click(); // ESC
+        }
+    });
+
+    // Touch Swipe Support for Mobile
+    var touchStartX = 0;
+    $stage.on('touchstart', function(e) {
+        touchStartX = e.originalEvent.touches[0].clientX;
+    });
+
+    $stage.on('touchend', function(e) {
+        var touchEndX = e.originalEvent.changedTouches[0].clientX;
+        var diffX = touchStartX - touchEndX;
+
+        if (Math.abs(diffX) > 40) {
+            if (diffX > 0) {
+                showNext();
+            } else {
+                showPrev();
+            }
+        }
+    });
+};
+	
 $(document).ready(function(){
     mobileMenuOutsideClick();
     parallax();
@@ -477,6 +576,7 @@ $(document).ready(function(){
     initGiftModal();
     initWishModal();
     initTimelineGallery(); 
+    initEngagementGallery(); 
 });
 
 })(jQuery);
