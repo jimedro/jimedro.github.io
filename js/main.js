@@ -382,7 +382,7 @@ var initGiftModal = function() {
     });
 };
 
-// Wish Submission & Thought Cloud Handler
+// Wish Submission & Thought Cloud Handler (Web3Forms AJAX Fetch Fix)
 var initWishModal = function() {
     $(document).on('click', '.btn-wish-trigger', function(e) {
         e.preventDefault();
@@ -400,48 +400,57 @@ var initWishModal = function() {
         $('#char-count').text(currentLength);
     });
 
-    var formSubmitted = false;
-
-    // Validate file size and let native browser submit to iframe
     $('#wish-form').on('submit', function(e) {
-        var fileInput = $(this).find('input[name="attachment"]')[0];
-        var statusDiv = $('#wish-form-status');
+        e.preventDefault(); // Intercept standard submit
 
-        // Verify file is under 5MB limit before sending
+        var form = this;
+        var submitBtn = $('#wish-submit-btn');
+        var statusDiv = $('#wish-form-status');
+        var fileInput = $(form).find('input[name="attachment"]')[0];
+
+        // 1. Verify file size (5MB limit)
         if (fileInput && fileInput.files.length > 0) {
             var fileSize = fileInput.files[0].size;
             var maxSize = 5 * 1024 * 1024; // 5MB
-
             if (fileSize > maxSize) {
-                e.preventDefault(); // Stop execution ONLY if file is too big
                 alert("The attached photo is too large (" + (fileSize / (1024 * 1024)).toFixed(1) + "MB). Please select an image under 5MB!");
                 return false;
             }
         }
 
-        formSubmitted = true;
-        var submitBtn = $('#wish-submit-btn');
+        // 2. Lock submit button
         submitBtn.prop('disabled', true).text('Sending...');
-    });
 
-    // Detect when the hidden iframe receives the response back from Web3Forms
-    $('#hidden-form-frame').on('load', function() {
-        if (formSubmitted) {
-            var form = $('#wish-form');
-            var submitBtn = $('#wish-submit-btn');
-            var statusDiv = $('#wish-form-status');
+        // 3. Build FormData payload
+        var formData = new FormData(form);
 
-            statusDiv.css('color', '#28a745').text('Thank you! Your wish has been sent! ❤️').show();
-            form[0].reset();
-            $('#char-count').text('0');
+        // 4. Send via Fetch (DO NOT set Content-Type header manually!)
+        fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+        })
+        .then(async function(response) {
+            var res = await response.json();
+            if (response.status === 200) {
+                statusDiv.css('color', '#28a745').text('Thank you! Your wish has been sent! ❤️').show();
+                form.reset();
+                $('#char-count').text('0');
 
-            setTimeout(function() {
-                $('#wish-modal').removeClass('active');
-                statusDiv.hide();
+                setTimeout(function() {
+                    $('#wish-modal').removeClass('active');
+                    statusDiv.hide();
+                    submitBtn.prop('disabled', false).html('<span>Send Wish 🚀</span>');
+                }, 2500);
+            } else {
+                statusDiv.css('color', '#dc3545').text(res.message || 'Something went wrong. Please try again!').show();
                 submitBtn.prop('disabled', false).html('<span>Send Wish 🚀</span>');
-                formSubmitted = false;
-            }, 2500);
-        }
+            }
+        })
+        .catch(function(error) {
+            console.error(error);
+            statusDiv.css('color', '#dc3545').text('Network error. Please try again!').show();
+            submitBtn.prop('disabled', false).html('<span>Send Wish 🚀</span>');
+        });
     });
 };
 	
