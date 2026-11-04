@@ -1647,3 +1647,17 @@ body > #flag-selection {
     padding: 6px 14px;
   }
 }
+
+/* Styling for the parallel events merge banner in story.html */
+.timeline-merge-banner {
+  margin: 35px 0 !important;
+  display: block;
+  clear: both;
+}
+
+@media screen and (max-width: 768px) {
+  .timeline-merge-banner {
+    padding-left: 0 !important;
+    text-align: center !important;
+  }
+}
