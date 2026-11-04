@@ -1474,11 +1474,10 @@ body > #flag-selection {
 
 .iban-box strong {
   font-family: monospace;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
   color: #1e5312;
-  white-space: nowrap;  /* Forces IBAN digits to stay on one single line */
-  word-break: break-all;
+  white-space: nowrap; /* Keeps IBAN digits on a single line */
 }
 
 .btn-copy {
@@ -1502,6 +1501,9 @@ body > #flag-selection {
     flex-direction: column;
     gap: 12px;
   }
+  .iban-box strong {
+    font-size: 13.5px; /* Scales font size down on narrow screens to fit smoothly */
+  }
 }
 
 /* Tightened Testimonials & Gift Callout Vertical Spacing */
@@ -1523,8 +1525,8 @@ body > #flag-selection {
 
 /* Gift Callout Row Spacing & Green Button Styling */
 .gift-callout-row {
-  margin-top: 30px !important; /* Increased top spacing by 1.5x from carousel dots */
-  padding-bottom: 0px !important; /* Reduced bottom padding to pull section edge up */
+  margin-top: 30px !important;
+  padding-bottom: 0px !important;
 }
 
 .gift-callout-row .btn-gifts {
@@ -1550,13 +1552,13 @@ body > #flag-selection {
 /* DESKTOP TESTIMONIAL BOTTOM SPACING REDUCTION */
 @media screen and (min-width: 769px) {
   #fh5co-testimonial {
-    padding-bottom: 2em !important; /* Reduces bottom padding from default 7em to 2em */
+    padding-bottom: 2em !important;
   }
 }
 
 @media screen and (max-width: 768px) {
   #fh5co-testimonial {
-    padding-bottom: 5em !important; /* Generous white space below contribution button on mobile */
+    padding-bottom: 5em !important;
   }
   .gift-callout-row {
     margin-top: 25px !important;
