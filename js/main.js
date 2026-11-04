@@ -441,18 +441,22 @@ var initWishModal = function() {
 };
 	
 var initTimelineGallery = function() {
-    $('.timeline-img-preview').magnificPopup({
-        type: 'image',
-        closeOnContentClick: true,
-        mainClass: 'mfp-img-mobile mfp-with-zoom',
-        image: {
-            verticalFit: true
-        },
-        zoom: {
-            enabled: true,
-            duration: 300
-        }
-    });
+    if ($('.timeline-img-preview').length > 0 && $.fn.magnificPopup) {
+        $('.timeline-img-preview').magnificPopup({
+            type: 'image',
+            closeOnContentClick: true,
+            closeBtnInside: false,
+            fixedContentPos: true,
+            mainClass: 'mfp-no-margins mfp-with-zoom',
+            image: {
+                verticalFit: true
+            },
+            zoom: {
+                enabled: true,
+                duration: 300
+            }
+        });
+    }
 };
 
 $(document).ready(function(){
