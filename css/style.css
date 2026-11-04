@@ -1717,77 +1717,53 @@ body > #flag-selection {
 }
 
 /* =======================================================
-*  SINGLE CENTERED TIMELINE WITH PARALLEL CARDS
+*  PARALLEL GRID TIMELINE STYLES
 * ======================================================= */
 
 @media screen and (min-width: 993px) {
-    /* 1. Ensure the main center line starts at the very top of the section */
+    /* 1. Ensure central line starts at top */
     .timeline:before {
         top: 0 !important;
         left: 50% !important;
         margin-left: 0 !important;
     }
 
-    /* 2. Reset standard list item margins to prepare for side-by-side flex alignment */
-    .timeline > li.parallel-pedro,
-    .timeline > li.parallel-jimi {
-        float: none !important;
-        clear: none !important;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
+    /* 2. Parallel Row Container using Grid */
+    .timeline > li.parallel-timeline-row {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 160px; /* Space reserved in middle for the 2 badges over line */
+        align-items: start; /* Locks top edges together perfectly */
+        margin-bottom: 90px !important;
         position: relative;
     }
 
-    /* Lock top edges of both boxes to the exact same Y axis position */
-    .timeline > li.parallel-pedro {
-        display: flex !important;
-        justify-content: flex-start;
-        align-items: flex-start;
+    .parallel-timeline-row .parallel-col {
+        position: relative;
+        width: 100%;
+    }
+
+    .parallel-timeline-row .timeline-panel {
         width: 100% !important;
-        position: relative;
-        z-index: 5;
-    }
-
-    .timeline > li.parallel-jimi {
-        display: flex !important;
-        justify-content: flex-end;
-        align-items: flex-start;
-        width: 100% !important;
-        margin-top: -100% !important; /* Pulls Jimi's row inline with Pedro's row without hardcoded pixel offset */
-        margin-bottom: 120px !important; /* Bottom padding above Instagram box */
-        position: relative;
-        z-index: 5;
-        pointer-events: none; /* Allows click-throughs to background elements */
-    }
-
-    .timeline > li.parallel-jimi > .timeline-panel {
-        pointer-events: auto; /* Re-enables interaction and clicks for Jimi's card */
-    }
-
-    /* 3. Set exact equal width (37%) for both cards */
-    .timeline > li.parallel-pedro > .timeline-panel,
-    .timeline > li.parallel-jimi > .timeline-panel {
-        width: 37% !important;
-        position: relative;
         float: none !important;
+        position: relative;
         margin: 0 !important;
-        top: 0 !important;
     }
 
-    /* 4. Text alignment & Speech bubble arrows */
-    .timeline > li.parallel-pedro .timeline-panel {
+    /* 3. Text Alignment & Speech Arrows */
+    .parallel-timeline-row .col-left .timeline-panel {
         text-align: right !important;
     }
 
     /* Pedro's arrow pointing right toward center line */
-    .timeline > li.parallel-pedro > .timeline-panel:before {
+    .parallel-timeline-row .col-left .timeline-panel:before {
         top: 30px !important;
         right: -15px !important;
         left: auto !important;
         border-left: 15px solid #ccc !important;
         border-right: 0 !important;
     }
-    .timeline > li.parallel-pedro > .timeline-panel:after {
+    .parallel-timeline-row .col-left .timeline-panel:after {
         top: 31px !important;
         right: -14px !important;
         left: auto !important;
@@ -1796,14 +1772,14 @@ body > #flag-selection {
     }
 
     /* Jimi's arrow pointing left toward center line */
-    .timeline > li.parallel-jimi > .timeline-panel:before {
+    .parallel-timeline-row .col-right .timeline-panel:before {
         top: 30px !important;
         left: -15px !important;
         right: auto !important;
         border-right: 15px solid #ccc !important;
         border-left: 0 !important;
     }
-    .timeline > li.parallel-jimi > .timeline-panel:after {
+    .parallel-timeline-row .col-right .timeline-panel:after {
         top: 31px !important;
         left: -14px !important;
         right: auto !important;
@@ -1811,7 +1787,7 @@ body > #flag-selection {
         border-left: 0 !important;
     }
 
-    /* 5. Position Badges RELATIVE TO PAGE CENTER (50%) for perfect equidistance */
+    /* 4. Badges positioned symmetrically relative to center gap */
     .parallel-badge-corner {
         position: absolute !important;
         width: 120px !important;
@@ -1820,15 +1796,15 @@ body > #flag-selection {
         top: -15px !important;
     }
 
-    /* Pedro (Left Box): Badge centered 70px to the LEFT of the center line */
-    .timeline > li.parallel-pedro .parallel-badge-corner {
-        left: calc(100% + ((13% * (100 / 37)) - 70px)) !important;
-        right: auto !important;
+    /* Pedro's badge sitting 70px left of center */
+    .parallel-timeline-row .col-left .parallel-badge-corner {
+        right: -70px !important;
+        left: auto !important;
     }
 
-    /* Jimi (Right Box): Badge centered 70px to the RIGHT of the center line */
-    .timeline > li.parallel-jimi .parallel-badge-corner {
-        left: auto !important;
-        right: calc(100% + ((13% * (100 / 37)) - 70px)) !important;
+    /* Jimi's badge sitting 70px right of center */
+    .parallel-timeline-row .col-right .parallel-badge-corner {
+        left: -70px !important;
+        right: auto !important;
     }
 }
