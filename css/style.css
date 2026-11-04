@@ -1717,32 +1717,35 @@ body > #flag-selection {
 }
 
 /* =======================================================
-*  PARALLEL DUAL-LINE TIMELINE STYLES (STRUCTURED FLEX)
+*  PARALLEL DUAL-LINE TIMELINE STYLES
 * ======================================================= */
 
 @media screen and (min-width: 993px) {
-    /* 1. Reserve vertical space for cards + images above the merge banner */
-    .timeline > li.parallel-pedro {
-        position: relative;
-        z-index: 5;
-        margin-bottom: 230px !important;
-    }
-
-    /* 2. Pull Jimi's card up to align at the top with Pedro */
+    /* 1. Pull Jimi's card up to align with Pedro at top */
     .timeline > li.parallel-jimi {
-        margin-top: -490px !important;
-        margin-bottom: 230px !important;
+        margin-top: -280px !important;
         position: relative;
         z-index: 10;
     }
 
-    /* 3. Card dimensions and speech bubble arrows */
+    .timeline > li.parallel-pedro {
+        position: relative;
+        z-index: 5;
+    }
+
+    /* Add space below boxes so they don't touch the merge box */
     .timeline > li.parallel-pedro > .timeline-panel,
     .timeline > li.parallel-jimi > .timeline-panel {
         width: 41% !important;
-        top: 0 !important;
+        margin-bottom: 70px !important;
     }
 
+    /* 2. Text Alignment & Speech Bubble Arrows */
+    .timeline > li.parallel-pedro .timeline-panel {
+        text-align: right !important;
+    }
+
+    /* Point Pedro's arrow inward (to the right) */
     .timeline > li.parallel-pedro > .timeline-panel:before {
         top: 30px !important;
         right: -15px !important;
@@ -1758,62 +1761,65 @@ body > #flag-selection {
         border-right: 0 !important;
     }
 
+    /* Point Jimi's arrow inward (to the left) */
     .timeline > li.parallel-jimi > .timeline-panel:before {
         top: 30px !important;
+        left: -15px !important;
+        right: auto !important;
+        border-right: 15px solid #ccc !important;
+        border-left: 0 !important;
     }
     .timeline > li.parallel-jimi > .timeline-panel:after {
         top: 31px !important;
+        left: -14px !important;
+        right: auto !important;
+        border-right: 14px solid #fff !important;
+        border-left: 0 !important;
     }
 
-    /* 4. Right-justify text in Left Card (Pedro) */
-    .timeline > li.parallel-pedro .timeline-panel {
-        text-align: right !important;
-    }
-
-    .timeline > li.parallel-pedro .timeline-panel .timeline-heading,
-    .timeline > li.parallel-pedro .timeline-panel .timeline-body,
-    .timeline > li.parallel-pedro .timeline-panel .timeline-title,
-    .timeline > li.parallel-pedro .timeline-panel .date,
-    .timeline > li.parallel-pedro .timeline-panel p {
-        text-align: right !important;
-    }
-
-    /* 5. Place Image Badges directly BELOW each box */
-    .timeline > li.parallel-pedro .timeline-img-preview {
-        left: 20.5% !important;
-        top: 250px !important;
-        margin-left: -80px !important;
+    /* 3. Corner Badge Placement */
+    .parallel-badge-corner {
+        position: absolute !important;
+        width: 140px !important;
+        height: 140px !important;
         z-index: 100 !important;
     }
 
-    .timeline > li.parallel-jimi .timeline-img-preview {
-        left: 79.5% !important;
-        top: 250px !important;
-        margin-left: -80px !important;
-        z-index: 100 !important;
+    /* Pedro (Left Box): Badge centered on Top-Right corner arrow */
+    .timeline > li.parallel-pedro .parallel-badge-corner {
+        top: -20px !important;
+        right: -70px !important;
+        left: auto !important;
     }
 
-    /* 6. Draw Vertical Lines starting BELOW each picture down to the Instagram box */
+    /* Jimi (Right Box): Badge centered on Top-Left corner arrow */
+    .timeline > li.parallel-jimi .parallel-badge-corner {
+        top: -20px !important;
+        left: -70px !important;
+        right: auto !important;
+    }
+
+    /* 4. Lines extending from the arrows down to the merge callout box */
     .timeline:before {
-        top: 450px !important; /* Starts main center line AFTER merge box */
+        top: 360px !important; /* Single line starts after Instagram box */
     }
 
     .timeline > li.parallel-pedro:after,
     .timeline > li.parallel-jimi:after {
         content: " " !important;
         position: absolute !important;
-        top: 410px !important;
-        bottom: -230px !important;
+        top: 45px !important;
+        bottom: -50px !important;
         width: 1px !important;
         background-color: #d4d4d4 !important;
         z-index: 1 !important;
     }
 
     .timeline > li.parallel-pedro:after {
-        left: 20.5% !important;
+        left: 41% !important; /* Lines up with Pedro's right arrow */
     }
 
     .timeline > li.parallel-jimi:after {
-        left: 79.5% !important;
+        left: 59% !important; /* Lines up with Jimi's left arrow */
     }
 }
