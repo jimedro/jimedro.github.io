@@ -1715,9 +1715,21 @@ body > #flag-selection {
         top: 16px !important;
     }
 }
-/* Force parallel timeline items to sit at the same height on desktop */
+
+/* Fix parallel timeline card alignment & badge overlap on desktop */
 @media screen and (min-width: 993px) {
+    /* 1. Pull the inverted right card up onto the exact same row */
     .timeline > li.timeline-parallel-right {
-        margin-top: -240px; /* Pulls the second parallel card up inline with the first */
+        margin-top: -240px;
+    }
+
+    /* 2. Offset Left Card (Pedro) Image Badge to the left side of the center line */
+    .timeline > li:not(.timeline-inverted):has(+ .timeline-parallel-right) .timeline-img-preview {
+        left: 45% !important;
+    }
+
+    /* 3. Offset Right Card (Jimi) Image Badge to the right side of the center line */
+    .timeline > li.timeline-parallel-right .timeline-img-preview {
+        left: 55% !important;
     }
 }
