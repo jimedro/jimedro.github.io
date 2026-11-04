@@ -1739,6 +1739,7 @@ body > #flag-selection {
         float: left !important;
         width: 100% !important;
         margin-bottom: 0 !important;
+        z-index: 10 !important;
     }
 
     .timeline > li.parallel-jimi {
@@ -1746,6 +1747,13 @@ body > #flag-selection {
         width: 100% !important;
         margin-top: -232px !important; /* Pulls Jimi up to line up top edges with Pedro */
         margin-bottom: 90px !important;
+        z-index: 5 !important;
+        pointer-events: none !important; /* Fixes Pedro's unclickable issue */
+    }
+
+    .timeline > li.parallel-jimi > .timeline-panel,
+    .timeline > li.parallel-jimi > .parallel-badge-corner {
+        pointer-events: auto !important;
     }
 
     /* Restore standard card dimensions (40% width) */
