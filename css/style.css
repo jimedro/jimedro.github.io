@@ -1387,3 +1387,101 @@ body > #flag-selection {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Gift Modal Popup Styling */
+.gift-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.gift-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.gift-modal-card {
+  background: #ffffff;
+  width: 90%;
+  max-width: 480px;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  text-align: center;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.gift-modal-overlay.active .gift-modal-card {
+  transform: translateY(0);
+}
+
+.gift-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #888;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.gift-modal-close:hover {
+  color: #000;
+}
+
+.iban-box {
+  background: #f7f9f6;
+  border: 1px solid #d4e3d0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.iban-box strong {
+  font-family: monospace;
+  font-size: 15px;
+  color: #1e5312;
+  word-break: break-all;
+}
+
+.btn-copy {
+  background: #1e5312;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-copy:hover {
+  background: #14380c;
+}
+
+@media screen and (max-width: 480px) {
+  .iban-box {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
