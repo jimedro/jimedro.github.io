@@ -117,9 +117,8 @@ var testimonialCarousel = function(){
 			dots: true,
 			smartSpeed: 800,
 			autoHeight: true,
-			autoplay: true,              // Enable automatic sliding
-			autoplayTimeout: 3000,       // 3 seconds delay per slide
-			autoplayHoverPause: true     // Pause slideshow when user touches/hovers over a comment
+			autoPlay: 3000,        // Automatic slide every 3000ms (3 seconds)
+			stopOnHover: true      // Pause sliding when user hovers or touches a testimonial
 		});
 	};
 	
