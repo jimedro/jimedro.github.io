@@ -28,7 +28,7 @@
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css?v=1.57">
+	<link rel="stylesheet" href="css/style.css?v=1.58">
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -286,51 +286,53 @@
 		</div>
 	</div>
 <!-- WISH SUBMISSION MODAL OVERLAY -->
-	<div id="wish-modal" class="gift-modal-overlay">
-		<div class="gift-modal-card">
-			<button class="gift-modal-close" id="wish-modal-close">&times;</button>
-			<h3 class="font-sacramento" style="font-size: 42px; margin-bottom: 10px; color: #1e5312;"
-			    data-lang-en="Send Us a Good Wish"
-			    data-lang-es="Envíanos un buen deseo"
-			    data-lang-fr="Envoyez-nous un vœu">Send Us a Good Wish</h3>
-			<p style="font-size: 14px; color: #666; margin-bottom: 20px;"
-			   data-lang-en="Leave a quote or message for our carousel! ✨"
-			   data-lang-es="¡Déjanos una frase o mensaje para nuestro carrusel! ✨"
-			   data-lang-fr="Laissez une citation ou un message pour notre carrousel ! ✨">
-			   Leave a quote or message for our carousel! ✨
-			</p>
+<div id="wish-modal" class="gift-modal-overlay">
+    <div class="gift-modal-card">
+        <button class="gift-modal-close" id="wish-modal-close">&times;</button>
+        <h3 class="font-sacramento" style="font-size: 42px; margin-bottom: 10px; color: #1e5312;"
+            data-lang-en="Send Us a Good Wish"
+            data-lang-es="Envíanos un buen deseo"
+            data-lang-fr="Envoyez-nous un vœu">Send Us a Good Wish</h3>
+        <p style="font-size: 14px; color: #666; margin-bottom: 20px;"
+           data-lang-en="Leave a quote or message for our carousel! ✨"
+           data-lang-es="¡Déjanos una frase o mensaje para nuestro carrusel! ✨"
+           data-lang-fr="Laissez une citation ou un message pour notre carrousel ! ✨">
+           Leave a quote or message for our carousel! ✨
+        </p>
 
-			<!-- Hidden iframe target for seamless background submission -->
-			<iframe name="hidden-form-frame" id="hidden-form-frame" style="display:none;"></iframe>
+        <!-- Hidden iframe target for seamless background submission -->
+        <iframe name="hidden-form-frame" id="hidden-form-frame" style="display:none;"></iframe>
 
-			<form id="wish-form" action="https://formsubmit.co/jimedro.hermet@gmail.com" method="POST" enctype="multipart/form-data" target="hidden-form-frame"> 
-				<input type="hidden" name="_captcha" value="false">
-				
-				<div class="form-group" style="text-align: left; margin-bottom: 15px;">
-					<label style="font-size: 14px; color: #333;" data-lang-en="Your Name *" data-lang-es="Tu Nombre *" data-lang-fr="Votre Nom *">Your Name *</label>
-					<input type="text" name="name" class="form-control" placeholder="e.g. Doja Cat" required style="border-radius: 8px;">
-				</div>
+        <form id="wish-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data" target="hidden-form-frame"> 
+            <input type="hidden" name="access_key" value="ef2bf782-7cf1-4487-841e-aa4e93870093">
+            <input type="hidden" name="subject" value="New Wedding Wish Received! 🥂">
+            
+            <div class="form-group" style="text-align: left; margin-bottom: 15px;">
+                <label style="font-size: 14px; color: #333;" data-lang-en="Your Name *" data-lang-es="Tu Nombre *" data-lang-fr="Votre Nom *">Your Name *</label>
+                <input type="text" name="name" class="form-control" placeholder="e.g. Doja Cat" required style="border-radius: 8px;">
+            </div>
 
-				<div class="form-group" style="text-align: left; margin-bottom: 15px;">
-					<label style="font-size: 14px; color: #333;" data-lang-en="Your Message (max 90 chars) *" data-lang-es="Tu Mensaje (máx. 90 caracteres) *" data-lang-fr="Votre Message (max 90 car.) *">Your Message (max 90 chars) *</label>
-					<textarea name="message" id="wish-message-input" class="form-control" maxlength="90" rows="3" placeholder="Write something fun..." required style="border-radius: 8px; resize: none;"></textarea>
-					<div style="text-align: right; font-size: 12px; color: #999; margin-top: 4px;">
-						<span id="char-count">0</span> / 90
-					</div>
-				</div>
+            <div class="form-group" style="text-align: left; margin-bottom: 15px;">
+                <label style="font-size: 14px; color: #333;" data-lang-en="Your Message (max 90 chars) *" data-lang-es="Tu Mensaje (máx. 90 caracteres) *" data-lang-fr="Votre Message (max 90 car.) *">Your Message (max 90 chars) *</label>
+                <textarea name="message" id="wish-message-input" class="form-control" maxlength="90" rows="3" placeholder="Write something fun..." required style="border-radius: 8px; resize: none;"></textarea>
+                <div style="text-align: right; font-size: 12px; color: #999; margin-top: 4px;">
+                    <span id="char-count">0</span> / 90
+                </div>
+            </div>
 
-				<div class="form-group" style="text-align: left; margin-bottom: 20px;">
-					<label style="font-size: 14px; color: #333;" data-lang-en="Photo (optional)" data-lang-es="Foto (opcional)" data-lang-fr="Photo (optionnel)">Photo (optional)</label>
-					<input type="file" name="attachment" accept="image/*" class="form-control" style="border-radius: 8px; padding: 6px;">
-				</div>
+            <div class="form-group" style="text-align: left; margin-bottom: 20px;">
+                <label style="font-size: 14px; color: #333;" data-lang-en="Photo (optional)" data-lang-es="Foto (opcional)" data-lang-fr="Photo (optionnel)">Photo (optional)</label>
+                <input type="file" name="attachment" accept="image/*" class="form-control" style="border-radius: 8px; padding: 6px;">
+            </div>
 
-				<button type="submit" id="wish-submit-btn" class="btn btn-default btn-block" style="background-color: #1e5312; color: #fff; border-radius: 25px; font-weight: bold; padding: 10px;">
-					<span data-lang-en="Send Wish 🚀" data-lang-es="Enviar Deseo 🚀" data-lang-fr="Envoyer le Vœu 🚀">Send Wish 🚀</span>
-				</button>
-			</form>
-			<div id="wish-form-status" style="margin-top: 15px; font-weight: bold; font-size: 14px; display: none;"></div>
-		</div>
-	</div>
+            <button type="submit" id="wish-submit-btn" class="btn btn-default btn-block" style="background-color: #1e5312; color: #fff; border-radius: 25px; font-weight: bold; padding: 10px;">
+                <span data-lang-en="Send Wish 🚀" data-lang-es="Enviar Deseo 🚀" data-lang-fr="Envoyer le Vœu 🚀">Send Wish 🚀</span>
+            </button>
+        </form>
+
+        <div id="wish-form-status" style="margin-top: 15px; font-weight: bold; font-size: 14px; display: none;"></div>
+    </div>
+</div>
 		
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
