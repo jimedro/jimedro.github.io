@@ -351,6 +351,36 @@ var testimonialCarousel = function(){
 			}
 		});
 	};
+
+	// Gift Modal & IBAN Copy Handler
+var initGiftModal = function() {
+    $(document).on('click', '.btn-gifts', function(e) {
+        e.preventDefault();
+        $('#gift-modal').addClass('active');
+    });
+
+    $(document).on('click', '.gift-modal-close, .gift-modal-overlay', function(e) {
+        if (e.target === this) {
+            $('#gift-modal').removeClass('active');
+        }
+    });
+
+    $(document).on('click', '#copy-iban-btn', function(e) {
+        e.preventDefault();
+        var ibanText = $('#iban-text').text().trim();
+
+        navigator.clipboard.writeText(ibanText).then(function() {
+            var originalText = $('#copy-btn-text').text();
+            $('#copy-btn-text').text('Copied! ✓');
+            $('#copy-iban-btn').css('background', '#28a745');
+
+            setTimeout(function() {
+                $('#copy-btn-text').text(originalText);
+                $('#copy-iban-btn').css('background', '#1e5312');
+            }, 2000);
+        });
+    });
+};
 	
 	$(document).ready(function(){
 		mobileMenuOutsideClick();
@@ -367,6 +397,7 @@ var testimonialCarousel = function(){
 		scrollTitle();
 		initLanguageSwitcher();
 		initSaveTheDate();
+		initGiftModal();
 	});
 
 })(jQuery);
