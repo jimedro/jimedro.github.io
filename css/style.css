@@ -347,18 +347,23 @@ p {
 }
 
 #fh5co-event {
-  height: 850px;
+  height: auto !important;             /* Replaces fixed 850px height */
+  min-height: 0 !important;
+  padding: 4em 0 3em 0 !important;     /* Reduced bottom padding to trim excess space */
   float: left;
+  background-attachment: fixed;        /* Fallback smooth scroll */
 }
+
 #fh5co-event .display-t,
 #fh5co-event .display-tc {
-  height: 700px;
-  display: table;
-  width: 100%;
+  height: auto !important;             /* Replaces fixed 700px height */
+  display: block !important;
 }
+
 #fh5co-event .fh5co-heading h2 {
   color: #fff;
 }
+
 #fh5co-event .overlay {
   position: absolute;
   top: 0;
@@ -367,11 +372,13 @@ p {
   bottom: 0;
   background: rgba(0, 0, 0, 0.4);
 }
+
 @media screen and (max-width: 768px) {
   #fh5co-event {
-    height: inherit;
-    padding: 7em 0;
+    padding: 3em 0 !important;
   }
+}
+    
   #fh5co-event .display-t,
   #fh5co-event .display-tc {
     height: inherit;
