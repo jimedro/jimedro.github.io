@@ -1744,7 +1744,7 @@ body > #flag-selection {
     .timeline > li.parallel-jimi {
         float: right !important;
         width: 100% !important;
-        margin-top: -230px !important; /* Pulls Jimi up to line up top edges with Pedro */
+        margin-top: -232px !important; /* Pulls Jimi up to line up top edges with Pedro */
         margin-bottom: 90px !important;
     }
 
