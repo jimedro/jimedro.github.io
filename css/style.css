@@ -1871,7 +1871,7 @@ a.pulse-badge {
 
     /* Position & Scale Click GIF Above Badge */
     .click-gif-indicator {
-        left: 20px !important;
+        left: 25px !important;
         top: -65px !important;
         transform: translateX(-50%) rotate(90deg) !important;
         height: 58px !important;
