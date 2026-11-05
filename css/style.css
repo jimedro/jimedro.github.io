@@ -1930,7 +1930,7 @@ a.pulse-badge {
 
 @media screen and (max-width: 992px) {
     .venue-timeline-badge {
-        left: 15px !important;
+        left: 35px !important;
         margin-left: 0 !important;
         width: 120px !important;
         height: 120px !important;
@@ -1963,11 +1963,16 @@ a.pulse-badge {
 }
 
 @media screen and (max-width: 992px) {
-    .venue-plain-content {
-        min-height: 140px;
+    /* Shift timeline vertical line to the right so it aligns perfectly behind the mobile icons */
+    ul.timeline.venue-plain-timeline:before {
+        left: 95px !important;
     }
+    .venue-plain-content {
+        min-height: 120px;
+    }
+    /* Tighten padding on mobile to remove excessive empty space between icon and text */
     .venue-plain-timeline > li > .timeline-panel {
-        padding: 10px 15px 10px 145px !important;
+        padding: 5px 15px 5px 125px !important;
     }
 }
 
