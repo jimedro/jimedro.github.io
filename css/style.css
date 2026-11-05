@@ -1654,8 +1654,8 @@ body > #flag-selection {
 /* Base Badge Link Containers (Desktop) */
 .timeline-img-preview,
 a.engagement-badge-link {
-    display: block;
-    position: absolute;
+    display: block !important;
+    position: absolute !important;
     top: 16px;
     left: 50%;
     margin-left: -80px;
@@ -1663,7 +1663,7 @@ a.engagement-badge-link {
     height: 160px;
     border-radius: 50%;
     overflow: hidden;
-    z-index: 105 !important;
+    z-index: 150 !important;
     cursor: pointer !important;
     text-decoration: none;
     touch-action: manipulation;
@@ -1674,7 +1674,7 @@ a.engagement-badge-link {
 /* Inner Badge Sizing & Hover Effects */
 .timeline-img-preview .timeline-badge,
 a.engagement-badge-link .timeline-badge {
-    position: relative !important;
+    position: absolute !important;
     top: 0 !important;
     left: 0 !important;
     margin-left: 0 !important;
@@ -1685,7 +1685,8 @@ a.engagement-badge-link .timeline-badge {
     background-position: center center !important;
     background-repeat: no-repeat !important;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    pointer-events: none; /* Let taps/clicks pass to outer link */
+    pointer-events: none !important; /* Forces taps to trigger the parent <a> link */
+    z-index: 1 !important;
 }
 
 .timeline-img-preview:hover .timeline-badge {
@@ -1816,10 +1817,10 @@ a.pulse-badge {
 .click-gif-indicator {
     position: absolute;
     top: 56px;
-    left: calc(50% - 250px); /* Shifted right to center neatly relative to June 2026 badge */
+    left: calc(50% - 145px);
     height: 75px;
     width: auto;
-    z-index: 102;
+    z-index: 160;
     pointer-events: none;
 }
 
@@ -1844,20 +1845,33 @@ a.pulse-badge {
 }
 
 @media screen and (max-width: 480px) {
-    /* Enlarge Mobile Badges to 108px */
-    .timeline-img-preview,
-    a.engagement-badge-link,
-    .timeline > li > .timeline-badge {
+    /* Target the outer anchor link wrappers explicitly */
+    .timeline > li > a.timeline-img-preview,
+    .timeline > li > a.engagement-badge-link {
         width: 108px !important;
         height: 108px !important;
         left: 15px !important;
         margin-left: -44px !important;
         top: 10px !important;
+        z-index: 150 !important;
+        pointer-events: auto !important;
+    }
+
+    /* Force the inner badge to fill the 108px parent link completely */
+    .timeline > li > a.timeline-img-preview .timeline-badge,
+    .timeline > li > a.engagement-badge-link .timeline-badge,
+    .timeline > li > .timeline-badge {
+        width: 100% !important;
+        height: 100% !important;
+        top: 0 !important;
+        left: 0 !important;
+        margin-left: 0 !important;
+        pointer-events: none !important;
     }
 
     /* Position & Scale Click GIF Above Badge */
     .click-gif-indicator {
-        left: 15px !important;
+        left: 20px !important;
         top: -65px !important;
         transform: translateX(-50%) rotate(90deg) !important;
         height: 58px !important;
