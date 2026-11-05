@@ -442,6 +442,9 @@ var initWishModal = function() {
 	
 var initTimelineGallery = function() {
     if ($('.timeline-img-preview').length > 0 && $.fn.magnificPopup) {
+        // Unbind any previous instances to guarantee it only initializes once
+        $('.timeline-img-preview').off('click');
+
         $('.timeline-img-preview').not('#engagement-trigger').magnificPopup({
             type: 'image',
             closeOnContentClick: true,
