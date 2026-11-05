@@ -1965,7 +1965,7 @@ a.pulse-badge {
 @media screen and (max-width: 992px) {
     /* Shift timeline vertical line to the right so it aligns perfectly behind the mobile icons */
     ul.timeline.venue-plain-timeline:before {
-        left: 135px !important;
+        left: 160px !important;
     }
     .venue-plain-content {
         min-height: 120px;
