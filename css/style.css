@@ -1639,19 +1639,21 @@ body > #flag-selection {
 }
 
 .timeline-merge-banner {
-  margin: 35px 0 !important;
-  display: block;
-  clear: both;
+    margin: 35px 0 !important;
+    display: block;
+    clear: both;
 }
 
 @media screen and (max-width: 768px) {
-  .timeline-merge-banner {
-    padding-left: 0 !important;
-    text-align: center !important;
-  }
+    .timeline-merge-banner {
+        padding-left: 0 !important;
+        text-align: center !important;
+    }
 }
 
-.timeline-img-preview {
+/* Base Badge Link Containers (Desktop) */
+.timeline-img-preview,
+a.engagement-badge-link {
     display: block;
     position: absolute;
     top: 16px;
@@ -1660,29 +1662,18 @@ body > #flag-selection {
     width: 160px;
     height: 160px;
     border-radius: 50%;
-    z-index: 101;
-    cursor: pointer;
+    overflow: hidden;
+    z-index: 105 !important;
+    cursor: pointer !important;
     text-decoration: none;
+    touch-action: manipulation;
+    pointer-events: auto !important;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
-/* Fix circular clipping, aspect ratio, and background scaling for preview images */
-.timeline-img-preview {
-    display: block;
-    position: absolute;
-    top: 16px;
-    left: 50%;
-    margin-left: -80px;
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    overflow: hidden; /* Enforces strict circular clipping */
-    z-index: 101;
-    cursor: pointer;
-    text-decoration: none;
-    -webkit-mask-image: -webkit-radial-gradient(white, black); /* Fixes Safari border-radius overflow bug */
-}
-
-.timeline-img-preview .timeline-badge {
+/* Inner Badge Sizing & Hover Effects */
+.timeline-img-preview .timeline-badge,
+a.engagement-badge-link .timeline-badge {
     position: relative !important;
     top: 0 !important;
     left: 0 !important;
@@ -1694,37 +1685,16 @@ body > #flag-selection {
     background-position: center center !important;
     background-repeat: no-repeat !important;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    pointer-events: none; /* Let taps/clicks pass to outer link */
 }
 
 .timeline-img-preview:hover .timeline-badge {
     transform: scale(1.08);
 }
 
-@media screen and (max-width: 992px) {
-    .timeline-img-preview {
-        left: 15px !important;
-        margin-left: 0 !important;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .timeline-img-preview {
-        width: 60px !important;
-        height: 60px !important;
-        margin-left: -20px !important;
-        top: 16px !important;
-    }
-}
-
-/* =======================================================
-*  JUNE 2026 PULSE BADGE & ENGAGEMENT GALLERY MODAL
-* ======================================================= */
-
-/* Pulse the entire outer circle container */
+/* Pulse Animation for June 2026 Badge */
 a.pulse-badge {
     animation: pulseCircle 1.5s ease-in-out infinite !important;
-    display: block;
-    border-radius: 50%;
 }
 
 @keyframes pulseCircle {
@@ -1739,85 +1709,6 @@ a.pulse-badge {
     100% {
         transform: scale(1);
         box-shadow: 0 0 0 0 rgba(30, 83, 18, 0.4);
-    }
-}
-
-/* June 2026 Badge Positioning & Sizing Override */
-a.engagement-badge-link {
-    display: block;
-    position: absolute;
-    top: 16px;
-    left: 50%;
-    margin-left: -80px;
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    overflow: hidden;
-    z-index: 101;
-    cursor: pointer;
-    text-decoration: none;
-    -webkit-mask-image: -webkit-radial-gradient(white, black);
-}
-
-@media screen and (max-width: 992px) {
-    a.engagement-badge-link {
-        left: 15px !important;
-        margin-left: 0 !important;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    a.engagement-badge-link {
-        width: 60px !important;
-        height: 60px !important;
-        margin-left: -20px !important;
-        top: 16px !important;
-    }
-}
-/* June 2026 Badge Container */
-a.engagement-badge-link {
-    display: block;
-    position: absolute;
-    top: 16px;
-    left: 50%;
-    margin-left: -80px;
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    overflow: hidden;
-    z-index: 101;
-    cursor: pointer;
-    text-decoration: none;
-    -webkit-mask-image: -webkit-radial-gradient(white, black);
-}
-
-/* Fix inner picture sizing inside engagement-badge-link */
-a.engagement-badge-link .timeline-badge {
-    position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
-    margin-left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    border-radius: 50% !important;
-    background-size: cover !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
-}
-
-@media screen and (max-width: 992px) {
-    a.engagement-badge-link {
-        left: 15px !important;
-        margin-left: 0 !important;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    a.engagement-badge-link {
-        width: 60px !important;
-        height: 60px !important;
-        margin-left: -20px !important;
-        top: 16px !important;
     }
 }
 
@@ -1921,19 +1812,30 @@ a.engagement-badge-link .timeline-badge {
     .gallery-nav-btn.next-btn { right: 8px; }
 }
 
-/* June 2026 Click GIF Indicator */
+/* June 2026 Click GIF Indicator (Desktop / Laptop) */
 .click-gif-indicator {
     position: absolute;
-    top: 56px; /* Centered vertically relative to the 160px badge */
-    left: calc(50% - 170px); /* Placed to the left of the badge */
-    height: 80px; /* Half the height of the preview badge */
+    top: 56px;
+    left: calc(50% - 145px); /* Shifted right to center neatly relative to June 2026 badge */
+    height: 75px;
     width: auto;
     z-index: 102;
-    pointer-events: none; /* Allows clicks to pass directly through to the badge */
+    pointer-events: none;
+}
+
+/* Lightbox Popups Above Header */
+.mfp-bg, .mfp-wrap {
+    z-index: 20000 !important;
 }
 
 /* Mobile & Tablet Responsive Adjustments */
 @media screen and (max-width: 992px) {
+    .timeline-img-preview,
+    a.engagement-badge-link {
+        left: 15px !important;
+        margin-left: 0 !important;
+    }
+
     .click-gif-indicator {
         left: -35px !important;
         top: 36px !important;
@@ -1942,60 +1844,23 @@ a.engagement-badge-link .timeline-badge {
 }
 
 @media screen and (max-width: 480px) {
-    .click-gif-indicator {
-        left: -40px !important;
-        top: 21px !important;
-        height: 30px !important; /* Half the height of the 60px mobile preview badge */
-    }
-}
-
-/* =======================================================
-*  MOBILE RESPONSIVE ENHANCEMENTS FOR STORY PAGE
-* ======================================================= */
-
-/* Ensure touch events hit the <a> tag instead of getting trapped by the inner badge div */
-.timeline-badge {
-    pointer-events: none !important;
-}
-
-/* Enable crisp tapping & high z-index for Magnific Popup preview triggers */
-.timeline-img-preview {
-    z-index: 105 !important;
-    touch-action: manipulation;
-}
-
-/* Ensure Magnific Popup lightbox overlay renders above mobile header navigation */
-.mfp-bg, .mfp-wrap {
-    z-index: 20000 !important;
-}
-
-@media screen and (max-width: 992px) {
-    /* Tablet/Mobile badge alignment at left: 15px */
-    .timeline-img-preview,
-    a.engagement-badge-link {
-        left: 15px !important;
-        margin-left: 0 !important;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    /* 1. Increase preview circle size by another x1.2 (90px -> 108px) */
+    /* Enlarge Mobile Badges to 108px */
     .timeline-img-preview,
     a.engagement-badge-link,
     .timeline > li > .timeline-badge {
         width: 108px !important;
         height: 108px !important;
         left: 15px !important;
-        margin-left: -44px !important; /* Centers 108px badge over the vertical line */
+        margin-left: -44px !important;
         top: 10px !important;
     }
 
-    /* 3. Align click.gif directly above June 2026 badge on mobile & scale by 1.3x (45px -> 58px) */
+    /* Position & Scale Click GIF Above Badge */
     .click-gif-indicator {
         left: 15px !important;
-        top: -65px !important; /* Positions above the enlarged 108px badge */
-        transform: translateX(-50%) rotate(90deg) !important; /* Rotated down toward the badge */
-        height: 58px !important; /* Scaled 1.3x */
+        top: -65px !important;
+        transform: translateX(-50%) rotate(90deg) !important;
+        height: 58px !important;
         width: auto !important;
     }
 }
