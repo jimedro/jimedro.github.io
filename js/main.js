@@ -442,9 +442,10 @@ var initWishModal = function() {
 	
 var initTimelineGallery = function() {
     if ($('.timeline-img-preview').length > 0 && $.fn.magnificPopup) {
-        // Unbind any previous click handlers first
-        $('.timeline-img-preview').off('click');
+        // Unbind any previous click or touch handlers first
+        $(document).off('click touchstart', '.timeline-img-preview:not(#engagement-trigger)');
 
+        // Standard Magnific Popup initialization for desktop
         $('.timeline-img-preview').not('#engagement-trigger').magnificPopup({
             type: 'image',
             closeOnContentClick: true,
@@ -457,6 +458,24 @@ var initTimelineGallery = function() {
             zoom: {
                 enabled: true,
                 duration: 300
+            }
+        });
+
+        // Mobile Fallback: Direct event delegation for tap events
+        $(document).on('click touchstart', '.timeline-img-preview:not(#engagement-trigger)', function(e) {
+            var $this = $(this);
+            var targetUrl = $this.attr('href');
+
+            if (targetUrl && targetUrl !== 'javascript:void(0);') {
+                e.preventDefault();
+                $.magnificPopup.open({
+                    items: {
+                        src: targetUrl
+                    },
+                    type: 'image',
+                    closeOnContentClick: true,
+                    fixedContentPos: true
+                });
             }
         });
     }
