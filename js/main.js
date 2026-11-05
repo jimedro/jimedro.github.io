@@ -442,10 +442,11 @@ var initWishModal = function() {
 	
 var initTimelineGallery = function() {
     if ($('.timeline-img-preview').length > 0 && $.fn.magnificPopup) {
-        // Unbind any previous click or touch handlers first
-        $(document).off('click touchstart', '.timeline-img-preview:not(#engagement-trigger)');
+        
+        // Unbind any previous touch/click handlers to prevent duplicate triggers
+        $(document).off('click touchend', '.timeline-img-preview:not(#engagement-trigger)');
 
-        // Standard Magnific Popup initialization for desktop
+        // Standard Magnific Popup initialization
         $('.timeline-img-preview').not('#engagement-trigger').magnificPopup({
             type: 'image',
             closeOnContentClick: true,
@@ -461,21 +462,26 @@ var initTimelineGallery = function() {
             }
         });
 
-        // Mobile Fallback: Direct event delegation for tap events
-        $(document).on('click touchstart', '.timeline-img-preview:not(#engagement-trigger)', function(e) {
+        // Fast-Tap Handler for Mobile Browsers
+        $(document).on('touchend click', '.timeline-img-preview:not(#engagement-trigger)', function(e) {
             var $this = $(this);
             var targetUrl = $this.attr('href');
 
-            if (targetUrl && targetUrl !== 'javascript:void(0);') {
-                e.preventDefault();
-                $.magnificPopup.open({
-                    items: {
-                        src: targetUrl
-                    },
-                    type: 'image',
-                    closeOnContentClick: true,
-                    fixedContentPos: true
-                });
+            // If it's a touch screen tap
+            if (e.type === 'touchend') {
+                // Prevent ghost click / default scroll behavior from delaying the tap
+                e.preventDefault(); 
+
+                if (targetUrl && targetUrl !== 'javascript:void(0);') {
+                    $.magnificPopup.open({
+                        items: {
+                            src: targetUrl
+                        },
+                        type: 'image',
+                        closeOnContentClick: true,
+                        fixedContentPos: true
+                    });
+                }
             }
         });
     }
