@@ -1953,25 +1953,9 @@ a.engagement-badge-link .timeline-badge {
 *  MOBILE RESPONSIVE ENHANCEMENTS FOR STORY PAGE
 * ======================================================= */
 
-@media screen and (max-width: 480px) {
-    /* 1. Increase preview circle size by 1.5x on phones (60px -> 90px) */
-    .timeline-img-preview,
-    a.engagement-badge-link,
-    .timeline > li > .timeline-badge {
-        width: 90px !important;
-        height: 90px !important;
-        margin-left: -35px !important;
-        top: 10px !important;
-    }
-
-    /* 2. Position click.gif directly on top of June 2026 badge & rotated 90deg clockwise */
-    .click-gif-indicator {
-        left: 50% !important;
-        top: -45px !important; /* Positions above the badge */
-        transform: translateX(-50%) rotate(90deg) !important; /* Center & point downward */
-        height: 45px !important; /* Scaled proportionately for 90px badge */
-        width: auto !important;
-    }
+/* Ensure touch events hit the <a> tag instead of getting trapped by the inner badge div */
+.timeline-badge {
+    pointer-events: none !important;
 }
 
 /* Enable crisp tapping & high z-index for Magnific Popup preview triggers */
@@ -1983,4 +1967,35 @@ a.engagement-badge-link .timeline-badge {
 /* Ensure Magnific Popup lightbox overlay renders above mobile header navigation */
 .mfp-bg, .mfp-wrap {
     z-index: 20000 !important;
+}
+
+@media screen and (max-width: 992px) {
+    /* Tablet/Mobile badge alignment at left: 15px */
+    .timeline-img-preview,
+    a.engagement-badge-link {
+        left: 15px !important;
+        margin-left: 0 !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* 1. Increase preview circle size by another x1.2 (90px -> 108px) */
+    .timeline-img-preview,
+    a.engagement-badge-link,
+    .timeline > li > .timeline-badge {
+        width: 108px !important;
+        height: 108px !important;
+        left: 15px !important;
+        margin-left: -44px !important; /* Centers 108px badge over the vertical line */
+        top: 10px !important;
+    }
+
+    /* 3. Align click.gif directly above June 2026 badge on mobile & scale by 1.3x (45px -> 58px) */
+    .click-gif-indicator {
+        left: 15px !important;
+        top: -65px !important; /* Positions above the enlarged 108px badge */
+        transform: translateX(-50%) rotate(90deg) !important; /* Rotated down toward the badge */
+        height: 58px !important; /* Scaled 1.3x */
+        width: auto !important;
+    }
 }
