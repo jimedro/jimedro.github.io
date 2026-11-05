@@ -442,7 +442,7 @@ var initWishModal = function() {
 	
 var initTimelineGallery = function() {
     if ($('.timeline-img-preview').length > 0 && $.fn.magnificPopup) {
-        // Unbind any previous instances to guarantee it only initializes once
+        // Unbind any previous click handlers first
         $('.timeline-img-preview').off('click');
 
         $('.timeline-img-preview').not('#engagement-trigger').magnificPopup({
@@ -461,7 +461,7 @@ var initTimelineGallery = function() {
         });
     }
 };
-
+	
 var initEngagementGallery = function() {
     var galleryItems = [
         { type: 'video', src: 'images/engagement_video.mp4' }
