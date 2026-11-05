@@ -1816,7 +1816,7 @@ a.pulse-badge {
 .click-gif-indicator {
     position: absolute;
     top: 56px;
-    left: calc(50% - 145px); /* Shifted right to center neatly relative to June 2026 badge */
+    left: calc(50% - 250px); /* Shifted right to center neatly relative to June 2026 badge */
     height: 75px;
     width: auto;
     z-index: 102;
