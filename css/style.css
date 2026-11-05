@@ -1901,7 +1901,7 @@ a.pulse-badge {
     }
 }
 
-/* Timeline badge: x1.5 larger icons (~180px tall), transparent background */
+/* Timeline badge: x1.5 larger icons (~180px tall on desktop), transparent background */
 .venue-timeline-badge {
     background: transparent !important;
     border: none !important;
@@ -1932,13 +1932,13 @@ a.pulse-badge {
     .venue-timeline-badge {
         left: 15px !important;
         margin-left: 0 !important;
-        width: 100px !important;
-        height: 100px !important;
-        top: 16px !important;
+        width: 120px !important;
+        height: 120px !important;
+        top: 10px !important;
     }
     .venue-timeline-badge img {
-        max-height: 100px;
-        max-width: 100px;
+        max-height: 150px;
+        max-width: 150px;
     }
 }
 
@@ -1960,6 +1960,15 @@ a.pulse-badge {
     flex-direction: column;
     justify-content: center;
     min-height: 140px;
+}
+
+@media screen and (max-width: 992px) {
+    .venue-plain-content {
+        min-height: 140px;
+    }
+    .venue-plain-timeline > li > .timeline-panel {
+        padding: 10px 15px 10px 145px !important;
+    }
 }
 
 /* Text alignment for left-side items (right-aligned for symmetry) and right-side items (left-aligned) */
