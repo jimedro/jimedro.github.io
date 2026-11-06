@@ -1956,7 +1956,7 @@ a.pulse-badge {
     line-height: 1.4;
 }
 
-/* Standardized 14px size for event times, locations, and asterisk note */
+/* Standardized size for event times, locations, and asterisk note */
 .venue-event-meta {
     font-size: 14px !important;
     color: #828282;
@@ -1976,109 +1976,57 @@ a.pulse-badge {
         display: none !important;
     }
 
-    /* Set up the timeline container for absolute positioning of snake segments */
+    /* Set up the timeline container with explicit height so absolute items render */
     ul.timeline.venue-plain-timeline {
-        position: relative;
-        padding-top: 40px;
-        padding-bottom: 40px;
+        position: relative !important;
+        display: block !important;
+        height: 1650px !important;
+        padding: 0 !important;
     }
-
-    /* Each row takes 2 items (Left to Right, then U-turn Right to Left) */
-    /* Row 1: Items 1 & 2 */
-    /* Row 2: Items 3 & 4 */
-    /* We arrange items into horizontal tracks */
 
     /* Reset default li float/width */
     .venue-plain-timeline > li {
-        position: absolute;
-        width: 42%;
-        margin-bottom: 0;
+        position: absolute !important;
+        width: 44% !important;
+        margin-bottom: 0 !important;
     }
 
     /* Row 1 (Items 1 & 2) */
-    .venue-plain-timeline > li:nth-of-type(2) { /* Item 1 (Left) */
-        top: 80px;
-        left: 2%;
-    }
-    .venue-plain-timeline > li:nth-of-type(3) { /* Item 2 (Right) */
-        top: 80px;
-        right: 2%;
-    }
+    .venue-plain-timeline > li:nth-of-type(2) { top: 20px; left: 0%; }
+    .venue-plain-timeline > li:nth-of-type(3) { top: 20px; right: 0%; }
 
-    /* U-Turn 1 Connector (between Row 1 and Row 2) */
-    .venue-plain-timeline > li:nth-of-type(4) { /* Saturday Pill */
-        top: 310px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: auto !important;
-        position: absolute;
-    }
+    /* U-Turn 1 Connector (Saturday Pill) */
+    .venue-plain-timeline > li:nth-of-type(4) { top: 260px; left: 50%; transform: translateX(-50%); width: auto !important; }
 
     /* Row 2 (Items 3 & 4) */
-    .venue-plain-timeline > li:nth-of-type(5) { /* Item 3 */
-        top: 410px;
-        right: 2%;
-    }
-    .venue-plain-timeline > li:nth-of-type(6) { /* Item 4 */
-        top: 410px;
-        left: 2%;
-    }
+    .venue-plain-timeline > li:nth-of-type(5) { top: 350px; right: 0%; }
+    .venue-plain-timeline > li:nth-of-type(6) { top: 350px; left: 0%; }
 
     /* Row 3 (Items 5 & 6) */
-    .venue-plain-timeline > li:nth-of-type(7) { /* Item 5 */
-        top: 640px;
-        left: 2%;
-    }
-    .venue-plain-timeline > li:nth-of-type(8) { /* Item 6 */
-        top: 640px;
-        right: 2%;
-    }
+    .venue-plain-timeline > li:nth-of-type(7) { top: 600px; left: 0%; }
+    .venue-plain-timeline > li:nth-of-type(8) { top: 600px; right: 0%; }
 
     /* Row 4 (Items 7 & 8) */
-    .venue-plain-timeline > li:nth-of-type(9) { /* Item 7 */
-        top: 870px;
-        right: 2%;
-    }
-    .venue-plain-timeline > li:nth-of-type(10) { /* Item 8 */
-        top: 870px;
-        left: 2%;
-    }
+    .venue-plain-timeline > li:nth-of-type(9) { top: 850px; right: 0%; }
+    .venue-plain-timeline > li:nth-of-type(10) { top: 850px; left: 0%; }
 
     /* Row 5 (Items 9 & 10) */
-    .venue-plain-timeline > li:nth-of-type(11) { /* Item 9 */
-        top: 1100px;
-        left: 2%;
-    }
-    .venue-plain-timeline > li:nth-of-type(12) { /* Item 10 */
-        top: 1100px;
-        right: 2%;
-    }
+    .venue-plain-timeline > li:nth-of-type(11) { top: 1100px; left: 0%; }
+    .venue-plain-timeline > li:nth-of-type(12) { top: 1100px; right: 0%; }
 
     /* U-Turn 2 Connector (Sunday Pill) */
-    .venue-plain-timeline > li:nth-of-type(13) { /* Sunday Pill */
-        top: 1330px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: auto !important;
-        position: absolute;
-    }
+    .venue-plain-timeline > li:nth-of-type(13) { top: 1340px; left: 50%; transform: translateX(-50%); width: auto !important; }
 
     /* Row 6 (Items 11 & 12) */
-    .venue-plain-timeline > li:nth-of-type(14) { /* Item 11 */
-        top: 1430px;
-        right: 2%;
-    }
-    .venue-plain-timeline > li:nth-of-type(15) { /* Item 12 */
-        top: 1430px;
-        left: 2%;
-    }
+    .venue-plain-timeline > li:nth-of-type(14) { top: 1420px; right: 0%; }
+    .venue-plain-timeline > li:nth-of-type(15) { top: 1420px; left: 0%; }
 
     /* Adjust badge & panel positioning inside snake items */
     .venue-plain-timeline > li > .venue-timeline-badge {
-        position: relative;
-        top: auto;
-        left: auto;
-        margin: 0 auto;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        margin: 0 auto !important;
     }
 
     .venue-plain-timeline > li > .timeline-panel {
@@ -2091,8 +2039,19 @@ a.pulse-badge {
    MOBILE VERTICAL TIMELINE RESTORATION
    ========================================================== */
 @media screen and (max-width: 992px) {
+    .venue-timeline-badge {
+        left: 60px !important;
+        margin-left: 0 !important;
+        width: 120px !important;
+        height: 120px !important;
+        top: 10px !important;
+    }
+    .venue-timeline-badge img {
+        max-height: 150px;
+        max-width: 150px;
+    }
     ul.timeline.venue-plain-timeline:before {
-        left: 145px !important;
+        left: 60px !important;
     }
     .venue-plain-content {
         min-height: 120px;
@@ -2104,8 +2063,8 @@ a.pulse-badge {
     .venue-text-right {
         text-align: left !important;
     }
-    /* Increase meta text size on mobile */
+    /* Increase meta text size on mobile to 16px */
     .venue-event-meta {
-        font-size: 15px !important; /* Change from 14px to your preferred mobile size */
+        font-size: 16px !important;
     }
-}}
+}
