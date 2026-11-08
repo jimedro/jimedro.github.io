@@ -1906,14 +1906,40 @@ a.pulse-badge {
 #fh5co-venue-split {
     position: relative;
     width: 100%;
-    height: 600px;
+    height: 650px;
     overflow: hidden;
     background: #000;
 }
 
 @media screen and (max-width: 768px) {
     #fh5co-venue-split {
-        height: 500px;
+        height: 550px;
+    }
+}
+
+/* Floating Title on Top of the Section */
+.venue-split-title {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.venue-split-title h2 {
+    font-family: "Sacramento", Arial, cursive !important;
+    font-size: 75px !important;
+    color: #fff !important;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    margin: 0;
+    -webkit-text-stroke: 0px !important;
+}
+
+@media screen and (max-width: 768px) {
+    .venue-split-title h2 {
+        font-size: 50px !important;
     }
 }
 
@@ -1931,7 +1957,7 @@ a.pulse-badge {
     width: 50%;
     height: 100%;
     overflow: hidden;
-    transition: width 0.3s ease;
+    transition: width 0.1s ease-out;
 }
 
 .split-left {
@@ -1944,12 +1970,12 @@ a.pulse-badge {
     z-index: 1;
 }
 
-/* Full-width background image anchored to the section container so it doesn't stretch or cut off */
+/* Full-width background image anchored so both sides display perfectly */
 .split-bg-img {
     position: absolute;
     top: 0;
     height: 100%;
-    width: 100vw; /* Matches full container width */
+    width: 100vw;
     max-width: none;
     object-fit: cover;
 }
@@ -1959,6 +1985,9 @@ a.pulse-badge {
 }
 
 .split-right .split-bg-img {
+    right: 0;
+    /* Aligns right side image to the right edge of the container */
+    left: auto;
     right: 0;
 }
 
@@ -1994,7 +2023,7 @@ a.pulse-badge {
     font-size: 18px;
 }
 
-/* Uncovered Content Overlays (Box on Right when sliding right, Gallery on Left when sliding left) */
+/* Uncovered Content Overlays */
 .split-content-left,
 .split-content-right {
     position: absolute;
@@ -2020,9 +2049,9 @@ a.pulse-badge {
     right: 0;
 }
 
-/* Highly Transparent Travel Instructions Box */
+/* Travel Instructions Box */
 .travel-instructions-box {
-    background: rgba(255, 255, 255, 0.65); /* Highly transparent white */
+    background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 2px solid rgba(30, 83, 18, 0.3);
@@ -2075,10 +2104,6 @@ a.pulse-badge {
     transform: scale(1.15);
 }
 
-@keyframes zoomPulseIcon {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
 @keyframes zoomPulseIcon {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.1); }
