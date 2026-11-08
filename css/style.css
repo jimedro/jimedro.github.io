@@ -1879,208 +1879,7 @@ a.pulse-badge {
     }
 }
 
-/* --- Venue Programme Timeline Customizations --- */
-.venue-date-pill {
-    display: inline-block;
-    background: #ffffff;
-    border: 2px solid #000000;
-    color: #000000;
-    padding: 8px 25px;
-    border-radius: 30px;
-    font-size: 18px;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 150;
-}
-
-/* Timeline badge: x1.5 larger icons (~180px tall on desktop), transparent background */
-.venue-timeline-badge {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    width: 160px;
-    height: 160px;
-    text-align: center;
-    position: absolute;
-    top: 16px;
-    left: 50%;
-    margin-left: -80px;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: visible;
-}
-
-.venue-timeline-badge img {
-    max-height: 180px;
-    max-width: 180px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-}
-
-/* Plain timeline panels without outer boxes */
-.venue-plain-timeline > li > .timeline-panel {
-    border: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    padding: 30px 30px !important;
-}
-
-.venue-plain-timeline > li > .timeline-panel:before,
-.venue-plain-timeline > li > .timeline-panel:after {
-    display: none !important;
-}
-
-.venue-plain-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 180px;
-}
-
-/* Text alignment for laptop: left-side items right-aligned, right-side items left-aligned */
-.venue-text-left {
-    text-align: right !important;
-}
-
-.venue-text-right {
-    text-align: left !important;
-}
-
-.venue-plain-timeline .timeline-title {
-    font-size: 22px;
-    margin-bottom: 0;
-    line-height: 1.4;
-}
-
-/* Standardized size for event times, locations, and asterisk note */
-.venue-event-meta {
-    font-size: 14px !important;
-    color: #828282;
-    display: block;
-    margin-bottom: 4px;
-    font-weight: normal;
-    text-transform: none;
-    letter-spacing: normal;
-}
-
-/* ==========================================================
-   LAPTOP / DESKTOP SNAKE LAYOUT (U-TURN TIMELINE) - FULL WIDTH
-   ========================================================== */
-@media screen and (min-width: 993px) {
-    /* Hide the standard straight vertical line */
-    ul.timeline.venue-plain-timeline:before {
-        display: none !important;
-    }
-
-    /* Set up the timeline container with explicit height so absolute items render */
-    ul.timeline.venue-plain-timeline {
-        position: relative !important;
-        display: block !important;
-        height: 1650px !important;
-        padding: 0 !important;
-        width: 100% !important;
-    }
-
-    /* Reset default li float/width for full 12-column width */
-    .venue-plain-timeline > li {
-        position: absolute !important;
-        width: 46% !important;
-        margin-bottom: 0 !important;
-    }
-
-    /* Row 1 (Items 1 & 2) */
-    .venue-plain-timeline > li:nth-of-type(2) { top: 20px; left: 1%; }
-    .venue-plain-timeline > li:nth-of-type(3) { top: 20px; right: 1%; }
-
-    /* U-Turn 1 Connector (Saturday Pill) */
-    .venue-plain-timeline > li:nth-of-type(4) { top: 260px; left: 50%; transform: translateX(-50%); width: auto !important; }
-
-    /* Row 2 (Items 3 & 4) */
-    .venue-plain-timeline > li:nth-of-type(5) { top: 350px; right: 1%; }
-    .venue-plain-timeline > li:nth-of-type(6) { top: 350px; left: 1%; }
-
-    /* Row 3 (Items 5 & 6) */
-    .venue-plain-timeline > li:nth-of-type(7) { top: 600px; left: 1%; }
-    .venue-plain-timeline > li:nth-of-type(8) { top: 600px; right: 1%; }
-
-    /* Row 4 (Items 7 & 8) */
-    .venue-plain-timeline > li:nth-of-type(9) { top: 850px; right: 1%; }
-    .venue-plain-timeline > li:nth-of-type(10) { top: 850px; left: 1%; }
-
-    /* Row 5 (Items 9 & 10) */
-    .venue-plain-timeline > li:nth-of-type(11) { top: 1100px; left: 1%; }
-    .venue-plain-timeline > li:nth-of-type(12) { top: 1100px; right: 1%; }
-
-    /* U-Turn 2 Connector (Sunday Pill) */
-    .venue-plain-timeline > li:nth-of-type(13) { top: 1340px; left: 50%; transform: translateX(-50%); width: auto !important; }
-
-    /* Row 6 (Items 11 & 12) */
-    .venue-plain-timeline > li:nth-of-type(14) { top: 1420px; right: 1%; }
-    .venue-plain-timeline > li:nth-of-type(15) { top: 1420px; left: 1%; }
-
-    /* Adjust badge & panel positioning inside snake items */
-    .venue-plain-timeline > li > .venue-timeline-badge {
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        margin: 0 auto !important;
-    }
-
-    .venue-plain-timeline > li > .timeline-panel {
-        width: 100% !important;
-        float: none !important;
-    }
-}
-
-/* ==========================================================
-   MOBILE VERTICAL TIMELINE
-   ========================================================== */
-@media screen and (max-width: 992px) {
-    .venue-timeline-badge {
-        left: 75px !important; /* Increase this value (e.g. 75px -> 85px) to shift icons/line further right */
-        margin-left: 0 !important;
-        width: 120px !important;
-        height: 120px !important;
-        top: 10px !important;
-    }
-    .venue-timeline-badge img {
-        max-height: 150px;
-        max-width: 150px;
-    }
-    ul.timeline.venue-plain-timeline:before {
-        left: 75px !important; /* Matches the badge position so the line passes right behind the icons */
-    }
-    .venue-plain-content {
-        min-height: 120px;
-    }
-    .venue-plain-timeline > li > .timeline-panel {
-        padding: 5px 15px 5px 110px !important;
-    }
-    .venue-text-left,
-    .venue-text-right {
-        text-align: left !important;
-    }
-    .venue-event-meta {
-        font-size: 16px !important;
-    }
-}
-
-/* --- Programme Image Transition & Sizing --- */
-.programme-fade-transition {
-    position: absolute;
-    top: -120px;
-    left: 0;
-    width: 100%;
-    height: 120px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(255,255,255,1) 100%);
-    z-index: 10;
-    pointer-events: none;
-}
-
+/* --- Programme Section Scroll-Fade Reveal Effect --- */
 .programme-image-wrapper {
     width: 100%;
     overflow: hidden;
@@ -2089,5 +1888,14 @@ a.pulse-badge {
 }
 
 #programme-img {
-    transition: opacity 0.4s ease-in-out;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+/* Triggered via JS when scrolled into view */
+#programme-img.revealed {
+    opacity: 1;
+    transform: translateY(0);
 }
