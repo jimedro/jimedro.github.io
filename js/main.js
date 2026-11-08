@@ -642,10 +642,10 @@ var initVenueSplitSection = function() {
     var isMobile = window.innerWidth <= 768;
 
     function updateSplit(pos) {
-        var currentPos = Math.max(10, Math.min(90, pos));
+        // Expanded range (3% to 97%) so slider can travel much further
+        var currentPos = Math.max(3, Math.min(97, pos));
 
         if (isMobile) {
-            // Mobile: 50% initial. Swipe Left -> Gallery on Left full, Swipe Right -> Instructions on Right full
             if (currentPos < 40) {
                 // Swiped Left -> Left Side (Gallery) Full
                 $left.css('width', '100%');
@@ -666,19 +666,19 @@ var initVenueSplitSection = function() {
                 $contentRight.css('opacity', '0').css('pointer-events', 'none');
             }
         } else {
-            // Desktop Slider Drag
+            // Desktop Slider Drag (Full width tracking)
             $left.css('width', currentPos + '%');
             $slider.css('left', currentPos + '%');
 
-            // Slide left reveals gallery on the left
-            if (currentPos <= 15) {
+            // Slide left reveals gallery on the left when pushed past 18%
+            if (currentPos <= 18) {
                 $contentLeft.css('opacity', '1').css('pointer-events', 'auto');
             } else {
                 $contentLeft.css('opacity', '0').css('pointer-events', 'none');
             }
 
-            // Slide right reveals travel instructions box on the right
-            if (currentPos >= 85) {
+            // Slide right reveals travel instructions box on the right when pushed past 82%
+            if (currentPos >= 82) {
                 $contentRight.css('opacity', '1').css('pointer-events', 'auto');
             } else {
                 $contentRight.css('opacity', '0').css('pointer-events', 'none');
@@ -718,11 +718,9 @@ var initVenueSplitSection = function() {
 
         if (Math.abs(diff) > 50) {
             if (diff > 0) {
-                // Swipe Left -> Show Gallery on Left
-                updateSplit(15);
+                updateSplit(10); // Swipe Left -> Gallery on Left
             } else {
-                // Swipe Right -> Show Instructions Box on Right
-                updateSplit(85);
+                updateSplit(90); // Swipe Right -> Instructions Box on Right
             }
         }
     });
