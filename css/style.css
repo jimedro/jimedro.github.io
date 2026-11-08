@@ -1899,3 +1899,167 @@ a.pulse-badge {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* =======================================================
+*  VENUE COMPARISON / SPLIT SECTION (CAN MARIAL vs BELLSOL)
+* ======================================================= */
+#fh5co-venue-split {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    background: #000;
+}
+
+@media screen and (max-width: 768px) {
+    #fh5co-venue-split {
+        height: 500px;
+    }
+}
+
+.split-pane-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    user-select: none;
+}
+
+.split-side {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: width 0.3s ease;
+}
+
+.split-left {
+    left: 0;
+    background-image: url('../images/backgroundvenue_canmarial_left.jpg');
+    z-index: 2;
+}
+
+.split-right {
+    right: 0;
+    background-image: url('../images/backgroundvenue_bellsol_right.jpg');
+    z-index: 1;
+}
+
+/* Desktop Draggable Slider Divider Bar */
+.split-slider-bar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 6px;
+    background: #fff;
+    z-index: 10;
+    cursor: ew-resize;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.split-slider-handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1e5312;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Uncovered Content Overlays */
+.split-content-left,
+.split-content-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.split-content-left {
+    left: 0;
+}
+
+.split-content-right {
+    right: 0;
+}
+
+/* Semi-transparent Travel Instructions Box (Matches "What's the plan?" style) */
+.travel-instructions-box {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(30, 83, 18, 0.4);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: left;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.travel-instructions-box h3 {
+    font-size: 28px;
+    color: #1e5312;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.travel-section-item {
+    margin-bottom: 15px;
+}
+
+.travel-section-item h4 {
+    font-size: 18px;
+    color: #000;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.travel-section-item p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+/* Gallery Icon Zoom & Pulse Animation */
+.gallery-trigger-icon {
+    width: 110px;
+    height: 110px;
+    cursor: pointer;
+    animation: zoomPulseIcon 2s infinite ease-in-out;
+    filter: drop-shadow(0 6px 15px rgba(0,0,0,0.4));
+    transition: transform 0.3s ease;
+}
+
+.gallery-trigger-icon:hover {
+    transform: scale(1.15);
+}
+
+@keyframes zoomPulseIcon {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
