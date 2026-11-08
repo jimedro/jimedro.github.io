@@ -787,6 +787,7 @@ $(document).ready(function(){
     initTimelineGallery(); 
     initEngagementGallery(); 
 	initProgrammeImageSwitcher();
+	initVenueSplitSection();
 });
 
 })(jQuery);
