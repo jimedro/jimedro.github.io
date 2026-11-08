@@ -596,10 +596,11 @@ var initEngagementGallery = function() {
 // Dynamic Programme Image Switcher (Landscape for Desktop, Portrait for Mobile, Language Aware)
 	var initProgrammeImageSwitcher = function() {
 		function updateProgrammeImage() {
-			var lang = (localStorage.getItem("selectedLang") || "EN").toLowerCase();
+			var lang = (localStorage.getItem("selectedLang") || "EN").toUpperCase(); // Capitalized (EN, ES, FR)
 			var isMobile = window.innerWidth <= 768;
 			var orientation = isMobile ? 'portrait' : 'landscape';
 			
+			// Assembles as: images/programme_landscape_EN.jpg
 			var imagePath = 'images/programme_' + orientation + '_' + lang + '.jpg';
 			$('#programme-img').attr('src', imagePath);
 		}
