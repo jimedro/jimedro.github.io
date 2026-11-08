@@ -592,6 +592,29 @@ var initEngagementGallery = function() {
         }
     });
 };
+
+// Dynamic Programme Image Switcher (Landscape for Desktop, Portrait for Mobile, Language Aware)
+	var initProgrammeImageSwitcher = function() {
+		function updateProgrammeImage() {
+			var lang = (localStorage.getItem("selectedLang") || "EN").toLowerCase();
+			var isMobile = window.innerWidth <= 768;
+			var orientation = isMobile ? 'portrait' : 'landscape';
+			
+			var imagePath = 'images/programme_' + orientation + '_' + lang + '.jpg';
+			$('#programme-img').attr('src', imagePath);
+		}
+
+		// Run on load and window resize
+		updateProgrammeImage();
+		$(window).on('resize', function() {
+			updateProgrammeImage();
+		});
+
+		// Also update immediately when a flag is clicked
+		$(document).on('click', '.flag-btn', function() {
+			setTimeout(updateProgrammeImage, 50);
+		});
+	};
 	
 $(document).ready(function(){
     mobileMenuOutsideClick();
@@ -612,6 +635,7 @@ $(document).ready(function(){
     initWishModal();
     initTimelineGallery(); 
     initEngagementGallery(); 
+	initProgrammeImageSwitcher();
 });
 
 })(jQuery);
