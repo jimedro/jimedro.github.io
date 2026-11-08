@@ -628,7 +628,7 @@ var initEngagementGallery = function() {
 		}
 	};
 
-	// Interactive Split Venue Slider & Swipe Handler
+// Interactive Split Venue Slider & Swipe Handler
 var initVenueSplitSection = function() {
     var $container = $('#split-container');
     if ($container.length === 0) return;
@@ -640,25 +640,24 @@ var initVenueSplitSection = function() {
     var $contentRight = $('#content-right');
 
     var isMobile = window.innerWidth <= 768;
-    var currentPos = 50; // percentage
 
     function updateSplit(pos) {
-        currentPos = Math.max(10, Math.min(90, pos));
+        var currentPos = Math.max(10, Math.min(90, pos));
 
         if (isMobile) {
-            // Mobile: 50% initial. Left swipe -> Bellsol full, Right swipe -> Can Marial full
+            // Mobile: 50% initial. Swipe Left -> Gallery on Left full, Swipe Right -> Instructions on Right full
             if (currentPos < 40) {
-                // Swiped Left -> Bellsol Full
-                $left.css('width', '0%');
-                $right.css('width', '100%');
-                $contentLeft.css('opacity', '0').css('pointer-events', 'none');
-                $contentRight.css('opacity', '1').css('pointer-events', 'auto');
-            } else if (currentPos > 60) {
-                // Swiped Right -> Can Marial Full
+                // Swiped Left -> Left Side (Gallery) Full
                 $left.css('width', '100%');
                 $right.css('width', '0%');
                 $contentLeft.css('opacity', '1').css('pointer-events', 'auto');
                 $contentRight.css('opacity', '0').css('pointer-events', 'none');
+            } else if (currentPos > 60) {
+                // Swiped Right -> Right Side (Instructions Box) Full
+                $left.css('width', '0%');
+                $right.css('width', '100%');
+                $contentLeft.css('opacity', '0').css('pointer-events', 'none');
+                $contentRight.css('opacity', '1').css('pointer-events', 'auto');
             } else {
                 // Neutral half/half
                 $left.css('width', '50%');
@@ -671,14 +670,15 @@ var initVenueSplitSection = function() {
             $left.css('width', currentPos + '%');
             $slider.css('left', currentPos + '%');
 
-            // Fade in instructions / gallery when fully revealed
-            if (currentPos >= 85) {
+            // Slide left reveals gallery on the left
+            if (currentPos <= 15) {
                 $contentLeft.css('opacity', '1').css('pointer-events', 'auto');
             } else {
                 $contentLeft.css('opacity', '0').css('pointer-events', 'none');
             }
 
-            if (currentPos <= 15) {
+            // Slide right reveals travel instructions box on the right
+            if (currentPos >= 85) {
                 $contentRight.css('opacity', '1').css('pointer-events', 'auto');
             } else {
                 $contentRight.css('opacity', '0').css('pointer-events', 'none');
@@ -706,7 +706,7 @@ var initVenueSplitSection = function() {
         isDragging = false;
     });
 
-    // Mobile Swipe Gesture Support on the container
+    // Mobile Swipe Gesture Support
     var touchStartX = 0;
     $container.on('touchstart', function(e) {
         touchStartX = e.originalEvent.touches[0].clientX;
@@ -718,16 +718,16 @@ var initVenueSplitSection = function() {
 
         if (Math.abs(diff) > 50) {
             if (diff > 0) {
-                // Swipe Left -> Bellsol (Right Side)
-                updateSplit(20);
+                // Swipe Left -> Show Gallery on Left
+                updateSplit(15);
             } else {
-                // Swipe Right -> Can Marial (Left Side)
-                updateSplit(80);
+                // Swipe Right -> Show Instructions Box on Right
+                updateSplit(85);
             }
         }
     });
 
-    // Bellsol Gallery Modal Logic (bellsol_1.jpg to bellsol_12.jpg)
+    // Bellsol/Gallery Modal Logic (bellsol_1.jpg to bellsol_12.jpg)
     var bellsolIndex = 0;
     var bellsolItems = [];
     for (var i = 1; i <= 12; i++) {
@@ -735,7 +735,7 @@ var initVenueSplitSection = function() {
     }
 
     function renderBellsolItem(idx) {
-        $('#bellsol-gallery-stage').html('<img src="' + bellsolItems[idx] + '" alt="Bellsol photo ' + (idx + 1) + '" style="max-width:100%; max-height:100%; object-fit:contain;">');
+        $('#bellsol-gallery-stage').html('<img src="' + bellsolItems[idx] + '" alt="Venue photo ' + (idx + 1) + '" style="max-width:100%; max-height:100%; object-fit:contain;">');
         $('#bellsol-counter').text((idx + 1) + ' / ' + bellsolItems.length);
     }
 
