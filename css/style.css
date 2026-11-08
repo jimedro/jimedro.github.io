@@ -1930,21 +1930,36 @@ a.pulse-badge {
     top: 0;
     width: 50%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
+    overflow: hidden;
     transition: width 0.3s ease;
 }
 
 .split-left {
     left: 0;
-    background-image: url('../images/backgroundvenue_canmarial_left.jpg');
     z-index: 2;
 }
 
 .split-right {
     right: 0;
-    background-image: url('../images/backgroundvenue_bellsol_right.jpg');
     z-index: 1;
+}
+
+/* Full-width background image anchored to the section container so it doesn't stretch or cut off */
+.split-bg-img {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100vw; /* Matches full container width */
+    max-width: none;
+    object-fit: cover;
+}
+
+.split-left .split-bg-img {
+    left: 0;
+}
+
+.split-right .split-bg-img {
+    right: 0;
 }
 
 /* Desktop Draggable Slider Divider Bar */
@@ -1979,7 +1994,7 @@ a.pulse-badge {
     font-size: 18px;
 }
 
-/* Uncovered Content Overlays */
+/* Uncovered Content Overlays (Box on Right when sliding right, Gallery on Left when sliding left) */
 .split-content-left,
 .split-content-right {
     position: absolute;
@@ -2005,16 +2020,17 @@ a.pulse-badge {
     right: 0;
 }
 
-/* Semi-transparent Travel Instructions Box (Matches "What's the plan?" style) */
+/* Highly Transparent Travel Instructions Box */
 .travel-instructions-box {
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(8px);
-    border: 2px solid rgba(30, 83, 18, 0.4);
+    background: rgba(255, 255, 255, 0.65); /* Highly transparent white */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(30, 83, 18, 0.3);
     border-radius: 12px;
     padding: 30px;
     max-width: 500px;
     width: 100%;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     text-align: left;
     max-height: 85vh;
     overflow-y: auto;
@@ -2040,7 +2056,7 @@ a.pulse-badge {
 
 .travel-section-item p {
     font-size: 14px;
-    color: #555;
+    color: #444;
     margin-bottom: 0;
     line-height: 1.5;
 }
@@ -2059,6 +2075,10 @@ a.pulse-badge {
     transform: scale(1.15);
 }
 
+@keyframes zoomPulseIcon {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
 @keyframes zoomPulseIcon {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.1); }
