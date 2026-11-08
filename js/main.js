@@ -593,28 +593,39 @@ var initEngagementGallery = function() {
     });
 };
 
-// Dynamic Programme Image Switcher (Landscape for Desktop, Portrait for Mobile, Language Aware)
+// Dynamic Programme Image Switcher & Scroll Reveal Effect
 	var initProgrammeImageSwitcher = function() {
 		function updateProgrammeImage() {
-			var lang = (localStorage.getItem("selectedLang") || "EN").toUpperCase(); // Capitalized (EN, ES, FR)
+			var lang = (localStorage.getItem("selectedLang") || "EN").toUpperCase();
 			var isMobile = window.innerWidth <= 768;
 			var orientation = isMobile ? 'portrait' : 'landscape';
 			
-			// Assembles as: images/programme_landscape_EN.jpg
 			var imagePath = 'images/programme_' + orientation + '_' + lang + '.jpg';
-			$('#programme-img').attr('src', imagePath);
+			
+			var $img = $('#programme-img');
+			if ($img.attr('src') !== imagePath) {
+				$img.attr('src', imagePath);
+			}
 		}
 
-		// Run on load and window resize
+		// Run immediately and on resize/flag change
 		updateProgrammeImage();
 		$(window).on('resize', function() {
 			updateProgrammeImage();
 		});
 
-		// Also update immediately when a flag is clicked
 		$(document).on('click', '.flag-btn', function() {
 			setTimeout(updateProgrammeImage, 50);
 		});
+
+		// Scroll reveal trigger (horizontal/vertical section smooth fade-in as you scroll down)
+		if ($('#programme-img').length > 0) {
+			$('#programme-img').waypoint(function(direction) {
+				if (direction === 'down') {
+					$(this.element).addClass('revealed');
+				}
+			}, { offset: '85%' });
+		}
 	};
 	
 $(document).ready(function(){
