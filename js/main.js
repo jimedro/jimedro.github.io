@@ -627,6 +627,145 @@ var initEngagementGallery = function() {
 			}, { offset: '85%' });
 		}
 	};
+
+	// Interactive Split Venue Slider & Swipe Handler
+var initVenueSplitSection = function() {
+    var $container = $('#split-container');
+    if ($container.length === 0) return;
+
+    var $left = $('#split-left');
+    var $right = $('#split-right');
+    var $slider = $('#split-slider');
+    var $contentLeft = $('#content-left');
+    var $contentRight = $('#content-right');
+
+    var isMobile = window.innerWidth <= 768;
+    var currentPos = 50; // percentage
+
+    function updateSplit(pos) {
+        currentPos = Math.max(10, Math.min(90, pos));
+
+        if (isMobile) {
+            // Mobile: 50% initial. Left swipe -> Bellsol full, Right swipe -> Can Marial full
+            if (currentPos < 40) {
+                // Swiped Left -> Bellsol Full
+                $left.css('width', '0%');
+                $right.css('width', '100%');
+                $contentLeft.css('opacity', '0').css('pointer-events', 'none');
+                $contentRight.css('opacity', '1').css('pointer-events', 'auto');
+            } else if (currentPos > 60) {
+                // Swiped Right -> Can Marial Full
+                $left.css('width', '100%');
+                $right.css('width', '0%');
+                $contentLeft.css('opacity', '1').css('pointer-events', 'auto');
+                $contentRight.css('opacity', '0').css('pointer-events', 'none');
+            } else {
+                // Neutral half/half
+                $left.css('width', '50%');
+                $right.css('width', '50%');
+                $contentLeft.css('opacity', '0').css('pointer-events', 'none');
+                $contentRight.css('opacity', '0').css('pointer-events', 'none');
+            }
+        } else {
+            // Desktop Slider Drag
+            $left.css('width', currentPos + '%');
+            $slider.css('left', currentPos + '%');
+
+            // Fade in instructions / gallery when fully revealed
+            if (currentPos >= 85) {
+                $contentLeft.css('opacity', '1').css('pointer-events', 'auto');
+            } else {
+                $contentLeft.css('opacity', '0').css('pointer-events', 'none');
+            }
+
+            if (currentPos <= 15) {
+                $contentRight.css('opacity', '1').css('pointer-events', 'auto');
+            } else {
+                $contentRight.css('opacity', '0').css('pointer-events', 'none');
+            }
+        }
+    }
+
+    // Desktop Mouse Dragging
+    var isDragging = false;
+    $slider.on('mousedown touchstart', function(e) {
+        isDragging = true;
+        e.preventDefault();
+    });
+
+    $(document).on('mousemove touchmove', function(e) {
+        if (!isDragging) return;
+        var clientX = e.clientX || (e.originalEvent.touches && e.originalEvent.touches[0].clientX);
+        var containerOffset = $container.offset().left;
+        var containerWidth = $container.width();
+        var newPos = ((clientX - containerOffset) / containerWidth) * 100;
+        updateSplit(newPos);
+    });
+
+    $(document).on('mouseup touchend', function() {
+        isDragging = false;
+    });
+
+    // Mobile Swipe Gesture Support on the container
+    var touchStartX = 0;
+    $container.on('touchstart', function(e) {
+        touchStartX = e.originalEvent.touches[0].clientX;
+    });
+
+    $container.on('touchend', function(e) {
+        var touchEndX = e.originalEvent.changedTouches[0].clientX;
+        var diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                // Swipe Left -> Bellsol (Right Side)
+                updateSplit(20);
+            } else {
+                // Swipe Right -> Can Marial (Left Side)
+                updateSplit(80);
+            }
+        }
+    });
+
+    // Bellsol Gallery Modal Logic (bellsol_1.jpg to bellsol_12.jpg)
+    var bellsolIndex = 0;
+    var bellsolItems = [];
+    for (var i = 1; i <= 12; i++) {
+        bellsolItems.push('images/bellsol_' + i + '.jpg');
+    }
+
+    function renderBellsolItem(idx) {
+        $('#bellsol-gallery-stage').html('<img src="' + bellsolItems[idx] + '" alt="Bellsol photo ' + (idx + 1) + '" style="max-width:100%; max-height:100%; object-fit:contain;">');
+        $('#bellsol-counter').text((idx + 1) + ' / ' + bellsolItems.length);
+    }
+
+    $(document).on('click', '#bellsol-gallery-trigger', function(e) {
+        e.preventDefault();
+        bellsolIndex = 0;
+        renderBellsolItem(bellsolIndex);
+        $('#bellsol-modal-overlay').addClass('active');
+        $('body').css('overflow', 'hidden');
+    });
+
+    $(document).on('click', '#close-bellsol-modal, #bellsol-modal-overlay', function(e) {
+        if (e.target === this || $(e.target).hasClass('gift-modal-close')) {
+            $('#bellsol-modal-overlay').removeClass('active');
+            $('body').css('overflow', 'auto');
+        }
+    });
+
+    $(document).on('click', '#bellsol-next', function(e) {
+        e.preventDefault();
+        bellsolIndex = (bellsolIndex + 1) % bellsolItems.length;
+        renderBellsolItem(bellsolIndex);
+    });
+
+    $(document).on('click', '#bellsol-prev', function(e) {
+        e.preventDefault();
+        bellsolIndex = (bellsolIndex - 1 + bellsolItems.length) % bellsolItems.length;
+        renderBellsolItem(bellsolIndex);
+    });
+};
 	
 $(document).ready(function(){
     mobileMenuOutsideClick();
