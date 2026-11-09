@@ -533,7 +533,7 @@ var initProgrammeImageSwitcher = function() {
                     var $slice = $(this);
                     setTimeout(function() {
                         $slice.addClass('revealed');
-                    }, index * 90); // Stagger each slice by 90ms for a smooth cascade
+                    }, index * 180); // Stagger each slice by 90ms for a smooth cascade
                 });
             } else if (direction === 'up') {
                 $('#fh5co-venue-programme').removeClass('in-view');
