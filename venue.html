@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]:>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Jimedro is getting married!</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Jimi & Pedro Wedding Website" />
+
+	<link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="css/magnific-popup.css">
+
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css?v=1.47">
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	</head>
+	<body>
+		
+	<div class="fh5co-loader"></div>
+	
+	<div id="page">
+	<nav class="fh5co-nav" role="navigation">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-4">
+					<div id="fh5co-logo"><a href="main.html" data-lang-en="Welcome<br>to our story" data-lang-es="Bienvenidos<br>a nuestra historia" data-lang-fr="Bienvenue<br>dans notre histoire">Welcome<br>to our story</a></div>
+				</div>
+				<div class="col-xs-8 text-right menu-1">
+					<a href="#" class="js-fh5co-nav-toggle nav-dots-btn">
+						<span>•••</span>
+					</a>
+					<ul class="desktop-menu-list">
+						<li><a href="main.html" data-lang-en="home" data-lang-es="inicio" data-lang-fr="accueil">Home</a></li>
+						<li><a href="story.html" data-lang-en="story" data-lang-es="historia" data-lang-fr="histoire">Story</a></li>
+						<li class="active"><a href="venue.html" data-lang-en="event details" data-lang-es="detalles del evento" data-lang-fr="détails de l’événement">Venue & details</a></li>
+						<li><a href="news.html" data-lang-en="news" data-lang-es="noticias" data-lang-fr="nouvelles">News</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<!-- FULL-HEIGHT PARALLAX HEADER -->
+	<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/Cover_venue.jpg);" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1 text-center">
+					<div class="display-t">
+						<div class="display-tc animate-box" data-animate-effect="fadeIn">
+							<h1 class="font-sacramento" style="font-size: 70px;" data-lang-en="Ceremony venue, accommodation<br>and event details" data-lang-es="Lugar de ceremonia, alojamiento<br>y detalles" data-lang-fr="Lieu de cérémonie, hébergement<br>et détails">Ceremony venue, accommodation & event details</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+<!-- SECTION ONE: PROGRAMME & DETAILS -->
+	<div id="fh5co-venue-programme" class="fh5co-section" style="padding: 0; background: #fff; position: relative;">
+		<div class="container-fluid" style="padding: 0;">
+			<div class="row" style="margin: 0;">
+				<div class="col-xs-12 text-center" style="padding: 0; position: relative;">
+					
+					<!-- Programme Sliced Puzzle Container -->
+					<div class="programme-puzzle-wrapper" id="programme-puzzle-container">
+						<script>
+							(function() {
+								var isMob = window.innerWidth <= 768;
+								var orient = isMob ? 'portrait' : 'landscape';
+								var savedL = (localStorage.getItem("selectedLang") || "EN").toUpperCase();
+								var totalSlices = (orient === 'portrait') ? 10 : 8;
+								
+								var html = '';
+								for (var i = 1; i <= totalSlices; i++) {
+									html += '<img src="images/programme_' + orient + '_' + savedL + '_' + i + '.png" alt="Wedding Programme Slice ' + i + '" class="img-responsive center-block programme-slice" style="width: 100%; height: auto; display: block;">';
+								}
+								document.write(html);
+							})();
+						</script>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- SECTION TWO: VENUE COMPARISON & ARRIVAL / GALLERY -->
+	<div id="fh5co-venue-split">
+		<!-- Floating Section Title -->
+		<div class="venue-split-title animate-box" id="venue-split-title">
+			<h2 data-lang-en="More about the venues" data-lang-es="Más sobre los lugares" data-lang-fr="Plus d'infos sur les lieux">More about the venues</h2>
+		</div>
+
+		<div class="split-pane-container" id="split-container">
+			
+			<!-- Left Side: Can Marial -->
+			<div class="split-side split-left" id="split-left">
+				<img src="images/backgroundvenue_canmarial_left.jpg" alt="Can Marial" class="split-bg-img left-bg">
+			</div>
+			<div class="split-content-left" id="content-left">
+				<div style="text-align: center; width: 100%; max-width: 500px;">
+					<!-- Travel Tips Box -->
+					<div class="travel-instructions-box">
+						<h3 class="font-sacramento" style="font-size: 38px;" data-lang-en="Travel tips" data-lang-es="Consejos de viaje" data-lang-fr="Conseils de voyage">Travel tips</h3>
+						
+						<div class="travel-section-item">
+							<h4 data-lang-en="✈️ By Plane" data-lang-es="✈️ En Avión" data-lang-fr="✈️ En Avion">✈️ By Plane</h4>
+							<p data-lang-en="Fly into Barcelona-El Prat Airport (BCN). From there, you can rent a car, take a taxi, or catch regional transit toward the coast." data-lang-es="Vuela al Aeropuerto de Barcelona-El Prat (BCN). Desde allí puedes alquilar un coche, tomar un taxi o coger transporte público hacia la costa." data-lang-fr="Atterrissez à l'aéroport de Barcelone-El Prat (BCN). De là, louez une voiture ou prenez les transports vers la côte.">Fly into Barcelona-El Prat Airport (BCN). From there, you can rent a car, taxi, or transit.</p>
+						</div>
+
+						<div class="travel-section-item">
+							<h4 data-lang-en="🚂 By Train" data-lang-es="🚂 En Tren" data-lang-fr="🚂 En Train">🚂 By Train</h4>
+							<p data-lang-en="Take the R1 commuter train line (Rodalies) from central Barcelona directly up to Pineda de Mar station, enjoying scenic coastal views." data-lang-es="Toma la línea R1 de Cercanías desde el centro de Barcelona directamente hasta la estación de Pineda de Mar disfrutando de vistas a la costa." data-lang-fr="Prenez la ligne de train R1 depuis le centre de Barcelone directement jusqu'à la gare de Pineda de Mar.">Take the R1 commuter train line (Rodalies) from central Barcelona directly up to Pineda de Mar.</p>
+						</div>
+
+						<div class="travel-section-item">
+							<h4 data-lang-en="🚗 By Car" data-lang-es="🚗 En Coche" data-lang-fr="🚗 En Voiture">🚗 By Car</h4>
+							<p data-lang-en="Drive north along the C-32 highway or N-II coastal road from Barcelona. Parking is available directly on-site at the venue." data-lang-es="Conduce hacia el norte por la autopista C-32 o la carretera N-II desde Barcelona. Hay aparcamiento disponible en el recinto." data-lang-fr="Conduisez vers le nord par l'autoroute C-32 ou la route N-II depuis Barcelone. Parking disponible sur place.">Drive north along the C-32 highway or N-II coastal road from Barcelona. Parking available on-site.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Slider Divider Bar -->
+			<div class="split-slider-bar" id="split-slider">
+				<div class="split-slider-handle">↔</div>
+			</div>
+
+			<!-- Center Double Arrow Indicator -->
+			<div class="split-center-indicator" id="split-indicator">↔</div>
+
+			<!-- Right Side: Camping Bellsol -->
+			<div class="split-side split-right" id="split-right">
+				<img src="images/backgroundvenue_bellsol_right.jpg" alt="Camping Bellsol" class="split-bg-img right-bg">
+			</div>
+			<div class="split-content-right" id="content-right">
+				<div style="text-align: center; width: 100%; max-width: 550px;">
+					<!-- Inline Gallery Container with Wrapped Title -->
+					<div class="inline-gallery-container">
+						<h3 class="font-sacramento" style="font-size: 38px; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.8); margin-bottom: 15px;"
+						    data-lang-en="Camping Bellsol Gallery" data-lang-es="Galería Camping Bellsol" data-lang-fr="Galerie Camping Bellsol">Camping Bellsol Gallery</h3>
+						<div class="gallery-media-container" style="height: 300px; max-height: 50vh;">
+							<button class="gallery-nav-btn prev-btn" id="inline-bellsol-prev">&lsaquo;</button>
+							<div id="inline-bellsol-stage" style="width:100%; height:100%; display:flex; justify-content:center; align-items:center;"></div>
+							<button class="gallery-nav-btn next-btn" id="inline-bellsol-next">&rsaquo;</button>
+						</div>
+						<div class="gallery-footer" style="padding-top: 10px;">
+							<span id="inline-bellsol-counter" style="color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.8); font-size: 16px; font-weight: bold;">1 / 12</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+	<!-- jQuery & Plugins -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.countTo.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/magnific-popup-options.js"></script>
+
+	<!-- Main Script -->
+	<script src="js/main.js?v=1.47"></script>
+
+	</body>
+</html>
