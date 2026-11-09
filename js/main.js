@@ -638,12 +638,21 @@ var initVenueSplitSection = function() {
     var $slider = $('#split-slider');
     var $contentLeft = $('#content-left');
     var $contentRight = $('#content-right');
+    var $title = $('#venue-split-title');
 
     var isMobile = window.innerWidth <= 768;
 
     function updateSplit(pos) {
         // Expanded range (3% to 97%) so slider can travel much further
         var currentPos = Math.max(3, Math.min(97, pos));
+
+        // Responsive Title Color: if slider is pushed to the left (< 35%), 
+        // the light Bellsol background dominates, so we add .light-bg to darken the title font
+        if (currentPos < 35) {
+            $title.addClass('light-bg');
+        } else {
+            $title.removeClass('light-bg');
+        }
 
         if (isMobile) {
             if (currentPos < 40) {
