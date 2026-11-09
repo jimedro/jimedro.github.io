@@ -674,7 +674,9 @@ var initVenueSplitSection = function() {
             }
         } else {
             // Desktop Slider Drag
+            var rightWidth = 100 - currentPos;
             $left.css('width', currentPos + '%');
+            $right.css('width', rightWidth + '%');
             $slider.css('left', currentPos + '%');
 
             // Gallery on the left is visible when slider is pushed left (< 35%)
@@ -692,6 +694,9 @@ var initVenueSplitSection = function() {
             }
         }
     }
+
+    // Initialize at 50%
+    updateSplit(50);
 
     // Desktop Mouse Dragging
     var isDragging = false;
