@@ -2171,30 +2171,39 @@ a.pulse-badge {
     transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 1. Make the burger menu button sticky/floating so it travels with you */
+/* =======================================================
+*  1. HENCEFORTH HIDE BURGER ON LAPTOP / SHOW ONLY ON MOBILE
+* ======================================================= */
 .fh5co-nav-toggle {
-  position: fixed !important;
-  right: 20px !important;
-  top: 20px !important;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  width: 50px;
-  background: rgba(0, 0, 0, 0.5) !important; /* Semitransparent dark box */
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border-radius: 12px;
-  z-index: 2001;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.3s ease, transform 0.2s ease;
+  display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+  .fh5co-nav-toggle {
+    display: flex !important;
+    position: fixed !important;
+    right: 0px !important; /* Hugs right edge */
+    top: 15px !important;
+    height: 54px !important;
+    width: 60px !important; /* Wider, bleeding off the screen edge */
+    background: rgba(0, 0, 0, 0.7) !important;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-top-left-radius: 28px;
+    border-bottom-left-radius: 28px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    padding-left: 10px;
+    z-index: 2001;
+    box-shadow: -4px 4px 20px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
 }
 
 .fh5co-nav-toggle:hover {
-  background: rgba(0, 0, 0, 0.7) !important;
-  transform: scale(1.05);
+  background: rgba(0, 0, 0, 0.85) !important;
 }
 
 .fh5co-nav-toggle.active i::before, 
@@ -2225,13 +2234,60 @@ a.pulse-badge {
 .fh5co-nav-toggle i::before { top: -7px; }
 .fh5co-nav-toggle i::after { bottom: -7px; }
 
-/* 2. Tighten line spacing for multi-line menu items */
-#fh5co-offcanvas ul li a {
-  line-height: 1.1 !important;
-  padding: 6px 0 !important;
-}
-.programme-slice.revealed {
-    opacity: 1;
-    transform: translateY(0);
+/* =======================================================
+*  2. FIX PROGRAMME SLICES NOT SHOWING ON LAPTOP
+* ======================================================= */
+.programme-slice {
+  opacity: 1 !important; /* Force visible instantly on all screens */
+  transform: translateY(0) !important;
 }
 
+/* =======================================================
+*  3. MOBILE OFF-CANVAS LINE SPACING & FIX SCROLL JUMP
+* ======================================================= */
+.offcanvas #page {
+  overflow: hidden;
+  position: relative !important; /* Prevents jumping back to top of page */
+}
+
+#fh5co-offcanvas {
+  position: fixed;
+  z-index: 1901;
+  width: 270px;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 45px 40px 40px 40px;
+  overflow-y: auto;
+  transform: translateX(270px);
+  transition: 0.5s;
+}
+
+.offcanvas #fh5co-offcanvas {
+  transform: translateX(0px);
+}
+
+#fh5co-offcanvas ul li {
+  display: block !important;
+  margin-bottom: 15px;
+}
+
+#fh5co-offcanvas ul li a {
+  font-family: "Sacramento", Arial, cursive !important;
+  font-size: 40px !important;
+  font-weight: 400 !important;
+  color: #000 !important;
+  text-transform: lowercase !important;
+  text-align: center;
+  padding: 6px 0 !important;
+  line-height: 1.1 !important; /* Tight line spacing */
+  display: block !important;
+  -webkit-text-stroke: 0px !important;
+}
+
+#fh5co-offcanvas ul li a:hover {
+  color: #1e5312 !important;
+}
