@@ -1936,7 +1936,6 @@ a.pulse-badge {
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-/* When the right side (light background) dominates, darken title font */
 .venue-split-title.light-bg h2 {
     color: #1e5312 !important;
     text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
@@ -1955,8 +1954,7 @@ a.pulse-badge {
     width: 100%;
     height: 100%;
     z-index: 5;
-    pointer-events: none;
-    user-select: none;
+    user-select: none; /* Removed pointer-events: none so mobile touch works */
 }
 
 .split-side {
@@ -1965,25 +1963,27 @@ a.pulse-badge {
     height: 100%;
     overflow: hidden;
     pointer-events: auto;
+    transition: width 0.1s ease-out;
 }
 
 .split-left {
     left: 0;
+    width: 50%; /* Default fallback so background shows instantly */
     z-index: 2;
 }
 
 .split-right {
     right: 0;
+    width: 50%; /* Default fallback so background shows instantly */
     z-index: 1;
 }
 
-/* Background Images Contained & Clipped inside Panes */
+/* Background Images */
 .split-bg-img {
     position: absolute;
     top: 0;
-    left: 0;
     height: 100%;
-    width: 100%;
+    width: 100vw;
     object-fit: cover;
 }
 
@@ -2113,49 +2113,21 @@ a.pulse-badge {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.1); }
 }
-@keyframes zoomPulseIcon {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
 
-/* Hide desktop slider bar and handle on mobile phones */
 @media screen and (max-width: 768px) {
     .split-slider-bar {
         display: none !important;
     }
-}
-
-/* Adapted Mobile Position & Size for Travel Instructions Box */
-@media screen and (max-width: 768px) {
     .split-content-left,
     .split-content-right {
         padding: 15px !important;
         justify-content: center !important;
         align-items: center !important;
     }
-
     .travel-instructions-box {
         max-width: 92% !important;
         max-height: 75vh !important;
         padding: 20px 15px !important;
         margin: 0 auto !important;
-    }
-
-    .travel-instructions-box h3 {
-        font-size: 22px !important;
-        margin-bottom: 12px !important;
-    }
-
-    .travel-section-item {
-        margin-bottom: 10px !important;
-    }
-
-    .travel-section-item h4 {
-        font-size: 15px !important;
-    }
-
-    .travel-section-item p {
-        font-size: 13px !important;
-        line-height: 1.4 !important;
     }
 }
