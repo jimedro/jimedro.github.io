@@ -667,13 +667,18 @@ var initVenueSplitSection = function() {
     });
 };
 
-// Engagement Gallery Modal Handler
+// Engagement Gallery Modal Handler (Video + Pictures 1 to 31)
 var initEngagementGallery = function() {
-    // Array of your engagement gallery media (images / videos)
-    var engagementItems = [
-        'images/jimedro_jun26.jpg',
-        // Add more engagement gallery photos/videos here as needed
-    ];
+    var engagementItems = [];
+    
+    // 1. First item: engagement video
+    engagementItems.push('images/engagement_video.mp4');
+
+    // 2. Subsequent items: engagement pictures 1 to 31
+    for (var i = 1; i <= 31; i++) {
+        engagementItems.push('images/engagement_pic' + i + '.jpg');
+    }
+
     var currentIndex = 0;
 
     function renderEngagementItem(idx) {
@@ -683,7 +688,7 @@ var initEngagementGallery = function() {
         if (isVideo) {
             html = '<video src="' + src + '" controls autoplay style="max-width:100%; max-height:100%; object-fit:contain;"></video>';
         } else {
-            html = '<img src="' + src + '" alt="Engagement photo ' + (idx + 1) + '" style="max-width:100%; max-height:100%; object-fit:contain;">';
+            html = '<img src="' + src + '" alt="Engagement photo ' + idx + '" style="max-width:100%; max-height:100%; object-fit:contain;">';
         }
         $('#gallery-stage').html(html);
         $('#gallery-counter').text((idx + 1) + ' / ' + engagementItems.length);
@@ -701,7 +706,7 @@ var initEngagementGallery = function() {
     $(document).on('click', '#close-engagement-modal, #engagement-modal-overlay', function(e) {
         if (e.target === this || $(e.target).attr('id') === 'close-engagement-modal' || $(e.target).attr('id') === 'engagement-modal-overlay') {
             $('#engagement-modal-overlay').removeClass('active');
-            $('#gallery-stage').html(''); // Stop any playing video
+            $('#gallery-stage').html(''); // Stop video playback
         }
     });
 
