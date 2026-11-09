@@ -2118,3 +2118,45 @@ a.pulse-badge {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.1); }
 }
+
+/* Hide desktop slider bar and handle on mobile phones */
+@media screen and (max-width: 768px) {
+    .split-slider-bar {
+        display: none !important;
+    }
+}
+
+/* Adapted Mobile Position & Size for Travel Instructions Box */
+@media screen and (max-width: 768px) {
+    .split-content-left,
+    .split-content-right {
+        padding: 15px !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .travel-instructions-box {
+        max-width: 92% !important;
+        max-height: 75vh !important;
+        padding: 20px 15px !important;
+        margin: 0 auto !important;
+    }
+
+    .travel-instructions-box h3 {
+        font-size: 22px !important;
+        margin-bottom: 12px !important;
+    }
+
+    .travel-section-item {
+        margin-bottom: 10px !important;
+    }
+
+    .travel-section-item h4 {
+        font-size: 15px !important;
+    }
+
+    .travel-section-item p {
+        font-size: 13px !important;
+        line-height: 1.4 !important;
+    }
+}
