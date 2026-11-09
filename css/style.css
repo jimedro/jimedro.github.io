@@ -1937,7 +1937,7 @@ a.pulse-badge {
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-/* When the right side (light background) is revealed, change title color to dark green for readability */
+/* When the right side (light background) dominates, darken title font */
 .venue-split-title.light-bg h2 {
     color: #1e5312 !important;
     text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
@@ -1969,19 +1969,33 @@ a.pulse-badge {
 .split-left {
     left: 0;
     z-index: 2;
-    background-image: url('../images/backgroundvenue_canmarial_left.jpg');
-    background-size: cover;
-    background-position: left center;
-    background-repeat: no-repeat;
 }
 
 .split-right {
     right: 0;
     z-index: 1;
-    background-image: url('../images/backgroundvenue_bellsol_right.jpg');
-    background-size: cover;
-    background-position: right center;
-    background-repeat: no-repeat;
+}
+
+/* Symmetrical Panoramic Image Uncovering Setup */
+.split-bg-img {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100vw; /* Spans the full width of the section container */
+    max-width: none;
+    object-fit: cover;
+}
+
+/* Left image anchored to the left side */
+.split-left .split-bg-img {
+    left: 0;
+    right: auto;
+}
+
+/* Right image anchored to the right side so sliding left uncovers its left half */
+.split-right .split-bg-img {
+    right: 0;
+    left: auto;
 }
 
 /* Desktop Draggable Slider Divider Bar */
