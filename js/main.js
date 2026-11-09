@@ -544,8 +544,8 @@ var initVenueSplitSection = function() {
         $contentLeft.css('width', currentPos + '%');
         $contentRight.css('width', rightWidth + '%');
 
-        // Title turns green only when Can Marial (right side / light background) is revealed (currentPos >= 65)
-        if (currentPos >= (100 - revealThreshold)) {
+        // Title turns green when sliding left (revealing Bellsol / light-bg on the right side)
+        if (currentPos <= revealThreshold) {
             $title.addClass('light-bg');
         } else {
             $title.removeClass('light-bg');
