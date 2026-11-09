@@ -2301,6 +2301,11 @@ a.pulse-badge {
   -webkit-text-stroke: 0px !important;
 }
 
+.news-floating-btn-link:hover img {
+  transform: scale(1.03);
+  box-shadow: 0 14px 35px rgba(0,0,0,0.4) !important;
+}
+
 #fh5co-offcanvas ul li a:hover {
   color: #1e5312 !important;
 }
