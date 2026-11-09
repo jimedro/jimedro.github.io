@@ -2156,3 +2156,22 @@ a.pulse-badge {
         padding: 15px !important;
     }
 }
+
+/* --- Programme Sliced Puzzle Scroll Reveal Effect --- */
+.programme-puzzle-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.programme-slice {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.programme-slice.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
