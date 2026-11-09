@@ -484,158 +484,25 @@ var initTimelineGallery = function() {
     }
 };
 	
-// Interactive Split Venue Slider & Swipe Handler
-var initVenueSplitSection = function() {
-    var $container = $('#split-container');
-    if ($container.length === 0) return;
+// Dynamic Programme Image Switcher & Scroll Reveal Effect
+	var initProgrammeImageSwitcher = function() {
+		function updateProgrammeImage() {
+			var lang = (localStorage.getItem("selectedLang") || "EN").toUpperCase();
+			var isMobile = window.innerWidth <= 768;
+			var orientation = isMobile ? 'portrait' : 'landscape';
+			
+			var imagePath = 'images/programme_' + orientation + '_' + lang + '.jpg';
+			
+			var $img = $('#programme-img');
+			if ($img.attr('src') !== imagePath) {
+				$img.attr('src', imagePath);
+			}
+		}
 
-    var $left = $('#split-left');
-    var $right = $('#split-right');
-    var $slider = $('#split-slider');
-    var $contentLeft = $('#content-left');
-    var $contentRight = $('#content-right');
-    var $title = $('#venue-split-title');
-
-    var isMobile = window.innerWidth <= 768;
-
-    function updateSplit(pos) {
-        var currentPos = Math.max(3, Math.min(97, pos));
-        var threshold = 40;
-
-        // Title color transition
-        if (currentPos < threshold) {
-            $title.addClass('light-bg');
-        } else {
-            $title.removeClass('light-bg');
-        }
-
-        if (isMobile) {
-            if (currentPos < threshold) {
-                // Swipe Left -> Show Gallery on Left Full
-                $left.css('width', '100%');
-                $right.css('width', '0%');
-                $contentLeft.css('width', '100%').css('opacity', '1').css('pointer-events', 'auto');
-                $contentRight.css('opacity', '0').css('pointer-events', 'none');
-            } else if (currentPos > (100 - threshold)) {
-                // Swipe Right -> Show Instructions Box on Right Full
-                $left.css('width', '0%');
-                $right.css('width', '100%');
-                $contentLeft.css('opacity', '0').css('pointer-events', 'none');
-                $contentRight.css('width', '100%').css('opacity', '1').css('pointer-events', 'auto');
-            } else {
-                // Neutral state (initial view)
-                $left.css('width', '50%');
-                $right.css('width', '50%');
-                $contentLeft.css('opacity', '0').css('pointer-events', 'none');
-                $contentRight.css('opacity', '0').css('pointer-events', 'none');
-            }
-        } else {
-            // Desktop Slider Drag
-            var rightWidth = 100 - currentPos;
-            $left.css('width', currentPos + '%');
-            $right.css('width', rightWidth + '%');
-            $slider.css('left', currentPos + '%');
-            
-            $contentLeft.css('width', currentPos + '%');
-            $contentRight.css('width', rightWidth + '%');
-
-            if (currentPos <= threshold) {
-                $contentLeft.css('opacity', '1').css('pointer-events', 'auto');
-            } else {
-                $contentLeft.css('opacity', '0').css('pointer-events', 'none');
-            }
-
-            if (currentPos >= (100 - threshold)) {
-                $contentRight.css('opacity', '1').css('pointer-events', 'auto');
-            } else {
-                $contentRight.css('opacity', '0').css('pointer-events', 'none');
-            }
-        }
-    }
-
-    // Initialize at 50%
-    updateSplit(50);
-
-    // Desktop Mouse Dragging
-    var isDragging = false;
-    $slider.on('mousedown', function(e) {
-        isDragging = true;
-        e.preventDefault();
-    });
-
-    $(document).on('mousemove', function(e) {
-        if (!isDragging || isMobile) return;
-        var clientX = e.clientX;
-        var containerOffset = $container.offset().left;
-        var containerWidth = $container.width();
-        var newPos = ((clientX - containerOffset) / containerWidth) * 100;
-        updateSplit(newPos);
-    });
-
-    $(document).on('mouseup', function() {
-        isDragging = false;
-    });
-
-    // Mobile Swipe Gesture Support
-    var touchStartX = 0;
-    $container.on('touchstart', function(e) {
-        touchStartX = e.originalEvent.touches[0].clientX;
-    });
-
-    $container.on('touchend', function(e) {
-        var touchEndX = e.originalEvent.changedTouches[0].clientX;
-        var diff = touchStartX - touchEndX;
-
-        if (Math.abs(diff) > 40) {
-            if (diff > 0) {
-                // Swiped Left -> Reveal Left (Gallery)
-                updateSplit(10);
-            } else {
-                // Swiped Right -> Reveal Right (Instructions)
-                updateSplit(90);
-            }
-        }
-    });
-
-    // Bellsol/Gallery Modal Logic
-    var bellsolIndex = 0;
-    var bellsolItems = [];
-    for (var i = 1; i <= 12; i++) {
-        bellsolItems.push('images/bellsol_' + i + '.jpg');
-    }
-
-    function renderBellsolItem(idx) {
-        $('#bellsol-gallery-stage').html('<img src="' + bellsolItems[idx] + '" alt="Venue photo ' + (idx + 1) + '" style="max-width:100%; max-height:100%; object-fit:contain;">');
-        $('#bellsol-counter').text((idx + 1) + ' / ' + bellsolItems.length);
-    }
-
-    $(document).on('click', '#bellsol-gallery-trigger', function(e) {
-        e.preventDefault();
-        bellsolIndex = 0;
-        renderBellsolItem(bellsolIndex);
-        $('#bellsol-modal-overlay').addClass('active');
-        $('body').css('overflow', 'hidden');
-    });
-
-    $(document).on('click', '#close-bellsol-modal, #bellsol-modal-overlay', function(e) {
-        if (e.target === this || $(e.target).hasClass('gift-modal-close')) {
-            $('#bellsol-modal-overlay').removeClass('active');
-            $('body').css('overflow', 'auto');
-        }
-    });
-
-    $(document).on('click', '#bellsol-next', function(e) {
-        e.preventDefault();
-        bellsolIndex = (bellsolIndex + 1) % bellsolItems.length;
-        renderBellsolItem(bellsolIndex);
-    });
-
-    $(document).on('click', '#bellsol-prev', function(e) {
-        e.preventDefault();
-        bellsolIndex = (bellsolIndex - 1 + bellsolItems.length) % bellsolItems.length;
-        renderBellsolItem(bellsolIndex);
-    });
-};			updateProgrammeImage();
+		// Run immediately and on resize/flag change
+		updateProgrammeImage();
+		$(window).on('resize', function() {
+			updateProgrammeImage();
 		});
 
 		$(document).on('click', '.flag-btn', function() {
