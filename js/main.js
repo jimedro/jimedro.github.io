@@ -501,9 +501,15 @@ var initProgrammeImageSwitcher = function() {
         }
         $container.html(html);
 
-        // Re-apply reveal state if already in view
-        if ($container.hasClass('in-view')) {
-            $container.find('.programme-slice').addClass('revealed');
+        // Immediately reveal if the section is already visible in the viewport on load/resize
+        var $section = $('#fh5co-venue-programme');
+        if ($section.length > 0) {
+            var elementTop = $section.offset().top;
+            var viewportBottom = $(window).scrollTop() + $(window).height();
+            if (elementTop < viewportBottom) {
+                $section.addClass('in-view');
+                $section.find('.programme-slice').addClass('revealed');
+            }
         }
     }
 
