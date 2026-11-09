@@ -531,13 +531,11 @@ var initVenueSplitSection = function() {
     var $contentRight = $('#content-right');
     var $title = $('#venue-split-title');
 
-    var isMobile = window.innerWidth <= 768;
-
     function updateSplit(pos) {
-        var currentPos = Math.max(3, Math.min(97, pos));
+        var currentPos = Math.max(5, Math.min(95, pos));
+        var isMobile = window.innerWidth <= 768;
         var threshold = 40;
 
-        // Title color transition
         if (currentPos < threshold) {
             $title.addClass('light-bg');
         } else {
@@ -546,26 +544,25 @@ var initVenueSplitSection = function() {
 
         if (isMobile) {
             if (currentPos < threshold) {
-                // Swipe Left -> Show Gallery on Left Full
+                // Show Left (Gallery)
                 $left.css('width', '100%');
                 $right.css('width', '0%');
-                $contentLeft.css('width', '100%').css('opacity', '1').css('pointer-events', 'auto');
-                $contentRight.css('opacity', '0').css('pointer-events', 'none');
+                $contentLeft.css({'width': '100%', 'opacity': '1', 'pointer-events': 'auto'});
+                $contentRight.css({'opacity': '0', 'pointer-events': 'none'});
             } else if (currentPos > (100 - threshold)) {
-                // Swipe Right -> Show Instructions Box on Right Full
+                // Show Right (Instructions)
                 $left.css('width', '0%');
                 $right.css('width', '100%');
-                $contentLeft.css('opacity', '0').css('pointer-events', 'none');
-                $contentRight.css('width', '100%').css('opacity', '1').css('pointer-events', 'auto');
+                $contentLeft.css({'opacity': '0', 'pointer-events': 'none'});
+                $contentRight.css({'width': '100%', 'opacity': '1', 'pointer-events': 'auto'});
             } else {
-                // Neutral state (initial view)
+                // Neutral 50/50
                 $left.css('width', '50%');
                 $right.css('width', '50%');
-                $contentLeft.css('opacity', '0').css('pointer-events', 'none');
-                $contentRight.css('opacity', '0').css('pointer-events', 'none');
+                $contentLeft.css({'opacity': '0', 'pointer-events': 'none'});
+                $contentRight.css({'opacity': '0', 'pointer-events': 'none'});
             }
         } else {
-            // Desktop Slider Drag
             var rightWidth = 100 - currentPos;
             $left.css('width', currentPos + '%');
             $right.css('width', rightWidth + '%');
@@ -575,15 +572,15 @@ var initVenueSplitSection = function() {
             $contentRight.css('width', rightWidth + '%');
 
             if (currentPos <= threshold) {
-                $contentLeft.css('opacity', '1').css('pointer-events', 'auto');
+                $contentLeft.css({'opacity': '1', 'pointer-events': 'auto'});
             } else {
-                $contentLeft.css('opacity', '0').css('pointer-events', 'none');
+                $contentLeft.css({'opacity': '0', 'pointer-events': 'none'});
             }
 
             if (currentPos >= (100 - threshold)) {
-                $contentRight.css('opacity', '1').css('pointer-events', 'auto');
+                $contentRight.css({'opacity': '1', 'pointer-events': 'auto'});
             } else {
-                $contentRight.css('opacity', '0').css('pointer-events', 'none');
+                $contentRight.css({'opacity': '0', 'pointer-events': 'none'});
             }
         }
     }
@@ -591,27 +588,28 @@ var initVenueSplitSection = function() {
     // Initialize at 50%
     updateSplit(50);
 
-    // Desktop Mouse Dragging
+    // Desktop Dragging
     var isDragging = false;
-    $slider.on('mousedown', function(e) {
+    $slider.on('mousedown touchstart', function(e) {
         isDragging = true;
         e.preventDefault();
     });
 
-    $(document).on('mousemove', function(e) {
-        if (!isDragging || isMobile) return;
-        var clientX = e.clientX;
+    $(document).on('mousemove touchmove', function(e) {
+        if (!isDragging) return;
+        var clientX = e.clientX || (e.originalEvent.touches && e.originalEvent.touches[0].clientX);
+        if (!clientX) return;
         var containerOffset = $container.offset().left;
         var containerWidth = $container.width();
         var newPos = ((clientX - containerOffset) / containerWidth) * 100;
         updateSplit(newPos);
     });
 
-    $(document).on('mouseup', function() {
+    $(document).on('mouseup touchend', function() {
         isDragging = false;
     });
 
-    // Mobile Swipe Gesture Support
+    // Mobile Tap / Swipe Quick Switch Handler
     var touchStartX = 0;
     $container.on('touchstart', function(e) {
         touchStartX = e.originalEvent.touches[0].clientX;
@@ -621,18 +619,16 @@ var initVenueSplitSection = function() {
         var touchEndX = e.originalEvent.changedTouches[0].clientX;
         var diff = touchStartX - touchEndX;
 
-        if (Math.abs(diff) > 40) {
+        if (Math.abs(diff) > 30) {
             if (diff > 0) {
-                // Swiped Left -> Reveal Left (Gallery)
-                updateSplit(10);
+                updateSplit(15); // Swipe Left -> Open Gallery
             } else {
-                // Swiped Right -> Reveal Right (Instructions)
-                updateSplit(90);
+                updateSplit(85); // Swipe Right -> Open Instructions
             }
         }
     });
 
-    // Bellsol/Gallery Modal Logic
+    // Gallery Modal Logic
     var bellsolIndex = 0;
     var bellsolItems = [];
     for (var i = 1; i <= 12; i++) {
