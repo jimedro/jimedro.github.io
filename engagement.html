@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jimedro is getting married!</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- LAYER 1: The Language Flags -->
+    <div id="flag-selection">
+        <div class="flags-container">
+            <button class="flag-btn" data-lang="FR">
+                <img src="images/flagFR.png" alt="French">
+            </button>
+            <button class="flag-btn" data-lang="ES">
+                <img src="images/flagES.png" alt="Spanish">
+            </button>
+            <button class="flag-btn" data-lang="EN">
+                <img src="images/flagUK.png" alt="English">
+            </button>
+        </div>
+    </div>
+
+    <!-- LAYER 2: Background Image Veil -->
+    <div id="intro-veil"></div>
+        
+    <!-- LAYER 3: Background Video -->
+    <div id="video-container">
+        <video id="wedding-video" playsinline preload="auto">
+            Your browser does not support the video tag.
+        </video>
+        <button id="skip-btn">Skip intro ➔</button>
+    </div>
+    
+    <!-- LAYER 4: Template Loader / Something Else Screen & Buttons -->
+    <div id="intro-loader">
+        <div id="something-else-message"></div>
+        <div id="choice-container">
+            <button class="choice-btn" id="yes-btn">
+                <img src="images/YES.svg" alt="Yes">
+            </button>
+            <button class="choice-btn" id="no-btn">
+                <img src="images/NO.svg" alt="No">
+            </button>
+        </div>
+        <div id="joke-message"></div>
+    </div>
+
+    <!-- LAYER 5: Second Video Layer (Venues) -->
+    <div id="venues-video-container">
+        <video id="venues-video" playsinline preload="auto">
+            <source src="images/videovenues.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button id="skip-venues-btn">Skip ➔</button>
+    </div>
+
+    <script src="js/intro.js"></script>
+</body>
+</html>
