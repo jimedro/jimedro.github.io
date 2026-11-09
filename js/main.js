@@ -534,14 +534,9 @@ var initVenueSplitSection = function() {
     function updateSplit(pos) {
         var currentPos = Math.max(5, Math.min(95, pos));
         var isMobile = window.innerWidth <= 768;
-        var hideThresholdLow = 40;
-        var hideThresholdHigh = 60;
-
-        if (currentPos < hideThresholdLow) {
-            $title.addClass('light-bg');
-        } else {
-            $title.removeClass('light-bg');
-        }
+        
+        // Thresholds for revealing contents
+        var revealThreshold = 35; // When slider is moved past 65% right (exposing Bellsol) or 35% left (exposing Can Marial)
 
         if (isMobile) {
             if (currentPos < 45) {
@@ -550,18 +545,21 @@ var initVenueSplitSection = function() {
                 $right.css('width', '0%');
                 $contentLeft.css({'opacity': '1', 'pointer-events': 'auto'});
                 $contentRight.css({'opacity': '0', 'pointer-events': 'none'});
+                $title.addClass('light-bg');
             } else if (currentPos > 55) {
                 // Show Right (Bellsol / Gallery) Full
                 $left.css('width', '0%');
                 $right.css('width', '100%');
                 $contentLeft.css({'opacity': '0', 'pointer-events': 'none'});
                 $contentRight.css({'opacity': '1', 'pointer-events': 'auto'});
+                $title.removeClass('light-bg');
             } else {
-                // Neutral 50/50 starting state on mobile: hide both icons until swiped
+                // Neutral 50/50 starting state on mobile
                 $left.css('width', '50%');
                 $right.css('width', '50%');
                 $contentLeft.css({'opacity': '0', 'pointer-events': 'none'});
                 $contentRight.css({'opacity': '0', 'pointer-events': 'none'});
+                $title.removeClass('light-bg');
             }
         } else {
             // Desktop Split Layout
@@ -573,13 +571,18 @@ var initVenueSplitSection = function() {
             $contentLeft.css('width', currentPos + '%');
             $contentRight.css('width', rightWidth + '%');
 
-            if (currentPos <= hideThresholdLow) {
+            // Correct Desktop Reveal Logic:
+            // - Left side (Can Marial / Instructions): Fades IN as slider moves LEFT (currentPos < revealThreshold)
+            // - Right side (Bellsol / Gallery): Fades IN as slider moves RIGHT (rightWidth < revealThreshold -> currentPos > (100 - revealThreshold))
+            if (currentPos <= revealThreshold) {
                 $contentLeft.css({'opacity': '1', 'pointer-events': 'auto'});
+                $title.addClass('light-bg');
             } else {
                 $contentLeft.css({'opacity': '0', 'pointer-events': 'none'});
+                $title.removeClass('light-bg');
             }
 
-            if (currentPos >= (100 - hideThresholdHigh)) {
+            if (currentPos >= (100 - revealThreshold)) {
                 $contentRight.css({'opacity': '1', 'pointer-events': 'auto'});
             } else {
                 $contentRight.css({'opacity': '0', 'pointer-events': 'none'});
@@ -587,7 +590,7 @@ var initVenueSplitSection = function() {
         }
     }
 
-    // Initialize at 50% on both desktop and mobile
+    // Initialize at exact 50% split on both desktop and mobile
     updateSplit(50);
 
     // Desktop Mouse Dragging & Click-to-Jump
@@ -624,8 +627,10 @@ var initVenueSplitSection = function() {
         isDragging = false;
     });
 
-    // Mobile Touch / Swipe Gesture Support
+    // Mobile Touch / Swipe Gesture Support (Robust 3-state tracking: Left, Center, Right)
     var touchStartX = 0;
+    var currentMobileState = 50; // Starts at 50%
+
     $container.on('touchstart', function(e) {
         touchStartX = e.originalEvent.touches[0].clientX;
     });
@@ -635,12 +640,15 @@ var initVenueSplitSection = function() {
         var touchEndX = e.originalEvent.changedTouches[0].clientX;
         var diff = touchStartX - touchEndX;
 
-        if (Math.abs(diff) > 30) {
+        if (Math.abs(diff) > 25) {
             if (diff > 0) {
-                updateSplit(10); // Swipe Left -> Reveal Left Can Marial & Compass
+                // Swipe Left -> Reveal Right Side (Bellsol / Gallery)
+                currentMobileState = 90;
             } else {
-                updateSplit(90); // Swipe Right -> Reveal Right Bellsol & Gallery
+                // Swipe Right -> Reveal Left Side (Can Marial / Instructions)
+                currentMobileState = 10;
             }
+            updateSplit(currentMobileState);
         }
     });
 
