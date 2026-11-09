@@ -643,11 +643,9 @@ var initVenueSplitSection = function() {
     var isMobile = window.innerWidth <= 768;
 
     function updateSplit(pos) {
-        // Expanded range (3% to 97%) so slider can travel much further
         var currentPos = Math.max(3, Math.min(97, pos));
 
-        // Responsive Title Color: if slider is pushed to the left (< 35%), 
-        // the light Bellsol background dominates, so we add .light-bg to darken the title font
+        // Responsive Title Color & Content Visibility Thresholds
         if (currentPos < 35) {
             $title.addClass('light-bg');
         } else {
@@ -659,39 +657,35 @@ var initVenueSplitSection = function() {
                 // Swiped Left -> Left Side (Gallery) Full
                 $left.css('width', '100%');
                 $right.css('width', '0%');
-                $contentLeft.css('width', '100%').css('opacity', '1').css('pointer-events', 'auto');
-                $contentRight.css('width', '0%').css('opacity', '0').css('pointer-events', 'none');
+                $contentLeft.css('opacity', '1').css('pointer-events', 'auto');
+                $contentRight.css('opacity', '0').css('pointer-events', 'none');
             } else if (currentPos > 60) {
                 // Swiped Right -> Right Side (Instructions Box) Full
                 $left.css('width', '0%');
                 $right.css('width', '100%');
-                $contentLeft.css('width', '0%').css('opacity', '0').css('pointer-events', 'none');
-                $contentRight.css('width', '100%').css('opacity', '1').css('pointer-events', 'auto');
+                $contentLeft.css('opacity', '0').css('pointer-events', 'none');
+                $contentRight.css('opacity', '1').css('pointer-events', 'auto');
             } else {
                 // Neutral half/half
                 $left.css('width', '50%');
                 $right.css('width', '50%');
-                $contentLeft.css('width', '50%').css('opacity', '0').css('pointer-events', 'none');
-                $contentRight.css('width', '50%').css('opacity', '0').css('pointer-events', 'none');
+                $contentLeft.css('opacity', '0').css('pointer-events', 'none');
+                $contentRight.css('opacity', '0').css('pointer-events', 'none');
             }
         } else {
-            // Desktop Slider Drag (Full width tracking)
-            var rightWidth = 100 - currentPos;
+            // Desktop Slider Drag
             $left.css('width', currentPos + '%');
-            $right.css('width', rightWidth + '%');
-            $contentLeft.css('width', currentPos + '%');
-            $contentRight.css('width', rightWidth + '%');
             $slider.css('left', currentPos + '%');
 
-            // Slide left reveals gallery on the left when pushed past 18%
-            if (currentPos <= 18) {
+            // Gallery on the left is visible when slider is pushed left (< 35%)
+            if (currentPos <= 35) {
                 $contentLeft.css('opacity', '1').css('pointer-events', 'auto');
             } else {
                 $contentLeft.css('opacity', '0').css('pointer-events', 'none');
             }
 
-            // Slide right reveals travel instructions box on the right when pushed past 82%
-            if (currentPos >= 82) {
+            // Travel instructions on the right are visible when slider is pushed right (> 65%)
+            if (currentPos >= 65) {
                 $contentRight.css('opacity', '1').css('pointer-events', 'auto');
             } else {
                 $contentRight.css('opacity', '0').css('pointer-events', 'none');
