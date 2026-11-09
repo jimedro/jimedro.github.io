@@ -606,10 +606,22 @@ var initVenueSplitSection = function() {
 
     // Bellsol Inline Gallery Logic
     var bellsolIndex = 0;
-    var bellsolItems = [];
-    for (var i = 1; i <= 12; i++) {
-        bellsolItems.push('images/bellsol_' + i + '.jpg');
-    }
+    var bellsolItems = [
+        'images/bellsol_0.jpg',
+		'images/bellsol_01.jpg',
+        'images/bellsol_1.jpg',
+        'images/bellsol_2.jpg',
+        'images/bellsol_3.jpg',
+        'images/bellsol_4.jpg',
+        'images/bellsol_5.jpg',
+        'images/bellsol_6.jpg',
+        'images/bellsol_7.jpg',
+        'images/bellsol_8.jpg',
+        'images/bellsol_9.jpg',
+        'images/bellsol_10.jpg',
+        'images/bellsol_11.jpg',
+        'images/bellsol_12.jpg'
+    ];
 
     function renderInlineBellsolItem(idx) {
         $('#inline-bellsol-stage').html('<img src="' + bellsolItems[idx] + '" alt="Venue photo ' + (idx + 1) + '" style="max-width:100%; max-height:100%; object-fit:contain;">');
