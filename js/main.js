@@ -642,24 +642,26 @@ var initVenueSplitSection = function() {
 
     var isMobile = window.innerWidth <= 768;
 
-    function updateSplit(pos) {
+   function updateSplit(pos) {
         var currentPos = Math.max(3, Math.min(97, pos));
 
-        // Responsive Title Color & Content Visibility Thresholds
-        if (currentPos < 35) {
+        // Unified threshold for left/right content and title color (using 40% for smoother interaction)
+        var threshold = 40;
+
+        if (currentPos < threshold) {
             $title.addClass('light-bg');
         } else {
             $title.removeClass('light-bg');
         }
 
         if (isMobile) {
-            if (currentPos < 40) {
+            if (currentPos < threshold) {
                 // Swiped Left -> Left Side (Gallery) Full
                 $left.css('width', '100%');
                 $right.css('width', '0%');
                 $contentLeft.css('opacity', '1').css('pointer-events', 'auto');
                 $contentRight.css('opacity', '0').css('pointer-events', 'none');
-            } else if (currentPos > 60) {
+            } else if (currentPos > (100 - threshold)) {
                 // Swiped Right -> Right Side (Instructions Box) Full
                 $left.css('width', '0%');
                 $right.css('width', '100%');
@@ -679,22 +681,22 @@ var initVenueSplitSection = function() {
             $right.css('width', rightWidth + '%');
             $slider.css('left', currentPos + '%');
 
-            // Gallery on the left is visible when slider is pushed left (< 35%)
-            if (currentPos <= 35) {
+            // Gallery on the left is visible when slider is pushed left (< threshold)
+            if (currentPos <= threshold) {
                 $contentLeft.css('opacity', '1').css('pointer-events', 'auto');
             } else {
                 $contentLeft.css('opacity', '0').css('pointer-events', 'none');
             }
 
-            // Travel instructions on the right are visible when slider is pushed right (> 65%)
-            if (currentPos >= 65) {
+            // Travel instructions on the right are visible when slider is pushed right (> 100 - threshold)
+            if (currentPos >= (100 - threshold)) {
                 $contentRight.css('opacity', '1').css('pointer-events', 'auto');
             } else {
                 $contentRight.css('opacity', '0').css('pointer-events', 'none');
             }
         }
     }
-
+	
     // Initialize at 50%
     updateSplit(50);
 
