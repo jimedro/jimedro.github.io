@@ -666,6 +666,58 @@ var initVenueSplitSection = function() {
         renderInlineBellsolItem(bellsolIndex);
     });
 };
+
+// Engagement Gallery Modal Handler
+var initEngagementGallery = function() {
+    // Array of your engagement gallery media (images / videos)
+    var engagementItems = [
+        'images/jimedro_jun26.jpg',
+        // Add more engagement gallery photos/videos here as needed
+    ];
+    var currentIndex = 0;
+
+    function renderEngagementItem(idx) {
+        var src = engagementItems[idx];
+        var isVideo = src.endsWith('.mp4') || src.endsWith('.webm');
+        var html = '';
+        if (isVideo) {
+            html = '<video src="' + src + '" controls autoplay style="max-width:100%; max-height:100%; object-fit:contain;"></video>';
+        } else {
+            html = '<img src="' + src + '" alt="Engagement photo ' + (idx + 1) + '" style="max-width:100%; max-height:100%; object-fit:contain;">';
+        }
+        $('#gallery-stage').html(html);
+        $('#gallery-counter').text((idx + 1) + ' / ' + engagementItems.length);
+    }
+
+    // Trigger open modal when clicking the June 2026 badge
+    $(document).on('click', '#engagement-trigger', function(e) {
+        e.preventDefault();
+        currentIndex = 0;
+        renderEngagementItem(currentIndex);
+        $('#engagement-modal-overlay').addClass('active');
+    });
+
+    // Close modal handlers
+    $(document).on('click', '#close-engagement-modal, #engagement-modal-overlay', function(e) {
+        if (e.target === this || $(e.target).attr('id') === 'close-engagement-modal' || $(e.target).attr('id') === 'engagement-modal-overlay') {
+            $('#engagement-modal-overlay').removeClass('active');
+            $('#gallery-stage').html(''); // Stop any playing video
+        }
+    });
+
+    // Next / Prev Navigation
+    $(document).on('click', '#gallery-next', function(e) {
+        e.preventDefault();
+        currentIndex = (currentIndex + 1) % engagementItems.length;
+        renderEngagementItem(currentIndex);
+    });
+
+    $(document).on('click', '#gallery-prev', function(e) {
+        e.preventDefault();
+        currentIndex = (currentIndex - 1 + engagementItems.length) % engagementItems.length;
+        renderEngagementItem(currentIndex);
+    });
+};
 	
 $(document).ready(function(){
     mobileMenuOutsideClick();
@@ -685,6 +737,7 @@ $(document).ready(function(){
     initGiftModal();
     initWishModal();
     initTimelineGallery(); 
+	initEngagementGallery();
 	initProgrammeImageSwitcher();
 	initVenueSplitSection();
 });
