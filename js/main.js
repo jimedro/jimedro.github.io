@@ -674,12 +674,13 @@ var initVenueSplitSection = function() {
                 $contentLeft.css('opacity', '0').css('pointer-events', 'none');
                 $contentRight.css('opacity', '0').css('pointer-events', 'none');
             }
-        } else {
+       } else {
             // Desktop Slider Drag (Full width tracking)
             $left.css('width', currentPos + '%');
+            $right.css('width', (100 - currentPos) + '%'); // Add this line here
             $slider.css('left', currentPos + '%');
 
-            // Slide left reveals gallery on the left when pushed past 18%
+                       // Slide left reveals gallery on the left when pushed past 18%
             if (currentPos <= 18) {
                 $contentLeft.css('opacity', '1').css('pointer-events', 'auto');
             } else {
