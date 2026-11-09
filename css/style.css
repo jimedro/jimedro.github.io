@@ -1899,7 +1899,6 @@ a.pulse-badge {
     opacity: 1;
     transform: translateY(0);
 }
-
 /* =======================================================
 *  VENUE COMPARISON / SPLIT SECTION (CAN MARIAL vs BELLSOL)
 * ======================================================= */
@@ -1970,31 +1969,19 @@ a.pulse-badge {
 .split-left {
     left: 0;
     z-index: 2;
+    background-image: url('../images/backgroundvenue_canmarial_left.jpg');
+    background-size: cover;
+    background-position: left center;
+    background-repeat: no-repeat;
 }
 
 .split-right {
     right: 0;
     z-index: 1;
-}
-
-/* Seamless Background Images anchored to container dimensions */
-.split-bg-img {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 100vw; /* Matches full viewport/container width so it never cuts off or shows black */
-    max-width: none;
-    object-fit: cover;
-}
-
-.split-left .split-bg-img {
-    left: 0;
-}
-
-/* Right background image anchored to the right side of the container */
-.split-right .split-bg-img.right-bg-img {
-    right: 0;
-    left: auto;
+    background-image: url('../images/backgroundvenue_bellsol_right.jpg');
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
 }
 
 /* Desktop Draggable Slider Divider Bar */
