@@ -28,7 +28,7 @@
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css?v=1.46">
+	<link rel="stylesheet" href="css/style.css?v=1.47">
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -82,20 +82,24 @@
 
 <!-- SECTION ONE: PROGRAMME & DETAILS -->
 	<div id="fh5co-venue-programme" class="fh5co-section" style="padding: 0; background: #fff; position: relative;">
-		
 		<div class="container-fluid" style="padding: 0;">
 			<div class="row" style="margin: 0;">
 				<div class="col-xs-12 text-center" style="padding: 0; position: relative;">
 					
-					<!-- Programme Image Container with Scroll-Fade Effect -->
-					<div class="programme-image-wrapper">
+					<!-- Programme Sliced Puzzle Container -->
+					<div class="programme-puzzle-wrapper" id="programme-puzzle-container">
 						<script>
-							// Instant check before render to prevent mobile flash
 							(function() {
 								var isMob = window.innerWidth <= 768;
 								var orient = isMob ? 'portrait' : 'landscape';
 								var savedL = (localStorage.getItem("selectedLang") || "EN").toUpperCase();
-								document.write('<img id="programme-img" src="images/programme_' + orient + '_' + savedL + '.jpg" alt="Wedding Programme" class="img-responsive center-block" style="width: 100%; height: auto; display: block;">');
+								var totalSlices = (orient === 'portrait') ? 10 : 8;
+								
+								var html = '';
+								for (var i = 1; i <= totalSlices; i++) {
+									html += '<img src="images/programme_' + orient + '_' + savedL + '_' + i + '.png" alt="Wedding Programme Slice ' + i + '" class="img-responsive center-block programme-slice" style="width: 100%; height: auto; display: block;">';
+								}
+								document.write(html);
 							})();
 						</script>
 					</div>
@@ -187,7 +191,7 @@
 	<script src="js/magnific-popup-options.js"></script>
 
 	<!-- Main Script -->
-	<script src="js/main.js?v=1.46"></script>
+	<script src="js/main.js?v=1.47"></script>
 
 	</body>
 </html>
