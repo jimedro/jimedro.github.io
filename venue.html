@@ -119,73 +119,60 @@
 				<img src="images/backgroundvenue_canmarial_left.jpg" alt="Can Marial" class="split-bg-img left-bg">
 			</div>
 			<div class="split-content-left" id="content-left">
-				<div style="text-align: center;">
-					<h3 class="font-sacramento" style="font-size: 38px; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.8); margin-bottom: 20px;"
-					    data-lang-en="Travel tips" data-lang-es="Consejos de viaje" data-lang-fr="Conseils de voyage">Travel tips</h3>
-					<!-- Compass Icon for Travel Tips -->
-					<img src="images/compass.png" alt="Travel Tips" id="travel-modal-trigger" class="gallery-trigger-icon">
+				<div style="text-align: center; width: 100%; max-width: 500px;">
+					<!-- Travel Tips Box -->
+					<div class="travel-instructions-box">
+						<h3 class="font-sacramento" data-lang-en="Travel tips" data-lang-es="Consejos de viaje" data-lang-fr="Conseils de voyage">Travel tips</h3>
+						
+						<div class="travel-section-item">
+							<h4 data-lang-en="✈️ By Plane" data-lang-es="✈️ En Avión" data-lang-fr="✈️ En Avion">✈️ By Plane</h4>
+							<p data-lang-en="Fly into Barcelona-El Prat Airport (BCN). From there, you can rent a car, take a taxi, or catch regional transit toward the coast." data-lang-es="Vuela al Aeropuerto de Barcelona-El Prat (BCN). Desde allí puedes alquilar un coche, tomar un taxi o coger transporte público hacia la costa." data-lang-fr="Atterrissez à l'aéroport de Barcelone-El Prat (BCN). De là, louez une voiture ou prenez les transports vers la côte.">Fly into Barcelona-El Prat Airport (BCN). From there, you can rent a car, taxi, or transit.</p>
+						</div>
+
+						<div class="travel-section-item">
+							<h4 data-lang-en="🚂 By Train" data-lang-es="🚂 En Tren" data-lang-fr="🚂 En Train">🚂 By Train</h4>
+							<p data-lang-en="Take the R1 commuter train line (Rodalies) from central Barcelona directly up to Pineda de Mar station, enjoying scenic coastal views." data-lang-es="Toma la línea R1 de Cercanías desde el centro de Barcelona directamente hasta la estación de Pineda de Mar disfrutando de vistas a la costa." data-lang-fr="Prenez la ligne de train R1 depuis le centre de Barcelone directement jusqu'à la gare de Pineda de Mar.">Take the R1 commuter train line (Rodalies) from central Barcelona directly up to Pineda de Mar.</p>
+						</div>
+
+						<div class="travel-section-item">
+							<h4 data-lang-en="🚗 By Car" data-lang-es="🚗 En Coche" data-lang-fr="🚗 En Voiture">🚗 By Car</h4>
+							<p data-lang-en="Drive north along the C-32 highway or N-II coastal road from Barcelona. Parking is available directly on-site at the venue." data-lang-es="Conduce hacia el norte por la autopista C-32 o la carretera N-II desde Barcelona. Hay aparcamiento disponible en el recinto." data-lang-fr="Conduisez vers le nord par l'autoroute C-32 ou la route N-II depuis Barcelone. Parking disponible sur place.">Drive north along the C-32 highway or N-II coastal road from Barcelona. Parking available on-site.</p>
+						</div>
+					</div>
 				</div>
 			</div>
 
-			<!-- Slider Divider Bar (Desktop) -->
+			<!-- Slider Divider Bar -->
 			<div class="split-slider-bar" id="split-slider">
 				<div class="split-slider-handle">↔</div>
 			</div>
+
+			<!-- Center Double Arrow Indicator -->
+			<div class="split-center-indicator" id="split-indicator">↔</div>
 
 			<!-- Right Side: Camping Bellsol -->
 			<div class="split-side split-right" id="split-right">
 				<img src="images/backgroundvenue_bellsol_right.jpg" alt="Camping Bellsol" class="split-bg-img right-bg">
 			</div>
 			<div class="split-content-right" id="content-right">
-				<div style="text-align: center;">
-					<h3 class="font-sacramento" style="font-size: 38px; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.8); margin-bottom: 20px;"
+				<div style="text-align: center; width: 100%; max-width: 550px;">
+					<h3 class="font-sacramento" style="font-size: 38px; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.8); margin-bottom: 15px;"
 					    data-lang-en="Camping Bellsol Gallery" data-lang-es="Galería Camping Bellsol" data-lang-fr="Galerie Camping Bellsol">Camping Bellsol Gallery</h3>
-					<!-- Gallery Icon -->
-					<img src="images/galleryicon.png" alt="Open Gallery" id="bellsol-gallery-trigger" class="gallery-trigger-icon">
+					<!-- Inline Gallery Container -->
+					<div class="inline-gallery-container">
+						<div class="gallery-media-container" style="height: 300px; max-height: 50vh;">
+							<button class="gallery-nav-btn prev-btn" id="inline-bellsol-prev">&lsaquo;</button>
+							<div id="inline-bellsol-stage" style="width:100%; height:100%; display:flex; justify-content:center; align-items:center;"></div>
+							<button class="gallery-nav-btn next-btn" id="inline-bellsol-next">&rsaquo;</button>
+						</div>
+						<div class="gallery-footer" style="padding-top: 10px;">
+							<span id="inline-bellsol-counter" style="color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.8); font-size: 16px; font-weight: bold;">1 / 12</span>
+						</div>
+					</div>
 				</div>
 			</div>
 
 		</div>
-	</div>
-
-	<!-- TRAVEL TIPS MODAL OVERLAY -->
-	<div id="travel-modal-overlay" class="gift-modal-overlay">
-	    <div class="engagement-gallery-card" style="height: auto; max-height: 85vh; padding: 35px 25px; text-align: left;">
-	        <button type="button" class="gift-modal-close" id="close-travel-modal">&times;</button>
-	        <div style="overflow-y: auto; max-height: 70vh; padding-right: 5px;">
-	            <h3 class="font-sacramento" style="font-size: 32px; color: #1e5312; text-align: center; margin-bottom: 20px;" data-lang-en="Travel tips" data-lang-es="Consejos de viaje" data-lang-fr="Conseils de voyage">Travel tips</h3>
-	            
-	            <div class="travel-section-item" style="margin-bottom: 20px;">
-	                <h4 style="font-size: 18px; color: #000; font-weight: bold; margin-bottom: 5px;" data-lang-en="✈️ By Plane" data-lang-es="✈️ En Avión" data-lang-fr="✈️ En Avion">✈️ By Plane</h4>
-	                <p style="font-size: 14px; color: #444; line-height: 1.5;" data-lang-en="Fly into Barcelona-El Prat Airport (BCN). From there, you can rent a car, take a taxi, or catch regional transit toward the coast." data-lang-es="Vuela al Aeropuerto de Barcelona-El Prat (BCN). Desde allí puedes alquilar un coche, tomar un taxi o coger transporte público hacia la costa." data-lang-fr="Atterrissez à l'aéroport de Barcelone-El Prat (BCN). De là, louez une voiture ou prenez les transports vers la côte.">Fly into Barcelona-El Prat Airport (BCN). From there, you can rent a car, taxi, or transit.</p>
-	            </div>
-
-	            <div class="travel-section-item" style="margin-bottom: 20px;">
-	                <h4 style="font-size: 18px; color: #000; font-weight: bold; margin-bottom: 5px;" data-lang-en="🚂 By Train" data-lang-es="🚂 En Tren" data-lang-fr="🚂 En Train">🚂 By Train</h4>
-	                <p style="font-size: 14px; color: #444; line-height: 1.5;" data-lang-en="Take the R1 commuter train line (Rodalies) from central Barcelona directly up to Pineda de Mar station, enjoying scenic coastal views." data-lang-es="Toma la línea R1 de Cercanías desde el centro de Barcelona directamente hasta la estación de Pineda de Mar disfrutando de vistas a la costa." data-lang-fr="Prenez la ligne de train R1 depuis le centre de Barcelone directement jusqu'à la gare de Pineda de Mar.">Take the R1 commuter train line (Rodalies) from central Barcelona directly up to Pineda de Mar.</p>
-	            </div>
-
-	            <div class="travel-section-item">
-	                <h4 style="font-size: 18px; color: #000; font-weight: bold; margin-bottom: 5px;" data-lang-en="🚗 By Car" data-lang-es="🚗 En Coche" data-lang-fr="🚗 En Voiture">🚗 By Car</h4>
-	                <p style="font-size: 14px; color: #444; line-height: 1.5;" data-lang-en="Drive north along the C-32 highway or N-II coastal road from Barcelona. Parking is available directly on-site at the venue." data-lang-es="Conduce hacia el norte por la autopista C-32 o la carretera N-II desde Barcelona. Hay aparcamiento disponible en el recinto." data-lang-fr="Conduisez vers le nord par l'autoroute C-32 ou la route N-II depuis Barcelone. Parking disponible sur place.">Drive north along the C-32 highway or N-II coastal road from Barcelona. Parking available on-site.</p>
-	            </div>
-	        </div>
-	    </div>
-	</div>
-
-	<!-- BELLSOL GALLERY MODAL OVERLAY -->
-	<div id="bellsol-modal-overlay" class="gift-modal-overlay">
-	    <div class="engagement-gallery-card">
-	        <button type="button" class="gift-modal-close" id="close-bellsol-modal">&times;</button>
-	        <div class="gallery-media-container">
-	            <button class="gallery-nav-btn prev-btn" id="bellsol-prev">&lsaquo;</button>
-	            <div id="bellsol-gallery-stage"></div>
-	            <button class="gallery-nav-btn next-btn" id="bellsol-next">&rsaquo;</button>
-	        </div>
-	        <div class="gallery-footer">
-	            <span id="bellsol-counter">1 / 12</span>
-	        </div>
-	    </div>
 	</div>
 	
 	<!-- jQuery & Plugins -->
