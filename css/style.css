@@ -1965,7 +1965,6 @@ a.pulse-badge {
     height: 100%;
     overflow: hidden;
     pointer-events: auto;
-    transition: width 0.1s ease-out;
 }
 
 .split-left {
@@ -1982,8 +1981,9 @@ a.pulse-badge {
 .split-bg-img {
     position: absolute;
     top: 0;
+    left: 0;
     height: 100%;
-    width: 100vw;
+    width: 100%;
     object-fit: cover;
 }
 
