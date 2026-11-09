@@ -1916,24 +1916,6 @@ a.pulse-badge {
     }
 }
 
-/* Fixed Full-Section Background Images */
-.split-bg-fixed {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 100vw;
-    object-fit: cover;
-    z-index: 1;
-}
-
-.left-bg {
-    left: 0;
-}
-
-.right-bg {
-    right: 0;
-}
-
 /* Floating Title on Top of the Section with Responsive Color Transition */
 .venue-split-title {
     position: absolute;
@@ -1995,6 +1977,23 @@ a.pulse-badge {
 .split-right {
     right: 0;
     z-index: 1;
+}
+
+/* Background Images Contained & Clipped inside Panes */
+.split-bg-img {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100vw;
+    object-fit: cover;
+}
+
+.left-bg {
+    left: 0;
+}
+
+.right-bg {
+    right: 0;
 }
 
 /* Desktop Draggable Slider Divider Bar */
@@ -2111,6 +2110,10 @@ a.pulse-badge {
     transform: scale(1.15);
 }
 
+@keyframes zoomPulseIcon {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
 @keyframes zoomPulseIcon {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.1); }
