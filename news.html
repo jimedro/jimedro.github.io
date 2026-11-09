@@ -28,7 +28,7 @@
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css?v=1.52">
+	<link rel="stylesheet" href="css/style.css?v=1.54">
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -36,6 +36,20 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+
+	<style>
+		/* Mobile side padding for news section */
+		@media screen and (max-width: 768px) {
+			.news-container-col {
+				padding-left: 25px !important;
+				padding-right: 25px !important;
+			}
+			.news-img-btn {
+				width: 100% !important;
+				height: auto !important;
+			}
+		}
+	</style>
 
 	</head>
 	<body>
@@ -84,7 +98,8 @@
 	<div id="fh5co-news-section" class="fh5co-section" style="background: #fff; padding: 7em 0;">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-left" style="padding-left: 0; padding-right: 0;">
+				<div class="col-md-8 col-md-offset-2 col-xs-12 text-left news-container-col" style="padding-left: 0; padding-right: 0;">
+					
 					<!-- Update Card Item: RSVP -->
 					<div class="news-update-card animate-box" style="margin-bottom: 50px;">
 						<h2 class="font-sacramento" style="font-size: 40px; color: #1e5312; margin-bottom: 10px; text-align: left;"
@@ -92,17 +107,17 @@
 						
 						<p style="font-size: 18px; color: #666; margin-bottom: 25px; text-align: left;"
 						   data-lang-en="Please fill up the RSVP below by May 1st, we are waiting for you 🍹"
-						   data-lang-es="Por favor, rellena confirma to asistencia antes de Mayo, te esperamos 🍹"
+						   data-lang-es="Por favor, confirma tu asistencia antes del 1 de mayo, te esperamos 🍹"
 						   data-lang-fr="Veuillez remplir le RSVP ci-dessous avant le 1er mai, nous vous attendons 🍹">
 						   Please fill up the RSVP below by May 1st, we are waiting for you 🍹
 						</p>
 
 						<!-- Floating Image Button Link -->
-						<a href="maintenance.html" class="news-floating-btn-link" style="display: inline-block; position: relative;">
+						<a href="maintenance.html" class="news-floating-btn-link" style="display: inline-block; position: relative; width: 100%;">
 							<!-- Laptop Image Button -->
 							<img src="images/news_RSVP_laptop.png" alt="RSVP" class="img-responsive hidden-xs news-img-btn" style="border: 2px solid #000; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: transform 0.3s ease, box-shadow 0.3s ease;">
 							<!-- Phone Image Button -->
-							<img src="images/news_RSVP_phone.png" alt="RSVP" class="img-responsive visible-xs-inline-block news-img-btn" style="border: 2px solid #000; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+							<img src="images/news_RSVP_phone.png" alt="RSVP" class="img-responsive visible-xs-inline-block news-img-btn" style="border: 2px solid #000; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: transform 0.3s ease, box-shadow: 0.3s ease; width: 100%;">
 						</a>
 					</div>
 
@@ -119,11 +134,11 @@
 						</p>
 
 						<!-- Floating Image Button Link -->
-						<a href="engagement.html" class="news-floating-btn-link" style="display: inline-block; position: relative;">
+						<a href="engagement.html" class="news-floating-btn-link" style="display: inline-block; position: relative; width: 100%;">
 							<!-- Laptop Image Button -->
 							<img src="images/news_engagement_laptop.png" alt="Engagement Announcement" class="img-responsive hidden-xs news-img-btn" style="border: 2px solid #000; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: transform 0.3s ease, box-shadow 0.3s ease;">
 							<!-- Phone Image Button -->
-							<img src="images/news_engagement_phone.png" alt="Engagement Announcement" class="img-responsive visible-xs-inline-block news-img-btn" style="border: 2px solid #000; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+							<img src="images/news_engagement_phone.png" alt="Engagement Announcement" class="img-responsive visible-xs-inline-block news-img-btn" style="border: 2px solid #000; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: transform 0.3s ease, box-shadow: 0.3s ease; width: 100%;">
 						</a>
 					</div>
 
@@ -131,6 +146,17 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- FOOTER -->
+	<footer id="fh5co-footer" role="contentinfo" style="background: #f7f9f6; padding: 40px 0;">
+		<div class="container">
+			<div class="row copyright">
+				<div class="col-md-12 text-center">
+					<p><small class="block">&copy; 2027 Jimi &amp; Pedro. All Rights Reserved.</small></p>
+				</div>
+			</div>
+		</div>
+	</footer>
 
 	</div>
 
@@ -150,7 +176,7 @@
 	<script src="js/magnific-popup-options.js"></script>
 
 	<!-- Main Script -->
-	<script src="js/main.js?v=1.52"></script>
+	<script src="js/main.js?v=1.54"></script>
 
 	</body>
 </html>
