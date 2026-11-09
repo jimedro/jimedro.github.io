@@ -659,28 +659,31 @@ var initVenueSplitSection = function() {
                 // Swiped Left -> Left Side (Gallery) Full
                 $left.css('width', '100%');
                 $right.css('width', '0%');
-                $contentLeft.css('opacity', '1').css('pointer-events', 'auto');
-                $contentRight.css('opacity', '0').css('pointer-events', 'none');
+                $contentLeft.css('width', '100%').css('opacity', '1').css('pointer-events', 'auto');
+                $contentRight.css('width', '0%').css('opacity', '0').css('pointer-events', 'none');
             } else if (currentPos > 60) {
                 // Swiped Right -> Right Side (Instructions Box) Full
                 $left.css('width', '0%');
                 $right.css('width', '100%');
-                $contentLeft.css('opacity', '0').css('pointer-events', 'none');
-                $contentRight.css('opacity', '1').css('pointer-events', 'auto');
+                $contentLeft.css('width', '0%').css('opacity', '0').css('pointer-events', 'none');
+                $contentRight.css('width', '100%').css('opacity', '1').css('pointer-events', 'auto');
             } else {
                 // Neutral half/half
                 $left.css('width', '50%');
                 $right.css('width', '50%');
-                $contentLeft.css('opacity', '0').css('pointer-events', 'none');
-                $contentRight.css('opacity', '0').css('pointer-events', 'none');
+                $contentLeft.css('width', '50%').css('opacity', '0').css('pointer-events', 'none');
+                $contentRight.css('width', '50%').css('opacity', '0').css('pointer-events', 'none');
             }
-       } else {
+        } else {
             // Desktop Slider Drag (Full width tracking)
+            var rightWidth = 100 - currentPos;
             $left.css('width', currentPos + '%');
-            $right.css('width', (100 - currentPos) + '%'); // Add this line here
+            $right.css('width', rightWidth + '%');
+            $contentLeft.css('width', currentPos + '%');
+            $contentRight.css('width', rightWidth + '%');
             $slider.css('left', currentPos + '%');
 
-                       // Slide left reveals gallery on the left when pushed past 18%
+            // Slide left reveals gallery on the left when pushed past 18%
             if (currentPos <= 18) {
                 $contentLeft.css('opacity', '1').css('pointer-events', 'auto');
             } else {
