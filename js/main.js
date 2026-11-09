@@ -530,77 +530,56 @@ var initVenueSplitSection = function() {
     var $contentLeft = $('#content-left');
     var $contentRight = $('#content-right');
     var $title = $('#venue-split-title');
+    var $indicator = $('#split-indicator');
 
     function updateSplit(pos) {
         var currentPos = Math.max(5, Math.min(95, pos));
-        var isMobile = window.innerWidth <= 768;
-        var revealThreshold = 35; // Threshold for content reveal
+        var revealThreshold = 35; // Threshold for full view unlock
+        var rightWidth = 100 - currentPos;
 
-        if (isMobile) {
-            if (currentPos < 45) {
-                // Show Left (Can Marial / Travel Tips) Full
-                $left.css('width', '100%');
-                $right.css('width', '0%');
-                $contentLeft.css({'opacity': '1', 'pointer-events': 'auto'});
-                $contentRight.css({'opacity': '0', 'pointer-events': 'none'});
-                $title.addClass('light-bg');
-            } else if (currentPos > 55) {
-                // Show Right (Bellsol / Gallery) Full
-                $left.css('width', '0%');
-                $right.css('width', '100%');
-                $contentLeft.css({'opacity': '0', 'pointer-events': 'none'});
-                $contentRight.css({'opacity': '1', 'pointer-events': 'auto'});
-                $title.removeClass('light-bg');
-            } else {
-                // Neutral 50/50 starting state on mobile
-                $left.css('width', '50%');
-                $right.css('width', '50%');
-                $contentLeft.css({'opacity': '0', 'pointer-events': 'none'});
-                $contentRight.css({'opacity': '0', 'pointer-events': 'none'});
-                $title.removeClass('light-bg');
-            }
+        $left.css('width', currentPos + '%');
+        $right.css('width', rightWidth + '%');
+        $slider.css('left', currentPos + '%');
+        
+        $contentLeft.css('width', currentPos + '%');
+        $contentRight.css('width', rightWidth + '%');
+
+        // Title turns green only when Can Marial (right side / light background) is revealed (currentPos >= 65)
+        if (currentPos >= (100 - revealThreshold)) {
+            $title.addClass('light-bg');
         } else {
-            // Desktop Split Layout
-            var rightWidth = 100 - currentPos;
-            $left.css('width', currentPos + '%');
-            $right.css('width', rightWidth + '%');
-            $slider.css('left', currentPos + '%');
-            
-            $contentLeft.css('width', currentPos + '%');
-            $contentRight.css('width', rightWidth + '%');
+            $title.removeClass('light-bg');
+        }
 
-            // Correct Desktop Reveal Logic:
-            // - Left side (Can Marial / Travel Tips): Fades IN when sliding RIGHT (currentPos >= (100 - revealThreshold))
-            // - Right side (Bellsol / Gallery): Fades IN when sliding LEFT (currentPos <= revealThreshold)
-            if (currentPos >= (100 - revealThreshold)) {
-                $contentLeft.css({'opacity': '1', 'pointer-events': 'auto'});
-                $title.addClass('light-bg');
-            } else {
-                $contentLeft.css({'opacity': '0', 'pointer-events': 'none'});
-                $title.removeClass('light-bg');
-            }
+        // Content reveal logic
+        if (currentPos >= (100 - revealThreshold)) {
+            $contentLeft.css({'opacity': '1', 'pointer-events': 'auto'});
+        } else {
+            $contentLeft.css({'opacity': '0', 'pointer-events': 'none'});
+        }
 
-            if (currentPos <= revealThreshold) {
-                $contentRight.css({'opacity': '1', 'pointer-events': 'auto'});
-            } else {
-                $contentRight.css({'opacity': '0', 'pointer-events': 'none'});
-            }
+        if (currentPos <= revealThreshold) {
+            $contentRight.css({'opacity': '1', 'pointer-events': 'auto'});
+        } else {
+            $contentRight.css({'opacity': '0', 'pointer-events': 'none'});
+        }
+
+        // Center indicator fade out when fully unlocked, visible near center (40% to 60%)
+        if (currentPos > 40 && currentPos < 60) {
+            $indicator.removeClass('fade-out');
+        } else {
+            $indicator.addClass('fade-out');
         }
     }
 
-    // Initialize at exact 50% split on both desktop and mobile
+    // Initialize at exact 50% split
     updateSplit(50);
 
-    // Desktop Mouse Dragging & Click-to-Jump
+    // Smooth Dragging & Touch/Mouse Support
     var isDragging = false;
 
-    $slider.on('mousedown touchstart', function(e) {
-        isDragging = true;
-        e.preventDefault();
-    });
-
     $container.on('mousedown touchstart', function(e) {
-        if ($(e.target).closest('.travel-instructions-box, .gallery-trigger-icon').length > 0) return;
+        if ($(e.target).closest('.travel-instructions-box, .inline-gallery-container, button').length > 0) return;
         isDragging = true;
         var clientX = e.clientX || (e.originalEvent.touches && e.originalEvent.touches[0].clientX);
         if (clientX) {
@@ -625,78 +604,30 @@ var initVenueSplitSection = function() {
         isDragging = false;
     });
 
-    // Mobile Touch / Swipe Gesture Support
-    var touchStartX = 0;
-
-    $container.on('touchstart', function(e) {
-        touchStartX = e.originalEvent.touches[0].clientX;
-    });
-
-    $container.on('touchend', function(e) {
-        if (window.innerWidth > 768) return;
-        var touchEndX = e.originalEvent.changedTouches[0].clientX;
-        var diff = touchStartX - touchEndX;
-
-        if (Math.abs(diff) > 25) {
-            if (diff > 0) {
-                updateSplit(90); // Swipe Left -> Reveal Right Side (Bellsol / Gallery)
-            } else {
-                updateSplit(10); // Swipe Right -> Reveal Left Side (Can Marial / Travel Tips)
-            }
-        }
-    });
-
-    // Travel Tips Modal Logic (Compass Icon)
-    $(document).on('click', '#travel-modal-trigger', function(e) {
-        e.preventDefault();
-        $('#travel-modal-overlay').addClass('active');
-        $('body').css('overflow', 'hidden');
-    });
-
-    $(document).on('click', '#close-travel-modal, #travel-modal-overlay', function(e) {
-        if (e.target === this || $(e.target).hasClass('gift-modal-close')) {
-            $('#travel-modal-overlay').removeClass('active');
-            $('body').css('overflow', 'auto');
-        }
-    });
-
-    // Bellsol Gallery Modal Logic
+    // Bellsol Inline Gallery Logic
     var bellsolIndex = 0;
     var bellsolItems = [];
     for (var i = 1; i <= 12; i++) {
         bellsolItems.push('images/bellsol_' + i + '.jpg');
     }
 
-    function renderBellsolItem(idx) {
-        $('#bellsol-gallery-stage').html('<img src="' + bellsolItems[idx] + '" alt="Venue photo ' + (idx + 1) + '" style="max-width:100%; max-height:100%; object-fit:contain;">');
-        $('#bellsol-counter').text((idx + 1) + ' / ' + bellsolItems.length);
+    function renderInlineBellsolItem(idx) {
+        $('#inline-bellsol-stage').html('<img src="' + bellsolItems[idx] + '" alt="Venue photo ' + (idx + 1) + '" style="max-width:100%; max-height:100%; object-fit:contain;">');
+        $('#inline-bellsol-counter').text((idx + 1) + ' / ' + bellsolItems.length);
     }
 
-    $(document).on('click', '#bellsol-gallery-trigger', function(e) {
-        e.preventDefault();
-        bellsolIndex = 0;
-        renderBellsolItem(bellsolIndex);
-        $('#bellsol-modal-overlay').addClass('active');
-        $('body').css('overflow', 'hidden');
-    });
+    renderInlineBellsolItem(0);
 
-    $(document).on('click', '#close-bellsol-modal, #bellsol-modal-overlay', function(e) {
-        if (e.target === this || $(e.target).hasClass('gift-modal-close')) {
-            $('#bellsol-modal-overlay').removeClass('active');
-            $('body').css('overflow', 'auto');
-        }
-    });
-
-    $(document).on('click', '#bellsol-next', function(e) {
+    $(document).on('click', '#inline-bellsol-next', function(e) {
         e.preventDefault();
         bellsolIndex = (bellsolIndex + 1) % bellsolItems.length;
-        renderBellsolItem(bellsolIndex);
+        renderInlineBellsolItem(bellsolIndex);
     });
 
-    $(document).on('click', '#bellsol-prev', function(e) {
+    $(document).on('click', '#inline-bellsol-prev', function(e) {
         e.preventDefault();
         bellsolIndex = (bellsolIndex - 1 + bellsolItems.length) % bellsolItems.length;
-        renderBellsolItem(bellsolIndex);
+        renderInlineBellsolItem(bellsolIndex);
     });
 };
 	
