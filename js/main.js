@@ -534,13 +534,11 @@ var initVenueSplitSection = function() {
     function updateSplit(pos) {
         var currentPos = Math.max(5, Math.min(95, pos));
         var isMobile = window.innerWidth <= 768;
-        
-        // Thresholds for revealing contents
-        var revealThreshold = 35; // When slider is moved past 65% right (exposing Bellsol) or 35% left (exposing Can Marial)
+        var revealThreshold = 35; // Threshold for content reveal
 
         if (isMobile) {
             if (currentPos < 45) {
-                // Show Left (Can Marial / Instructions) Full
+                // Show Left (Can Marial / Travel Tips) Full
                 $left.css('width', '100%');
                 $right.css('width', '0%');
                 $contentLeft.css({'opacity': '1', 'pointer-events': 'auto'});
@@ -572,9 +570,9 @@ var initVenueSplitSection = function() {
             $contentRight.css('width', rightWidth + '%');
 
             // Correct Desktop Reveal Logic:
-            // - Left side (Can Marial / Instructions): Fades IN as slider moves LEFT (currentPos < revealThreshold)
-            // - Right side (Bellsol / Gallery): Fades IN as slider moves RIGHT (rightWidth < revealThreshold -> currentPos > (100 - revealThreshold))
-            if (currentPos <= revealThreshold) {
+            // - Left side (Can Marial / Travel Tips): Fades IN when sliding RIGHT (currentPos >= (100 - revealThreshold))
+            // - Right side (Bellsol / Gallery): Fades IN when sliding LEFT (currentPos <= revealThreshold)
+            if (currentPos >= (100 - revealThreshold)) {
                 $contentLeft.css({'opacity': '1', 'pointer-events': 'auto'});
                 $title.addClass('light-bg');
             } else {
@@ -582,7 +580,7 @@ var initVenueSplitSection = function() {
                 $title.removeClass('light-bg');
             }
 
-            if (currentPos >= (100 - revealThreshold)) {
+            if (currentPos <= revealThreshold) {
                 $contentRight.css({'opacity': '1', 'pointer-events': 'auto'});
             } else {
                 $contentRight.css({'opacity': '0', 'pointer-events': 'none'});
@@ -627,9 +625,8 @@ var initVenueSplitSection = function() {
         isDragging = false;
     });
 
-    // Mobile Touch / Swipe Gesture Support (Robust 3-state tracking: Left, Center, Right)
+    // Mobile Touch / Swipe Gesture Support
     var touchStartX = 0;
-    var currentMobileState = 50; // Starts at 50%
 
     $container.on('touchstart', function(e) {
         touchStartX = e.originalEvent.touches[0].clientX;
@@ -642,17 +639,14 @@ var initVenueSplitSection = function() {
 
         if (Math.abs(diff) > 25) {
             if (diff > 0) {
-                // Swipe Left -> Reveal Right Side (Bellsol / Gallery)
-                currentMobileState = 90;
+                updateSplit(90); // Swipe Left -> Reveal Right Side (Bellsol / Gallery)
             } else {
-                // Swipe Right -> Reveal Left Side (Can Marial / Instructions)
-                currentMobileState = 10;
+                updateSplit(10); // Swipe Right -> Reveal Left Side (Can Marial / Travel Tips)
             }
-            updateSplit(currentMobileState);
         }
     });
 
-    // Travel Instructions Modal Logic (Mobile Compass Icon)
+    // Travel Tips Modal Logic (Compass Icon)
     $(document).on('click', '#travel-modal-trigger', function(e) {
         e.preventDefault();
         $('#travel-modal-overlay').addClass('active');
