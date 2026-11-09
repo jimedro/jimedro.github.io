@@ -1916,6 +1916,24 @@ a.pulse-badge {
     }
 }
 
+/* Fixed Full-Section Background Images */
+.split-bg-fixed {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100vw;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.left-bg {
+    left: 0;
+}
+
+.right-bg {
+    right: 0;
+}
+
 /* Floating Title on Top of the Section with Responsive Color Transition */
 .venue-split-title {
     position: absolute;
@@ -1923,7 +1941,7 @@ a.pulse-badge {
     left: 0;
     right: 0;
     text-align: center;
-    z-index: 20;
+    z-index: 25;
     pointer-events: none;
 }
 
@@ -1950,19 +1968,22 @@ a.pulse-badge {
 }
 
 .split-pane-container {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    z-index: 5;
+    pointer-events: none;
     user-select: none;
 }
 
 .split-side {
     position: absolute;
     top: 0;
-    width: 50%;
     height: 100%;
     overflow: hidden;
+    pointer-events: auto;
     transition: width 0.1s ease-out;
 }
 
@@ -1976,28 +1997,6 @@ a.pulse-badge {
     z-index: 1;
 }
 
-/* Symmetrical Panoramic Image Uncovering Setup */
-.split-bg-img {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 100vw; /* Spans the full width of the section container */
-    max-width: none;
-    object-fit: cover;
-}
-
-/* Left image anchored to the left side */
-.split-left .split-bg-img {
-    left: 0;
-    right: auto;
-}
-
-/* Right image anchored to the right side so sliding left uncovers its left half */
-.split-right .split-bg-img {
-    right: 0;
-    left: auto;
-}
-
 /* Desktop Draggable Slider Divider Bar */
 .split-slider-bar {
     position: absolute;
@@ -2006,10 +2005,11 @@ a.pulse-badge {
     left: 50%;
     width: 6px;
     background: #fff;
-    z-index: 10;
+    z-index: 20;
     cursor: ew-resize;
     transform: translateX(-50%);
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    pointer-events: auto;
 }
 
 .split-slider-handle {
@@ -2042,7 +2042,7 @@ a.pulse-badge {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 5;
+    z-index: 15;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.4s ease;
