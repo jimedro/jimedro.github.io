@@ -1898,6 +1898,7 @@ a.pulse-badge {
     opacity: 1;
     transform: translateY(0);
 }
+
 /* =======================================================
 *  VENUE COMPARISON / SPLIT SECTION (CAN MARIAL vs BELLSOL)
 * ======================================================= */
@@ -1977,12 +1978,13 @@ a.pulse-badge {
     z-index: 1;
 }
 
-/* Background Images Fixed to Pane Dimensions */
+/* Static Background Images (Fixed to Section Width) */
 .split-bg-img {
     position: absolute;
     top: 0;
     height: 100%;
-    width: 100%;
+    width: 100vw;
+    max-width: none;
     object-fit: cover;
 }
 
@@ -2027,13 +2029,13 @@ a.pulse-badge {
     font-size: 18px;
 }
 
-/* Uncovered Content Overlays */
-.split-content-left,
-.split-content-right {
+/* Uncovered Content Overlays (Fixed to Halves, Independent of Pane Width) */
+.split-content-left {
     position: absolute;
     top: 0;
-    bottom: 0;
+    left: 0;
     width: 50%;
+    height: 100%;
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -2045,12 +2047,21 @@ a.pulse-badge {
     transition: opacity 0.4s ease;
 }
 
-.split-content-left {
-    left: 0;
-}
-
 .split-content-right {
+    position: absolute;
+    top: 0;
     right: 0;
+    width: 50%;
+    height: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 15;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
 }
 
 /* Travel Instructions Box */
@@ -2124,6 +2135,7 @@ a.pulse-badge {
         padding: 15px !important;
         justify-content: center !important;
         align-items: center !important;
+        width: 100% !important;
     }
     .travel-instructions-box {
         max-width: 92% !important;
