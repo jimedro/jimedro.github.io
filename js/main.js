@@ -562,6 +562,9 @@ var initVenueSplitSection = function() {
             $left.css('width', currentPos + '%');
             $right.css('width', rightWidth + '%');
             $slider.css('left', currentPos + '%');
+            
+            $contentLeft.css('width', currentPos + '%');
+            $contentRight.css('width', rightWidth + '%');
 
             if (currentPos <= threshold) {
                 $contentLeft.css({'opacity': '1', 'pointer-events': 'auto'});
@@ -577,7 +580,7 @@ var initVenueSplitSection = function() {
         }
     }
 
-    // Initialize at 50% on desktop, or show instructions on mobile initially
+    // Initialize at 50% on desktop, or show right side on mobile initially
     updateSplit(window.innerWidth <= 768 ? 90 : 50);
 
     // Desktop Mouse Dragging
@@ -606,6 +609,7 @@ var initVenueSplitSection = function() {
     });
 
     $container.on('touchend', function(e) {
+        if (window.innerWidth > 768) return;
         var touchEndX = e.originalEvent.changedTouches[0].clientX;
         var diff = touchStartX - touchEndX;
 
