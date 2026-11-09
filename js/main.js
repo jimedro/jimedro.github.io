@@ -534,16 +534,17 @@ var initVenueSplitSection = function() {
     function updateSplit(pos) {
         var currentPos = Math.max(5, Math.min(95, pos));
         var isMobile = window.innerWidth <= 768;
-        var threshold = 40;
+        var hideThresholdLow = 40;
+        var hideThresholdHigh = 60;
 
-        if (currentPos < threshold) {
+        if (currentPos < hideThresholdLow) {
             $title.addClass('light-bg');
         } else {
             $title.removeClass('light-bg');
         }
 
         if (isMobile) {
-            if (currentPos < threshold) {
+            if (currentPos < 50) {
                 // Show Left (Gallery) Full
                 $left.css('width', '100%');
                 $right.css('width', '0%');
@@ -563,18 +564,18 @@ var initVenueSplitSection = function() {
             $right.css('width', rightWidth + '%');
             $slider.css('left', currentPos + '%');
             
-            $contentLeft.css('width', currentPos + '%');
-            $contentRight.css('width', rightWidth + '%');
-
-            if (currentPos <= threshold) {
+            // Content visibility based on stable reveal thresholds
+            if (currentPos < hideThresholdLow) {
+                // Left side revealed
                 $contentLeft.css({'opacity': '1', 'pointer-events': 'auto'});
-            } else {
+                $contentRight.css({'opacity': '0', 'pointer-events': 'none'});
+            } else if (currentPos > hideThresholdHigh) {
+                // Right side revealed
                 $contentLeft.css({'opacity': '0', 'pointer-events': 'none'});
-            }
-
-            if (currentPos >= (100 - threshold)) {
                 $contentRight.css({'opacity': '1', 'pointer-events': 'auto'});
             } else {
+                // Middle neutral zone: hide both contents
+                $contentLeft.css({'opacity': '0', 'pointer-events': 'none'});
                 $contentRight.css({'opacity': '0', 'pointer-events': 'none'});
             }
         }
@@ -583,7 +584,7 @@ var initVenueSplitSection = function() {
     // Initialize at 50% on desktop, or show right side on mobile initially
     updateSplit(window.innerWidth <= 768 ? 90 : 50);
 
-    // Desktop Mouse & Touch Dragging on Container/Slider
+    // Desktop Mouse Dragging & Click-to-Jump
     var isDragging = false;
 
     $slider.on('mousedown touchstart', function(e) {
@@ -592,7 +593,7 @@ var initVenueSplitSection = function() {
     });
 
     $container.on('mousedown touchstart', function(e) {
-        // Allow clicking anywhere on container bar/sides to jump/drag
+        if ($(e.target).closest('.travel-instructions-box, .gallery-trigger-icon').length > 0) return;
         isDragging = true;
         var clientX = e.clientX || (e.originalEvent.touches && e.originalEvent.touches[0].clientX);
         if (clientX) {
