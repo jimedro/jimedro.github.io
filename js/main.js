@@ -544,18 +544,24 @@ var initVenueSplitSection = function() {
         }
 
         if (isMobile) {
-            if (currentPos < 50) {
-                // Show Left (Gallery) Full
+            if (currentPos < 45) {
+                // Show Left (Can Marial / Instructions) Full
                 $left.css('width', '100%');
                 $right.css('width', '0%');
                 $contentLeft.css({'opacity': '1', 'pointer-events': 'auto'});
                 $contentRight.css({'opacity': '0', 'pointer-events': 'none'});
-            } else {
-                // Show Right (Instructions) Full
+            } else if (currentPos > 55) {
+                // Show Right (Bellsol / Gallery) Full
                 $left.css('width', '0%');
                 $right.css('width', '100%');
                 $contentLeft.css({'opacity': '0', 'pointer-events': 'none'});
                 $contentRight.css({'opacity': '1', 'pointer-events': 'auto'});
+            } else {
+                // Neutral 50/50 starting state on mobile: hide both icons until swiped
+                $left.css('width', '50%');
+                $right.css('width', '50%');
+                $contentLeft.css({'opacity': '0', 'pointer-events': 'none'});
+                $contentRight.css({'opacity': '0', 'pointer-events': 'none'});
             }
         } else {
             // Desktop Split Layout
@@ -564,25 +570,25 @@ var initVenueSplitSection = function() {
             $right.css('width', rightWidth + '%');
             $slider.css('left', currentPos + '%');
             
-            // Content visibility based on stable reveal thresholds
-            if (currentPos < hideThresholdLow) {
-                // Left side revealed
+            $contentLeft.css('width', currentPos + '%');
+            $contentRight.css('width', rightWidth + '%');
+
+            if (currentPos <= hideThresholdLow) {
                 $contentLeft.css({'opacity': '1', 'pointer-events': 'auto'});
-                $contentRight.css({'opacity': '0', 'pointer-events': 'none'});
-            } else if (currentPos > hideThresholdHigh) {
-                // Right side revealed
+            } else {
                 $contentLeft.css({'opacity': '0', 'pointer-events': 'none'});
+            }
+
+            if (currentPos >= (100 - hideThresholdHigh)) {
                 $contentRight.css({'opacity': '1', 'pointer-events': 'auto'});
             } else {
-                // Middle neutral zone: hide both contents
-                $contentLeft.css({'opacity': '0', 'pointer-events': 'none'});
                 $contentRight.css({'opacity': '0', 'pointer-events': 'none'});
             }
         }
     }
 
-    // Initialize at 50% on desktop, or show right side on mobile initially
-    updateSplit(window.innerWidth <= 768 ? 90 : 50);
+    // Initialize at 50% on both desktop and mobile
+    updateSplit(50);
 
     // Desktop Mouse Dragging & Click-to-Jump
     var isDragging = false;
@@ -605,7 +611,7 @@ var initVenueSplitSection = function() {
     });
 
     $(document).on('mousemove touchmove', function(e) {
-        if (!isDragging || window.innerWidth <= 768) return;
+        if (!isDragging) return;
         var clientX = e.clientX || (e.originalEvent.touches && e.originalEvent.touches[0].clientX);
         if (!clientX) return;
         var containerOffset = $container.offset().left;
@@ -631,10 +637,24 @@ var initVenueSplitSection = function() {
 
         if (Math.abs(diff) > 30) {
             if (diff > 0) {
-                updateSplit(10); // Swipe Left -> Reveal Left Gallery
+                updateSplit(10); // Swipe Left -> Reveal Left Can Marial & Compass
             } else {
-                updateSplit(90); // Swipe Right -> Reveal Right Instructions
+                updateSplit(90); // Swipe Right -> Reveal Right Bellsol & Gallery
             }
+        }
+    });
+
+    // Travel Instructions Modal Logic (Mobile Compass Icon)
+    $(document).on('click', '#travel-modal-trigger', function(e) {
+        e.preventDefault();
+        $('#travel-modal-overlay').addClass('active');
+        $('body').css('overflow', 'hidden');
+    });
+
+    $(document).on('click', '#close-travel-modal, #travel-modal-overlay', function(e) {
+        if (e.target === this || $(e.target).hasClass('gift-modal-close')) {
+            $('#travel-modal-overlay').removeClass('active');
+            $('body').css('overflow', 'auto');
         }
     });
 
