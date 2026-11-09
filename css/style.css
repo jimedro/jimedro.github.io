@@ -2084,7 +2084,7 @@ a.pulse-badge {
 
 /* Travel Instructions Box */
 .travel-instructions-box {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 2px solid rgba(30, 83, 18, 0.3);
@@ -2126,7 +2126,7 @@ a.pulse-badge {
 
 /* Inline Gallery Container */
 .inline-gallery-container {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.3);
