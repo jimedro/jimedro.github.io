@@ -1912,7 +1912,22 @@ a.pulse-badge {
 
 @media screen and (max-width: 768px) {
     #fh5co-venue-split {
-        height: 550px;
+        height: 100vh !important;
+        height: 100dvh !important;
+    }
+}
+
+/* Desktop vs Mobile Content Visibility Switches */
+.mobile-travel-trigger {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .desktop-travel-box {
+        display: none !important;
+    }
+    .mobile-travel-trigger {
+        display: block !important;
     }
 }
 
@@ -2029,7 +2044,7 @@ a.pulse-badge {
     font-size: 18px;
 }
 
-/* Uncovered Content Overlays (Fixed to Halves, Independent of Pane Width) */
+/* Uncovered Content Overlays */
 .split-content-left {
     position: absolute;
     top: 0;
@@ -2066,7 +2081,7 @@ a.pulse-badge {
 
 /* Travel Instructions Box */
 .travel-instructions-box {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 2px solid rgba(30, 83, 18, 0.3);
