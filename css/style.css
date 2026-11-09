@@ -1917,7 +1917,7 @@ a.pulse-badge {
     }
 }
 
-/* Floating Title on Top of the Section */
+/* Floating Title on Top of the Section with Responsive Color Transition */
 .venue-split-title {
     position: absolute;
     top: 30px;
@@ -1935,6 +1935,13 @@ a.pulse-badge {
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
     margin: 0;
     -webkit-text-stroke: 0px !important;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* When the right side (light background) is revealed, change title color to dark green for readability */
+.venue-split-title.light-bg h2 {
+    color: #1e5312 !important;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
 }
 
 @media screen and (max-width: 768px) {
@@ -1970,12 +1977,12 @@ a.pulse-badge {
     z-index: 1;
 }
 
-/* Full-width background image anchored so both sides display perfectly */
+/* Seamless Background Images anchored to container dimensions */
 .split-bg-img {
     position: absolute;
     top: 0;
     height: 100%;
-    width: 100vw;
+    width: 100vw; /* Matches full viewport/container width so it never cuts off or shows black */
     max-width: none;
     object-fit: cover;
 }
@@ -1984,11 +1991,10 @@ a.pulse-badge {
     left: 0;
 }
 
-.split-right .split-bg-img {
+/* Right background image anchored to the right side of the container */
+.split-right .split-bg-img.right-bg-img {
     right: 0;
-    /* Aligns right side image to the right edge of the container */
     left: auto;
-    right: 0;
 }
 
 /* Desktop Draggable Slider Divider Bar */
