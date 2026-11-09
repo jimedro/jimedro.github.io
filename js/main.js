@@ -484,40 +484,58 @@ var initTimelineGallery = function() {
     }
 };
 	
-// Dynamic Programme Image Switcher & Scroll Reveal Effect
-	var initProgrammeImageSwitcher = function() {
-		function updateProgrammeImage() {
-			var lang = (localStorage.getItem("selectedLang") || "EN").toUpperCase();
-			var isMobile = window.innerWidth <= 768;
-			var orientation = isMobile ? 'portrait' : 'landscape';
-			
-			var imagePath = 'images/programme_' + orientation + '_' + lang + '.jpg';
-			
-			var $img = $('#programme-img');
-			if ($img.attr('src') !== imagePath) {
-				$img.attr('src', imagePath);
-			}
-		}
+// Dynamic Programme Sliced Puzzle Switcher & Sequential Scroll Reveal Effect
+var initProgrammeImageSwitcher = function() {
+    function updateProgrammeSlices() {
+        var lang = (localStorage.getItem("selectedLang") || "EN").toUpperCase();
+        var isMobile = window.innerWidth <= 768;
+        var orientation = isMobile ? 'portrait' : 'landscape';
+        var totalSlices = (orientation === 'portrait') ? 10 : 8;
 
-		// Run immediately and on resize/flag change
-		updateProgrammeImage();
-		$(window).on('resize', function() {
-			updateProgrammeImage();
-		});
+        var $container = $('#programme-puzzle-container');
+        if ($container.length === 0) return;
 
-		$(document).on('click', '.flag-btn', function() {
-			setTimeout(updateProgrammeImage, 50);
-		});
+        var html = '';
+        for (var i = 1; i <= totalSlices; i++) {
+            html += '<img src="images/programme_' + orientation + '_' + lang + '_' + i + '.png" alt="Wedding Programme Slice ' + i + '" class="img-responsive center-block programme-slice" style="width: 100%; height: auto; display: block;">';
+        }
+        $container.html(html);
 
-		// Scroll reveal trigger (horizontal/vertical section smooth fade-in as you scroll down)
-		if ($('#programme-img').length > 0) {
-			$('#programme-img').waypoint(function(direction) {
-				if (direction === 'down') {
-					$(this.element).addClass('revealed');
-				}
-			}, { offset: '85%' });
-		}
-	};
+        // Re-apply reveal state if already in view
+        if ($container.hasClass('in-view')) {
+            $container.find('.programme-slice').addClass('revealed');
+        }
+    }
+
+    // Run immediately and on resize/flag change
+    updateProgrammeSlices();
+    $(window).on('resize', function() {
+        updateProgrammeSlices();
+    });
+
+    $(document).on('click', '.flag-btn', function() {
+        setTimeout(updateProgrammeSlices, 50);
+    });
+
+    // Sequential Scroll Reveal & Fade-Out Waypoint
+    if ($('#fh5co-venue-programme').length > 0) {
+        $('#fh5co-venue-programme').waypoint(function(direction) {
+            var $slices = $('#fh5co-venue-programme').find('.programme-slice');
+            if (direction === 'down') {
+                $('#fh5co-venue-programme').addClass('in-view');
+                $slices.each(function(index) {
+                    var $slice = $(this);
+                    setTimeout(function() {
+                        $slice.addClass('revealed');
+                    }, index * 90); // Stagger each slice by 90ms for a smooth cascade
+                });
+            } else if (direction === 'up') {
+                $('#fh5co-venue-programme').removeClass('in-view');
+                $slices.removeClass('revealed');
+            }
+        }, { offset: '85%' });
+    }
+};
 
 // Interactive Split Venue Slider & Swipe Handler
 var initVenueSplitSection = function() {
