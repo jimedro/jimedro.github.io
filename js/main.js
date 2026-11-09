@@ -583,22 +583,37 @@ var initVenueSplitSection = function() {
     // Initialize at 50% on desktop, or show right side on mobile initially
     updateSplit(window.innerWidth <= 768 ? 90 : 50);
 
-    // Desktop Mouse Dragging
+    // Desktop Mouse & Touch Dragging on Container/Slider
     var isDragging = false;
-    $slider.on('mousedown', function(e) {
+
+    $slider.on('mousedown touchstart', function(e) {
         isDragging = true;
         e.preventDefault();
     });
 
-    $(document).on('mousemove', function(e) {
+    $container.on('mousedown touchstart', function(e) {
+        // Allow clicking anywhere on container bar/sides to jump/drag
+        isDragging = true;
+        var clientX = e.clientX || (e.originalEvent.touches && e.originalEvent.touches[0].clientX);
+        if (clientX) {
+            var containerOffset = $container.offset().left;
+            var containerWidth = $container.width();
+            var newPos = ((clientX - containerOffset) / containerWidth) * 100;
+            updateSplit(newPos);
+        }
+    });
+
+    $(document).on('mousemove touchmove', function(e) {
         if (!isDragging || window.innerWidth <= 768) return;
+        var clientX = e.clientX || (e.originalEvent.touches && e.originalEvent.touches[0].clientX);
+        if (!clientX) return;
         var containerOffset = $container.offset().left;
         var containerWidth = $container.width();
-        var newPos = ((e.clientX - containerOffset) / containerWidth) * 100;
+        var newPos = ((clientX - containerOffset) / containerWidth) * 100;
         updateSplit(newPos);
     });
 
-    $(document).on('mouseup', function() {
+    $(document).on('mouseup touchend', function() {
         isDragging = false;
     });
 
@@ -680,7 +695,6 @@ $(document).ready(function(){
     initGiftModal();
     initWishModal();
     initTimelineGallery(); 
-    initEngagementGallery(); 
 	initProgrammeImageSwitcher();
 	initVenueSplitSection();
 });
