@@ -322,6 +322,7 @@ p {
   .fh5co-cover .display-t,
   .fh5co-cover .display-tc {
     height: 100vh;
+    padding-top: 80px !important;
   }
 }
 
@@ -1558,9 +1559,12 @@ body > #flag-selection {
   .gift-callout-row p {
     font-size: 18px !important;
   }
-  .gift-callout-row .btn-gifts {
-    font-size: 18px !important;
-    padding: 8px 22px !important;
+    .gift-callout-row .btn-gifts {
+    font-size: 15px !important;
+    padding: 10px 16px !important;
+    white-space: normal !important;
+    max-width: 90% !important;
+    margin: 0 auto !important;
   }
 }
 
@@ -2267,7 +2271,7 @@ a.pulse-badge {
   position: fixed;
   z-index: 1901;
   width: 270px;
-  background: rgba(255, 255, 255, 0.85) !important;
+  background: rgba(255, 255, 255, 0.5) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   top: 0;
