@@ -2313,3 +2313,13 @@ a.pulse-badge {
 #fh5co-offcanvas ul li a:hover {
   color: #1e5312 !important;
 }
+
+/* Fix iOS Safari rubber-band scroll resistance */
+html, body {
+  overscroll-behavior-y: none; /* Stops the elastic spring bounce on iOS */
+  -webkit-overflow-scrolling: touch;
+}
+
+#page {
+  touch-action: pan-y; /* Tells Safari to permit vertical scrolling smoothly */
+}
