@@ -297,7 +297,7 @@ var testimonialCarousel = function(){
 			var endUtc = "20271107T120000Z";
 
 			if (isIOS) {
-				// iOS / iPhone: Download .ics file for native Apple Calendar import
+				// iOS / iPhone: Use Data URI for reliable native Apple Calendar import
 				var icsDetails = detailsText.replace(/\n/g, "\\n");
 				var icsData = [
 					"BEGIN:VCALENDAR",
@@ -322,9 +322,9 @@ var testimonialCarousel = function(){
 					"END:VCALENDAR"
 				].join("\r\n");
 
-				var blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8;' });
+				var encodedUri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsData);
 				var link = document.createElement('a');
-				link.href = window.URL.createObjectURL(blob);
+				link.href = encodedUri;
 				link.setAttribute('download', 'Jimi_and_Pedro_Wedding.ics');
 				document.body.appendChild(link);
 				link.click();
