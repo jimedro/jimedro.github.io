@@ -598,7 +598,7 @@ p {
   #fh5co-header .display-tc .animate-box,
   .fh5co-cover .display-tc .animate-box {
     vertical-align: top !important;
-    padding-top: 100px !important; /* Adjust this value to shift content up or down */
+    padding-top: 500px !important; /* Adjust this value to shift content up or down */
   }
 }
 
