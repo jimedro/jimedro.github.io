@@ -595,13 +595,6 @@ p {
   text-align: center !important;
 }
 
-@media screen and (min-width: 769px) {
-  #fh5co-header .display-tc .animate-box,
-  .fh5co-cover .display-tc .animate-box {
-    margin-top: -500px !important; /* Adjust this value: negative to shift up, positive to shift down */
-  }
-}
-
 #fh5co-header .display-tc h1, 
 #fh5co-header .display-tc h2,
 .fh5co-cover .display-tc h1,
@@ -2330,4 +2323,16 @@ html, body {
 
 #page {
   touch-action: pan-y; /* Tells Safari to permit vertical scrolling smoothly */
+}
+
+@media screen and (min-width: 769px) {
+  #fh5co-header .display-tc,
+  .fh5co-cover .display-tc {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    padding-top: 150px !important; /* <--- Change this number: smaller (e.g. 50px) moves it higher, larger (e.g. 250px) moves it lower */
+    height: 900px !important;
+  }
 }
