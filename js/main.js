@@ -267,80 +267,88 @@ var testimonialCarousel = function(){
 
 	
 // Save the Date Calendar Handler (Multi-language & iOS Direct Navigation)
-	var initSaveTheDate = function() {
-		$(document).on('click', '.btn-save-date', function(e) {
-			e.preventDefault();
+    var initSaveTheDate = function() {
+        $(document).on('click', '.btn-save-date', function(e) {
+            e.preventDefault();
 
-			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-			var isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            var isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
 
-			// Detect chosen language
-			var lang = (localStorage.getItem("selectedLang") || "EN").toUpperCase();
+            // Detect chosen language
+            var lang = (localStorage.getItem("selectedLang") || "EN").toUpperCase();
 
-			var detailsText = "Join us for Jimi & Pedro's Wedding Weekend!\n\nAccommodation provided in Camping Bellsol, Pineda de Mar, Barcelona, España";
-			if (lang === "ES") {
-				detailsText = "¡Acompáñanos en el fin de semana de boda de Jimi y Pedro!\n\nAlojamiento en Camping Bellsol, Pineda de Mar, Barcelona, España";
-			} else if (lang === "FR") {
-				detailsText = "Rejoignez-nous pour le week-end de mariage de Jimi & Pedro !\n\nHébergement sera dans Camping Bellsol, Pineda de Mar, Barcelona, España";
-			}
+            var detailsText = "Join us for Jimi & Pedro's Wedding Weekend!\n\nAccommodation provided in Camping Bellsol, Pineda de Mar, Barcelona, España";
+            if (lang === "ES") {
+                detailsText = "¡Acompáñanos en el fin de semana de boda de Jimi y Pedro!\n\nAlojamiento en Camping Bellsol, Pineda de Mar, Barcelona, España";
+            } else if (lang === "FR") {
+                detailsText = "Rejoignez-nous pour le week-end de mariage de Jimi & Pedro !\n\nHébergement sera dans Camping Bellsol, Pineda de Mar, Barcelona, España";
+            }
 
-			var locationText = "Can Marial, Barcelona, Spain";
-			var titleText = "❤️ JIMI & PEDRO ❤️";
+            var locationText = "Can Marial, Barcelona, Spain";
+            var titleText = "❤️ JIMI & PEDRO ❤️";
 
-			// Dates: Nov 5, 2027 17:00 to Nov 7, 2027 13:00
-			var startUtc = "20271105T160000Z";
-			var endUtc = "20271107T120000Z";
+            // Dates: Nov 5, 2027 17:00 to Nov 7, 2027 13:00
+            var startUtc = "20271105T160000Z";
+            var endUtc = "20271107T120000Z";
 
-			if (isIOS) {
-				// iOS / iPhone: Use direct location assignment to trigger native calendar file handling
-				var icsDetails = detailsText.replace(/\n/g, "\\n");
-				var icsData = [
-					"BEGIN:VCALENDAR",
-					"VERSION:2.0",
-					"PRODID:-//Jimi and Pedro Wedding//EN",
-					"CALSCALE:GREGORIAN",
-					"METHOD:PUBLISH",
-					"BEGIN:VEVENT",
-					"SUMMARY:" + titleText,
-					"DESCRIPTION:" + icsDetails,
-					"LOCATION:" + locationText.replace(/,/g, "\\,"),
-					"DTSTART:" + startUtc,
-					"DTEND:" + endUtc,
-					"STATUS:CONFIRMED",
-					"SEQUENCE:0",
-					"BEGIN:VALARM",
-					"TRIGGER:-P1D",
-					"ACTION:DISPLAY",
-					"DESCRIPTION:Reminder: Jimi & Pedro Wedding Weekend starts tomorrow!",
-					"END:VALARM",
-					"END:VEVENT",
-					"END:VCALENDAR"
-				].join("\r\n");
+            if (isIOS) {
+                // iOS / iPhone: Use Blob and Object URL for reliable .ics file download
+                var icsDetails = detailsText;
+                var icsData = [
+                    "BEGIN:VCALENDAR",
+                    "VERSION:2.0",
+                    "PRODID:-//Jimi and Pedro Wedding//EN",
+                    "CALSCALE:GREGORIAN",
+                    "METHOD:PUBLISH",
+                    "BEGIN:VEVENT",
+                    "SUMMARY:" + titleText,
+                    "DESCRIPTION:" + icsDetails.replace(/\n/g, "\\n"),
+                    "LOCATION:" + locationText.replace(/,/g, "\\,"),
+                    "DTSTART:" + startUtc,
+                    "DTEND:" + endUtc,
+                    "STATUS:CONFIRMED",
+                    "SEQUENCE:0",
+                    "BEGIN:VALARM",
+                    "TRIGGER:-P1D",
+                    "ACTION:DISPLAY",
+                    "DESCRIPTION:Reminder: Jimi & Pedro Wedding Weekend starts tomorrow!",
+                    "END:VALARM",
+                    "END:VEVENT",
+                    "END:VCALENDAR"
+                ].join("\r\n");
 
-				var encodedUri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsData);
-				window.location.href = encodedUri; // Direct navigation forces iOS to open/download the .ics file
-			} else {
-				// Android & Desktop: Open Google Calendar in a NEW tab
-				var googleUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
-					"&text=" + encodeURIComponent(titleText) +
-					"&dates=" + startUtc + "/" + endUtc +
-					"&details=" + encodeURIComponent(detailsText) +
-					"&location=" + encodeURIComponent(locationText);
+                var blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+                var blobUrl = URL.createObjectURL(blob);
+                
+                var anchor = document.createElement('a');
+                anchor.href = blobUrl;
+                anchor.download = 'jimi-pedro-wedding.ics';
+                document.body.appendChild(anchor);
+                anchor.click();
+                document.body.removeChild(anchor);
+                setTimeout(function() { URL.revokeObjectURL(blobUrl); }, 1000);
+            } else {
+                // Android & Desktop: Open Google Calendar in a NEW tab
+                var googleUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+                    "&text=" + encodeURIComponent(titleText) +
+                    "&dates=" + startUtc + "/" + endUtc +
+                    "&details=" + encodeURIComponent(detailsText) +
+                    "&location=" + encodeURIComponent(locationText);
 
-				var newTab = window.open(googleUrl, '_blank');
-				if (!newTab || newTab.closed || typeof newTab.closed === 'undefined') {
-					var anchor = document.createElement('a');
-					anchor.href = googleUrl;
-					anchor.target = '_blank';
-					anchor.rel = 'noopener noreferrer';
-					document.body.appendChild(anchor);
-					anchor.click();
-					document.body.removeChild(anchor);
-				}
-			}
-		});
-	};
-
+                var newTab = window.open(googleUrl, '_blank');
+                if (!newTab || newTab.closed || typeof newTab.closed === 'undefined') {
+                    var anchor = document.createElement('a');
+                    anchor.href = googleUrl;
+                    anchor.target = '_blank';
+                    anchor.rel = 'noopener noreferrer';
+                    document.body.appendChild(anchor);
+                    anchor.click();
+                    document.body.removeChild(anchor);
+                }
+            }
+        });
+    };
+	
 // Gift Modal & IBAN Copy Handler
 var initGiftModal = function() {
     $(document).on('click', '.btn-gifts', function(e) {
