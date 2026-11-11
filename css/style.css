@@ -2332,7 +2332,7 @@ html, body {
     flex-direction: column !important;
     justify-content: flex-start !important;
     align-items: center !important;
-    padding-top: 250px !important; /* <--- Change this number: smaller (e.g. 50px) moves it higher, larger (e.g. 250px) moves it lower */
+    padding-top: 200px !important; /* <--- Change this number: smaller (e.g. 50px) moves it higher, larger (e.g. 250px) moves it lower */
     height: 900px !important;
   }
 }
