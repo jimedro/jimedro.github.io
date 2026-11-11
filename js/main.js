@@ -257,7 +257,7 @@ var testimonialCarousel = function(){
 				localStorage.setItem("selectedLang", chosenLang);
 				applyTranslations(chosenLang);
 				
-				// --- INSTANT COUNTDOWN TRANSLATION UPDATE ---
+				// --- DYNAMICALLY RE-INITIALIZE COUNTDOWN IN NEW LANGUAGE ---
 				var countdownWords = {
 					EN: { days: 'days', hours: 'hours', minutes: 'minutes', seconds: 'seconds' },
 					ES: { days: 'días', hours: 'horas', minutes: 'minutos', seconds: 'segundos' },
@@ -265,11 +265,20 @@ var testimonialCarousel = function(){
 				};
 				var w = countdownWords[chosenLang.toUpperCase()] || countdownWords.EN;
 				
-				$('.simply-days .simply-word').text(w.days);
-				$('.simply-hours .simply-word').text(w.hours);
-				$('.simply-minutes .simply-word').text(w.minutes);
-				$('.simply-seconds .simply-word').text(w.seconds);
-				// ---------------------------------------------
+				$('.simply-countdown-one').empty();
+				simplyCountdown('.simply-countdown-one', {
+					year: 2027,
+					month: 11,
+					day: 06,
+					words: {
+						days: w.days,
+						hours: w.hours,
+						minutes: w.minutes,
+						seconds: w.seconds,
+						pluralLetter: ''
+					}
+				});
+				// -------------------------------------------------------------
 
 				// Smooth CSS fade-out transition
 				$('#flag-selection').css({
