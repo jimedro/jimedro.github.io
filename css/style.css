@@ -598,7 +598,7 @@ p {
 @media screen and (min-width: 769px) {
   #fh5co-header .display-tc .animate-box,
   .fh5co-cover .display-tc .animate-box {
-    margin-top: -100px !important; /* Adjust this value: negative to shift up, positive to shift down */
+    margin-top: -500px !important; /* Adjust this value: negative to shift up, positive to shift down */
   }
 }
 
