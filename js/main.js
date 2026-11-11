@@ -100,53 +100,6 @@ var contentWayPoint = function() {
 		});
 	};
 
-// Multilingual Countdown Updater with Pluralization Support & Flicker-Free DOM Check
-var initMultilingualCountdown = function() {
-    var translations = {
-        EN: { days: "days", day: "day", hours: "hours", hour: "hour", minutes: "minutes", minute: "minute", seconds: "seconds", second: "second" },
-        ES: { days: "días", day: "día", hours: "horas", hour: "hora", minutes: "minutos", minute: "minuto", seconds: "segundos", second: "segundo" },
-        FR: { days: "jours", day: "jour", hours: "heures", hour: "heure", minutes: "minutes", minute: "minute", seconds: "secondes", second: "seconde" }
-    };
-
-    setInterval(function() {
-        var lang = (localStorage.getItem("selectedLang") || "EN").toUpperCase();
-        var t = translations[lang] || translations.EN;
-
-        $('.simply-section').each(function() {
-            var $section = $(this);
-            var $word = $section.find('.simply-word');
-            var $amount = $section.find('.simply-amount');
-            
-            if ($word.length && $amount.length) {
-                var value = parseInt($amount.text().trim(), 10);
-                if (isNaN(value)) return;
-
-                var currentWordLower = $word.text().toLowerCase();
-                var targetWord = "";
-
-                if (currentWordLower.includes('day') || currentWordLower.includes('jour') || currentWordLower.includes('día')) {
-                    targetWord = (value === 1 ? t.day : t.days);
-                } else if (currentWordLower.includes('hour') || currentWordLower.includes('heure') || currentWordLower.includes('hora')) {
-                    targetWord = (value === 1 ? t.hour : t.hours);
-                } else if (currentWordLower.includes('minute')) {
-                    targetWord = (value === 1 ? t.minute : t.minutes);
-                } else if (currentWordLower.includes('second')) {
-                    targetWord = (value === 1 ? t.second : t.seconds);
-                } else {
-                    if ($section.index() === 0) targetWord = (value === 1 ? t.day : t.days);
-                    else if ($section.index() === 1) targetWord = (value === 1 ? t.hour : t.hours);
-                    else if ($section.index() === 2) targetWord = (value === 1 ? t.minute : t.minutes);
-                    else if ($section.index() === 3) targetWord = (value === 1 ? t.second : t.seconds);
-                }
-
-                // Only update DOM if the word actually changes, stopping the flicker
-                if (targetWord && $word.text() !== targetWord) {
-                    $word.text(targetWord);
-                }
-            }
-        });
-    }, 1000);
-};
 	
 var testimonialCarousel = function(){
 		var owl = $('.owl-carousel-fullwidth');
@@ -773,7 +726,6 @@ $(document).ready(function(){
     burgerMenu();
     contentWayPoint();
     dropdown();
-	initMultilingualCountdown();
     testimonialCarousel();
     goToTop();
     loaderPage();
