@@ -594,11 +594,11 @@ p {
   vertical-align: middle !important;
   text-align: center !important;
 }
+
 @media screen and (min-width: 769px) {
   #fh5co-header .display-tc .animate-box,
   .fh5co-cover .display-tc .animate-box {
-    vertical-align: top !important;
-    padding-top: 50px !important; /* Adjust this value to shift content up or down */
+    margin-top: -100px !important; /* Adjust this value: negative to shift up, positive to shift down */
   }
 }
 
