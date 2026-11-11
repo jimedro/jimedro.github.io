@@ -292,41 +292,23 @@ var testimonialCarousel = function(){
             var endUtc = "20271107T120000Z";
 
             if (isIOS) {
-                // iOS / iPhone: Use Blob and Object URL for reliable .ics file download
-                var icsDetails = detailsText;
-                var icsData = [
-                    "BEGIN:VCALENDAR",
-                    "VERSION:2.0",
-                    "PRODID:-//Jimi and Pedro Wedding//EN",
-                    "CALSCALE:GREGORIAN",
-                    "METHOD:PUBLISH",
-                    "BEGIN:VEVENT",
-                    "SUMMARY:" + titleText,
-                    "DESCRIPTION:" + icsDetails.replace(/\n/g, "\\n"),
-                    "LOCATION:" + locationText.replace(/,/g, "\\,"),
-                    "DTSTART:" + startUtc,
-                    "DTEND:" + endUtc,
-                    "STATUS:CONFIRMED",
-                    "SEQUENCE:0",
-                    "BEGIN:VALARM",
-                    "TRIGGER:-P1D",
-                    "ACTION:DISPLAY",
-                    "DESCRIPTION:Reminder: Jimi & Pedro Wedding Weekend starts tomorrow!",
-                    "END:VALARM",
-                    "END:VEVENT",
-                    "END:VCALENDAR"
-                ].join("\r\n");
+                // iOS / iPhone: Open Google Calendar web URL directly (same as Android/Desktop) so it prompts natively without downloading files
+                var googleUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+                    "&text=" + encodeURIComponent(titleText) +
+                    "&dates=" + startUtc + "/" + endUtc +
+                    "&details=" + encodeURIComponent(detailsText) +
+                    "&location=" + encodeURIComponent(locationText);
 
-                var blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
-                var blobUrl = URL.createObjectURL(blob);
-                
-                var anchor = document.createElement('a');
-                anchor.href = blobUrl;
-                anchor.download = 'jimi-pedro-wedding.ics';
-                document.body.appendChild(anchor);
-                anchor.click();
-                document.body.removeChild(anchor);
-                setTimeout(function() { URL.revokeObjectURL(blobUrl); }, 1000);
+                var newTab = window.open(googleUrl, '_blank');
+                if (!newTab || newTab.closed || typeof newTab.closed === 'undefined') {
+                    var anchor = document.createElement('a');
+                    anchor.href = googleUrl;
+                    anchor.target = '_blank';
+                    anchor.rel = 'noopener noreferrer';
+                    document.body.appendChild(anchor);
+                    anchor.click();
+                    document.body.removeChild(anchor);
+                }
             } else {
                 // Android & Desktop: Open Google Calendar in a NEW tab
                 var googleUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
