@@ -715,7 +715,7 @@ var initEngagementGallery = function() {
 	
 $(document).ready(function(){
     mobileMenuOutsideClick();
-    // parallax();
+    parallax();
     offcanvasMenu();
     burgerMenu();
     contentWayPoint();
