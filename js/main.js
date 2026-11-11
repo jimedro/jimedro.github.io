@@ -210,8 +210,26 @@ var testimonialCarousel = function(){
 		var isMainPage = path.endsWith("main.html") || path.endsWith("/") || path === "" || path.indexOf("main.html") !== -1;
 
 		function checkFlagPrompt() {
-			if (isMainPage) {
-				localStorage.removeItem("selectedLang");
+			// Check URL query parameter first (e.g. ?lang=es), otherwise check localStorage
+			var urlParams = new URLSearchParams(window.location.search);
+			var queryLang = urlParams.get('lang');
+
+			if (queryLang) {
+				localStorage.setItem("selectedLang", queryLang.toUpperCase());
+			}
+
+			var savedLang = localStorage.getItem("selectedLang");
+
+			if (savedLang) {
+				applyTranslations(savedLang);
+				$('#flag-selection').css({
+					'display': 'none',
+					'opacity': '0',
+					'visibility': 'hidden',
+					'pointer-events': 'none'
+				}).hide();
+				enableScroll();
+			} else {
 				$('#flag-selection').css({
 					'display': 'flex',
 					'opacity': '1',
@@ -219,26 +237,6 @@ var testimonialCarousel = function(){
 					'pointer-events': 'auto'
 				}).show();
 				disableScroll();
-			} else {
-				var savedLang = localStorage.getItem("selectedLang");
-				if (savedLang) {
-					applyTranslations(savedLang);
-					$('#flag-selection').css({
-						'display': 'none',
-						'opacity': '0',
-						'visibility': 'hidden',
-						'pointer-events': 'none'
-					}).hide();
-					enableScroll();
-				} else {
-					$('#flag-selection').css({
-						'display': 'flex',
-						'opacity': '1',
-						'visibility': 'visible',
-						'pointer-events': 'auto'
-					}).show();
-					disableScroll();
-				}
 			}
 		}
 
@@ -254,7 +252,7 @@ var testimonialCarousel = function(){
 		$(document).on('click', '.flag-btn', function(e) {
 			e.preventDefault();
 			var chosenLang = $(this).data('lang') || $(this).attr('data-lang');
-			
+
 			if (!chosenLang) {
 				// Fallback if clicked directly on the image inside the button
 				chosenLang = $(this).closest('.flag-btn').attr('data-lang');
@@ -263,9 +261,10 @@ var testimonialCarousel = function(){
 			if (chosenLang) {
 				localStorage.setItem("selectedLang", chosenLang.toUpperCase());
 				window.location.href = window.location.pathname + '?lang=' + chosenLang.toLowerCase();
-   }
+			}
 		});
 };
+
 	
 // Save the Date Calendar Handler (Multi-language & iOS Direct Navigation)
 	var initSaveTheDate = function() {
