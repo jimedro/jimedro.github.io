@@ -597,7 +597,7 @@ p {
 @media screen and (min-width: 769px) {
   #fh5co-header .display-tc .animate-box,
   .fh5co-cover .display-tc .animate-box {
-    padding-top: 50px !important; /* Adjust this value to shift content up or down */
+    padding-top: 500px !important; /* Adjust this value to shift content up or down */
   }
 }
 
