@@ -99,6 +99,42 @@ var contentWayPoint = function() {
 			$this.find('.dropdown').css('display', 'none').removeClass('animated-fast fadeInUpMenu');
 		});
 	};
+
+// Multilingual Countdown Updater with Pluralization Support
+var initMultilingualCountdown = function() {
+    var translations = {
+        EN: { days: "days", day: "day", hours: "hours", hour: "hour", minutes: "minutes", minute: "minute", seconds: "seconds", second: "second" },
+        ES: { days: "días", day: "día", hours: "horas", hour: "hora", minutes: "minutos", minute: "minuto", seconds: "segundos", second: "segundo" },
+        FR: { days: "jours", day: "jour", hours: "heures", hour: "heure", minutes: "minutes", minute: "minute", seconds: "secondes", second: "seconde" }
+    };
+
+    setInterval(function() {
+        var lang = (localStorage.getItem("selectedLang") || "EN").toUpperCase();
+        var t = translations[lang] || translations.EN;
+
+        $('.simply-section').each(function() {
+            var $section = $(this);
+            var $word = $section.find('.simply-word');
+            var $amount = $section.find('.simply-amount');
+            
+            if ($word.length && $amount.length) {
+                var value = parseInt($amount.text().trim(), 10);
+                var textLower = $word.text().toLowerCase();
+
+                // Check which unit this section represents and update with correct plural/singular translation
+                if (textLower.includes('day') || textLower.includes('jour') || textLower.includes('día')) {
+                    $word.text(value === 1 ? t.day : t.days);
+                } else if (textLower.includes('hour') || textLower.includes('heure') || textLower.includes('hora')) {
+                    $word.text(value === 1 ? t.hour : t.hours);
+                } else if (textLower.includes('minute')) {
+                    $word.text(value === 1 ? t.minute : t.minutes);
+                } else if (textLower.includes('second')) {
+                    $word.text(value === 1 ? t.second : t.seconds);
+                }
+            }
+        });
+    }, 500);
+};
 	
 var testimonialCarousel = function(){
 		var owl = $('.owl-carousel-fullwidth');
@@ -725,6 +761,7 @@ $(document).ready(function(){
     burgerMenu();
     contentWayPoint();
     dropdown();
+	initMultilingualCountdown();
     testimonialCarousel();
     goToTop();
     loaderPage();
