@@ -28,7 +28,7 @@
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css?v=1.81">
+	<link rel="stylesheet" href="css/style.css?v=1.82">
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -364,26 +364,33 @@
 	<script src="js/magnific-popup-options.js"></script>
 
 	<script src="js/simplyCountdown.js"></script>
-	<!-- Main (Updated cache parameter v=1.81) -->
+	<!-- Main (Updated cache parameter v=1.82) -->
 	<script src="js/main.js?v=1.67"></script>
 
-	<script>
+<script>
 	// Force clearing saved language every time main.html is opened
 	localStorage.removeItem('selectedLang');
-		
-    var d = new Date(new Date().getTime() + 200 * 120 * 120 * 2000);
 
+	// Determine active language before countdown renders
+	var activeLang = (localStorage.getItem("selectedLang") || "EN").toUpperCase();
+	var countdownWords = {
+		EN: { days: 'days', hours: 'hours', minutes: 'minutes', seconds: 'seconds' },
+		ES: { days: 'días', hours: 'horas', minutes: 'minutos', seconds: 'segundos' },
+		FR: { days: 'jours', hours: 'heures', minutes: 'minutes', seconds: 'secondes' }
+	};
+	var w = countdownWords[activeLang] || countdownWords.EN;
+		
     simplyCountdown('.simply-countdown-one', {
         year: 2027,
         month: 11,
-        day: 06
-    });
-
-    $('#simply-countdown-losange').simplyCountdown({
-        year: 2027,
-        month: 11,
         day: 06,
-        enableUtc: false
+		words: {
+			days: w.days,
+			hours: w.hours,
+			minutes: w.minutes,
+			seconds: w.seconds,
+			pluralLetter: ''
+		}
     });
 	</script>
 	</body>
