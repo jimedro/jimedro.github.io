@@ -2317,7 +2317,7 @@ a.pulse-badge {
 
 /* Fix iOS Safari rubber-band scroll resistance */
 html, body {
-  overscroll-behavior-y: none; /* Stops the elastic spring bounce on iOS */
+  // overscroll-behavior-y: none; /* Stops the elastic spring bounce on iOS */
   -webkit-overflow-scrolling: touch;
 }
 
