@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6, figure {
   position: relative;
   overflow-x: hidden;
   width: 100%;
-  min-height: 100%; 
+  height: 100%;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
@@ -1291,7 +1291,7 @@ body > #flag-selection {
 
   #fh5co-header .display-tc h2,
   .fh5co-cover .display-tc h2 {
-    margin-bottom: 30px !important;
+    margin-bottom: 100px !important;
   }
 
   .simply-countdown {
@@ -2324,26 +2324,4 @@ html, body {
   touch-action: pan-y; /* Tells Safari to permit vertical scrolling smoothly */
 }
 
-/* Smooth Scroll Relief & Snap Fix */
-html {
-  scroll-behavior: smooth;
-}
 
-#page {
-  overflow-x: hidden;
-  width: 100%;
-}
-
-.fh5co-cover {
-  min-height: 100vh;
-  height: auto !important;
-  padding-bottom: 60px;
-}
-
-.fh5co-cover .display-t,
-.fh5co-cover .display-tc {
-  height: auto !important;
-  min-height: 80vh;
-  padding-top: 120px;
-  padding-bottom: 60px;
-}
