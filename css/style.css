@@ -2324,4 +2324,25 @@ html, body {
   touch-action: pan-y; /* Tells Safari to permit vertical scrolling smoothly */
 }
 
+/* =======================================================
+*  SMOOTH MOMENTUM SCROLL FIX (Without altering layout)
+* ======================================================= */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
 
+body {
+  overflow-y: scroll !important; /* Forces standard vertical scroll context */
+  -webkit-overflow-scrolling: touch; /* Enables butter-smooth momentum scrolling on iOS */
+}
+
+#page {
+  height: auto !important; /* Allows the page wrapper to flow naturally */
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#fh5co-header {
+  pointer-events: auto;
+}
