@@ -294,12 +294,10 @@ p {
 .fh5co-cover {
   height: 900px;
   background-size: cover;
-  background-position: center center; /* <--- Add this line */
   background-repeat: no-repeat;
   position: relative;
   width: 100%;
 }
-
 .fh5co-cover .overlay {
   z-index: 0;
   position: absolute;
