@@ -252,48 +252,19 @@ var testimonialCarousel = function(){
 
 		// Flag click handler
 		$(document).on('click', '.flag-btn', function(e) {
-			var chosenLang = $(this).attr('data-lang');
-			if (chosenLang) {
-				localStorage.setItem("selectedLang", chosenLang);
-				applyTranslations(chosenLang);
-				
-				// --- DYNAMICALLY RE-INITIALIZE COUNTDOWN IN NEW LANGUAGE ---
-				var countdownWords = {
-					EN: { days: 'days', hours: 'hours', minutes: 'minutes', seconds: 'seconds' },
-					ES: { days: 'días', hours: 'horas', minutes: 'minutos', seconds: 'segundos' },
-					FR: { days: 'jours', hours: 'heures', minutes: 'minutes', seconds: 'secondes' }
-				};
-				var w = countdownWords[chosenLang.toUpperCase()] || countdownWords.EN;
-				
-				$('.simply-countdown-one').empty();
-				simplyCountdown('.simply-countdown-one', {
-					year: 2027,
-					month: 11,
-					day: 06,
-					words: {
-						days: w.days,
-						hours: w.hours,
-						minutes: w.minutes,
-						seconds: w.seconds,
-						pluralLetter: ''
-					}
-				});
-				// -------------------------------------------------------------
-
-				// Smooth CSS fade-out transition
-				$('#flag-selection').css({
-					'opacity': '0',
-					'visibility': 'hidden',
-					'pointer-events': 'none'
-				});
-
-				setTimeout(function() {
-					$('#flag-selection').hide();
-					enableScroll();
-				}, 600);
+			e.preventDefault();
+			var chosenLang = $(this).data('lang') || $(this).attr('data-lang');
+			
+			if (!chosenLang) {
+				// Fallback if clicked directly on the image inside the button
+				chosenLang = $(this).closest('.flag-btn').attr('data-lang');
 			}
+
+			if (chosenLang) {
+				localStorage.setItem("selectedLang", chosenLang.toUpperCase());
+				window.location.href = window.location.pathname + '?lang=' + chosenLang.toLowerCase();
 		});
-		};
+};
 	
 // Save the Date Calendar Handler (Multi-language & iOS Direct Navigation)
 	var initSaveTheDate = function() {
