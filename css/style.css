@@ -1373,17 +1373,8 @@ body > #flag-selection {
 #fh5co-couple,
 #fh5co-event,
 #fh5co-testimonial {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  will-change: opacity, transform;
-}
-
-#fh5co-couple.in-view,
-#fh5co-event.in-view,
-#fh5co-testimonial.in-view {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .gift-modal-overlay {
