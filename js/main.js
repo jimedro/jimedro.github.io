@@ -100,7 +100,7 @@ var contentWayPoint = function() {
 		});
 	};
 
-// Multilingual Countdown Updater with Pluralization Support
+// Multilingual Countdown Updater with Pluralization Support & Flicker-Free DOM Check
 var initMultilingualCountdown = function() {
     var translations = {
         EN: { days: "days", day: "day", hours: "hours", hour: "hour", minutes: "minutes", minute: "minute", seconds: "seconds", second: "second" },
@@ -119,21 +119,33 @@ var initMultilingualCountdown = function() {
             
             if ($word.length && $amount.length) {
                 var value = parseInt($amount.text().trim(), 10);
-                var textLower = $word.text().toLowerCase();
+                if (isNaN(value)) return;
 
-                // Check which unit this section represents and update with correct plural/singular translation
-                if (textLower.includes('day') || textLower.includes('jour') || textLower.includes('día')) {
-                    $word.text(value === 1 ? t.day : t.days);
-                } else if (textLower.includes('hour') || textLower.includes('heure') || textLower.includes('hora')) {
-                    $word.text(value === 1 ? t.hour : t.hours);
-                } else if (textLower.includes('minute')) {
-                    $word.text(value === 1 ? t.minute : t.minutes);
-                } else if (textLower.includes('second')) {
-                    $word.text(value === 1 ? t.second : t.seconds);
+                var currentWordLower = $word.text().toLowerCase();
+                var targetWord = "";
+
+                if (currentWordLower.includes('day') || currentWordLower.includes('jour') || currentWordLower.includes('día')) {
+                    targetWord = (value === 1 ? t.day : t.days);
+                } else if (currentWordLower.includes('hour') || currentWordLower.includes('heure') || currentWordLower.includes('hora')) {
+                    targetWord = (value === 1 ? t.hour : t.hours);
+                } else if (currentWordLower.includes('minute')) {
+                    targetWord = (value === 1 ? t.minute : t.minutes);
+                } else if (currentWordLower.includes('second')) {
+                    targetWord = (value === 1 ? t.second : t.seconds);
+                } else {
+                    if ($section.index() === 0) targetWord = (value === 1 ? t.day : t.days);
+                    else if ($section.index() === 1) targetWord = (value === 1 ? t.hour : t.hours);
+                    else if ($section.index() === 2) targetWord = (value === 1 ? t.minute : t.minutes);
+                    else if ($section.index() === 3) targetWord = (value === 1 ? t.second : t.seconds);
+                }
+
+                // Only update DOM if the word actually changes, stopping the flicker
+                if (targetWord && $word.text() !== targetWord) {
+                    $word.text(targetWord);
                 }
             }
         });
-    }, 500);
+    }, 1000);
 };
 	
 var testimonialCarousel = function(){
