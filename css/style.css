@@ -2323,3 +2323,27 @@ html, body {
 #page {
   touch-action: pan-y; /* Tells Safari to permit vertical scrolling smoothly */
 }
+
+/* Smooth Scroll Relief & Snap Fix */
+html {
+  scroll-behavior: smooth;
+}
+
+#page {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.fh5co-cover {
+  min-height: 100vh;
+  height: auto !important;
+  padding-bottom: 60px;
+}
+
+.fh5co-cover .display-t,
+.fh5co-cover .display-tc {
+  height: auto !important;
+  min-height: 80vh;
+  padding-top: 120px;
+  padding-bottom: 60px;
+}
