@@ -285,7 +285,8 @@ var testimonialCarousel = function(){
 				}, 600);
 			}
 		});
-
+};
+	
 // Save the Date Calendar Handler (Multi-language & iOS Direct Navigation)
 	var initSaveTheDate = function() {
 		$(document).on('click', '.btn-save-date', function(e) {
