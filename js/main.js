@@ -263,6 +263,7 @@ var testimonialCarousel = function(){
 			if (chosenLang) {
 				localStorage.setItem("selectedLang", chosenLang.toUpperCase());
 				window.location.href = window.location.pathname + '?lang=' + chosenLang.toLowerCase();
+   }
 		});
 };
 	
