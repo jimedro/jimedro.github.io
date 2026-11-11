@@ -271,7 +271,7 @@ var testimonialCarousel = function(){
 		});
 	};
 
-// Save the Date Calendar Handler (Multi-language & New Tab Enabled)
+// Save the Date Calendar Handler (Multi-language & iOS Direct Navigation)
 	var initSaveTheDate = function() {
 		$(document).on('click', '.btn-save-date', function(e) {
 			e.preventDefault();
@@ -292,12 +292,12 @@ var testimonialCarousel = function(){
 			var locationText = "Can Marial, Barcelona, Spain";
 			var titleText = "❤️ JIMI & PEDRO ❤️";
 
-			// Dates: Nov 5, 2027 17:00 to Nov 7, 2027 13:00 (Europe/Madrid offset approx UTC+1 in Nov -> 16:00Z to 12:00Z)
+			// Dates: Nov 5, 2027 17:00 to Nov 7, 2027 13:00
 			var startUtc = "20271105T160000Z";
 			var endUtc = "20271107T120000Z";
 
 			if (isIOS) {
-				// iOS / iPhone: Use Data URI for reliable native Apple Calendar import
+				// iOS / iPhone: Use direct location assignment to trigger native calendar file handling
 				var icsDetails = detailsText.replace(/\n/g, "\\n");
 				var icsData = [
 					"BEGIN:VCALENDAR",
@@ -323,12 +323,7 @@ var testimonialCarousel = function(){
 				].join("\r\n");
 
 				var encodedUri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsData);
-				var link = document.createElement('a');
-				link.href = encodedUri;
-				link.setAttribute('download', 'Jimi_and_Pedro_Wedding.ics');
-				document.body.appendChild(link);
-				link.click();
-				document.body.removeChild(link);
+				window.location.href = encodedUri; // Direct navigation forces iOS to open/download the .ics file
 			} else {
 				// Android & Desktop: Open Google Calendar in a NEW tab
 				var googleUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
@@ -339,7 +334,6 @@ var testimonialCarousel = function(){
 
 				var newTab = window.open(googleUrl, '_blank');
 				if (!newTab || newTab.closed || typeof newTab.closed === 'undefined') {
-					// Fallback if popup blocker intercepts window.open
 					var anchor = document.createElement('a');
 					anchor.href = googleUrl;
 					anchor.target = '_blank';
