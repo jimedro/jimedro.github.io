@@ -255,7 +255,33 @@ var testimonialCarousel = function(){
 			var chosenLang = $(this).attr('data-lang');
 			if (chosenLang) {
 				localStorage.setItem("selectedLang", chosenLang);
-				location.reload(); // Instantly reloads the page so the countdown builds natively in the chosen language
+				applyTranslations(chosenLang);
+				
+				// --- INSTANT COUNTDOWN TRANSLATION UPDATE ---
+				var countdownWords = {
+					EN: { days: 'days', hours: 'hours', minutes: 'minutes', seconds: 'seconds' },
+					ES: { days: 'días', hours: 'horas', minutes: 'minutos', seconds: 'segundos' },
+					FR: { days: 'jours', hours: 'heures', minutes: 'minutes', seconds: 'secondes' }
+				};
+				var w = countdownWords[chosenLang.toUpperCase()] || countdownWords.EN;
+				
+				$('.simply-days .simply-word').text(w.days);
+				$('.simply-hours .simply-word').text(w.hours);
+				$('.simply-minutes .simply-word').text(w.minutes);
+				$('.simply-seconds .simply-word').text(w.seconds);
+				// ---------------------------------------------
+
+				// Smooth CSS fade-out transition
+				$('#flag-selection').css({
+					'opacity': '0',
+					'visibility': 'hidden',
+					'pointer-events': 'none'
+				});
+
+				setTimeout(function() {
+					$('#flag-selection').hide();
+					enableScroll();
+				}, 600);
 			}
 		});
 		};
