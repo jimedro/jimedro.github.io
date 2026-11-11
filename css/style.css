@@ -597,7 +597,7 @@ p {
 @media screen and (min-width: 769px) {
   #fh5co-header .display-tc .animate-box,
   .fh5co-cover .display-tc .animate-box {
-    transform: translateY(-50px);
+    transform: translateY(-150px);
   }
 }
 
