@@ -258,6 +258,7 @@ var testimonialCarousel = function(){
 				location.reload(); // Instantly reloads the page so the countdown builds natively in the chosen language
 			}
 		});
+		};
 	
 // Save the Date Calendar Handler (Multi-language & iOS Direct Navigation)
 	var initSaveTheDate = function() {
