@@ -2066,7 +2066,7 @@ a.pulse-badge {
     align-items: center;
     z-index: 15;
     opacity: 0;
-    pointer-events: none;
+    pointer-events: none !important; /* <--- Forces outer container to pass touches through */
     transition: opacity 0.4s ease;
 }
 
@@ -2092,7 +2092,7 @@ a.pulse-badge {
     text-align: left;
     max-height: 80vh;
     overflow-y: auto;
-    pointer-events: auto;
+    pointer-events: auto !important;
 }
 
 .travel-instructions-box h3 {
