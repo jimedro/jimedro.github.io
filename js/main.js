@@ -626,8 +626,8 @@ var initVenueSplitSection = function() {
         'images/bellsol_12.jpg'
     ];
 
-    function renderInlineBellsolItem(idx) {
-        $('#inline-bellsol-stage').html('<img src="' + bellsolItems[idx] + '" alt="Venue photo ' + (idx + 1) + '" style="max-width:100%; max-height:100%; min-width:0; min-height:0; object-fit:contain;">');
+	function renderInlineBellsolItem(idx) {
+        $('#inline-bellsol-stage').html('<img src="' + bellsolItems[idx] + '" alt="Venue photo ' + (idx + 1) + '" style="width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; flex-shrink: 1; display: block;">');
         $('#inline-bellsol-counter').text((idx + 1) + ' / ' + bellsolItems.length);
     }
 
