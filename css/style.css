@@ -1973,6 +1973,7 @@ a.pulse-badge {
     right: 0;
     width: 50%;
     z-index: 1;
+    padding-top: 90px;
 }
 
 /* Static Background Images */
@@ -2141,15 +2142,19 @@ a.pulse-badge {
     .split-content-left,
     .split-content-right {
         padding: 20px 15px !important;
-        justify-content: flex-end !important; /* Positions content in the lower portion of the screen on mobile */
+        justify-content: flex-end !important;
         padding-bottom: 40px !important;
         width: 100% !important;
     }
     .travel-instructions-box,
     .inline-gallery-container {
         max-width: 100% !important;
-        max-height: 45vh !important;
-        padding: 15px !important;
+        max-height: 85vh !important;
+        padding: 12px !important;
+    }
+    .gallery-media-container {
+        height: 190px !important; /* <--- Prevents images from overflowing on mobile */
+        max-height: 38vh !important;
     }
 }
 
