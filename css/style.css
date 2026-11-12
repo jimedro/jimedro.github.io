@@ -2077,6 +2077,9 @@ a.pulse-badge {
 
 .split-content-right {
     right: 0;
+    width: 50%;
+    z-index: 1;
+    padding-top: 50px; /* <--- Keeps it positioned nicely as it was originally */
 }
 
 /* Travel Instructions Box */
@@ -2127,9 +2130,9 @@ a.pulse-badge {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 12px;
-    padding: 20px;
-    max-width: 550px;
+    border-radius: 16px;
+    padding: 25px;
+    max-width: 685px; 
     width: 100%;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     pointer-events: auto;
@@ -2142,19 +2145,19 @@ a.pulse-badge {
     .split-content-left,
     .split-content-right {
         padding: 20px 15px !important;
-        justify-content: flex-end !important;
-        padding-bottom: 40px !important;
+        justify-content: center !important; /* <--- Centers the boxes vertically so the top sits near the middle */
+        padding-bottom: 80px !important;    /* <--- Shifts them slightly upward */
         width: 100% !important;
     }
     .travel-instructions-box,
     .inline-gallery-container {
         max-width: 100% !important;
-        max-height: 85vh !important;
-        padding: 12px !important;
+        max-height: 55vh !important;
+        padding: 15px !important;
     }
     .gallery-media-container {
-        height: 190px !important; /* <--- Prevents images from overflowing on mobile */
-        max-height: 38vh !important;
+        height: 240px !important; /* Restores a clean, non-shrunken mobile height */
+        max-height: 42vh !important;
     }
 }
 
