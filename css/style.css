@@ -2124,18 +2124,30 @@ a.pulse-badge {
     line-height: 1.4;
 }
 
-/* Inline Gallery Container */
+/* Inline Gallery Container (Default / Mobile Size) */
 .inline-gallery-container {
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 16px;
-    padding: 25px;
-    max-width: 685px; 
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 550px;
     width: 100%;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     pointer-events: auto;
+}
+
+/* x1.25 scale applied ONLY on laptops/desktops (> 768px) */
+@media screen and (min-width: 769px) {
+    .inline-gallery-container {
+        max-width: 685px !important; /* 550px * 1.25 */
+        padding: 25px !important;
+        border-radius: 16px !important;
+    }
+    .inline-gallery-container .gallery-media-container {
+        height: 375px !important; /* 300px * 1.25 */
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -2145,8 +2157,8 @@ a.pulse-badge {
     .split-content-left,
     .split-content-right {
         padding: 20px 15px !important;
-        justify-content: center !important; /* <--- Centers the boxes vertically so the top sits near the middle */
-        padding-bottom: 80px !important;    /* <--- Shifts them slightly upward */
+        justify-content: center !important; /* Centers boxes so top sits near middle */
+        padding-bottom: 80px !important;    /* Shifts boxes upward */
         width: 100% !important;
     }
     .travel-instructions-box,
@@ -2156,8 +2168,8 @@ a.pulse-badge {
         padding: 15px !important;
     }
     .gallery-media-container {
-        height: 240px !important; /* Restores a clean, non-shrunken mobile height */
-        max-height: 42vh !important;
+        height: 200px !important; /* Keeps mobile gallery compact */
+        max-height: 38vh !important;
     }
 }
 
