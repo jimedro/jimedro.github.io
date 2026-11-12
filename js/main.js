@@ -578,12 +578,12 @@ var initVenueSplitSection = function() {
     // Initialize at exact 50% split
     updateSplit(50);
 
-// Smooth Dragging & Touch/Mouse Support
+// Smooth Dragging & Touch/Mouse Support across the entire section
     var isDragging = false;
-	
-$('#fh5co-venue-split').on('mousedown touchstart', function(e) {
-        // Prevent drag initiation if touching buttons, arrows, or interactive elements
-        if ($(e.target).closest('button, .gallery-nav-btn, .travel-instructions-box, .inline-gallery-container').length > 0) {
+
+    $('#fh5co-venue-split').on('mousedown touchstart', function(e) {
+        // Allow clicks on interactive gallery controls or links when visible
+        if ($(e.target).closest('button, .gallery-nav-btn, a').length > 0 && $(e.target).closest('.split-content-left, .split-content-right').css('opacity') === '1') {
             return;
         }
         
