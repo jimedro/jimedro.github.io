@@ -578,11 +578,13 @@ var initVenueSplitSection = function() {
     // Initialize at exact 50% split
     updateSplit(50);
 
-    // Smooth Dragging & Touch/Mouse Support
+// Smooth Dragging & Touch/Mouse Support
     var isDragging = false;
 
-    $container.on('mousedown touchstart', function(e) {
-        if ($(e.target).closest('.travel-instructions-box, .inline-gallery-container, button').length > 0) return;
+    $('#fh5co-venue-split').on('mousedown touchstart', function(e) {
+        // If clicking a button or scrolling inside the text boxes, let it work normally
+        if ($(e.target).closest('button, .gallery-nav-btn').length > 0) return;
+        
         isDragging = true;
         var clientX = e.clientX || (e.originalEvent.touches && e.originalEvent.touches[0].clientX);
         if (clientX) {
