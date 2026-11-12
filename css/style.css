@@ -2054,7 +2054,9 @@ a.pulse-badge {
     opacity: 0 !important;
 }
 
-/* Uncovered Content Overlays */
+/* =======================================================
+ * Uncovered Content Overlays (Base Layout)
+ * ======================================================= */
 .split-content-left,
 .split-content-right {
     position: absolute;
@@ -2067,22 +2069,25 @@ a.pulse-badge {
     align-items: center;
     z-index: 15;
     opacity: 0;
-    pointer-events: none !important; /* <--- Forces outer container to pass touches through */
+    pointer-events: none !important; /* Passes touches through when hidden/covered */
     transition: opacity 0.4s ease;
 }
 
 .split-content-left {
     left: 0;
+    width: 50%;
 }
 
 .split-content-right {
     right: 0;
     width: 50%;
     z-index: 1;
-    padding-top: 50px; /* <--- Keeps it positioned nicely as it was originally */
+    padding-top: 50px; /* Positions it nicely on laptops */
 }
 
-/* Travel Instructions Box */
+/* =======================================================
+ * Travel Instructions Box
+ * ======================================================= */
 .travel-instructions-box {
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
@@ -2096,7 +2101,7 @@ a.pulse-badge {
     text-align: left;
     max-height: 80vh;
     overflow-y: auto;
-    pointer-events: auto !important;
+    pointer-events: none !important; /* Pass touches through by default so slider works everywhere */
 }
 
 .travel-instructions-box h3 {
@@ -2124,7 +2129,9 @@ a.pulse-badge {
     line-height: 1.4;
 }
 
-/* Inline Gallery Container (Default / Mobile Size) */
+/* =======================================================
+ * Inline Gallery Container
+ * ======================================================= */
 .inline-gallery-container {
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
@@ -2135,10 +2142,18 @@ a.pulse-badge {
     max-width: 550px;
     width: 100%;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    pointer-events: auto;
+    pointer-events: none !important; /* Pass touches through by default so slider works everywhere */
 }
 
-/* x1.25 scale applied ONLY on laptops/desktops (> 768px) */
+/* Enable clicking/tapping inside the boxes ONLY when their side is fully uncovered */
+.split-content-left[style*="opacity: 1"] .travel-instructions-box,
+.split-content-right[style*="opacity: 1"] .inline-gallery-container {
+    pointer-events: auto !important;
+}
+
+/* =======================================================
+ * Desktop Scale (x1.25 on Laptops > 768px)
+ * ======================================================= */
 @media screen and (min-width: 769px) {
     .inline-gallery-container {
         max-width: 685px !important; /* 550px * 1.25 */
@@ -2150,6 +2165,9 @@ a.pulse-badge {
     }
 }
 
+/* =======================================================
+ * Mobile Responsive Adjustments (<= 768px)
+ * ======================================================= */
 @media screen and (max-width: 768px) {
     .split-slider-bar {
         display: none !important;
@@ -2157,7 +2175,7 @@ a.pulse-badge {
     .split-content-left,
     .split-content-right {
         padding: 20px 15px !important;
-        justify-content: center !important; /* Centers boxes so top sits near middle */
+        justify-content: center !important; /* Centers boxes vertically */
         padding-bottom: 80px !important;    /* Shifts boxes upward */
         width: 100% !important;
     }
