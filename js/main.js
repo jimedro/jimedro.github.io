@@ -580,10 +580,12 @@ var initVenueSplitSection = function() {
 
 // Smooth Dragging & Touch/Mouse Support
     var isDragging = false;
-
-    $('#fh5co-venue-split').on('mousedown touchstart', function(e) {
-        // If clicking a button or scrolling inside the text boxes, let it work normally
-        if ($(e.target).closest('button, .gallery-nav-btn').length > 0) return;
+	
+$('#fh5co-venue-split').on('mousedown touchstart', function(e) {
+        // Prevent drag initiation if touching buttons, arrows, or interactive elements
+        if ($(e.target).closest('button, .gallery-nav-btn, .travel-instructions-box, .inline-gallery-container').length > 0) {
+            return;
+        }
         
         isDragging = true;
         var clientX = e.clientX || (e.originalEvent.touches && e.originalEvent.touches[0].clientX);
