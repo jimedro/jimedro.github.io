@@ -408,9 +408,9 @@
     document.addEventListener("DOMContentLoaded", function() {
         var activeLang = (localStorage.getItem("selectedLang") || "EN").toUpperCase();
         var texts = {
-            EN: "Confirm by May 31st! 🗓️",
-            ES: "¡Confirma antes del 31 de mayo! 🗓️",
-            FR: "Confirmez avant le 31 mai ! 🗓️"
+            EN: "Confirm by May 31st!",
+            ES: "¡Confirma antes del 31 de mayo!",
+            FR: "Confirmez avant le 31 mai !"
         };
         var currentText = texts[activeLang] || texts.EN;
         var el = document.getElementById("rsvp-typewriter");
