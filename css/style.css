@@ -2389,14 +2389,14 @@ html, body {
   top: calc(100% + 12px) !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
-  background: #ffffff !important;
-  border: 2px solid #1e5312 !important;
+  background: rgba(255, 255, 255, 0.75) !important; /* Semi-transparent highlight look */
+  border: none !important; /* No edge/border */
   color: #1e5312 !important;
-  padding: 6px 16px !important;
-  border-radius: 20px !important;
+  padding: 4px 10px !important;
+  border-radius: 4px !important; /* Soft rectangle instead of pill */
   font-size: 16px !important; /* Laptop font size */
   font-weight: bold !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+  box-shadow: none !important; /* Removed shadow for flat highlight effect */
   white-space: nowrap !important;
   cursor: default !important;
   z-index: 20 !important;
@@ -2475,7 +2475,7 @@ html, body {
 @media screen and (max-width: 480px) {
   .deadline-box {
     font-size: 14px !important; /* Phone font size */
-    padding: 4px 12px !important;
+    padding: 3px 8px !important;
   }
   .rsvp-arrow {
     width: 28px !important;
