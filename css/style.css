@@ -2366,16 +2366,19 @@ html, body {
   }
 }
 
-/* --- RSVP Deadline Thought Cloud --- */
+/* --- RSVP Deadline Thought Cloud (Static Anchor & Typewriter) --- */
 .thought-cloud-bubble.rsvp-cloud {
   position: absolute;
-  bottom: 130%;
+  top: -42px;
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
   z-index: 10;
+  cursor: default !important;
+  animation: none !important; /* Removes the floating/zooming effect */
 }
 
+/* Position the cloud tails downward toward the RSVP button */
 .thought-cloud-bubble.rsvp-cloud::before {
   top: auto !important;
   bottom: -8px !important;
@@ -2390,9 +2393,22 @@ html, body {
   transform: translateX(-50%) !important;
 }
 
+/* Typewriter text cursor effect */
+.typewriter-text {
+  border-right: 2px solid #1e5312;
+  white-space: nowrap;
+  animation: blinkCursor 0.75s step-end infinite;
+}
+
+@keyframes blinkCursor {
+  from, to { border-color: transparent; }
+  50% { border-color: #1e5312; }
+}
+
 @media screen and (max-width: 480px) {
   .thought-cloud-bubble.rsvp-cloud {
-    font-size: 12px;
-    padding: 5px 12px;
+    font-size: 11px;
+    padding: 4px 10px;
+    top: -38px;
   }
 }
