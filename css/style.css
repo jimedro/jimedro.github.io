@@ -2366,7 +2366,7 @@ html, body {
   }
 }
 
-/* --- RSVP Wrapper & Curved Arrow Deadline Styling --- */
+/* --- RSVP Wrapper, White Curved Arrow & Deadline Box Styling --- */
 .header-btn-container {
   display: flex !important;
   justify-content: center !important;
@@ -2392,9 +2392,9 @@ html, body {
   background: #ffffff !important;
   border: 2px solid #1e5312 !important;
   color: #1e5312 !important;
-  padding: 4px 14px !important;
+  padding: 6px 16px !important;
   border-radius: 20px !important;
-  font-size: 12px !important; /* <--- ADJUST FONT SIZE HERE */
+  font-size: 16px !important; /* Laptop font size */
   font-weight: bold !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
   white-space: nowrap !important;
@@ -2402,11 +2402,11 @@ html, body {
   z-index: 20 !important;
 }
 
-/* Curved Arrow Styling */
+/* White Curved Arrow Positioned Higher to Align with RSVP Button */
 .rsvp-arrow {
   position: absolute !important;
-  top: 32px !important; /* Positions it vertically right near the bottom edge of the RSVP button */
-  left: calc(100% + 4px) !important; /* Curves out to the right side */
+  top: 8px !important; /* Aligns the start of the arrow vertically with the RSVP button */
+  left: calc(100% + 4px) !important;
   width: 35px !important;
   height: 25px !important;
   pointer-events: none !important;
@@ -2427,11 +2427,11 @@ html, body {
 
 @media screen and (max-width: 480px) {
   .deadline-box {
-    font-size: 10px !important; /* <--- ADJUST MOBILE FONT SIZE HERE */
-    padding: 2px 8px !important;
+    font-size: 14px !important; /* Phone font size */
+    padding: 4px 12px !important;
   }
   .rsvp-arrow {
     width: 28px !important;
-    top: 28px !important;
+    top: 6px !important;
   }
 }
