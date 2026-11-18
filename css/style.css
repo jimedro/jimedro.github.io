@@ -4,7 +4,7 @@
     src: url('../fonts/Nemure.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-}
+}header-btn-container
 
 @font-face {
   font-family: 'icomoon';
@@ -2441,7 +2441,7 @@ html, body {
 
 @media screen and (max-width: 480px) {
   .thought-cloud-bubble.rsvp-cloud {
-    font-size: 10px !important; /* <--- ADJUST MOBILE FONT SIZE HERE */
+    font-size: 14px !important; /* <--- ADJUST MOBILE FONT SIZE HERE */
     padding: 2px 8px !important;
   }
 }
