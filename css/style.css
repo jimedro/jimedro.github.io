@@ -2387,11 +2387,12 @@ html, body {
   z-index: 10;
 }
 
-/* --- RSVP Deadline Thought Cloud (Relative Shift - No Clipping) --- */
+/* --- RSVP Deadline Thought Cloud (Absolute Floating Anchor) --- */
 .thought-cloud-bubble.rsvp-cloud {
-  position: relative;
-  top: -42px;           /* Floats the cloud upward right above the RSVP button */
-  margin-bottom: -38px; /* Collapses the layout gap so the button stays aligned */
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   background: #ffffff;
   border: 2px solid #1e5312;
   color: #1e5312;
@@ -2401,6 +2402,7 @@ html, body {
   font-weight: bold;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   white-space: nowrap;
+  margin-bottom: 8px; /* Exact gap between the cloud and the RSVP button */
   cursor: default !important;
   animation: none !important;
   z-index: 10;
@@ -2447,7 +2449,6 @@ html, body {
   .thought-cloud-bubble.rsvp-cloud {
     font-size: 10px;
     padding: 3px 10px;
-    top: -35px;
-    margin-bottom: -30px;
+    margin-bottom: 6px;
   }
 }
