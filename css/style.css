@@ -2387,12 +2387,17 @@ html, body {
   z-index: 10;
 }
 
-/* --- RSVP Deadline Thought Cloud (Absolute Floating Anchor) --- */
+/* --- RSVP Wrapper & Deadline Thought Cloud --- */
+.rsvp-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  vertical-align: middle;
+}
+
 .thought-cloud-bubble.rsvp-cloud {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative; /* Sits naturally in the flex column flow */
   background: #ffffff;
   border: 2px solid #1e5312;
   color: #1e5312;
@@ -2402,13 +2407,12 @@ html, body {
   font-weight: bold;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   white-space: nowrap;
-  margin-bottom: 8px; /* Exact gap between the cloud and the RSVP button */
   cursor: default !important;
   animation: none !important;
   z-index: 10;
 }
 
-/* Position the speech bubble tail dots pointing DOWN toward the RSVP button */
+/* Position speech bubble tail dots pointing down toward the RSVP button */
 .thought-cloud-bubble.rsvp-cloud::before,
 .thought-cloud-bubble.rsvp-cloud::after {
   content: "";
@@ -2418,7 +2422,6 @@ html, body {
   border-radius: 50%;
   left: 50%;
   transform: translateX(-50%);
-  top: auto !important;
 }
 
 .thought-cloud-bubble.rsvp-cloud::before {
@@ -2449,6 +2452,5 @@ html, body {
   .thought-cloud-bubble.rsvp-cloud {
     font-size: 10px;
     padding: 3px 10px;
-    margin-bottom: 6px;
   }
 }
