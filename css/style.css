@@ -2365,3 +2365,34 @@ html, body {
     height: 900px !important;
   }
 }
+
+/* --- RSVP Deadline Thought Cloud --- */
+.thought-cloud-bubble.rsvp-cloud {
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.thought-cloud-bubble.rsvp-cloud::before {
+  top: auto !important;
+  bottom: -8px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+.thought-cloud-bubble.rsvp-cloud::after {
+  top: auto !important;
+  bottom: -14px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+@media screen and (max-width: 480px) {
+  .thought-cloud-bubble.rsvp-cloud {
+    font-size: 12px;
+    padding: 5px 12px;
+  }
+}
