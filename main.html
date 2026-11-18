@@ -34,7 +34,7 @@
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css?v=1.90">
+	<link rel="stylesheet" href="css/style.css?v=1.91">
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -99,14 +99,9 @@
 								<button type="button" class="btn btn-default btn-sm btn-save-date" data-lang-en="Save the date" data-lang-es="Reserva la fecha" data-lang-fr="Réservez la date">Save the date</button>
 								<span style="position: relative; display: inline-block;">
 									<a href="maintenance.html" class="btn btn-default btn-sm btn-rsvp" data-lang-en="RSVP" data-lang-es="RSVP" data-lang-fr="RSVP">RSVP</a>
-									<a href="maintenance.html" class="thought-cloud-bubble rsvp-cloud" 
-									   data-lang-en="Confirm by May 31st! 🗓️" 
-									   data-lang-es="¡Confirma antes del 31 de mayo! 🗓️" 
-									   data-lang-fr="Confirmez avant le 31 mai ! 🗓️">
-										<span data-lang-en="Confirm by May 31st! 🗓️" 
-											  data-lang-es="¡Confirma antes del 31 de mayo! 🗓️" 
-											  data-lang-fr="Confirmez avant le 31 mai ! 🗓️">Confirm by May 31st! 🗓️</span>
-									</a>
+									<div class="thought-cloud-bubble rsvp-cloud">
+										<span class="typewriter-text" id="rsvp-typewriter"></span>
+									</div>
 								</span>
 							</p>
 						</div>
@@ -381,7 +376,7 @@
 
 	<script src="js/simplyCountdown.js"></script>
 	
-	<script src="js/main.js?v=1.90"></script>
+	<script src="js/main.js?v=1.91"></script>
 
 <script>
     var activeLang = (localStorage.getItem("selectedLang") || "EN").toUpperCase();
@@ -405,6 +400,47 @@
             seconds: w.seconds,
             pluralLetter: ''
         }
+	});
+			
+// Cyclic Typewriter Effect for RSVP Deadline Cloud
+    document.addEventListener("DOMContentLoaded", function() {
+        var activeLang = (localStorage.getItem("selectedLang") || "EN").toUpperCase();
+        var texts = {
+            EN: "Confirm by May 31st! 🗓️",
+            ES: "¡Confirma antes del 31 de mayo! 🗓️",
+            FR: "Confirmez avant le 31 mai ! 🗓️"
+        };
+        var currentText = texts[activeLang] || texts.EN;
+        var el = document.getElementById("rsvp-typewriter");
+        
+        if (!el) return;
+
+        var charIndex = 0;
+        var isDeleting = false;
+        var typingSpeed = 100;
+
+        function typeWriter() {
+            if (!isDeleting) {
+                el.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                if (charIndex === currentText.length) {
+                    isDeleting = true;
+                    setTimeout(typeWriter, 2500); // Pause at full text
+                    return;
+                }
+            } else {
+                el.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    setTimeout(typeWriter, 500); // Pause before re-typing
+                    return;
+                }
+            }
+            setTimeout(typeWriter, isDeleting ? 50 : typingSpeed);
+        }
+
+        setTimeout(typeWriter, 1000);
     });
 </script>
 	</body>
