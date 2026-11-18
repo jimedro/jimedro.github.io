@@ -2402,8 +2402,7 @@ html, body {
   z-index: 20 !important;
 }
 
-/* White Curved Arrow Positioned Higher to Align with RSVP Button */
-/* Upward-Pointing White Curved Arrow */
+/* Upward-Pointing White Curved Arrow & Draw Animation */
 .rsvp-arrow {
   position: absolute !important;
   top: 12px !important;
@@ -2412,6 +2411,53 @@ html, body {
   height: 40px !important;
   pointer-events: none !important;
   z-index: 25 !important;
+}
+
+/* Cyclic Drawing Animation */
+.arrow-line {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: drawArrowLine 3.5s ease-in-out infinite;
+}
+
+.arrow-tip {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  animation: drawArrowTip 3.5s ease-in-out infinite;
+}
+
+@keyframes drawArrowLine {
+  0% {
+    stroke-dashoffset: 60;
+  }
+  40% {
+    stroke-dashoffset: 0; /* Fully drawn */
+  }
+  80% {
+    stroke-dashoffset: 0; /* Hold visible */
+  }
+  100% {
+    stroke-dashoffset: 60; /* Erase and repeat */
+  }
+}
+
+@keyframes drawArrowTip {
+  0%, 30% {
+    stroke-dashoffset: 20;
+    opacity: 0;
+  }
+  45% {
+    stroke-dashoffset: 0; /* Tip appears after the line reaches it */
+    opacity: 1;
+  }
+  80% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 20;
+    opacity: 0;
+  }
 }
 
 /* Typewriter text cursor effect */
