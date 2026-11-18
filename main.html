@@ -34,7 +34,7 @@
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css?v=1.89">
+	<link rel="stylesheet" href="css/style.css?v=1.90">
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -97,7 +97,17 @@
 							<div class="simply-countdown simply-countdown-one"></div>
 							<p class="header-btn-container">
 								<button type="button" class="btn btn-default btn-sm btn-save-date" data-lang-en="Save the date" data-lang-es="Reserva la fecha" data-lang-fr="Réservez la date">Save the date</button>
-								<a href="maintenance.html" class="btn btn-default btn-sm btn-rsvp" data-lang-en="RSVP" data-lang-es="RSVP" data-lang-fr="RSVP">RSVP</a>
+								<span style="position: relative; display: inline-block;">
+									<a href="maintenance.html" class="btn btn-default btn-sm btn-rsvp" data-lang-en="RSVP" data-lang-es="RSVP" data-lang-fr="RSVP">RSVP</a>
+									<a href="maintenance.html" class="thought-cloud-bubble rsvp-cloud" 
+									   data-lang-en="Confirm by May 31st! 🗓️" 
+									   data-lang-es="¡Confirma antes del 31 de mayo! 🗓️" 
+									   data-lang-fr="Confirmez avant le 31 mai ! 🗓️">
+										<span data-lang-en="Confirm by May 31st! 🗓️" 
+											  data-lang-es="¡Confirma antes del 31 de mayo! 🗓️" 
+											  data-lang-fr="Confirmez avant le 31 mai ! 🗓️">Confirm by May 31st! 🗓️</span>
+									</a>
+								</span>
 							</p>
 						</div>
 					</div>
@@ -371,7 +381,7 @@
 
 	<script src="js/simplyCountdown.js"></script>
 	
-	<script src="js/main.js?v=1.89"></script>
+	<script src="js/main.js?v=1.90"></script>
 
 <script>
     var activeLang = (localStorage.getItem("selectedLang") || "EN").toUpperCase();
