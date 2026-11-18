@@ -2387,6 +2387,25 @@ html, body {
   z-index: 10;
 }
 
+/* --- RSVP Deadline Thought Cloud (Relative Shift - No Clipping) --- */
+.thought-cloud-bubble.rsvp-cloud {
+  position: relative;
+  top: -42px;           /* Floats the cloud upward right above the RSVP button */
+  margin-bottom: -38px; /* Collapses the layout gap so the button stays aligned */
+  background: #ffffff;
+  border: 2px solid #1e5312;
+  color: #1e5312;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  white-space: nowrap;
+  cursor: default !important;
+  animation: none !important;
+  z-index: 10;
+}
+
 /* Position the speech bubble tail dots pointing DOWN toward the RSVP button */
 .thought-cloud-bubble.rsvp-cloud::before,
 .thought-cloud-bubble.rsvp-cloud::after {
@@ -2428,6 +2447,7 @@ html, body {
   .thought-cloud-bubble.rsvp-cloud {
     font-size: 10px;
     padding: 3px 10px;
-    margin-bottom: 6px;
+    top: -35px;
+    margin-bottom: -30px;
   }
 }
