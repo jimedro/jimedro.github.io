@@ -2405,10 +2405,10 @@ html, body {
 /* White Curved Arrow Positioned Higher to Align with RSVP Button */
 .rsvp-arrow {
   position: absolute !important;
-  top: 8px !important; /* Aligns the start of the arrow vertically with the RSVP button */
+  top: 14px !important; /* Centers the start of the arrow vertically with the RSVP button */
   left: calc(100% + 4px) !important;
   width: 35px !important;
-  height: 25px !important;
+  height: 40px !important; /* Taller height for the longer path */
   pointer-events: none !important;
   z-index: 25 !important;
 }
@@ -2432,6 +2432,7 @@ html, body {
   }
   .rsvp-arrow {
     width: 28px !important;
-    top: 6px !important;
+    height: 35px !important;
+    top: 12px !important;
   }
 }
