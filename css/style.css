@@ -2366,7 +2366,7 @@ html, body {
   }
 }
 
-/* --- Corrected RSVP Wrapper & Floating Deadline Cloud Alignment --- */
+/* --- RSVP Wrapper & Floating Deadline Cloud (Positioned Below) --- */
 .header-btn-container {
   display: flex !important;
   justify-content: center !important;
@@ -2386,7 +2386,7 @@ html, body {
 
 .thought-cloud-bubble.rsvp-cloud {
   position: absolute !important;
-  bottom: calc(100% + 8px) !important;
+  top: calc(100% + 8px) !important; /* Forces it to sit right below the button */
   left: 50% !important;
   transform: translateX(-50%) !important;
   background: #ffffff !important;
@@ -2394,7 +2394,7 @@ html, body {
   color: #1e5312 !important;
   padding: 4px 12px !important;
   border-radius: 20px !important;
-  font-size: 12px !important;
+  font-size: 16px !important; /* <--- ADJUST FONT SIZE HERE (e.g. 10px, 11px, 13px) */
   font-weight: bold !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
   white-space: nowrap !important;
@@ -2403,7 +2403,7 @@ html, body {
   z-index: 20 !important;
 }
 
-/* Position speech bubble tail dots pointing down toward the RSVP button */
+/* Position speech bubble tail dots pointing UP toward the RSVP button */
 .thought-cloud-bubble.rsvp-cloud::before,
 .thought-cloud-bubble.rsvp-cloud::after {
   content: "" !important;
@@ -2418,13 +2418,13 @@ html, body {
 .thought-cloud-bubble.rsvp-cloud::before {
   width: 7px !important;
   height: 7px !important;
-  bottom: -5px !important;
+  top: -5px !important; /* Points up */
 }
 
 .thought-cloud-bubble.rsvp-cloud::after {
   width: 4px !important;
   height: 4px !important;
-  bottom: -10px !important;
+  top: -10px !important; /* Points up */
 }
 
 /* Typewriter text cursor effect */
@@ -2441,7 +2441,7 @@ html, body {
 
 @media screen and (max-width: 480px) {
   .thought-cloud-bubble.rsvp-cloud {
-    font-size: 10px !important;
+    font-size: 10px !important; /* <--- ADJUST MOBILE FONT SIZE HERE */
     padding: 2px 8px !important;
   }
 }
