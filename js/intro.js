@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to trigger the second video playback
     function playVenuesVideo() {
+        if (loaderScreen) loaderScreen.classList.remove("exit-mode");
         if (messageContainer) messageContainer.classList.remove("show");
         if (choiceContainer) choiceContainer.classList.remove("show");
         if (jokeMessage) jokeMessage.classList.remove("show");
@@ -93,6 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function showLoaderScreen() {
         const videoContainer = document.getElementById("video-container");
         if (skipBtn) skipBtn.classList.remove("show");
+        if (loaderScreen) loaderScreen.classList.remove("exit-mode");
 
         if (messageContainer) {
             messageContainer.textContent = secondTransitionMessages[selectedLang] || secondTransitionMessages["EN"];
@@ -142,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Function to transition to the final exit screen
+   // Function to transition to the final exit screen
     function showFinalAdventureScreen() {
         if (venuesSkipBtn) venuesSkipBtn.classList.remove("show");
         if (venuesContainer) {
@@ -162,6 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Show loader screen with background image + spinner + EXIT button
         if (loaderScreen) {
             loaderScreen.classList.add("active");
+            loaderScreen.classList.add("exit-mode");
         }
         if (exitBtn) {
             setTimeout(() => {
