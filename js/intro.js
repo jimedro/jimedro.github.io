@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const venuesContainer = document.getElementById("venues-video-container");
     const venuesVideo = document.getElementById("venues-video");
     const venuesSkipBtn = document.getElementById("skip-venues-btn");
+    const exitBtn = document.getElementById("exit-btn");
 
     if (!videoElement || !introVeil) return; 
 
@@ -36,13 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "ES": "Claro que sí guapi",
         "EN": "Yeah sure",
         "FR": "La blague !"
-    };
-
-    // Final "coming soon" adventure messages
-    const finalMessages = {
-        "ES": "Preparando la aventura... vuelve pronto!",
-        "EN": "We are preparing this adventure, come back soon!",
-        "FR": "On se prépare pour l'aventure, reviens bientôt !"
     };
 
     let selectedLang = "EN"; // Default fallback
@@ -148,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Function to transition to the final adventure screen
+    // Function to transition to the final exit screen
     function showFinalAdventureScreen() {
         if (venuesSkipBtn) venuesSkipBtn.classList.remove("show");
         if (venuesContainer) {
@@ -158,20 +152,22 @@ document.addEventListener("DOMContentLoaded", function () {
             venuesVideo.pause();
         }
 
-        // Setup final message text based on chosen language
         if (messageContainer) {
-            messageContainer.textContent = finalMessages[selectedLang] || finalMessages["EN"];
+            messageContainer.textContent = "";
+            messageContainer.classList.remove("show");
         }
         if (choiceContainer) choiceContainer.classList.remove("show");
         if (jokeMessage) jokeMessage.classList.remove("show");
 
-        // Show loader screen with background image + spinner + final message
+        // Show loader screen with background image + spinner + EXIT button
         if (loaderScreen) {
             loaderScreen.classList.add("active");
         }
-        setTimeout(() => {
-            if (messageContainer) messageContainer.classList.add("show");
-        }, 50);
+        if (exitBtn) {
+            setTimeout(() => {
+                exitBtn.classList.add("show");
+            }, 50);
+        }
     }
 
     // Skip Button Functionality (First Video)
